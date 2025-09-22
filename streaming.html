@@ -6,8 +6,8 @@
 <title>Streaming Platforms</title>
 <style>
 :root {
-  --neon-green: #0fa; 
-  --neon-blue: #08f; 
+  --neon-green: #0fa;
+  --neon-blue: #08f;
   --neon-purple: #a0f;
   --neon-pink: #f0a;
 }
@@ -28,66 +28,66 @@ h2.section-title {font-size:1.6rem; margin-bottom:20px; color:var(--neon-purple)
 /* ---------- Carrusel de videos ---------- */
 #videoSlider {position:relative; overflow:hidden; padding:20px 0;}
 #videoCarousel {
-  display:flex; 
-  align-items:center; 
-  justify-content:flex-start; 
-  gap:20px; 
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  gap:20px;
   transition:transform 0.5s ease;
 }
 .video-item {
-  min-width:300px; 
+  min-width:300px;
   height: auto; /* Cambiado a auto para mejor responsividad */
-  margin:0; 
-  cursor:pointer; 
+  margin:0;
+  cursor:pointer;
   transition:transform 0.4s, box-shadow 0.4s;
-  position: relative; 
-  border-radius: 15px; 
+  position: relative;
+  border-radius: 15px;
   overflow: hidden;
-  border: 2px solid var(--neon-blue); 
+  border: 2px solid var(--neon-blue);
   background: linear-gradient(145deg, rgba(0,0,50,0.6), rgba(0,0,0,0.8));
   box-shadow: 0 0 10px var(--neon-blue);
   display: flex;
   flex-direction: column;
 }
 .video-item:hover { transform: scale(1.08); box-shadow:0 0 25px var(--neon-green), 0 0 40px var(--neon-blue); }
-.video-thumbnail { 
-  width:100%; 
-  height:180px; 
-  overflow:hidden; 
-  border-radius:12px 12px 0 0; 
-  display:flex; 
-  align-items:center; 
-  justify-content:center; 
-  border-bottom:1px solid var(--neon-blue); 
+.video-thumbnail {
+  width:100%;
+  height:180px;
+  overflow:hidden;
+  border-radius:12px 12px 0 0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-bottom:1px solid var(--neon-blue);
   position: relative;
 }
-.video-thumbnail img { 
-  width:100%; 
-  height:100%; 
-  object-fit:cover; 
-  transition: transform 0.4s; 
+.video-thumbnail img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition: transform 0.4s;
 }
 .video-thumbnail:hover img { transform:scale(1.1); }
-.play-icon { 
-  position:absolute; 
-  font-size:3rem; 
-  color:rgba(255,255,255,0.8); 
-  text-shadow:0 0 10px var(--neon-purple); 
-  z-index:5; 
+.play-icon {
+  position:absolute;
+  font-size:3rem;
+  color:rgba(255,255,255,0.8);
+  text-shadow:0 0 10px var(--neon-purple);
+  z-index:5;
   transition: all 0.3s;
 }
-.video-item:hover .play-icon { 
-  color: var(--neon-green); 
-  text-shadow: 0 0 25px var(--neon-green); 
-  transform: scale(1.3); 
+.video-item:hover .play-icon {
+  color: var(--neon-green);
+  text-shadow: 0 0 25px var(--neon-green);
+  transform: scale(1.3);
 }
-.video-title { 
+.video-title {
   margin:0;
   padding: 15px 10px;
-  text-align:center; 
-  font-weight:bold; 
-  color: var(--neon-pink); 
-  text-shadow:0 0 5px var(--neon-pink); 
+  text-align:center;
+  font-weight:bold;
+  color: var(--neon-pink);
+  text-shadow:0 0 5px var(--neon-pink);
   flex-grow: 1;
   display: flex;
   align-items: center;
@@ -148,28 +148,28 @@ h2.section-title {font-size:1.6rem; margin-bottom:20px; color:var(--neon-purple)
 
 /* ---------- Modal plataformas ---------- */
 #platformModal {
-  display:none; 
-  position:fixed; 
-  top:0; 
-  left:0; 
-  width:100%; 
-  height:100%; 
-  background:rgba(0,0,0,0.95); 
-  z-index:1000; 
-  overflow-y:auto; 
-  align-items:center; 
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.95);
+  z-index:1000;
+  overflow-y:auto;
+  align-items:center;
   justify-content:center;
   padding: 20px;
 }
 #platformModalContent {
-  background:linear-gradient(135deg,#1a1a1a,#2a2a2a); 
-  width:90%; 
-  max-width:700px; 
-  border-radius:15px; 
-  padding:30px; 
-  border:2px solid var(--neon-purple); 
-  box-shadow:0 0 30px var(--neon-purple); 
-  color:white; 
+  background:linear-gradient(135deg,#1a1a1a,#2a2a2a);
+  width:90%;
+  max-width:700px;
+  border-radius:15px;
+  padding:30px;
+  border:2px solid var(--neon-purple);
+  box-shadow:0 0 30px var(--neon-purple);
+  color:white;
   animation:modalFadeIn 0.4s ease;
   position: relative;
 }
@@ -412,23 +412,23 @@ function moveSlider(dir){
   currentIndex += dir;
   if(currentIndex < 0) currentIndex = items-1;
   if(currentIndex >= items) currentIndex = 0;
-  
+ 
   // Responsive: calcular el ancho del elemento según el tamaño de pantalla
   const videoItem = document.querySelector('.video-item');
   const itemWidth = videoItem ? videoItem.offsetWidth + 20 : 320; // 20px es el gap
-  
+ 
   videoCarousel.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
 }
 
 const videoModal = document.getElementById("videoModal");
 const videoFrame = document.getElementById("videoFrame");
-function openModal(url){ 
-  videoFrame.src = url + "?autoplay=1"; 
-  videoModal.style.display = "flex"; 
+function openModal(url){
+  videoFrame.src = url + "?autoplay=1";
+  videoModal.style.display = "flex";
 }
-function closeModal(){ 
-  videoFrame.src = ""; 
-  videoModal.style.display = "none"; 
+function closeModal(){
+  videoFrame.src = "";
+  videoModal.style.display = "none";
 }
 
 // Cerrar modal al hacer clic fuera del contenido
@@ -436,7 +436,7 @@ videoModal.addEventListener('click', (e) => {
   if (e.target === videoModal) closeModal();
 });
 
-// Plataformas
+// Plataformas - AQUÍ HE AGREGADO MÁS PLATAFORMAS
 const platforms = {
   netflix:{
     id:"netflix",
@@ -487,6 +487,77 @@ const platforms = {
     screens:"3 pantallas simultáneas",
     quality:"4K Ultra HD",
     badge:"RECOMENDADO"
+  },
+  // PLATAFORMAS ADICIONALES AGREGADAS
+  appletv:{
+    id:"appletv",
+    name:"Apple TV+",
+    description:"Contenido original exclusivo de Apple con producciones de alta calidad.",
+    logo:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Apple_TV_plus_logo.svg/2560px-Apple_TV_plus_logo.svg.png",
+    price:"$99 MXN / mes",
+    screens:"6 pantallas simultáneas",
+    quality:"4K HDR",
+    badge:"EXCLUSIVO"
+  },
+  paramount:{
+    id:"paramount",
+    name:"Paramount+",
+    description:"Contenido de CBS, MTV, Nickelodeon, Comedy Central y más.",
+    logo:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Paramount_Plus.svg/2560px-Paramount_Plus.svg.png",
+    price:"$99 MXN / mes",
+    screens:"3 pantallas simultáneas",
+    quality:"4K Ultra HD",
+    badge:"FAMILIAR"
+  },
+  starplus:{
+    id:"starplus",
+    name:"Star+",
+    description:"Series, películas y deportes en vivo de ESPN, FX y más.",
+    logo:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Star%2B_logo.svg/2560px-Star%2B_logo.svg.png",
+    price:"$159 MXN / mes",
+    screens:"4 pantallas simultáneas",
+    quality:"4K Ultra HD",
+    badge:"DEPORTES"
+  },
+  crunchyroll:{
+    id:"crunchyroll",
+    name:"Crunchyroll",
+    description:"El mejor catálogo de anime con estrenos simultáneos con Japón.",
+    logo:"https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Crunchyroll_Logo.svg/2560px-Crunchyroll_Logo.svg.png",
+    price:"$79 MXN / mes",
+    screens:"Sin límite",
+    quality:"HD hasta 1080p",
+    badge:"ANIME"
+  },
+  mubi:{
+    id:"mubi",
+    name:"Mubi",
+    description:"Cine de autor y películas independientes seleccionadas por expertos.",
+    logo:"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/MUBI_logo.svg/2560px-MUBI_logo.svg.png",
+    price:"$119 MXN / mes",
+    screens:"2 pantallas simultáneas",
+    quality:"Full HD",
+    badge:"CINE ARTE"
+  },
+  claaro:{
+    id:"claaro",
+    name:"Claro video",
+    description:"Contenido variado con series, películas y programas infantiles.",
+    logo:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Claro_video_logo.svg/2560px-Claro_video_logo.svg.png",
+    price:"$89 MXN / mes",
+    screens:"3 pantallas simultáneas",
+    quality:"HD",
+    badge:"LOCAL"
+  },
+  blim:{
+    id:"blim",
+    name:"Blim",
+    description:"Contenido de Televisa con telenovelas, series y programas mexicanos.",
+    logo:"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Blim_logo.svg/2560px-Blim_logo.svg.png",
+    price:"$79 MXN / mes",
+    screens:"2 pantallas simultáneas",
+    quality:"HD",
+    badge:"NACIONAL"
   }
 };
 
@@ -539,8 +610,8 @@ function openPlatformModal(id){
   modal.style.display = "flex";
 }
 
-function closePlatformModal(){ 
-  document.getElementById("platformModal").style.display = "none"; 
+function closePlatformModal(){
+  document.getElementById("platformModal").style.display = "none";
 }
 
 // Cerrar modal al hacer clic fuera del contenido
@@ -554,12 +625,12 @@ const confirmationMessage = document.getElementById("confirmationMessage");
 
 infoForm.addEventListener("submit", function(e){
   e.preventDefault();
-  
+ 
   // Aquí normalmente enviarías los datos a un servidor
   // Por ahora solo mostramos el mensaje de confirmación
   confirmationMessage.style.display = "block";
   infoForm.reset();
-  
+ 
   // Ocultar el mensaje después de 5 segundos
   setTimeout(() => {
     confirmationMessage.style.display = "none";
