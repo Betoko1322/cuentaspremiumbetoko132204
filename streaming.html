@@ -36,7 +36,7 @@ h2.section-title {font-size:1.6rem; margin-bottom:20px; color:var(--neon-purple)
 }
 .video-item {
   min-width:300px; 
-  height: auto; /* Cambiado a auto para mejor responsividad */
+  height: auto;
   margin:0; 
   cursor:pointer; 
   transition:transform 0.4s, box-shadow 0.4s;
@@ -94,7 +94,7 @@ h2.section-title {font-size:1.6rem; margin-bottom:20px; color:var(--neon-purple)
   justify-content: center;
   background: rgba(0, 0, 0, 0.7);
   border-radius: 0 0 12px 12px;
-  min-height: 60px; /* Aseguramos altura mínima para el título */
+  min-height: 60px;
 }
 
 /* ---------- Flechas ---------- */
@@ -283,6 +283,42 @@ footer#footer {text-align:center; padding:20px; border-top:1px solid var(--neon-
   .platform-image {width:100px; height:100px;}
   .platform-name {font-size:1rem;}
 }
+
+/* ---------- Formulario para agregar plataformas ---------- */
+#addPlatformForm {
+  background: rgba(0,0,0,0.5);
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px solid var(--neon-green);
+  margin: 20px auto;
+  max-width: 500px;
+  display: none;
+}
+
+#addPlatformForm h3 {
+  color: var(--neon-pink);
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+#togglePlatformForm {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background: transparent;
+  border: 2px solid var(--neon-blue);
+  color: var(--neon-blue);
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+
+#togglePlatformForm:hover {
+  background: var(--neon-blue);
+  color: black;
+  box-shadow: 0 0 15px var(--neon-blue);
+}
 </style>
 </head>
 <body>
@@ -319,6 +355,38 @@ footer#footer {text-align:center; padding:20px; border-top:1px solid var(--neon-
   <!-- ========= SECCIÓN PLATAFORMAS ========= -->
   <section id="platformsSection" class="section">
     <h2 class="section-title">Plataformas Disponibles</h2>
+    
+    <!-- Botón para mostrar/ocultar formulario de agregar plataformas -->
+    <button id="togglePlatformForm">+ Agregar Nueva Plataforma</button>
+    
+    <!-- Formulario para agregar plataformas -->
+    <form id="addPlatformForm">
+      <h3>Agregar Nueva Plataforma</h3>
+      <label for="newPlatformName">Nombre:</label>
+      <input type="text" id="newPlatformName" required>
+      
+      <label for="newPlatformDescription">Descripción:</label>
+      <textarea id="newPlatformDescription" rows="3" required></textarea>
+      
+      <label for="newPlatformLogo">URL del Logo:</label>
+      <input type="url" id="newPlatformLogo" required>
+      
+      <label for="newPlatformPrice">Precio:</label>
+      <input type="text" id="newPlatformPrice" required>
+      
+      <label for="newPlatformScreens">Pantallas:</label>
+      <input type="text" id="newPlatformScreens" required>
+      
+      <label for="newPlatformQuality">Calidad:</label>
+      <input type="text" id="newPlatformQuality" required>
+      
+      <label for="newPlatformBadge">Badge:</label>
+      <input type="text" id="newPlatformBadge" required>
+      
+      <button type="submit">Agregar Plataforma</button>
+      <button type="button" id="cancelAddPlatform">Cancelar</button>
+    </form>
+    
     <div id="platformsContainer"></div>
   </section>
 
@@ -369,7 +437,7 @@ footer#footer {text-align:center; padding:20px; border-top:1px solid var(--neon-
 <div id="platformModal"><div id="platformModalContent"></div></div>
 
 <!-- =================== BOTÓN REGRESAR AL INICIO =================== -->
-<a id="backToTop" href="index.html">Regresar al inicio</a>
+<a id="backToTop" href="#">Regresar al inicio</a>
 
 <!-- =================== FOOTER =================== -->
 <footer id="footer">&copy; 2025 Streaming Platforms. Todos los derechos reservados.</footer>
@@ -379,8 +447,79 @@ footer#footer {text-align:center; padding:20px; border-top:1px solid var(--neon-
 <script>
 // ---------------- Partículas ----------------
 particlesJS("particles-js",{
-  "particles":{"number":{"value":90},"size":{"value":3},"move":{"speed":2},"line_linked":{"enable":true,"color":"#ffffff"},"color":{"value":"#ffffff"}}
+  "particles":{"number":{"value":90},"size":{"value":3},"move":{"speed":2},"line_linked":{"enable:true,"color":"#ffffff"},"color":{"value":"#ffffff"}}
 });
+
+// ---------------- Almacenamiento de plataformas ----------------
+// Función para cargar plataformas desde localStorage
+function loadPlatforms() {
+  const savedPlatforms = localStorage.getItem('streamingPlatforms');
+  if (savedPlatforms) {
+    return JSON.parse(savedPlatforms);
+  }
+  
+  // Plataformas por defecto
+  return {
+    netflix:{
+      id:"netflix",
+      name:"Netflix Premium",
+      description:"Acceso ilimitado en Ultra HD con 4 pantallas simultáneas.",
+      logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsZLFW9PjmQSTrcc-BfDZL_8ENLgsuz3Ov0g&s",
+      price:"$229 MXN / mes",
+      screens:"4 pantallas simultáneas",
+      quality:"Ultra HD",
+      badge:"POPULAR"
+    },
+    disney:{
+      id:"disney",
+      name:"Disney+ Premium",
+      description:"Incluye Disney, Pixar, Marvel, Star Wars y National Geographic.",
+      logo:"https://i0.wp.com/www.yosoyungamer.com/wp-content/uploads/2024/08/Disney.jpg?fit=1400%2C825&ssl=1",
+      price:"$179 MXN / mes",
+      screens:"4 pantallas simultáneas",
+      quality:"Ultra HD",
+      badge:"TOP"
+    },
+    hbo:{
+      id:"hbo",
+      name:"HBO Max",
+      description:"Series exclusivas, películas de estreno y catálogo Warner Bros.",
+      logo:"https://www.sopitas.com/wp-content/uploads/2025/05/hbo-max-logo.jpeg",
+      price:"$199 MXN / mes",
+      screens:"3 pantallas simultáneas",
+      quality:"Full HD / 4K",
+      badge:"NUEVO"
+    },
+    vix:{
+      id:"vix",
+      name:"Vix",
+      description:"El servicio de streaming en español más grande del mundo con contenido gratuito y premium.",
+      logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHdv41ZaNSrxs4c8ViGBT0dXZiCt-vycsV0w&s",
+      price:"$99 MXN / mes",
+      screens:"2 pantallas simultáneas",
+      quality:"Full HD",
+      badge:"ECONÓMICO"
+    },
+    primevideo:{
+      id:"primevideo",
+      name:"Prime Video",
+      description:"Incluye envíos gratis en Amazon, música y almacenamiento de fotos ilimitado.",
+      logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1H9A-IWEoc01iM_DQQnaDbrO89W7Ck75YaLBt8EncTie4P5jyeU9BtTOnMlcEZKe2GYY&usqp=CAU",
+      price:"$99 MXN / mes",
+      screens:"3 pantallas simultáneas",
+      quality:"4K Ultra HD",
+      badge:"RECOMENDADO"
+    }
+  };
+}
+
+// Función para guardar plataformas en localStorage
+function savePlatforms(platforms) {
+  localStorage.setItem('streamingPlatforms', JSON.stringify(platforms));
+}
+
+// Cargar plataformas
+let platforms = loadPlatforms();
 
 // ---------------- Últimos Estrenos ----------------
 const estrenos = [
@@ -394,17 +533,25 @@ const estrenos = [
 ];
 
 const videoCarousel = document.getElementById("videoCarousel");
-estrenos.forEach(v=>{
-  videoCarousel.innerHTML += `
-    <div id="video-${v.id}" class="video-item" onclick="openModal('${v.url}')">
+
+// Función para renderizar videos
+function renderVideos() {
+  videoCarousel.innerHTML = ''; // Limpiar antes de renderizar
+  estrenos.forEach(v=>{
+    const videoItem = document.createElement('div');
+    videoItem.id = `video-${v.id}`;
+    videoItem.className = 'video-item';
+    videoItem.onclick = () => openModal(v.url);
+    videoItem.innerHTML = `
       <div class="video-thumbnail">
         <img src="${v.thumb}" alt="${v.title}">
         <div class="play-icon">▶</div>
       </div>
       <h3 class="video-title">${v.title}</h3>
-    </div>
-  `;
-});
+    `;
+    videoCarousel.appendChild(videoItem);
+  });
+}
 
 let currentIndex = 0;
 function moveSlider(dir){
@@ -436,141 +583,43 @@ videoModal.addEventListener('click', (e) => {
   if (e.target === videoModal) closeModal();
 });
 
-// Plataformas
-const platforms = {
-  netflix:{
-    id:"netflix",
-    name:"Netflix Premium",
-    description:"Acceso ilimitado en Ultra HD con 4 pantallas simultáneas.",
-    logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsZLFW9PjmQSTrcc-BfDZL_8ENLgsuz3Ov0g&s",
-    price:"$229 MXN / mes",
-    screens:"4 pantallas simultáneas",
-    quality:"Ultra HD",
-    badge:"POPULAR"
-  },
-  disney:{
-    id:"disney",
-    name:"Disney+ Premium",
-    description:"Incluye Disney, Pixar, Marvel, Star Wars y National Geographic.",
-    logo:"https://i0.wp.com/www.yosoyungamer.com/wp-content/uploads/2024/08/Disney.jpg?fit=1400%2C825&ssl=1",
-    price:"$179 MXN / mes",
-    screens:"4 pantallas simultáneas",
-    quality:"Ultra HD",
-    badge:"TOP"
-  },
-  hbo:{
-    id:"hbo",
-    name:"HBO Max",
-    description:"Series exclusivas, películas de estreno y catálogo Warner Bros.",
-    logo:"https://www.sopitas.com/wp-content/uploads/2025/05/hbo-max-logo.jpeg",
-    price:"$199 MXN / mes",
-    screens:"3 pantallas simultáneas",
-    quality:"Full HD / 4K",
-    badge:"NUEVO"
-  },
-  vix:{
-    id:"vix",
-    name:"Vix",
-    description:"El servicio de streaming en español más grande del mundo con contenido gratuito y premium.",
-    logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHdv41ZaNSrxs4c8ViGBT0dXZiCt-vycsV0w&s",
-    price:"$99 MXN / mes",
-    screens:"2 pantallas simultáneas",
-    quality:"Full HD",
-    badge:"ECONÓMICO"
-  },
-  primevideo:{
-    id:"primevideo",
-    name:"Prime Video",
-    description:"Incluye envíos gratis en Amazon, música y almacenamiento de fotos ilimitado.",
-    logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1H9A-IWEoc01iM_DQQnaDbrO89W7Ck75YaLBt8EncTie4P5jyeU9BtTOnMlcEZKe2GYY&usqp=CAU",
-    price:"$99 MXN / mes",
-    screens:"3 pantallas simultáneas",
-    quality:"4K Ultra HD",
-    badge:"RECOMENDADO"
-  }
-  paramount:{
-    id:"paramount+",
-    name:"Paramount+",
-    description:"Incluye envíos gratis en Amazon, música y almacenamiento de fotos ilimitado.",
-    logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQM5jJS1TrKO-PUTlYA11EkvxXl0LTCG8p-kA&s",
-    price:"$99 MXN / mes",
-    screens:"3 pantallas simultáneas",
-    quality:"4K Ultra HD",
-    badge:"RECOMENDADO"
-  }
-  crunchyroll:{
-    id:"crunchyroll",
-    name:"Crunchyroll",
-    description:"Incluye envíos gratis en Amazon, música y almacenamiento de fotos ilimitado.",
-    logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNpAXwyU9etmrcGzx1UiXXNuWX0_hswSXDyQ&s",
-    price:"$99 MXN / mes",
-    screens:"3 pantallas simultáneas",
-    quality:"4K Ultra HD",
-    badge:"RECOMENDADO"
-  }
-    spotify:{
-    id:"spotify",
-    name:"Spotify",
-    description:"Incluye envíos gratis en Amazon, música y almacenamiento de fotos ilimitado.",
-    logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVCIWB1Cyzz4fL4gZVo40vbtSDyZ6J3AAsww&s",
-    price:"$99 MXN / mes",
-    screens:"3 pantallas simultáneas",
-    quality:"4K Ultra HD",
-    badge:"RECOMENDADO"
-  }
-    amazonmusic:{
-    id:"amazonmusic",
-    name:"Amazon Music",
-    description:"Incluye envíos gratis en Amazon, música y almacenamiento de fotos ilimitado.",
-    logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHq5ZrCjlbrun8X3zrzLPm18X1tFfUfCDtKQ&s",
-    price:"$99 MXN / mes",
-    screens:"3 pantallas simultáneas",
-    quality:"4K Ultra HD",
-    badge:"RECOMENDADO"
-  }
-    youtube:{
-    id:"youtube",
-    name:"Youtube Premium & Music",
-    description:"Incluye envíos gratis en Amazon, música y almacenamiento de fotos ilimitado.",
-    logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHJZtJoTL0LMFe7ephn1Zku27ekLNq5ZonRkp11W6V6DmQX6uCay4ifcuwutwwA4x39hM&usqp=CAU",
-    price:"$99 MXN / mes",
-    screens:"3 pantallas simultáneas",
-    quality:"4K Ultra HD",
-    badge:"RECOMENDADO"
-  }
-    iboproiptv:{
-    id:"iboproiptv",
-    name:"IBO PRO IPTV",
-    description:"Incluye envíos gratis en Amazon, música y almacenamiento de fotos ilimitado.",
-    logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9jAdr5hwctPPyCfzw3xqH8JnmDvokfs9Ihg&s",
-    price:"$99 MXN / mes",
-    screens:"3 pantallas simultáneas",
-    quality:"4K Ultra HD",
-    badge:"RECOMENDADO"
-      
-  }
-};
-
+// ---------------- Plataformas ----------------
 const platformsContainer = document.getElementById("platformsContainer");
-for(const key in platforms){
-  const p = platforms[key];
-  platformsContainer.innerHTML += `
-    <div id="platform-${p.id}" class="platform-card">
+
+// Función para renderizar plataformas
+function renderPlatforms() {
+  platformsContainer.innerHTML = ''; // Limpiar antes de renderizar
+  
+  for(const key in platforms){
+    const p = platforms[key];
+    const platformCard = document.createElement('div');
+    platformCard.id = `platform-${p.id}`;
+    platformCard.className = 'platform-card';
+    platformCard.innerHTML = `
       <div class="platform-badge">${p.badge}</div>
       <div class="platform-image">
         <img src="${p.logo}" alt="${p.name}">
       </div>
       <h3 class="platform-name">${p.name}</h3>
-      <button class="info-btn" onclick="openPlatformModal('${p.id}')">Más información</button>
-    </div>
-  `;
+      <button class="info-btn">Más información</button>
+    `;
+    
+    // Agregar evento al botón
+    const infoBtn = platformCard.querySelector('.info-btn');
+    infoBtn.onclick = () => openPlatformModal(p.id);
+    
+    platformsContainer.appendChild(platformCard);
+  }
 }
 
 // Rellenar select plataformas en Referencias
 const reviewPlatformSelect = document.getElementById("reviewPlatform");
-for(const key in platforms){
-  const p = platforms[key];
-  reviewPlatformSelect.innerHTML += `<option value="${p.name}">${p.name}</option>`;
+function updatePlatformSelect() {
+  reviewPlatformSelect.innerHTML = '<option value="">Selecciona una plataforma</option>';
+  for(const key in platforms){
+    const p = platforms[key];
+    reviewPlatformSelect.innerHTML += `<option value="${p.name}">${p.name}</option>`;
+  }
 }
 
 function openPlatformModal(id){
@@ -607,6 +656,51 @@ function closePlatformModal(){
 // Cerrar modal al hacer clic fuera del contenido
 document.getElementById("platformModal").addEventListener('click', (e) => {
   if (e.target === document.getElementById("platformModal")) closePlatformModal();
+});
+
+// ---------------- Formulario para agregar plataformas ----------------
+const addPlatformForm = document.getElementById("addPlatformForm");
+const togglePlatformFormBtn = document.getElementById("togglePlatformForm");
+const cancelAddPlatformBtn = document.getElementById("cancelAddPlatform");
+
+togglePlatformFormBtn.addEventListener('click', () => {
+  addPlatformForm.style.display = addPlatformForm.style.display === 'block' ? 'none' : 'block';
+});
+
+cancelAddPlatformBtn.addEventListener('click', () => {
+  addPlatformForm.style.display = 'none';
+  addPlatformForm.reset();
+});
+
+addPlatformForm.addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const newPlatform = {
+    id: Date.now().toString(), // ID único
+    name: document.getElementById("newPlatformName").value,
+    description: document.getElementById("newPlatformDescription").value,
+    logo: document.getElementById("newPlatformLogo").value,
+    price: document.getElementById("newPlatformPrice").value,
+    screens: document.getElementById("newPlatformScreens").value,
+    quality: document.getElementById("newPlatformQuality").value,
+    badge: document.getElementById("newPlatformBadge").value
+  };
+  
+  // Agregar la nueva plataforma
+  platforms[newPlatform.id] = newPlatform;
+  
+  // Guardar en localStorage
+  savePlatforms(platforms);
+  
+  // Volver a renderizar las plataformas
+  renderPlatforms();
+  updatePlatformSelect();
+  
+  // Limpiar y ocultar el formulario
+  addPlatformForm.reset();
+  addPlatformForm.style.display = 'none';
+  
+  alert('¡Plataforma agregada correctamente!');
 });
 
 // ---------------- Formulario de contacto ----------------
@@ -649,15 +743,24 @@ document.getElementById("backToTop").addEventListener("click", function(e){
   window.scroll({top:0, behavior:'smooth'});
 });
 
-// Inicializar carrusel
-videoCarousel.style.transform = `translateX(0)`;
+// Inicializar la página
+function initializePage() {
+  renderVideos();
+  renderPlatforms();
+  updatePlatformSelect();
+  videoCarousel.style.transform = `translateX(0)`;
+}
 
 // Ajustar el carrusel al cambiar el tamaño de la ventana
 window.addEventListener('resize', function() {
-  videoCarousel.style.transform = `translateX(-${currentIndex * (document.querySelector('.video-item').offsetWidth + 20)}px)`;
+  const videoItem = document.querySelector('.video-item');
+  if (videoItem) {
+    videoCarousel.style.transform = `translateX(-${currentIndex * (videoItem.offsetWidth + 20)}px)`;
+  }
 });
+
+// Inicializar cuando se carga la página
+window.addEventListener('DOMContentLoaded', initializePage);
 </script>
 </body>
 </html>
-
-
