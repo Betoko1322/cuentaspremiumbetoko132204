@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Servicios Digitales Premium</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: #fff;
+      background: linear-gradient(to right, #2c5364, #203a43, #0f2027);
+      overflow-x: hidden;
+    }
+    #particles-js { position: fixed; width: 100%; height: 100%; z-index: -1; top: 0; left: 0; }
+    .container { width: 90%; max-width: 1200px; margin: auto; padding: 40px 0; }
+
+    h1, h2, h3 { font-family: 'Raleway', sans-serif; font-weight: 700; margin-bottom: 20px; }
+    p { margin-bottom: 15px; line-height: 1.6; }
+
+    /* ENCABEZADO */
+    #header { 
+      text-align: center; 
+      margin: 20px 0 40px; 
+    }
+    #header h1 { font-size: 3em; margin-bottom: 10px; }
+    #header p { font-size: 1.2em; color: #ddd; }
+
+    /* CONTADOR VISITANTES */
+    #contador-visitantes {
+      position: fixed;
+      top: 15px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 10px 18px;
+      border-radius: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      font-size: 0.9em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 1000;
+    }
+    #contador-visitantes i {
+      color: #ffb347;
+    }
+    #visitantes-numero {
+      font-weight: 700;
+      color: #ff6f61;
+    }
+
+    /* TARJETAS */
+    .servicios {
+      display: flex; 
+      justify-content: center; 
+      gap: 35px; 
+      flex-wrap: wrap; 
+      margin-top: 40px;
+    }
+    .servicio-card {
+      background: rgba(255,255,255,0.05);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+      width: 260px;  
+      display: flex;
+      flex-direction: column;
+    }
+    .servicio-card:hover { transform: translateY(-10px); }
+
+    .servicio-imagen {
+      width: 100%;
+      height: 180px; 
+      overflow: hidden;
+    }
+
+    .servicio-imagen img { 
+      width: 100%; 
+      height: 100%; 
+      object-fit: cover; 
+      display: block;
+    }
+
+    .servicio-contenido {
+      padding: 20px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: space-between;
+    }
+
+    .servicio-contenido h3 { font-size: 1.2em; margin-bottom: 15px; }
+    .servicio-contenido p { margin-bottom: 15px; line-height: 1.6; font-size: 1em; }
+
+    .btn-info {
+      display: inline-block;
+      margin-top: auto;
+      padding: 10px 20px;
+      border-radius: 25px;
+      background: #ff6f61;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+    .btn-info:hover { background: #e85c50; }
+
+    /* CONTADOR LOGROS */
+    #contador-section {
+      text-align: center;
+      margin: 60px 0 40px;
+    }
+    #contador-section h2 {
+      font-size: 2em;
+      margin-bottom: 30px;
+      color: #ffb347;
+    }
+    .contador-grid {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .contador-item {
+      background: rgba(255,255,255,0.05);
+      padding: 20px 30px;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+      width: 180px;
+    }
+    .contador-numero {
+      font-size: 2.5em;
+      font-weight: 700;
+      color: #ff6f61;
+      margin-bottom: 10px;
+    }
+    .contador-texto {
+      font-size: 1em;
+      color: #ddd;
+    }
+
+    /* FOOTER */
+    #footer {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0,0,0,0.4);
+      margin-top: 60px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.9em;
+      color: #ccc;
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 2em; }
+      .servicio-card { width: 80%; }
+      .servicio-imagen { height: 160px; }
+      .contador-grid { gap: 20px; }
+    }
+
+    @media (max-width: 480px) {
+      .servicio-card { width: 95%; }
+      .contador-item { width: 140px; }
+      #contador-visitantes { font-size: 0.8em; padding: 8px 12px; }
+    }
+  </style>
+</head>
+<body>
+  <div id="particles-js"></div>
+
+  <!-- CONTADOR VISITANTES -->
+  <div id="contador-visitantes">
+    <i class="fa-solid fa-users"></i>
+    <span id="visitantes-numero">0</span> Visitantes
+  </div>
+
+  <div class="container">
+    <!-- INICIO -->
+    <header id="header" class="section-header">
+      <h1>Servicios Digitales Premium</h1>
+      <p>Soluciones digitales de alta gama con diseños impactantes y tecnología de vanguardia</p>
+    </header>
+
+    <!-- SERVICIOS -->
+    <section id="servicios" class="servicios">
+      <!-- CARD WEB -->
+      <div class="servicio-card" id="card-web">
+        <div class="servicio-imagen" id="img-web-container">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Diseño Web" id="img-web">
+        </div>
+        <div class="servicio-contenido" id="content-web">
+          <div>
+            <h3>Páginas Web</h3>
+            <p>Diseños web modernos y responsivos sin necesidad de pagar hosting.</p>
+          </div>
+          <a href="web.html" target="_blank" class="btn-info" id="btn-web">Más Información</a>
+        </div>
+      </div>
+
+      <!-- CARD STREAMING -->
+      <div class="servicio-card" id="card-streaming">
+        <div class="servicio-imagen" id="img-streaming-container">
+          <img src="https://elagentecine.cl/wp-content/uploads/2025/04/44_Romantic_Movies_on_Netflix-800x400.jpg" alt="Servicios Streaming" id="img-streaming">
+        </div>
+        <div class="servicio-contenido" id="content-streaming">
+          <div>
+            <h3>Servicios Streaming</h3>
+            <p>Transmisión profesional en múltiples plataformas con la mejor calidad.</p>
+          </div>
+          <a href="streaming.html" target="_blank" class="btn-info" id="btn-streaming">Más Información</a>
+        </div>
+      </div>
+
+      <!-- CARD OFFICE -->
+      <div class="servicio-card" id="card-office">
+        <div class="servicio-imagen" id="img-office-container">
+          <img src="https://i0.wp.com/lamytec.cl/wp-content/uploads/2021/12/540.png?resize=300%2C300&ssl=1" alt="Activación Office" id="img-office">
+        </div>
+        <div class="servicio-contenido" id="content-office">
+          <div>
+            <h3>Activación Office</h3>
+            <p>Activación remota de paquetería Office mediante AnyDesk.</p>
+          </div>
+          <a href="office.html" target="_blank" class="btn-info" id="btn-office">Más Información</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTADOR LOGROS -->
+    <section id="contador-section">
+      <h2>Nuestros Logros</h2>
+      <div class="contador-grid">
+        <div class="contador-item">
+          <div class="contador-numero" id="contador-clientes">0</div>
+          <div class="contador-texto">Clientes Felices</div>
+        </div>
+        <div class="contador-item">
+          <div class="contador-numero" id="contador-proyectos">0</div>
+          <div class="contador-texto">Proyectos Entregados</div>
+        </div>
+        <div class="contador-item">
+          <div class="contador-numero" id="contador-horas">0</div>
+          <div class="contador-texto">Horas de Soporte</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <p>© 2023 Servicios Digitales Premium | cuentaspremiumbetoko132204@gmail.com</p>
+  </footer>
+
+  <!-- PARTICLES -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    particlesJS("particles-js", {
+      "particles": {
+        "number": { "value": 80 },
+        "size": { "value": 3 },
+        "move": { "speed": 2 }
+      }
+    });
+
+    // CONTADOR LOGROS
+    function animarContador(id, final) {
+      let numero = document.getElementById(id);
+      let actual = 0;
+      let incremento = Math.ceil(final / 100);
+      let intervalo = setInterval(() => {
+        actual += incremento;
+        if (actual >= final) {
+          actual = final;
+          clearInterval(intervalo);
+        }
+        numero.textContent = actual;
+      }, 30);
+    }
+
+    // Activar contadores solo al hacer scroll
+    let activado = false;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !activado) {
+          animarContador("contador-clientes", 250);
+          animarContador("contador-proyectos", 120);
+          animarContador("contador-horas", 4800);
+          activado = true;
+        }
+      });
+    }, { threshold: 0.4 });
+    observer.observe(document.getElementById("contador-section"));
+
+    // CONTADOR VISITANTES con localStorage
+    let visitas = localStorage.getItem("visitas") || 0;
+    visitas++;
+    localStorage.setItem("visitas", visitas);
+    document.getElementById("visitantes-numero").textContent = visitas;
+  </script>
+</body>
+</html>

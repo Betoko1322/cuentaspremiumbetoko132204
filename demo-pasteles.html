@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pastelería Dulce Tentación</title>
+    <style>
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #fff8f5;
+            color: #5a3921;
+            scroll-behavior: smooth;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header y navegación */
+        header {
+            background-color: #ffd6cc;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #d44d5c;
+        }
+        
+        .logo span {
+            color: #5a3921;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #5a3921;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #d44d5c;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=1080&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            animation: fadeIn 1.5s ease-in;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: slideInFromTop 1s ease-out;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            animation: slideInFromBottom 1s ease-out;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #d44d5c;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            animation: pulse 2s infinite;
+        }
+        
+        .btn:hover {
+            background-color: #b33c4a;
+            transform: scale(1.05);
+        }
+        
+        /* Sección de productos destacados */
+        .featured {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 36px;
+            color: #d44d5c;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: #d44d5c;
+        }
+        
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .product-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .product-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+            transition: transform 0.5s;
+        }
+        
+        .product-card:hover .product-img {
+            transform: scale(1.05);
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-info h3 {
+            margin-bottom: 10px;
+            color: #5a3921;
+        }
+        
+        .product-info p {
+            margin-bottom: 15px;
+            color: #7a5a3b;
+        }
+        
+        .price {
+            font-weight: bold;
+            color: #d44d5c;
+            font-size: 20px;
+        }
+        
+        /* Sección sobre nosotros */
+        .about {
+            padding: 80px 0;
+            background-color: #ffefe6;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-image {
+            flex: 1;
+            height: 400px;
+            background: url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=1080&q=80') center/cover;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.5s;
+        }
+        
+        .about-image:hover {
+            transform: scale(1.02);
+        }
+        
+        /* Sección de ubicación */
+        .location {
+            padding: 80px 0;
+        }
+        
+        .location-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .address {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 18px;
+            max-width: 500px;
+        }
+        
+        .map-container {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            height: 300px; /* Más pequeño que antes */
+            width: 500px; /* Ancho específico */
+            margin: 0 auto; /* Centrado */
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #5a3921;
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+        
+        .footer-section p, .footer-section li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section a {
+            color: #ffd6cc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #7a5a3b;
+        }
+        
+        /* Botón de regresar - LADO IZQUIERDO CENTRAL */
+        #back-to-top-btn {
+            position: fixed;
+            left: 30px;
+            top: 50%; /* Posiciona el botón a la mitad de la pantalla */
+            transform: translateY(-50%); /* Ajusta para centrar verticalmente */
+            background-color: #d44d5c;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            z-index: 99;
+            opacity: 0.7; /* Siempre visible pero con transparencia por defecto */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        #back-to-top-btn:hover {
+            background-color: #b33c4a;
+            transform: translateY(-50%) scale(1.05); /* Mantiene el centrado y agrega escala */
+            opacity: 1; /* Opacidad completa al hacer hover */
+        }
+        
+        /* Estado transparente para el botón en la sección hero */
+        #back-to-top-btn.transparent {
+            opacity: 0.5;
+            background-color: rgba(212, 77, 92, 0.5);
+        }
+        
+        /* Animaciones */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideInFromTop {
+            from { 
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideInFromBottom {
+            from { 
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            #back-to-top-btn {
+                left: 15px;
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+            
+            .map-container {
+                height: 250px;
+                width: 100%;
+                max-width: 400px;
+            }
+            
+            .address {
+                font-size: 16px;
+                padding: 0 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .map-container {
+                height: 200px;
+            }
+            
+            #back-to-top-btn {
+                left: 10px;
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-content">
+            <div class="logo">Dulce <span>Tentación</span></div>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#productos">Productos</a></li>
+                    <li><a href="#nosotros">Sobre Nosotros</a></li>
+                    <li><a href="#ubicacion">Ubicación</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="container hero-content">
+            <h1>Déjate tentar por el sabor</h1>
+            <p>Los pasteles más deliciosos hechos con amor y los mejores ingredientes</p>
+            <a href="#productos" class="btn" id="hero-btn">Ver productos</a>
+        </div>
+    </section>
+
+    <!-- Productos Destacados -->
+    <section class="featured container" id="productos">
+        <h2 class="section-title">Nuestras Especialidades</h2>
+        <div class="products">
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=1080&q=80')">Pastel de Chocolate</div>
+                <div class="product-info">
+                    <h3>Pastel de Chocolate Supreme</h3>
+                    <p>Delicioso pastel de chocolate con relleno de crema de avellana.</p>
+                    <span class="price">$350 MXN</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1524351199678-941a58a3df50?ixlib=rb-4.0.3&auto=format&fit=crop&w=1080&q=80')">Cheesecake</div>
+                <div class="product-info">
+                    <h3>Cheesecake de Frutos Rojos</h3>
+                    <p>Suave cheesecake con base de galleta y cubierta de frutos rojos.</p>
+                    <span class="price">$320 MXN</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('https://previews.123rf.com/images/lenyvavsha/lenyvavsha1510/lenyvavsha151000298/46519167-gourmet-lemon-cake-with-meringue-and-mint-close-up-on-a-plate.jpg')">Tarta de Limón</div>
+                <div class="product-info">
+                    <h3>Tarta de Limón Merengue</h3>
+                    <p>Clásica tarta de limón con suave merengue italiano.</p>
+                    <span class="price">$300 MXN</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Nosotros -->
+    <section class="about" id="nosotros">
+        <div class="container">
+            <h2 class="section-title">Nuestra Historia</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Dulce Tentación nació en 2010 con el sueño de crear los pasteles más deliciosos que hayas probado. Utilizamos recetas tradicionales combinadas con técnicas modernas para ofrecerte una experiencia única.</p>
+                    <p>Todos nuestros productos están elaborados con ingredientes de la más alta calidad, seleccionados cuidadosamente para garantizar el mejor sabor en cada bocado.</p>
+                    <p>Ven a visitarnos y descubre por qué somos la pastelería de referencia en la ciudad.</p>
+                </div>
+                <div class="about-image"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ubicación -->
+    <section class="location container" id="ubicacion">
+        <h2 class="section-title">Nuestra Ubicación</h2>
+        <div class="location-content">
+            <p class="address">Av. de los Postres 123, Col. Dulces Sueños, Ciudad de México, CDMX</p>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d120237.4882827145!2d-99.2028074171875!3d19.32031200000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ce0026db097507%3A0x54061076265ee841!2sCiudad%20de%20M%C3%A9xico%2C%20CDMX!5e0!3m2!1ses!2smx!4v1693423423456!5m2!1ses!2smx" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacto">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Dulce Tentación</h3>
+                    <p>Pastelería artesanal con los mejores ingredientes y sabores únicos.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Horario de atención</h3>
+                    <p>Lunes a Viernes: 8:00 - 20:00</p>
+                    <p>Sábados: 9:00 - 18:00</p>
+                    <p>Domingos: 10:00 - 14:00</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <p>Av. Dulces 123, Ciudad de México</p>
+                    <p>Tel: (55) 1234-5678</p>
+                    <p>Email: info@dulcetentacion.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Dulce Tentación - Todos los derechos reservados</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón de regresar al inicio - LADO IZQUIERDO CENTRAL con ID específico -->
+    <a href="web.html" id="back-to-top-btn">Regresar</a>
+
+    <script>
+        // Animación de aparición de elementos al hacer scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const productCards = document.querySelectorAll('.product-card');
+            const backToTopButton = document.getElementById('back-to-top-btn');
+            const heroSection = document.getElementById('inicio');
+            
+            // Función para verificar si un elemento está en el viewport
+            function isInViewport(element) {
+                const rect = element.getBoundingClientRect();
+                return (
+                    rect.top >= 0 &&
+                    rect.left >= 0 &&
+                    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+                );
+            }
+            
+            // Función para verificar si el botón debe ser transparente
+            function checkButtonTransparency() {
+                const heroRect = heroSection.getBoundingClientRect();
+                
+                // Si el botón está dentro o cerca de la sección hero
+                if (window.pageYOffset < heroRect.height * 0.8) {
+                    backToTopButton.classList.add('transparent');
+                } else {
+                    backToTopButton.classList.remove('transparent');
+                }
+            }
+            
+            // Función para ajustar la altura del botón
+            function adjustButtonHeight() {
+                // Puedes ajustar la altura aquí si es necesario
+                // Por ejemplo, para subir o bajar el botón:
+                // backToTopButton.style.top = '45%'; // Ajusta este valor según necesites
+            }
+            
+            // Mostrar elementos cuando están en el viewport
+            function checkVisibility() {
+                productCards.forEach(card => {
+                    if (isInViewport(card)) {
+                        card.classList.add('visible');
+                    }
+                });
+                
+                // Ajustar la transparencia del botón según la posición
+                checkButtonTransparency();
+                
+                // Ajustar la altura del botón si es necesario
+                adjustButtonHeight();
+            }
+            
+            // Ejecutar al cargar y al hacer scroll
+            window.addEventListener('scroll', checkVisibility);
+            checkVisibility(); // Verificar al cargar la página
+            
+            // Ajustar la altura del botón al cargar la página
+            adjustButtonHeight();
+            
+            // Suavizar el desplazamiento al hacer clic en los enlaces
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

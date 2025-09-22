@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Streaming Platforms</title>
+<style>
+:root {
+  --neon-green: #0fa; 
+  --neon-blue: #08f; 
+  --neon-purple: #a0f;
+  --neon-pink: #f0a;
+}
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Arial', sans-serif; }
+body { color:white; overflow-x:hidden; margin:0; background:#0f2027; }
+
+/* ---------- Fondo partículas ---------- */
+#particles-js { position: fixed; width:100%; height:100%; z-index:-1; }
+
+/* ---------- Header ---------- */
+header#header {display:flex; justify-content:center; padding:20px;}
+h1#mainTitle {font-size:2rem; color: var(--neon-green); text-shadow:0 0 10px var(--neon-green);}
+
+/* ---------- Secciones ---------- */
+.section {margin:30px auto; max-width:1200px; padding:20px; position:relative;}
+h2.section-title {font-size:1.6rem; margin-bottom:20px; color:var(--neon-purple); text-shadow:0 0 5px var(--neon-purple); border-bottom:1px solid var(--neon-purple); padding-bottom:5px;}
+
+/* ---------- Carrusel de videos ---------- */
+#videoSlider {position:relative; overflow:hidden; padding:20px 0;}
+#videoCarousel {
+  display:flex; 
+  align-items:center; 
+  justify-content:flex-start; 
+  gap:20px; 
+  transition:transform 0.5s ease;
+}
+.video-item {
+  min-width:300px; 
+  height: 280px; 
+  margin:0; 
+  cursor:pointer; 
+  transition:transform 0.4s, box-shadow 0.4s;
+  position: relative; 
+  border-radius: 15px; 
+  overflow: hidden;
+  border: 2px solid var(--neon-blue); 
+  background: linear-gradient(145deg, rgba(0,0,50,0.6), rgba(0,0,0,0.8));
+  box-shadow: 0 0 10px var(--neon-blue);
+  display: flex;
+  flex-direction: column;
+}
+.video-item:hover { transform: scale(1.08); box-shadow:0 0 25px var(--neon-green), 0 0 40px var(--neon-blue); }
+.video-thumbnail { 
+  width:100%; 
+  height:180px; 
+  overflow:hidden; 
+  border-radius:12px 12px 0 0; 
+  display:flex; 
+  align-items:center; 
+  justify-content:center; 
+  border-bottom:1px solid var(--neon-blue); 
+  position: relative;
+}
+.video-thumbnail img { 
+  width:100%; 
+  height:100%; 
+  object-fit:cover; 
+  transition: transform 0.4s; 
+}
+.video-thumbnail:hover img { transform:scale(1.1); }
+.play-icon { 
+  position:absolute; 
+  font-size:3rem; 
+  color:rgba(255,255,255,0.8); 
+  text-shadow:0 0 10px var(--neon-purple); 
+  z-index:5; 
+  transition: all 0.3s;
+}
+.video-item:hover .play-icon { 
+  color: var(--neon-green); 
+  text-shadow: 0 0 25px var(--neon-green); 
+  transform: scale(1.3); 
+}
+.video-title { 
+  margin:0;
+  padding: 15px 10px;
+  text-align:center; 
+  font-weight:bold; 
+  color: var(--neon-pink); 
+  text-shadow:0 0 5px var(--neon-pink); 
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 0 0 12px 12px;
+}
+
+/* ---------- Flechas ---------- */
+#videoControls {display:flex; justify-content:center; gap:20px; margin-top:15px;}
+.slider-btn {background:rgba(0,0,0,0.7); border:none; color:white; font-size:1.5rem; width:40px; height:40px; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; border:1px solid var(--neon-green); box-shadow:0 0 10px var(--neon-green);}
+.slider-btn:hover {background:var(--neon-green); color:black; box-shadow:0 0 20px var(--neon-green);}
+
+/* ---------- Modal video ---------- */
+#videoModal {display:none; position:fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.9); z-index:100; align-items:center; justify-content:center;}
+#videoModalContent {position:relative; width:80%; max-width:900px; border:2px solid var(--neon-blue);}
+#closeVideoModal {position:absolute; top:-40px; right:0; font-size:2rem; color:white; cursor:pointer; transition:all 0.3s;}
+#closeVideoModal:hover { color: var(--neon-pink); transform: scale(1.3); }
+.video-container {position:relative; padding-bottom:56.25%; height:0; overflow:hidden;}
+.video-container iframe {position:absolute; top:0; left:0; width:100%; height:100%; border:2px solid var(--neon-blue);}
+
+/* ---------- Plataformas ---------- */
+#platformsContainer {display:grid; grid-template-columns:repeat(4,1fr); gap:30px; margin-top:30px;}
+.platform-card {
+  background: linear-gradient(145deg, rgba(10,10,30,0.6), rgba(0,0,0,0.8));
+  border-radius: 15px; padding: 25px; text-align:center; border:2px solid var(--neon-purple);
+  box-shadow: 0 0 15px rgba(160,0,255,0.6); transition: transform 0.4s, box-shadow 0.4s, background 0.4s;
+  display:flex; flex-direction:column; justify-content:space-between; position:relative; overflow:hidden;
+}
+.platform-card::before {
+  content: ''; position:absolute; top:-50%; left:-50%; width:200%; height:200%;
+  background: radial-gradient(circle at center, rgba(0,255,170,0.2), transparent 40%);
+  opacity:0; transition: opacity 0.4s; pointer-events:none;
+}
+.platform-card:hover::before { opacity:1; }
+.platform-card:hover { transform:translateY(-10px) scale(1.05); box-shadow:0 0 30px var(--neon-purple),0 0 50px var(--neon-green); background: linear-gradient(145deg, rgba(0,255,170,0.2), rgba(0,0,0,0.9)); }
+
+.platform-badge {
+  position:absolute; top:10px; right:10px; background:var(--neon-pink);
+  color:black; padding:5px 12px; border-radius:12px; font-size:0.9rem; font-weight:bold;
+  box-shadow:0 0 15px var(--neon-pink), 0 0 25px var(--neon-purple); z-index:10;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.platform-card:hover .platform-badge {
+  transform: scale(1.1);
+  box-shadow:0 0 25px var(--neon-pink), 0 0 40px var(--neon-purple);
+}
+
+.platform-image { width:160px; height:160px; margin:0 auto 20px; border-radius:15px; border:3px solid var(--neon-green); overflow:hidden; background:#111; display:flex; align-items:center; justify-content:center; transition:all 0.4s; }
+.platform-card:hover .platform-image { border-color: var(--neon-blue); transform: rotate(-2deg) scale(1.1); }
+.platform-image img { width:100%; height:100%; object-fit:contain; transition: transform 0.4s; }
+.platform-card:hover .platform-image img { transform: scale(1.15) rotate(2deg); }
+
+.platform-name { font-size:1.3rem; margin-bottom:10px; color: var(--neon-pink); text-shadow:0 0 5px var(--neon-pink); position: relative; }
+.info-btn { background:transparent; border:2px solid var(--neon-green); color: var(--neon-green); padding:10px 18px; border-radius:8px; cursor:pointer; font-weight:bold; transition: all 0.3s; }
+.info-btn:hover { background: var(--neon-green); color:black; box-shadow:0 0 15px var(--neon-green),0 0 30px var(--neon-blue); }
+
+/* ---------- Modal plataformas ---------- */
+#platformModal {
+  display:none; 
+  position:fixed; 
+  top:0; 
+  left:0; 
+  width:100%; 
+  height:100%; 
+  background:rgba(0,0,0,0.95); 
+  z-index:1000; 
+  overflow-y:auto; 
+  align-items:center; 
+  justify-content:center;
+  padding: 20px;
+}
+#platformModalContent {
+  background:linear-gradient(135deg,#1a1a1a,#2a2a2a); 
+  width:90%; 
+  max-width:700px; 
+  border-radius:15px; 
+  padding:30px; 
+  border:2px solid var(--neon-purple); 
+  box-shadow:0 0 30px var(--neon-purple); 
+  color:white; 
+  animation:modalFadeIn 0.4s ease;
+  position: relative;
+}
+
+/* Botón de cerrar en la parte inferior */
+.close-btn {
+  display: block;
+  margin: 25px auto 0;
+  padding: 12px 30px;
+  background: transparent;
+  border: 2px solid var(--neon-pink);
+  color: var(--neon-pink);
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: all 0.3s;
+}
+.close-btn:hover {
+  background: var(--neon-pink);
+  color: black;
+  box-shadow: 0 0 15px var(--neon-pink);
+}
+
+@keyframes modalFadeIn {from{opacity:0; transform:translateY(-50px);} to{opacity:1; transform:translateY(0);}}
+
+/* ---------- Formulario ---------- */
+#infoForm { display:flex; flex-direction:column; gap:15px; max-width:500px; margin:0 auto; background: rgba(0,0,0,0.5); padding:20px; border-radius:10px; border:2px solid var(--neon-blue); box-shadow:0 0 15px var(--neon-blue); }
+#infoForm label { font-weight:bold; margin-bottom:5px; color: var(--neon-green); }
+#infoForm input,#infoForm textarea { padding:10px; border-radius:5px; border:1px solid var(--neon-green); background:#111; color:white; font-size:1rem; width:100%; }
+#infoForm input:focus,#infoForm textarea:focus { outline:none; border-color: var(--neon-blue); box-shadow:0 0 10px var(--neon-blue); }
+#infoForm button { padding:10px 20px; border-radius:5px; border:1px solid var(--neon-green); background:transparent; color:var(--neon-green); font-weight:bold; cursor:pointer; transition: all 0.3s; }
+#infoForm button:hover { background: var(--neon-green); color:black; box-shadow:0 0 15px var(--neon-green); }
+
+/* ---------- Referencias Usuarios ---------- */
+#reviewsSection {margin:50px auto; max-width:800px; padding:20px; }
+#reviewForm { display:flex; flex-direction:column; gap:15px; background: rgba(0,0,0,0.5); padding:20px; border-radius:10px; border:2px solid var(--neon-blue); box-shadow:0 0 15px var(--neon-blue); margin-bottom:30px;}
+#reviewForm label { color: var(--neon-green); font-weight:bold; }
+#reviewForm input, #reviewForm select, #reviewForm textarea { padding:10px; border-radius:5px; border:1px solid var(--neon-green); background:#111; color:white; width:100%; }
+#reviewForm input:focus, #reviewForm select:focus, #reviewForm textarea:focus { outline:none; border-color:var(--neon-blue); box-shadow:0 0 10px var(--neon-blue); }
+#reviewForm button { padding:10px 20px; border-radius:5px; border:1px solid var(--neon-green); background:transparent; color:var(--neon-green); font-weight:bold; cursor:pointer; transition:all 0.3s; }
+#reviewForm button:hover { background:var(--neon-green); color:black; box-shadow:0 0 15px var(--neon-green); }
+
+#reviewsList .review-card { background: rgba(0,0,0,0.5); padding:15px; border-radius:10px; border:2px solid var(--neon-purple); margin-bottom:15px; box-shadow:0 0 10px var(--neon-purple);}
+#reviewsList .review-card h4 { color:var(--neon-pink); margin-bottom:5px;}
+#reviewsList .review-card p { color:#ddd; margin:3px 0; }
+
+/* ---------- Botón regresar al inicio ---------- */
+#backToTop {position:fixed; bottom:20px; left:20px; background:rgba(255,255,255,0.1); color:white; border:1px solid var(--neon-green); padding:10px 15px; border-radius:5px; cursor:pointer; font-weight:bold; text-decoration:none; transition: all 0.3s; z-index:9999;}
+#backToTop:hover { background:rgba(0,255,170,0.2); color: var(--neon-green); transform:scale(1.1); }
+
+/* ---------- Footer ---------- */
+footer#footer {text-align:center; padding:20px; border-top:1px solid var(--neon-purple); box-shadow:0 0 10px var(--neon-purple); }
+
+/* ---------- Responsive ---------- */
+@media(max-width:1200px){#platformsContainer{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:900px){#platformsContainer{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:600px){#platformsContainer{grid-template-columns:1fr;}}
+@media(max-width:768px){
+  .video-item{min-width:250px;}
+  #videoCarousel {gap:15px;}
+}
+@media(max-width:480px){
+  .video-item{min-width:200px;}
+  #videoCarousel {gap:10px;}
+}
+</style>
+</head>
+<body>
+
+<!-- =================== FONDO PARTICULAS =================== -->
+<div id="particles-js"></div>
+
+<!-- =================== HEADER =================== -->
+<header id="header"><h1 id="mainTitle">Streaming Platforms</h1></header>
+
+<!-- =================== MAIN =================== -->
+<main>
+
+  <!-- ========= SECCIÓN ESTRENOS ========= -->
+  <section id="estrenosSection" class="section">
+    <h2 class="section-title">Últimos Estrenos</h2>
+    <div id="videoSlider">
+      <div id="videoCarousel">
+        <!-- Los videos se insertarán dinámicamente con JavaScript -->
+      </div>
+    </div>
+    <div id="videoControls">
+      <button id="prevBtn" class="slider-btn" onclick="moveSlider(-1)">❮</button>
+      <button id="nextBtn" class="slider-btn" onclick="moveSlider(1)">❯</button>
+    </div>
+    <div id="videoModal">
+      <div id="videoModalContent">
+        <span id="closeVideoModal" onclick="closeModal()">×</span>
+        <div class="video-container"><iframe id="videoFrame" src="" frameborder="0" allowfullscreen></iframe></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========= SECCIÓN PLATAFORMAS ========= -->
+  <section id="platformsSection" class="section">
+    <h2 class="section-title">Plataformas Disponibles</h2>
+    <div id="platformsContainer"></div>
+  </section>
+
+  <!-- ========= SECCIÓN FORMULARIO ========= -->
+  <section id="formSection" class="section">
+    <h2 class="section-title">Pide más información</h2>
+    <form id="infoForm" action="https://formspree.io/f/movkaeqd" method="POST">
+      <label for="name">Nombre:</label>
+      <input type="text" name="name" id="name" required>
+      <label for="email">Correo electrónico:</label>
+      <input type="email" name="email" id="email" required>
+      <label for="message">Mensaje:</label>
+      <textarea name="message" id="message" rows="5" required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+  </section>
+
+  <!-- ========= REFERENCIAS DE USUARIOS ========= -->
+  <section id="reviewsSection" class="section">
+    <h2 class="section-title">Referencias de Usuarios</h2>
+    <form id="reviewForm">
+      <label for="reviewName">Nombre:</label>
+      <input type="text" id="reviewName" placeholder="Tu nombre" required>
+      <label for="reviewRating">Calificación:</label>
+      <select id="reviewRating" required>
+        <option value="">Selecciona estrellas</option>
+        <option value="⭐">⭐</option>
+        <option value="⭐⭐">⭐⭐</option>
+        <option value="⭐⭐⭐">⭐⭐⭐</option>
+        <option value="⭐⭐⭐⭐">⭐⭐⭐⭐</option>
+        <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐</option>
+      </select>
+      <label for="reviewPlatform">Plataforma contratada:</label>
+      <select id="reviewPlatform" required></select>
+      <label for="reviewComment">Opinión / Comentario:</label>
+      <textarea id="reviewComment" rows="4" placeholder="Escribe tu opinión..." required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+    <div id="reviewsList"></div>
+  </section>
+
+</main>
+
+<!-- =================== MODAL PLATAFORMAS =================== -->
+<div id="platformModal"><div id="platformModalContent"></div></div>
+
+<!-- =================== BOTÓN REGRESAR AL INICIO =================== -->
+<a id="backToTop" href="#">Regresar al inicio</a>
+
+<!-- =================== FOOTER =================== -->
+<footer id="footer">&copy; 2025 Streaming Platforms. Todos los derechos reservados.</footer>
+
+<!-- =================== SCRIPTS =================== -->
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script>
+// ---------------- Partículas ----------------
+particlesJS("particles-js",{
+  "particles":{"number":{"value":90},"size":{"value":3},"move":{"speed":2},"line_linked":{"enable":true,"color":"#ffffff"},"color":{"value":"#ffffff"}}
+});
+
+// ---------------- Últimos Estrenos ----------------
+const estrenos = [
+  {id:"squid-game", title:"El Juego del Calamar", thumb:"https://s0.smartresize.com/wallpaper/281/259/HD-wallpaper-squid-game-2021.jpg", url:"https://www.youtube.com/embed/I6b5kkfcgNQ"},
+  {id:"heroe-colectivo", title:"El Héroe Colectivo", thumb:"https://d30gl8nkrjm6kp.cloudfront.net/articulos/articulos-1559285.jpg", url:"https://www.youtube.com/embed/QQHMyO5pLD0"},
+  {id:"par-ideotas", title:"Par de Ideotas", thumb:"https://m.media-amazon.com/images/S/pv-target-images/3baa7ca4b248c8626027d4edb1372532baa6d129872e2aefa50ed3b151baab0f.png", url:"https://www.youtube.com/embed/uQpf0hOqEcU"},
+  {id:"stranger-things", title:"Stranger Things 5", thumb:"https://www.radioacktiva.com/wp-content/uploads/2025/07/160725-Stranger-Things-redes.png", url:"https://www.youtube.com/embed/j1k22Fh11Yw"},
+  {id:"cada-minuto", title:"Cada Minuto Cuenta Temporada 2", thumb:"https://clubsolaz.imgix.net/yP3zjAJBc3vbTVCqNNM9jxzk6pgS2F9aUTVvGHcn.jpg?w=345&h=210&fit=crop&crop=faces&auto=compress", url:"https://www.youtube.com/embed/dfJwx1Sflqs"},
+  {id:"sin-querer", title:"Sin Querer Queriendo", thumb:"https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/bf214cac-c6ec-4ba4-b706-020eaa5138f6/49e42cc5-58e9-11f0-99f5-12541f53f393?host=wbd-images.prod-vod.h264.io&partner=beamcom", url:"https://www.youtube.com/embed/c2nwsZ1zq50"},
+  {id:"pri-cronica", title:"PRI: Crónica del Fin", thumb:"https://i.ytimg.com/vi/XgcxiUx9xyo/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBeIKwlhTw7zVyVwE_Q9EosAfjxXQ", url:"https://www.youtube.com/embed/ZDtNugm6hCc"},
+];
+
+const videoCarousel = document.getElementById("videoCarousel");
+estrenos.forEach(v=>{
+  videoCarousel.innerHTML += `
+    <div id="video-${v.id}" class="video-item" onclick="openModal('${v.url}')">
+      <div class="video-thumbnail">
+        <img src="${v.thumb}" alt="${v.title}">
+        <div class="play-icon">▶</div>
+      </div>
+      <h3 class="video-title">${v.title}</h3>
+    </div>
+  `;
+});
+
+let currentIndex = 0;
+function moveSlider(dir){
+  const items = estrenos.length;
+  currentIndex += dir;
+  if(currentIndex < 0) currentIndex = items-1;
+  if(currentIndex >= items) currentIndex = 0;
+  videoCarousel.style.transform = `translateX(-${currentIndex*320}px)`;
+}
+
+const videoModal = document.getElementById("videoModal");
+const videoFrame = document.getElementById("videoFrame");
+function openModal(url){ 
+  videoFrame.src = url + "?autoplay=1"; 
+  videoModal.style.display = "flex"; 
+}
+function closeModal(){ 
+  videoFrame.src = ""; 
+  videoModal.style.display = "none"; 
+}
+
+// Cerrar modal al hacer clic fuera del contenido
+videoModal.addEventListener('click', (e) => {
+  if (e.target === videoModal) closeModal();
+});
+
+// Plataformas
+const platforms = {
+  netflix:{
+    id:"netflix",
+    name:"Netflix Premium",
+    description:"Acceso ilimitado en Ultra HD con 4 pantallas simultáneas.",
+    logo:"https://static.vecteezy.com/system/resources/previews/029/337/390/non_2x/netflix-logo-black-background-free-vector.jpg",
+    price:"$229 MXN / mes",
+    screens:"4 pantallas simultáneas",
+    quality:"Ultra HD",
+    badge:"POPULAR"
+  },
+  disney:{
+    id:"disney",
+    name:"Disney+ Premium",
+    description:"Incluye Disney, Pixar, Marvel, Star Wars y National Geographic.",
+    logo:"https://i0.wp.com/www.yosoyungamer.com/wp-content/uploads/2024/08/Disney.jpg?fit=1400%2C825&ssl=1",
+    price:"$179 MXN / mes",
+    screens:"4 pantallas simultáneas",
+    quality:"Ultra HD",
+    badge:"TOP"
+  },
+  hbo:{
+    id:"hbo",
+    name:"HBO Max",
+    description:"Series exclusivas, películas de estreno y catálogo Warner Bros.",
+    logo:"https://www.sopitas.com/wp-content/uploads/2025/05/hbo-max-logo.jpeg",
+    price:"$199 MXN / mes",
+    screens:"3 pantallas simultáneas",
+    quality:"Full HD / 4K",
+    badge:"NUEVO"
+  },
+  vix:{
+    id:"vix",
+    name:"Vix",
+    description:"El servicio de streaming en español más grande del mundo con contenido gratuito y premium.",
+    logo:"https://library.sportingnews.com/styles/twitter_card/120x120/s3/2025-02/ViX%20Premium.jpg",
+    price:"$99 MXN / mes",
+    screens:"2 pantallas simultáneas",
+    quality:"Full HD",
+    badge:"ECONÓMICO"
+  },
+  primevideo:{
+    id:"primevideo",
+    name:"Prime Video",
+    description:"Incluye envíos gratis en Amazon, música y almacenamiento de fotos ilimitado.",
+    logo:"https://www.decadastudio.com/wp-content/uploads/2025/01/primevideo-seo-logo-300x169.webp",
+    price:"$99 MXN / mes",
+    screens:"3 pantallas simultáneas",
+    quality:"4K Ultra HD",
+    badge:"RECOMENDADO"
+  }
+};
+
+const platformsContainer = document.getElementById("platformsContainer");
+for(const key in platforms){
+  const p = platforms[key];
+  platformsContainer.innerHTML += `
+    <div id="platform-${p.id}" class="platform-card">
+      <div class="platform-badge">${p.badge}</div>
+      <div class="platform-image">
+        <img src="${p.logo}" alt="${p.name}">
+      </div>
+      <h3 class="platform-name">${p.name}</h3>
+      <button class="info-btn" onclick="openPlatformModal('${p.id}')">Más información</button>
+    </div>
+  `;
+}
+
+// Rellenar select plataformas en Referencias
+const reviewPlatformSelect = document.getElementById("reviewPlatform");
+for(const key in platforms){
+  const p = platforms[key];
+  reviewPlatformSelect.innerHTML += `<option value="${p.name}">${p.name}</option>`;
+}
+
+function openPlatformModal(id){
+  const p = platforms[id];
+  const modal = document.getElementById("platformModal");
+  const content = document.getElementById("platformModalContent");
+  content.innerHTML = `
+    <div style="display:flex; justify-content:center; margin-bottom:20px;">
+      <div style="width:150px; height:150px; overflow:hidden; border:3px solid var(--neon-blue); box-shadow:0 0 15px var(--neon-blue); display:flex; align-items:center; justify-content:center;">
+        <img src="${p.logo}" alt="${p.name}" style="width:100%; height:100%; object-fit:contain; background:#111;">
+      </div>
+    </div>
+    <h2 style="color:var(--neon-green); text-align:center; margin-bottom:15px;">${p.name}</h2>
+    <ul style="list-style:none; padding:0; margin:0 0 20px 0; line-height:1.8; text-align:left;">
+      <li>💻 ${p.description}</li>
+      <li>💰 Precio: ${p.price}</li>
+      <li>📺 Pantallas: ${p.screens}</li>
+      <li>🎬 Calidad: ${p.quality}</li>
+    </ul>
+    <div style="text-align:center; margin-top:15px;">
+      <a class="whatsapp-btn" href="https://wa.me/5215555555555?text=Hola,%20quiero%20más%20información%20sobre%20${encodeURIComponent(p.name)}" target="_blank" style="display:inline-flex; align-items:center; gap:8px; font-weight:bold; text-decoration:none; color:var(--neon-green); border:2px solid var(--neon-green); padding:10px 15px; border-radius:8px; transition: all 0.3s;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" style="width:24px; height:24px;"> Contratar por WhatsApp
+      </a>
+    </div>
+    <button class="close-btn" onclick="closePlatformModal()">Cerrar</button>
+  `;
+  modal.style.display = "flex";
+}
+
+function closePlatformModal(){ 
+  document.getElementById("platformModal").style.display = "none"; 
+}
+
+// Cerrar modal al hacer clic fuera del contenido
+document.getElementById("platformModal").addEventListener('click', (e) => {
+  if (e.target === document.getElementById("platformModal")) closePlatformModal();
+});
+
+// ---------------- Referencias ----------------
+const reviewForm = document.getElementById("reviewForm");
+const reviewsList = document.getElementById("reviewsList");
+reviewForm.addEventListener("submit", function(e){
+  e.preventDefault();
+  const name = document.getElementById("reviewName").value;
+  const rating = document.getElementById("reviewRating").value;
+  const platform = document.getElementById("reviewPlatform").value;
+  const comment = document.getElementById("reviewComment").value;
+  const card = document.createElement("div");
+  card.className = "review-card";
+  card.innerHTML = `<h4>${name} - ${rating}</h4><p><b>Plataforma:</b> ${platform}</p><p>${comment}</p>`;
+  reviewsList.prepend(card);
+  reviewForm.reset();
+});
+
+// ---------------- Botón regresar al inicio ----------------
+document.getElementById("backToTop").addEventListener("click", function(e){
+  e.preventDefault();
+  window.scroll({top:0, behavior:'smooth'});
+});
+
+// Inicializar carrusel
+videoCarousel.style.transform = `translateX(0)`;
+</script>
+</body>
+</html>
