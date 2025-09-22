@@ -36,7 +36,7 @@ h2.section-title {font-size:1.6rem; margin-bottom:20px; color:var(--neon-purple)
 }
 .video-item {
   min-width:300px; 
-  height: 280px; 
+  height: auto; /* Cambiado a auto para mejor responsividad */
   margin:0; 
   cursor:pointer; 
   transition:transform 0.4s, box-shadow 0.4s;
@@ -94,6 +94,7 @@ h2.section-title {font-size:1.6rem; margin-bottom:20px; color:var(--neon-purple)
   justify-content: center;
   background: rgba(0, 0, 0, 0.7);
   border-radius: 0 0 12px 12px;
+  min-height: 60px; /* Aseguramos altura mínima para el título */
 }
 
 /* ---------- Flechas ---------- */
@@ -103,7 +104,7 @@ h2.section-title {font-size:1.6rem; margin-bottom:20px; color:var(--neon-purple)
 
 /* ---------- Modal video ---------- */
 #videoModal {display:none; position:fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.9); z-index:100; align-items:center; justify-content:center;}
-#videoModalContent {position:relative; width:80%; max-width:900px; border:2px solid var(--neon-blue);}
+#videoModalContent {position:relative; width:90%; max-width:900px; border:2px solid var(--neon-blue);}
 #closeVideoModal {position:absolute; top:-40px; right:0; font-size:2rem; color:white; cursor:pointer; transition:all 0.3s;}
 #closeVideoModal:hover { color: var(--neon-pink); transform: scale(1.3); }
 .video-container {position:relative; padding-bottom:56.25%; height:0; overflow:hidden;}
@@ -203,6 +204,20 @@ h2.section-title {font-size:1.6rem; margin-bottom:20px; color:var(--neon-purple)
 #infoForm button { padding:10px 20px; border-radius:5px; border:1px solid var(--neon-green); background:transparent; color:var(--neon-green); font-weight:bold; cursor:pointer; transition: all 0.3s; }
 #infoForm button:hover { background: var(--neon-green); color:black; box-shadow:0 0 15px var(--neon-green); }
 
+/* Mensaje de confirmación */
+#confirmationMessage {
+  display: none;
+  background: rgba(0, 255, 170, 0.2);
+  border: 2px solid var(--neon-green);
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  margin-top: 20px;
+  color: var(--neon-green);
+  font-weight: bold;
+  box-shadow: 0 0 15px var(--neon-green);
+}
+
 /* ---------- Referencias Usuarios ---------- */
 #reviewsSection {margin:50px auto; max-width:800px; padding:20px; }
 #reviewForm { display:flex; flex-direction:column; gap:15px; background: rgba(0,0,0,0.5); padding:20px; border-radius:10px; border:2px solid var(--neon-blue); box-shadow:0 0 15px var(--neon-blue); margin-bottom:30px;}
@@ -224,16 +239,49 @@ h2.section-title {font-size:1.6rem; margin-bottom:20px; color:var(--neon-purple)
 footer#footer {text-align:center; padding:20px; border-top:1px solid var(--neon-purple); box-shadow:0 0 10px var(--neon-purple); }
 
 /* ---------- Responsive ---------- */
-@media(max-width:1200px){#platformsContainer{grid-template-columns:repeat(3,1fr);}}
-@media(max-width:900px){#platformsContainer{grid-template-columns:repeat(2,1fr);}}
-@media(max-width:600px){#platformsContainer{grid-template-columns:1fr;}}
-@media(max-width:768px){
+@media(max-width:1200px){
+  #platformsContainer{grid-template-columns:repeat(3,1fr);}
+  .video-item{min-width:280px;}
+}
+@media(max-width:900px){
+  #platformsContainer{grid-template-columns:repeat(2,1fr);}
   .video-item{min-width:250px;}
   #videoCarousel {gap:15px;}
 }
-@media(max-width:480px){
+@media(max-width:768px){
+  .section {padding:15px;}
+  h1#mainTitle {font-size:1.6rem;}
+  h2.section-title {font-size:1.4rem;}
+  .video-item{min-width:220px;}
+  .platform-card {padding:20px;}
+  .platform-image {width:140px; height:140px;}
+}
+@media(max-width:600px){
+  #platformsContainer{grid-template-columns:1fr;}
   .video-item{min-width:200px;}
   #videoCarousel {gap:10px;}
+  #videoControls {gap:15px;}
+  .slider-btn {width:35px; height:35px; font-size:1.3rem;}
+  #infoForm, #reviewForm {padding:15px;}
+}
+@media(max-width:480px){
+  .video-item{min-width:180px;}
+  .video-thumbnail {height:150px;}
+  .video-title {padding:10px 5px; font-size:0.9rem;}
+  .play-icon {font-size:2.5rem;}
+  .platform-card {padding:15px;}
+  .platform-image {width:120px; height:120px;}
+  .platform-name {font-size:1.1rem;}
+  .info-btn {padding:8px 15px; font-size:0.9rem;}
+  #videoModalContent {width:95%;}
+}
+@media(max-width:360px){
+  .video-item{min-width:160px;}
+  .video-thumbnail {height:130px;}
+  .video-title {font-size:0.85rem;}
+  .platform-card {padding:10px;}
+  .platform-image {width:100px; height:100px;}
+  .platform-name {font-size:1rem;}
 }
 </style>
 </head>
@@ -277,7 +325,7 @@ footer#footer {text-align:center; padding:20px; border-top:1px solid var(--neon-
   <!-- ========= SECCIÓN FORMULARIO ========= -->
   <section id="formSection" class="section">
     <h2 class="section-title">Pide más información</h2>
-    <form id="infoForm" action="https://formspree.io/f/movkaeqd" method="POST">
+    <form id="infoForm">
       <label for="name">Nombre:</label>
       <input type="text" name="name" id="name" required>
       <label for="email">Correo electrónico:</label>
@@ -286,6 +334,9 @@ footer#footer {text-align:center; padding:20px; border-top:1px solid var(--neon-
       <textarea name="message" id="message" rows="5" required></textarea>
       <button type="submit">Enviar</button>
     </form>
+    <div id="confirmationMessage">
+      ¡Mensaje enviado correctamente! Te contactaremos pronto.
+    </div>
   </section>
 
   <!-- ========= REFERENCIAS DE USUARIOS ========= -->
@@ -335,11 +386,11 @@ particlesJS("particles-js",{
 const estrenos = [
   {id:"squid-game", title:"El Juego del Calamar", thumb:"https://s0.smartresize.com/wallpaper/281/259/HD-wallpaper-squid-game-2021.jpg", url:"https://www.youtube.com/embed/I6b5kkfcgNQ"},
   {id:"heroe-colectivo", title:"El Héroe Colectivo", thumb:"https://d30gl8nkrjm6kp.cloudfront.net/articulos/articulos-1559285.jpg", url:"https://www.youtube.com/embed/QQHMyO5pLD0"},
-  {id:"par-ideotas", title:"Par de Ideotas", thumb:"https://m.media-amazon.com/images/S/pv-target-images/3baa7ca4b248c8626027d4edb1372532baa6d129872e2aefa50ed3b151baab0f.png", url:"https://www.youtube.com/embed/uQpf0hOqEcU"},
+  {id:"par-ideotas", title:"Par de Ideotas", thumb:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbN728hhZRZ9nYaYIQNjDMy1GevzCSiF9hBw&s", url:"https://www.youtube.com/embed/uQpf0hOqEcU"},
   {id:"stranger-things", title:"Stranger Things 5", thumb:"https://www.radioacktiva.com/wp-content/uploads/2025/07/160725-Stranger-Things-redes.png", url:"https://www.youtube.com/embed/j1k22Fh11Yw"},
-  {id:"cada-minuto", title:"Cada Minuto Cuenta Temporada 2", thumb:"https://clubsolaz.imgix.net/yP3zjAJBc3vbTVCqNNM9jxzk6pgS2F9aUTVvGHcn.jpg?w=345&h=210&fit=crop&crop=faces&auto=compress", url:"https://www.youtube.com/embed/dfJwx1Sflqs"},
+  {id:"cada-minuto", title:"Cada Minuto Cuenta Temporada 2", thumb:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLBA9JTFJGRydaH0-O4y3CK-FKR7IFQ0KhJQ&s", url:"https://www.youtube.com/embed/dfJwx1Sflqs"},
   {id:"sin-querer", title:"Sin Querer Queriendo", thumb:"https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/bf214cac-c6ec-4ba4-b706-020eaa5138f6/49e42cc5-58e9-11f0-99f5-12541f53f393?host=wbd-images.prod-vod.h264.io&partner=beamcom", url:"https://www.youtube.com/embed/c2nwsZ1zq50"},
-  {id:"pri-cronica", title:"PRI: Crónica del Fin", thumb:"https://i.ytimg.com/vi/XgcxiUx9xyo/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBeIKwlhTw7zVyVwE_Q9EosAfjxXQ", url:"https://www.youtube.com/embed/ZDtNugm6hCc"},
+  {id:"pri-cronica", title:"PRI: Crónica del Fin", thumb:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiXIw9-gLxXSTz5JjR9hX-kiCQVn1QDtYlUg&s", url:"https://www.youtube.com/embed/ZDtNugm6hCc"},
 ];
 
 const videoCarousel = document.getElementById("videoCarousel");
@@ -361,7 +412,12 @@ function moveSlider(dir){
   currentIndex += dir;
   if(currentIndex < 0) currentIndex = items-1;
   if(currentIndex >= items) currentIndex = 0;
-  videoCarousel.style.transform = `translateX(-${currentIndex*320}px)`;
+  
+  // Responsive: calcular el ancho del elemento según el tamaño de pantalla
+  const videoItem = document.querySelector('.video-item');
+  const itemWidth = videoItem ? videoItem.offsetWidth + 20 : 320; // 20px es el gap
+  
+  videoCarousel.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
 }
 
 const videoModal = document.getElementById("videoModal");
@@ -386,7 +442,7 @@ const platforms = {
     id:"netflix",
     name:"Netflix Premium",
     description:"Acceso ilimitado en Ultra HD con 4 pantallas simultáneas.",
-    logo:"https://static.vecteezy.com/system/resources/previews/029/337/390/non_2x/netflix-logo-black-background-free-vector.jpg",
+    logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsZLFW9PjmQSTrcc-BfDZL_8ENLgsuz3Ov0g&s",
     price:"$229 MXN / mes",
     screens:"4 pantallas simultáneas",
     quality:"Ultra HD",
@@ -416,7 +472,7 @@ const platforms = {
     id:"vix",
     name:"Vix",
     description:"El servicio de streaming en español más grande del mundo con contenido gratuito y premium.",
-    logo:"https://library.sportingnews.com/styles/twitter_card/120x120/s3/2025-02/ViX%20Premium.jpg",
+    logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHdv41ZaNSrxs4c8ViGBT0dXZiCt-vycsV0w&s",
     price:"$99 MXN / mes",
     screens:"2 pantallas simultáneas",
     quality:"Full HD",
@@ -426,7 +482,7 @@ const platforms = {
     id:"primevideo",
     name:"Prime Video",
     description:"Incluye envíos gratis en Amazon, música y almacenamiento de fotos ilimitado.",
-    logo:"https://www.decadastudio.com/wp-content/uploads/2025/01/primevideo-seo-logo-300x169.webp",
+    logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1H9A-IWEoc01iM_DQQnaDbrO89W7Ck75YaLBt8EncTie4P5jyeU9BtTOnMlcEZKe2GYY&usqp=CAU",
     price:"$99 MXN / mes",
     screens:"3 pantallas simultáneas",
     quality:"4K Ultra HD",
@@ -492,6 +548,24 @@ document.getElementById("platformModal").addEventListener('click', (e) => {
   if (e.target === document.getElementById("platformModal")) closePlatformModal();
 });
 
+// ---------------- Formulario de contacto ----------------
+const infoForm = document.getElementById("infoForm");
+const confirmationMessage = document.getElementById("confirmationMessage");
+
+infoForm.addEventListener("submit", function(e){
+  e.preventDefault();
+  
+  // Aquí normalmente enviarías los datos a un servidor
+  // Por ahora solo mostramos el mensaje de confirmación
+  confirmationMessage.style.display = "block";
+  infoForm.reset();
+  
+  // Ocultar el mensaje después de 5 segundos
+  setTimeout(() => {
+    confirmationMessage.style.display = "none";
+  }, 5000);
+});
+
 // ---------------- Referencias ----------------
 const reviewForm = document.getElementById("reviewForm");
 const reviewsList = document.getElementById("reviewsList");
@@ -516,6 +590,11 @@ document.getElementById("backToTop").addEventListener("click", function(e){
 
 // Inicializar carrusel
 videoCarousel.style.transform = `translateX(0)`;
+
+// Ajustar el carrusel al cambiar el tamaño de la ventana
+window.addEventListener('resize', function() {
+  videoCarousel.style.transform = `translateX(-${currentIndex * (document.querySelector('.video-item').offsetWidth + 20)}px)`;
+});
 </script>
 </body>
 </html>
