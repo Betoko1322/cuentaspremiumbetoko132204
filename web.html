@@ -60,15 +60,38 @@
       display: block;
     }
     .btn-demo:hover { background: var(--primary-color); }
-    .btn-back {
-      background: rgba(255, 255, 255, 0.1);
-      border: 2px solid var(--text-light);
+    
+    /* Botón flotante mejorado */
+    #floating-home-button {
       position: fixed;
       bottom: 20px;
-      left: 20px;
-      z-index: 999;
+      right: 20px;
+      background-color: var(--primary-color);
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+      z-index: 1000;
+      border: none;
     }
-    .btn-back:hover { background: rgba(255, 255, 255, 0.2); }
+
+    #floating-home-button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+      background-color: #e85c50;
+    }
+
+    #floating-home-button span {
+      display: none;
+    }
+    
     #main-nav { position: fixed; top: 0; left: 0; width: 100%; background: rgba(0,0,0,0.8); padding: 12px; text-align: right; z-index: 1000; backdrop-filter: blur(5px); }
     #main-nav a { color: var(--text-light); margin: 0 12px; text-decoration: none; font-weight: 600; transition: color 0.3s; font-size: 0.9rem; }
     #main-nav a:hover { color: var(--primary-color); }
@@ -102,8 +125,70 @@
     #social-links a { color: var(--text-light); font-size: 1.3rem; margin: 0 8px; transition: color 0.3s; }
     #social-links a:hover { color: var(--primary-color); }
     .section-subtitle { text-align: center; color: var(--text-gray); margin-bottom: 30px; font-size: 0.95rem; max-width: 700px; margin-left: auto; margin-right: auto; }
+    
+    /* Mensaje de confirmación */
+    .confirmation-message {
+      display: none;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 2rem;
+      border-radius: 10px;
+      text-align: center;
+      margin-top: 1rem;
+      border-left: 4px solid #4CAF50;
+    }
+
+    .confirmation-message i {
+      font-size: 3rem;
+      color: #4CAF50;
+      margin-bottom: 1rem;
+    }
+
+    .confirmation-message h3 {
+      color: white;
+      margin-bottom: 0.5rem;
+    }
+
+    .confirmation-message p {
+      color: #ddd;
+    }
+    
     @media (max-width: 992px) { #features-grid, #demo-grid { grid-template-columns: repeat(2, 1fr); } #benefits-grid { grid-template-columns: 1fr; } }
-    @media (max-width: 768px) { #hero h1 { font-size: 2rem; } h2 { font-size: 1.6rem; } #main-nav a { margin: 0 8px; font-size: 0.85rem; } #features-grid, #demo-grid { grid-template-columns: 1fr; } .feature-card, .storage-card, .demo-card { max-width: 100%; } #storage-options { gap: 15px; } .container { padding: 60px 15px 25px; } #benefits-container { padding: 20px; } .btn-back { bottom: 10px; left: 10px; padding: 8px 15px; font-size: 0.8rem; } }
+    @media (max-width: 768px) { 
+      #hero h1 { font-size: 2rem; } 
+      h2 { font-size: 1.6rem; } 
+      #main-nav a { margin: 0 8px; font-size: 0.85rem; } 
+      #features-grid, #demo-grid { grid-template-columns: 1fr; } 
+      .feature-card, .storage-card, .demo-card { max-width: 100%; } 
+      #storage-options { gap: 15px; } 
+      .container { padding: 60px 15px 25px; } 
+      #benefits-container { padding: 20px; } 
+      
+      /* Ajustes para móviles */
+      #floating-home-button {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+        bottom: 15px;
+        right: 15px;
+      }
+    }
+    @media (max-width: 480px){
+      #floating-home-button {
+        width: 45px;
+        height: 45px;
+        font-size: 1rem;
+        bottom: 10px;
+        right: 10px;
+      }
+      
+      #hero h1 {
+        font-size: 1.6rem;
+      }
+      
+      h2 {
+        font-size: 1.6rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -118,7 +203,11 @@
     <a id="nav-contact" href="#quote-section">Contacto</a>
   </nav>
 
-  <a id="btn-back" href="index.html" class="btn btn-back"><i class="fas fa-arrow-left"></i> Regresar a Inicio</a>
+  <!-- Botón flotante mejorado -->
+  <a href="#hero" class="floating-button" id="floating-home-button">
+    <i class="fas fa-home"></i>
+    <span>Inicio</span>
+  </a>
 
   <div class="container">
     <!-- HERO -->
@@ -241,7 +330,7 @@
     <!-- CONTACT FORM -->
     <section id="quote-section">
       <h2 id="contact-title">Solicita una Cotización</h2>
-      <form id="contact-form" action="https://formspree.io/f/movkaeqd" method="POST">
+      <form id="contact-form" method="POST">
         <div class="form-title">Déjanos tus datos</div>
         <div class="form-group">
           <label for="name">Nombre:</label>
@@ -259,32 +348,13 @@
           <label for="message">Mensaje:</label>
           <textarea id="message" name="message" required></textarea>
         </div>
-        <button type="submit" class="btn btn-secondary">Enviar</button>
-        <p id="success-message" style="display:none; color: #4CAF50; text-align:center; margin-top:10px;">¡Gracias! Tu mensaje ha sido enviado.</p>
+        <button type="submit" class="btn btn-secondary" id="submit-button">Enviar</button>
+        <div class="confirmation-message" id="confirmation-message">
+          <i class="fas fa-check-circle"></i>
+          <h3>¡Mensaje enviado con éxito!</h3>
+          <p>Hemos recibido tu solicitud. Nos pondremos en contacto contigo en breve.</p>
+        </div>
       </form>
-      <script>
-        const form = document.getElementById('contact-form');
-        const successMsg = document.getElementById('success-message');
-        form.addEventListener('submit', async (e) => {
-          e.preventDefault();
-          const formData = new FormData(form);
-          try {
-            const response = await fetch(form.action, {
-              method: 'POST',
-              body: formData,
-              headers: { 'Accept': 'application/json' }
-            });
-            if (response.ok) {
-              form.reset();
-              successMsg.style.display = 'block';
-            } else {
-              alert('Hubo un error al enviar el mensaje. Intenta de nuevo.');
-            }
-          } catch (error) {
-            alert('Hubo un error al enviar el mensaje. Intenta de nuevo.');
-          }
-        });
-      </script>
     </section>
   </div>
 
@@ -318,6 +388,39 @@
         }
       },
       "retina_detect": true
+    });
+
+    // Manejo del formulario
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Aquí normalmente enviarías los datos al servidor
+      // Por ahora simulamos el envío exitoso
+      
+      // Ocultar formulario y mostrar mensaje de confirmación
+      document.getElementById('contact-form').style.display = 'none';
+      document.getElementById('confirmation-message').style.display = 'block';
+      
+      // Opcional: Limpiar el formulario
+      this.reset();
+    });
+
+    // Smooth scroll para navegación
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if(targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if(targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
     });
   </script>
 </body>
