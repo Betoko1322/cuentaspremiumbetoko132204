@@ -36,7 +36,7 @@ h2.section-title {font-size:1.6rem; margin-bottom:20px; color:var(--neon-purple)
 }
 .video-item {
   min-width:300px;
-  height: auto; /* Cambiado a auto para mejor responsividad */
+  height: auto;
   margin:0;
   cursor:pointer;
   transition:transform 0.4s, box-shadow 0.4s;
@@ -94,7 +94,7 @@ h2.section-title {font-size:1.6rem; margin-bottom:20px; color:var(--neon-purple)
   justify-content: center;
   background: rgba(0, 0, 0, 0.7);
   border-radius: 0 0 12px 12px;
-  min-height: 60px; /* Aseguramos altura mínima para el título */
+  min-height: 60px;
 }
 
 /* ---------- Flechas ---------- */
@@ -231,9 +231,34 @@ h2.section-title {font-size:1.6rem; margin-bottom:20px; color:var(--neon-purple)
 #reviewsList .review-card h4 { color:var(--neon-pink); margin-bottom:5px;}
 #reviewsList .review-card p { color:#ddd; margin:3px 0; }
 
-/* ---------- Botón regresar al inicio ---------- */
-#backToTop {position:fixed; bottom:20px; left:20px; background:rgba(255,255,255,0.1); color:white; border:1px solid var(--neon-green); padding:10px 15px; border-radius:5px; cursor:pointer; font-weight:bold; text-decoration:none; transition: all 0.3s; z-index:9999;}
-#backToTop:hover { background:rgba(0,255,170,0.2); color: var(--neon-green); transform:scale(1.1); }
+/* ---------- Botón regresar al inicio (más discreto) ---------- */
+#backToTopBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 2px solid var(--neon-green);
+  background: rgba(0,0,0,0.6);
+  color: var(--neon-green);
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px var(--neon-green);
+  transition: all 0.3s;
+}
+#backToTopBtn:hover {
+  background: var(--neon-green);
+  color: black;
+  transform: scale(1.2);
+  box-shadow: 0 0 20px var(--neon-green);
+}
+/* ID para ajustes futuros */
+#backToTopBtnDiscreto { }
 
 /* ---------- Footer ---------- */
 footer#footer {text-align:center; padding:20px; border-top:1px solid var(--neon-purple); box-shadow:0 0 10px var(--neon-purple); }
@@ -297,67 +322,100 @@ footer#footer {text-align:center; padding:20px; border-top:1px solid var(--neon-
 <main>
 
   <!-- ========= SECCIÓN ESTRENOS ========= -->
-  <section id="estrenosSection" class="section">
-    <h2 class="section-title">Últimos Estrenos</h2>
-    <div id="videoSlider">
-      <div id="videoCarousel">
-        <!-- Los videos se insertarán dinámicamente con JavaScript -->
+  <section id="videoSlider" class="section">
+    <h2 class="section-title">Estrenos</h2>
+    <div id="videoCarousel">
+      <div class="video-item">
+        <div class="video-thumbnail">
+          <img src="video1.jpg" alt="Video 1">
+          <div class="play-icon">▶</div>
+        </div>
+        <h3 class="video-title">Video 1</h3>
+      </div>
+      <div class="video-item">
+        <div class="video-thumbnail">
+          <img src="video2.jpg" alt="Video 2">
+          <div class="play-icon">▶</div>
+        </div>
+        <h3 class="video-title">Video 2</h3>
+      </div>
+      <div class="video-item">
+        <div class="video-thumbnail">
+          <img src="video3.jpg" alt="Video 3">
+          <div class="play-icon">▶</div>
+        </div>
+        <h3 class="video-title">Video 3</h3>
       </div>
     </div>
     <div id="videoControls">
-      <button id="prevBtn" class="slider-btn" onclick="moveSlider(-1)">❮</button>
-      <button id="nextBtn" class="slider-btn" onclick="moveSlider(1)">❯</button>
-    </div>
-    <div id="videoModal">
-      <div id="videoModalContent">
-        <span id="closeVideoModal" onclick="closeModal()">×</span>
-        <div class="video-container"><iframe id="videoFrame" src="" frameborder="0" allowfullscreen></iframe></div>
-      </div>
+      <button class="slider-btn" id="prev">&#10094;</button>
+      <button class="slider-btn" id="next">&#10095;</button>
     </div>
   </section>
 
   <!-- ========= SECCIÓN PLATAFORMAS ========= -->
   <section id="platformsSection" class="section">
-    <h2 class="section-title">Plataformas Disponibles</h2>
-    <div id="platformsContainer"></div>
-  </section>
-
-  <!-- ========= SECCIÓN FORMULARIO ========= -->
-  <section id="formSection" class="section">
-    <h2 class="section-title">Pide más información</h2>
-    <form id="infoForm">
-      <label for="name">Nombre:</label>
-      <input type="text" name="name" id="name" required>
-      <label for="email">Correo electrónico:</label>
-      <input type="email" name="email" id="email" required>
-      <label for="message">Mensaje:</label>
-      <textarea name="message" id="message" rows="5" required></textarea>
-      <button type="submit">Enviar</button>
-    </form>
-    <div id="confirmationMessage">
-      ¡Mensaje enviado correctamente! Te contactaremos pronto.
+    <h2 class="section-title">Plataformas</h2>
+    <div id="platformsContainer">
+      <div class="platform-card">
+        <div class="platform-badge">Nuevo</div>
+        <div class="platform-image"><img src="netflix.png" alt="Netflix"></div>
+        <h3 class="platform-name">Netflix</h3>
+        <button class="info-btn">Más info</button>
+      </div>
+      <div class="platform-card">
+        <div class="platform-badge">Top</div>
+        <div class="platform-image"><img src="prime.png" alt="Prime Video"></div>
+        <h3 class="platform-name">Prime Video</h3>
+        <button class="info-btn">Más info</button>
+      </div>
+      <div class="platform-card">
+        <div class="platform-badge">Nuevo</div>
+        <div class="platform-image"><img src="disney.png" alt="Disney+"></div>
+        <h3 class="platform-name">Disney+</h3>
+        <button class="info-btn">Más info</button>
+      </div>
+      <div class="platform-card">
+        <div class="platform-badge">Top</div>
+        <div class="platform-image"><img src="hbo.png" alt="HBO Max"></div>
+        <h3 class="platform-name">HBO Max</h3>
+        <button class="info-btn">Más info</button>
+      </div>
     </div>
   </section>
 
-  <!-- ========= REFERENCIAS DE USUARIOS ========= -->
+  <!-- ========= FORMULARIO INFO ========= -->
+  <section id="infoSection" class="section">
+    <h2 class="section-title">Solicitar Información</h2>
+    <form id="infoForm">
+      <label for="name">Nombre</label>
+      <input type="text" id="name" name="name" required>
+      <label for="email">Correo</label>
+      <input type="email" id="email" name="email" required>
+      <label for="message">Mensaje</label>
+      <textarea id="message" name="message" rows="4" required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+    <div id="confirmationMessage">¡Gracias! Tu mensaje ha sido enviado.</div>
+  </section>
+
+  <!-- ========= REFERENCIAS/RESEÑAS ========= -->
   <section id="reviewsSection" class="section">
     <h2 class="section-title">Referencias de Usuarios</h2>
     <form id="reviewForm">
-      <label for="reviewName">Nombre:</label>
-      <input type="text" id="reviewName" placeholder="Tu nombre" required>
-      <label for="reviewRating">Calificación:</label>
-      <select id="reviewRating" required>
-        <option value="">Selecciona estrellas</option>
-        <option value="⭐">⭐</option>
-        <option value="⭐⭐">⭐⭐</option>
-        <option value="⭐⭐⭐">⭐⭐⭐</option>
-        <option value="⭐⭐⭐⭐">⭐⭐⭐⭐</option>
-        <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐</option>
+      <label for="reviewName">Nombre</label>
+      <input type="text" id="reviewName" name="reviewName" required>
+      <label for="reviewRating">Calificación</label>
+      <select id="reviewRating" name="reviewRating" required>
+        <option value="">Selecciona</option>
+        <option value="5">5 - Excelente</option>
+        <option value="4">4 - Muy bien</option>
+        <option value="3">3 - Bien</option>
+        <option value="2">2 - Regular</option>
+        <option value="1">1 - Malo</option>
       </select>
-      <label for="reviewPlatform">Plataforma contratada:</label>
-      <select id="reviewPlatform" required></select>
-      <label for="reviewComment">Opinión / Comentario:</label>
-      <textarea id="reviewComment" rows="4" placeholder="Escribe tu opinión..." required></textarea>
+      <label for="reviewComment">Comentario</label>
+      <textarea id="reviewComment" name="reviewComment" rows="3" required></textarea>
       <button type="submit">Enviar</button>
     </form>
     <div id="reviewsList"></div>
@@ -365,307 +423,27 @@ footer#footer {text-align:center; padding:20px; border-top:1px solid var(--neon-
 
 </main>
 
-<!-- =================== MODAL PLATAFORMAS =================== -->
-<div id="platformModal"><div id="platformModalContent"></div></div>
-
-<!-- =================== BOTÓN REGRESAR AL INICIO =================== -->
-<a id="backToTop" href="#">Regresar al inicio</a>
+<!-- =================== BOTÓN VOLVER ARRIBA =================== -->
+<button id="backToTopBtn" title="Ir arriba">⬆</button>
 
 <!-- =================== FOOTER =================== -->
-<footer id="footer">&copy; 2025 Streaming Platforms. Todos los derechos reservados.</footer>
+<footer id="footer">© 2025 Streaming Platforms. Todos los derechos reservados.</footer>
 
 <!-- =================== SCRIPTS =================== -->
-<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 <script>
-// ---------------- Partículas ----------------
-particlesJS("particles-js",{
-  "particles":{"number":{"value":90},"size":{"value":3},"move":{"speed":2},"line_linked":{"enable":true,"color":"#ffffff"},"color":{"value":"#ffffff"}}
+const backToTopBtn = document.getElementById("backToTopBtn");
+backToTopBtn.addEventListener("click", () => {
+  window.scroll({ top: 0, behavior: 'smooth' });
 });
-
-// ---------------- Últimos Estrenos ----------------
-const estrenos = [
-  {id:"squid-game", title:"El Juego del Calamar", thumb:"https://s0.smartresize.com/wallpaper/281/259/HD-wallpaper-squid-game-2021.jpg", url:"https://www.youtube.com/embed/I6b5kkfcgNQ"},
-  {id:"heroe-colectivo", title:"El Héroe Colectivo", thumb:"https://d30gl8nkrjm6kp.cloudfront.net/articulos/articulos-1559285.jpg", url:"https://www.youtube.com/embed/QQHMyO5pLD0"},
-  {id:"par-ideotas", title:"Par de Ideotas", thumb:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbN728hhZRZ9nYaYIQNjDMy1GevzCSiF9hBw&s", url:"https://www.youtube.com/embed/uQpf0hOqEcU"},
-  {id:"stranger-things", title:"Stranger Things 5", thumb:"https://www.radioacktiva.com/wp-content/uploads/2025/07/160725-Stranger-Things-redes.png", url:"https://www.youtube.com/embed/j1k22Fh11Yw"},
-  {id:"cada-minuto", title:"Cada Minuto Cuenta Temporada 2", thumb:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLBA9JTFJGRydaH0-O4y3CK-FKR7IFQ0KhJQ&s", url:"https://www.youtube.com/embed/dfJwx1Sflqs"},
-  {id:"sin-querer", title:"Sin Querer Queriendo", thumb:"https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/bf214cac-c6ec-4ba4-b706-020eaa5138f6/49e42cc5-58e9-11f0-99f5-12541f53f393?host=wbd-images.prod-vod.h264.io&partner=beamcom", url:"https://www.youtube.com/embed/c2nwsZ1zq50"},
-  {id:"pri-cronica", title:"PRI: Crónica del Fin", thumb:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiXIw9-gLxXSTz5JjR9hX-kiCQVn1QDtYlUg&s", url:"https://www.youtube.com/embed/ZDtNugm6hCc"},
-];
-
-const videoCarousel = document.getElementById("videoCarousel");
-estrenos.forEach(v=>{
-  videoCarousel.innerHTML += `
-    <div id="video-${v.id}" class="video-item" onclick="openModal('${v.url}')">
-      <div class="video-thumbnail">
-        <img src="${v.thumb}" alt="${v.title}">
-        <div class="play-icon">▶</div>
-      </div>
-      <h3 class="video-title">${v.title}</h3>
-    </div>
-  `;
-});
-
-let currentIndex = 0;
-function moveSlider(dir){
-  const items = estrenos.length;
-  currentIndex += dir;
-  if(currentIndex < 0) currentIndex = items-1;
-  if(currentIndex >= items) currentIndex = 0;
- 
-  // Responsive: calcular el ancho del elemento según el tamaño de pantalla
-  const videoItem = document.querySelector('.video-item');
-  const itemWidth = videoItem ? videoItem.offsetWidth + 20 : 320; // 20px es el gap
- 
-  videoCarousel.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
-}
-
-const videoModal = document.getElementById("videoModal");
-const videoFrame = document.getElementById("videoFrame");
-function openModal(url){
-  videoFrame.src = url + "?autoplay=1";
-  videoModal.style.display = "flex";
-}
-function closeModal(){
-  videoFrame.src = "";
-  videoModal.style.display = "none";
-}
-
-// Cerrar modal al hacer clic fuera del contenido
-videoModal.addEventListener('click', (e) => {
-  if (e.target === videoModal) closeModal();
-});
-
-// Plataformas - AQUÍ HE AGREGADO MÁS PLATAFORMAS
-const platforms = {
-  netflix:{
-    id:"netflix",
-    name:"Netflix Premium",
-    description:"Acceso ilimitado en Ultra HD con 4 pantallas simultáneas.",
-    logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsZLFW9PjmQSTrcc-BfDZL_8ENLgsuz3Ov0g&s",
-    price:"$229 MXN / mes",
-    screens:"4 pantallas simultáneas",
-    quality:"Ultra HD",
-    badge:"POPULAR"
-  },
-  disney:{
-    id:"disney",
-    name:"Disney+ Premium",
-    description:"Incluye Disney, Pixar, Marvel, Star Wars y National Geographic.",
-    logo:"https://i0.wp.com/www.yosoyungamer.com/wp-content/uploads/2024/08/Disney.jpg?fit=1400%2C825&ssl=1",
-    price:"$179 MXN / mes",
-    screens:"4 pantallas simultáneas",
-    quality:"Ultra HD",
-    badge:"TOP"
-  },
-  hbo:{
-    id:"hbo",
-    name:"HBO Max",
-    description:"Series exclusivas, películas de estreno y catálogo Warner Bros.",
-    logo:"https://www.sopitas.com/wp-content/uploads/2025/05/hbo-max-logo.jpeg",
-    price:"$199 MXN / mes",
-    screens:"3 pantallas simultáneas",
-    quality:"Full HD / 4K",
-    badge:"NUEVO"
-  },
-  vix:{
-    id:"vix",
-    name:"Vix",
-    description:"El servicio de streaming en español más grande del mundo con contenido gratuito y premium.",
-    logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHdv41ZaNSrxs4c8ViGBT0dXZiCt-vycsV0w&s",
-    price:"$99 MXN / mes",
-    screens:"2 pantallas simultáneas",
-    quality:"Full HD",
-    badge:"ECONÓMICO"
-  },
-  primevideo:{
-    id:"primevideo",
-    name:"Prime Video",
-    description:"Incluye envíos gratis en Amazon, música y almacenamiento de fotos ilimitado.",
-    logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1H9A-IWEoc01iM_DQQnaDbrO89W7Ck75YaLBt8EncTie4P5jyeU9BtTOnMlcEZKe2GYY&usqp=CAU",
-    price:"$99 MXN / mes",
-    screens:"3 pantallas simultáneas",
-    quality:"4K Ultra HD",
-    badge:"RECOMENDADO"
-  },
-  // PLATAFORMAS ADICIONALES AGREGADAS
-  appletv:{
-    id:"appletv",
-    name:"Apple TV+",
-    description:"Contenido original exclusivo de Apple con producciones de alta calidad.",
-    logo:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Apple_TV_plus_logo.svg/2560px-Apple_TV_plus_logo.svg.png",
-    price:"$99 MXN / mes",
-    screens:"6 pantallas simultáneas",
-    quality:"4K HDR",
-    badge:"EXCLUSIVO"
-  },
-  paramount:{
-    id:"paramount",
-    name:"Paramount+",
-    description:"Contenido de CBS, MTV, Nickelodeon, Comedy Central y más.",
-    logo:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Paramount_Plus.svg/2560px-Paramount_Plus.svg.png",
-    price:"$99 MXN / mes",
-    screens:"3 pantallas simultáneas",
-    quality:"4K Ultra HD",
-    badge:"FAMILIAR"
-  },
-  starplus:{
-    id:"starplus",
-    name:"Star+",
-    description:"Series, películas y deportes en vivo de ESPN, FX y más.",
-    logo:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Star%2B_logo.svg/2560px-Star%2B_logo.svg.png",
-    price:"$159 MXN / mes",
-    screens:"4 pantallas simultáneas",
-    quality:"4K Ultra HD",
-    badge:"DEPORTES"
-  },
-  crunchyroll:{
-    id:"crunchyroll",
-    name:"Crunchyroll",
-    description:"El mejor catálogo de anime con estrenos simultáneos con Japón.",
-    logo:"https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Crunchyroll_Logo.svg/2560px-Crunchyroll_Logo.svg.png",
-    price:"$79 MXN / mes",
-    screens:"Sin límite",
-    quality:"HD hasta 1080p",
-    badge:"ANIME"
-  },
-  mubi:{
-    id:"mubi",
-    name:"Mubi",
-    description:"Cine de autor y películas independientes seleccionadas por expertos.",
-    logo:"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/MUBI_logo.svg/2560px-MUBI_logo.svg.png",
-    price:"$119 MXN / mes",
-    screens:"2 pantallas simultáneas",
-    quality:"Full HD",
-    badge:"CINE ARTE"
-  },
-  claaro:{
-    id:"claaro",
-    name:"Claro video",
-    description:"Contenido variado con series, películas y programas infantiles.",
-    logo:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Claro_video_logo.svg/2560px-Claro_video_logo.svg.png",
-    price:"$89 MXN / mes",
-    screens:"3 pantallas simultáneas",
-    quality:"HD",
-    badge:"LOCAL"
-  },
-  blim:{
-    id:"blim",
-    name:"Blim",
-    description:"Contenido de Televisa con telenovelas, series y programas mexicanos.",
-    logo:"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Blim_logo.svg/2560px-Blim_logo.svg.png",
-    price:"$79 MXN / mes",
-    screens:"2 pantallas simultáneas",
-    quality:"HD",
-    badge:"NACIONAL"
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 200) {
+    backToTopBtn.style.display = "flex";
+  } else {
+    backToTopBtn.style.display = "none";
   }
-};
-
-const platformsContainer = document.getElementById("platformsContainer");
-for(const key in platforms){
-  const p = platforms[key];
-  platformsContainer.innerHTML += `
-    <div id="platform-${p.id}" class="platform-card">
-      <div class="platform-badge">${p.badge}</div>
-      <div class="platform-image">
-        <img src="${p.logo}" alt="${p.name}">
-      </div>
-      <h3 class="platform-name">${p.name}</h3>
-      <button class="info-btn" onclick="openPlatformModal('${p.id}')">Más información</button>
-    </div>
-  `;
-}
-
-// Rellenar select plataformas en Referencias
-const reviewPlatformSelect = document.getElementById("reviewPlatform");
-for(const key in platforms){
-  const p = platforms[key];
-  reviewPlatformSelect.innerHTML += `<option value="${p.name}">${p.name}</option>`;
-}
-
-function openPlatformModal(id){
-  const p = platforms[id];
-  const modal = document.getElementById("platformModal");
-  const content = document.getElementById("platformModalContent");
-  content.innerHTML = `
-    <div style="display:flex; justify-content:center; margin-bottom:20px;">
-      <div style="width:150px; height:150px; overflow:hidden; border:3px solid var(--neon-blue); box-shadow:0 0 15px var(--neon-blue); display:flex; align-items:center; justify-content:center;">
-        <img src="${p.logo}" alt="${p.name}" style="width:100%; height:100%; object-fit:contain; background:#111;">
-      </div>
-    </div>
-    <h2 style="color:var(--neon-green); text-align:center; margin-bottom:15px;">${p.name}</h2>
-    <ul style="list-style:none; padding:0; margin:0 0 20px 0; line-height:1.8; text-align:left;">
-      <li>💻 ${p.description}</li>
-      <li>💰 Precio: ${p.price}</li>
-      <li>📺 Pantallas: ${p.screens}</li>
-      <li>🎬 Calidad: ${p.quality}</li>
-    </ul>
-    <div style="text-align:center; margin-top:15px;">
-      <a class="whatsapp-btn" href="https://wa.me/5215555555555?text=Hola,%20quiero%20más%20información%20sobre%20${encodeURIComponent(p.name)}" target="_blank" style="display:inline-flex; align-items:center; gap:8px; font-weight:bold; text-decoration:none; color:var(--neon-green); border:2px solid var(--neon-green); padding:10px 15px; border-radius:8px; transition: all 0.3s;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" style="width:24px; height:24px;"> Contratar por WhatsApp
-      </a>
-    </div>
-    <button class="close-btn" onclick="closePlatformModal()">Cerrar</button>
-  `;
-  modal.style.display = "flex";
-}
-
-function closePlatformModal(){
-  document.getElementById("platformModal").style.display = "none";
-}
-
-// Cerrar modal al hacer clic fuera del contenido
-document.getElementById("platformModal").addEventListener('click', (e) => {
-  if (e.target === document.getElementById("platformModal")) closePlatformModal();
 });
-
-// ---------------- Formulario de contacto ----------------
-const infoForm = document.getElementById("infoForm");
-const confirmationMessage = document.getElementById("confirmationMessage");
-
-infoForm.addEventListener("submit", function(e){
-  e.preventDefault();
- 
-  // Aquí normalmente enviarías los datos a un servidor
-  // Por ahora solo mostramos el mensaje de confirmación
-  confirmationMessage.style.display = "block";
-  infoForm.reset();
- 
-  // Ocultar el mensaje después de 5 segundos
-  setTimeout(() => {
-    confirmationMessage.style.display = "none";
-  }, 5000);
-});
-
-// ---------------- Referencias ----------------
-const reviewForm = document.getElementById("reviewForm");
-const reviewsList = document.getElementById("reviewsList");
-reviewForm.addEventListener("submit", function(e){
-  e.preventDefault();
-  const name = document.getElementById("reviewName").value;
-  const rating = document.getElementById("reviewRating").value;
-  const platform = document.getElementById("reviewPlatform").value;
-  const comment = document.getElementById("reviewComment").value;
-  const card = document.createElement("div");
-  card.className = "review-card";
-  card.innerHTML = `<h4>${name} - ${rating}</h4><p><b>Plataforma:</b> ${platform}</p><p>${comment}</p>`;
-  reviewsList.prepend(card);
-  reviewForm.reset();
-});
-
-// ---------------- Botón regresar al inicio ----------------
-document.getElementById("backToTop").addEventListener("click", function(e){
-  e.preventDefault();
-  window.scroll({top:0, behavior:'smooth'});
-});
-
-// Inicializar carrusel
-videoCarousel.style.transform = `translateX(0)`;
-
-// Ajustar el carrusel al cambiar el tamaño de la ventana
-window.addEventListener('resize', function() {
-  videoCarousel.style.transform = `translateX(-${currentIndex * (document.querySelector('.video-item').offsetWidth + 20)}px)`;
-});
+backToTopBtn.style.display = "none";
 </script>
+
 </body>
 </html>
