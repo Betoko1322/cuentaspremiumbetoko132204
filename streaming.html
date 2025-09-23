@@ -36,7 +36,7 @@ h2.section-title {font-size:1.6rem; margin-bottom:20px; color:var(--neon-purple)
 }
 .video-item {
   min-width:300px;
-  height: auto;
+  height:auto;
   margin:0;
   cursor:pointer;
   transition:transform 0.4s, box-shadow 0.4s;
@@ -173,8 +173,6 @@ h2.section-title {font-size:1.6rem; margin-bottom:20px; color:var(--neon-purple)
   animation:modalFadeIn 0.4s ease;
   position: relative;
 }
-
-/* Botón de cerrar en la parte inferior */
 .close-btn {
   display: block;
   margin: 25px auto 0;
@@ -193,7 +191,6 @@ h2.section-title {font-size:1.6rem; margin-bottom:20px; color:var(--neon-purple)
   color: black;
   box-shadow: 0 0 15px var(--neon-pink);
 }
-
 @keyframes modalFadeIn {from{opacity:0; transform:translateY(-50px);} to{opacity:1; transform:translateY(0);}}
 
 /* ---------- Formulario ---------- */
@@ -226,88 +223,44 @@ h2.section-title {font-size:1.6rem; margin-bottom:20px; color:var(--neon-purple)
 #reviewForm input:focus, #reviewForm select:focus, #reviewForm textarea:focus { outline:none; border-color:var(--neon-blue); box-shadow:0 0 10px var(--neon-blue); }
 #reviewForm button { padding:10px 20px; border-radius:5px; border:1px solid var(--neon-green); background:transparent; color:var(--neon-green); font-weight:bold; cursor:pointer; transition:all 0.3s; }
 #reviewForm button:hover { background:var(--neon-green); color:black; box-shadow:0 0 15px var(--neon-green); }
-
 #reviewsList .review-card { background: rgba(0,0,0,0.5); padding:15px; border-radius:10px; border:2px solid var(--neon-purple); margin-bottom:15px; box-shadow:0 0 10px var(--neon-purple);}
 #reviewsList .review-card h4 { color:var(--neon-pink); margin-bottom:5px;}
 #reviewsList .review-card p { color:#ddd; margin:3px 0; }
 
-/* ---------- Botón regresar al inicio (más discreto) ---------- */
+/* ---------- Botón circular volver al inicio ---------- */
 #backToTopBtn {
   position: fixed;
   bottom: 20px;
   right: 20px;
+  background: rgba(0,255,170,0.2);
+  color: var(--neon-green);
   width: 45px;
   height: 45px;
   border-radius: 50%;
-  border: 2px solid var(--neon-green);
-  background: rgba(0,0,0,0.6);
-  color: var(--neon-green);
+  text-align: center;
+  line-height: 45px;
   font-size: 1.5rem;
-  cursor: pointer;
+  font-weight: bold;
+  border: 2px solid var(--neon-green);
+  text-decoration: none;
   z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 0 10px var(--neon-green);
   transition: all 0.3s;
 }
 #backToTopBtn:hover {
   background: var(--neon-green);
-  color: black;
-  transform: scale(1.2);
-  box-shadow: 0 0 20px var(--neon-green);
+  color:black;
+  box-shadow: 0 0 15px var(--neon-green);
 }
-/* ID para ajustes futuros */
-#backToTopBtnDiscreto { }
 
 /* ---------- Footer ---------- */
 footer#footer {text-align:center; padding:20px; border-top:1px solid var(--neon-purple); box-shadow:0 0 10px var(--neon-purple); }
 
 /* ---------- Responsive ---------- */
-@media(max-width:1200px){
-  #platformsContainer{grid-template-columns:repeat(3,1fr);}
-  .video-item{min-width:280px;}
-}
-@media(max-width:900px){
-  #platformsContainer{grid-template-columns:repeat(2,1fr);}
-  .video-item{min-width:250px;}
-  #videoCarousel {gap:15px;}
-}
-@media(max-width:768px){
-  .section {padding:15px;}
-  h1#mainTitle {font-size:1.6rem;}
-  h2.section-title {font-size:1.4rem;}
-  .video-item{min-width:220px;}
-  .platform-card {padding:20px;}
-  .platform-image {width:140px; height:140px;}
-}
-@media(max-width:600px){
-  #platformsContainer{grid-template-columns:1fr;}
-  .video-item{min-width:200px;}
-  #videoCarousel {gap:10px;}
-  #videoControls {gap:15px;}
-  .slider-btn {width:35px; height:35px; font-size:1.3rem;}
-  #infoForm, #reviewForm {padding:15px;}
-}
-@media(max-width:480px){
-  .video-item{min-width:180px;}
-  .video-thumbnail {height:150px;}
-  .video-title {padding:10px 5px; font-size:0.9rem;}
-  .play-icon {font-size:2.5rem;}
-  .platform-card {padding:15px;}
-  .platform-image {width:120px; height:120px;}
-  .platform-name {font-size:1.1rem;}
-  .info-btn {padding:8px 15px; font-size:0.9rem;}
-  #videoModalContent {width:95%;}
-}
-@media(max-width:360px){
-  .video-item{min-width:160px;}
-  .video-thumbnail {height:130px;}
-  .video-title {font-size:0.85rem;}
-  .platform-card {padding:10px;}
-  .platform-image {width:100px; height:100px;}
-  .platform-name {font-size:1rem;}
-}
+@media(max-width:1200px){ #platformsContainer{grid-template-columns:repeat(3,1fr);} .video-item{min-width:280px;} }
+@media(max-width:900px){ #platformsContainer{grid-template-columns:repeat(2,1fr);} .video-item{min-width:250px;} #videoCarousel {gap:15px;} }
+@media(max-width:768px){ .section {padding:15px;} h1#mainTitle {font-size:1.6rem;} h2.section-title {font-size:1.4rem;} .video-item{min-width:220px;} .platform-card {padding:20px;} .platform-image {width:140px; height:140px;} }
+@media(max-width:600px){ #platformsContainer{grid-template-columns:1fr;} .video-item{min-width:200px;} #videoCarousel {gap:10px;} #videoControls {gap:15px;} .slider-btn {width:35px; height:35px; font-size:1.3rem;} #infoForm, #reviewForm {padding:15px;} }
+@media(max-width:480px){ .video-item{min-width:180px;} .video-thumbnail {height:150px;} .video-title {padding:10px 5px; font-size:0.9rem;} .play-icon {font-size:2.5rem;} .platform-card {padding:15px;} .platform-image {width:120px; height:120px;} .platform-name {font-size:1.1rem;} }
 </style>
 </head>
 <body>
@@ -316,133 +269,78 @@ footer#footer {text-align:center; padding:20px; border-top:1px solid var(--neon-
 <div id="particles-js"></div>
 
 <!-- =================== HEADER =================== -->
-<header id="header"><h1 id="mainTitle">Streaming Platforms</h1></header>
+<header id="header">
+  <h1 id="mainTitle">Streaming Platforms</h1>
+</header>
 
-<!-- =================== MAIN =================== -->
-<main>
+<!-- =================== VIDEO SLIDER =================== -->
+<section class="section" id="videoSlider">
+  <h2 class="section-title">Videos Destacados</h2>
+  <div id="videoCarousel">
+    <!-- Video items se agregarán aquí -->
+  </div>
+  <div id="videoControls">
+    <button class="slider-btn" id="prevBtn">‹</button>
+    <button class="slider-btn" id="nextBtn">›</button>
+  </div>
+</section>
 
-  <!-- ========= SECCIÓN ESTRENOS ========= -->
-  <section id="videoSlider" class="section">
-    <h2 class="section-title">Estrenos</h2>
-    <div id="videoCarousel">
-      <div class="video-item">
-        <div class="video-thumbnail">
-          <img src="video1.jpg" alt="Video 1">
-          <div class="play-icon">▶</div>
-        </div>
-        <h3 class="video-title">Video 1</h3>
-      </div>
-      <div class="video-item">
-        <div class="video-thumbnail">
-          <img src="video2.jpg" alt="Video 2">
-          <div class="play-icon">▶</div>
-        </div>
-        <h3 class="video-title">Video 2</h3>
-      </div>
-      <div class="video-item">
-        <div class="video-thumbnail">
-          <img src="video3.jpg" alt="Video 3">
-          <div class="play-icon">▶</div>
-        </div>
-        <h3 class="video-title">Video 3</h3>
-      </div>
-    </div>
-    <div id="videoControls">
-      <button class="slider-btn" id="prev">&#10094;</button>
-      <button class="slider-btn" id="next">&#10095;</button>
-    </div>
-  </section>
+<!-- =================== PLATAFORMAS =================== -->
+<section class="section" id="platformsSection">
+  <h2 class="section-title">Plataformas Populares</h2>
+  <div id="platformsContainer">
+    <!-- Cards de plataformas -->
+  </div>
+</section>
 
-  <!-- ========= SECCIÓN PLATAFORMAS ========= -->
-  <section id="platformsSection" class="section">
-    <h2 class="section-title">Plataformas</h2>
-    <div id="platformsContainer">
-      <div class="platform-card">
-        <div class="platform-badge">Nuevo</div>
-        <div class="platform-image"><img src="netflix.png" alt="Netflix"></div>
-        <h3 class="platform-name">Netflix</h3>
-        <button class="info-btn">Más info</button>
-      </div>
-      <div class="platform-card">
-        <div class="platform-badge">Top</div>
-        <div class="platform-image"><img src="prime.png" alt="Prime Video"></div>
-        <h3 class="platform-name">Prime Video</h3>
-        <button class="info-btn">Más info</button>
-      </div>
-      <div class="platform-card">
-        <div class="platform-badge">Nuevo</div>
-        <div class="platform-image"><img src="disney.png" alt="Disney+"></div>
-        <h3 class="platform-name">Disney+</h3>
-        <button class="info-btn">Más info</button>
-      </div>
-      <div class="platform-card">
-        <div class="platform-badge">Top</div>
-        <div class="platform-image"><img src="hbo.png" alt="HBO Max"></div>
-        <h3 class="platform-name">HBO Max</h3>
-        <button class="info-btn">Más info</button>
-      </div>
-    </div>
-  </section>
+<!-- =================== FORMULARIO =================== -->
+<section class="section" id="formSection">
+  <h2 class="section-title">Contáctanos</h2>
+  <form id="infoForm">
+    <label for="name">Nombre:</label>
+    <input type="text" id="name" name="name" required>
+    <label for="email">Correo:</label>
+    <input type="email" id="email" name="email" required>
+    <label for="message">Mensaje:</label>
+    <textarea id="message" name="message" rows="4" required></textarea>
+    <button type="submit">Enviar</button>
+  </form>
+  <div id="confirmationMessage">¡Gracias! Tu mensaje ha sido enviado.</div>
+</section>
 
-  <!-- ========= FORMULARIO INFO ========= -->
-  <section id="infoSection" class="section">
-    <h2 class="section-title">Solicitar Información</h2>
-    <form id="infoForm">
-      <label for="name">Nombre</label>
-      <input type="text" id="name" name="name" required>
-      <label for="email">Correo</label>
-      <input type="email" id="email" name="email" required>
-      <label for="message">Mensaje</label>
-      <textarea id="message" name="message" rows="4" required></textarea>
-      <button type="submit">Enviar</button>
-    </form>
-    <div id="confirmationMessage">¡Gracias! Tu mensaje ha sido enviado.</div>
-  </section>
+<!-- =================== REFERENCIAS USUARIOS =================== -->
+<section class="section" id="reviewsSection">
+  <h2 class="section-title">Opiniones de Usuarios</h2>
+  <form id="reviewForm">
+    <label for="reviewName">Nombre:</label>
+    <input type="text" id="reviewName" required>
+    <label for="reviewRating">Calificación:</label>
+    <select id="reviewRating" required>
+      <option value="">Selecciona</option>
+      <option value="5">5 ★</option>
+      <option value="4">4 ★</option>
+      <option value="3">3 ★</option>
+      <option value="2">2 ★</option>
+      <option value="1">1 ★</option>
+    </select>
+    <label for="reviewComment">Comentario:</label>
+    <textarea id="reviewComment" rows="3" required></textarea>
+    <button type="submit">Agregar Opinión</button>
+  </form>
+  <div id="reviewsList"></div>
+</section>
 
-  <!-- ========= REFERENCIAS/RESEÑAS ========= -->
-  <section id="reviewsSection" class="section">
-    <h2 class="section-title">Referencias de Usuarios</h2>
-    <form id="reviewForm">
-      <label for="reviewName">Nombre</label>
-      <input type="text" id="reviewName" name="reviewName" required>
-      <label for="reviewRating">Calificación</label>
-      <select id="reviewRating" name="reviewRating" required>
-        <option value="">Selecciona</option>
-        <option value="5">5 - Excelente</option>
-        <option value="4">4 - Muy bien</option>
-        <option value="3">3 - Bien</option>
-        <option value="2">2 - Regular</option>
-        <option value="1">1 - Malo</option>
-      </select>
-      <label for="reviewComment">Comentario</label>
-      <textarea id="reviewComment" name="reviewComment" rows="3" required></textarea>
-      <button type="submit">Enviar</button>
-    </form>
-    <div id="reviewsList"></div>
-  </section>
-
-</main>
-
-<!-- =================== BOTÓN VOLVER ARRIBA =================== -->
-<button id="backToTopBtn" title="Ir arriba">⬆</button>
+<!-- =================== BOTÓN CIRCULAR VOLVER AL INICIO =================== -->
+<a id="backToTopBtn" href="index.html" title="Ir al inicio">⬆</a>
 
 <!-- =================== FOOTER =================== -->
-<footer id="footer">© 2025 Streaming Platforms. Todos los derechos reservados.</footer>
+<footer id="footer">
+  &copy; 2025 Streaming Platforms. Todos los derechos reservados.
+</footer>
 
-<!-- =================== SCRIPTS =================== -->
+<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
 <script>
-const backToTopBtn = document.getElementById("backToTopBtn");
-backToTopBtn.addEventListener("click", () => {
-  window.scroll({ top: 0, behavior: 'smooth' });
-});
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 200) {
-    backToTopBtn.style.display = "flex";
-  } else {
-    backToTopBtn.style.display = "none";
-  }
-});
-backToTopBtn.style.display = "none";
+// Aquí irán scripts de carrusel, modales y formularios si los tienes
 </script>
 
 </body>
