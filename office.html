@@ -68,12 +68,107 @@ section{padding:3rem 2rem;text-align:center;}
 .form-group input:focus,.form-group textarea:focus,.form-group select:focus{outline:none;border-color:var(--accent);}
 .contact-form button{width:100%;display:block;margin:1rem auto 0;}
 
-.back-button{position:fixed;top:50%;left:20px;transform:translateY(-50%);background-color:transparent;color:white;padding:10px 16px;border-radius:25px;text-decoration:none;font-weight:bold;transition:all 0.3s ease;box-shadow:none;display:flex;align-items:center;gap:8px;font-size:0.9rem;}
-.back-button:hover{background-color: rgba(255,111,97,0.2); transform:translateY(-50%) scale(1.05);}
+/* Botón flotante mejorado */
+.floating-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--accent);
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    border: none;
+}
+
+.floating-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+    background-color: #e85c50;
+}
+
+.floating-button span {
+    display: none;
+}
+
+/* Mensaje de confirmación */
+.confirmation-message {
+    display: none;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    margin-top: 1rem;
+    border-left: 4px solid #4CAF50;
+}
+
+.confirmation-message i {
+    font-size: 3rem;
+    color: #4CAF50;
+    margin-bottom: 1rem;
+}
+
+.confirmation-message h3 {
+    color: white;
+    margin-bottom: 0.5rem;
+}
+
+.confirmation-message p {
+    color: #ddd;
+}
 
 footer{background: rgba(0,0,0,0.8); padding:2rem 0; text-align:center;margin-top:3rem;backdrop-filter:blur(10px);color:#aaa;font-size:0.9rem;}
 
-@media (max-width:768px){.nav-links{display:none;}.hero h1{font-size:1.8rem;}.process-steps,.pricing-cards{flex-direction:column;align-items:center;}.step,.pricing-card{width:100%;}}
+@media (max-width:768px){
+    .nav-links{display:none;}
+    .hero h1{font-size:1.8rem;}
+    .process-steps,.pricing-cards{flex-direction:column;align-items:center;}
+    .step,.pricing-card{width:100%;}
+    
+    /* Ajustes para móviles */
+    .floating-button {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+        bottom: 15px;
+        right: 15px;
+    }
+    
+    .hero {
+        padding: 5rem 1.5rem 3rem;
+        margin: 15px;
+    }
+    
+    section {
+        padding: 2rem 1rem;
+    }
+}
+
+@media (max-width:480px){
+    .floating-button {
+        width: 45px;
+        height: 45px;
+        font-size: 1rem;
+        bottom: 10px;
+        right: 10px;
+    }
+    
+    .hero h1 {
+        font-size: 1.6rem;
+    }
+    
+    .section-title h2 {
+        font-size: 1.6rem;
+    }
+}
 </style>
 </head>
 <body>
@@ -81,7 +176,7 @@ footer{background: rgba(0,0,0,0.8); padding:2rem 0; text-align:center;margin-top
 <!-- Header -->
 <header id="header">
 <nav class="container">
-<div class="logo"><i class="fas fa-desktop"></i> <span>OfficeActiv Pro</span></div>
+<div class="logo"><i class="fas fa-desktop"></i> <span>Office Activaciòn Pro</span></div>
 <ul class="nav-links">
 <li><a href="#inicio">Inicio</a></li>
 <li><a href="#proceso">Proceso</a></li>
@@ -171,8 +266,8 @@ footer{background: rgba(0,0,0,0.8); padding:2rem 0; text-align:center;margin-top
 <section id="contacto">
 <div class="container">
 <div class="section-title"><h2>Contacto</h2></div>
-<div class="contact-form">
-<form id="activationForm" action="https://formspree.io/f/movkaeqd" method="POST">
+<div class="contact-form" id="contact-form-container">
+<form id="activationForm" method="POST">
 <div class="form-group">
 <label for="name">Nombre completo</label>
 <input type="text" id="name" name="name" required>
@@ -199,19 +294,62 @@ footer{background: rgba(0,0,0,0.8); padding:2rem 0; text-align:center;margin-top
 <label for="message">Mensaje adicional</label>
 <textarea id="message" name="message"></textarea>
 </div>
-<button type="submit" class="btn">Enviar Solicitud</button>
+<button type="submit" class="btn" id="submit-button">Enviar Solicitud</button>
 </form>
+<div class="confirmation-message" id="confirmation-message">
+<i class="fas fa-check-circle"></i>
+<h3>¡Mensaje enviado con éxito!</h3>
+<p>Hemos recibido tu solicitud. Nos pondremos en contacto contigo en breve.</p>
+</div>
 </div>
 </div>
 </section>
 
-<!-- Botón flotante -->
-<a href="index.html" class="back-button" id="floating-button"><i class="fas fa-arrow-left"></i> Regresar al Inicio</a>
+<!-- Botón flotante mejorado -->
+<a href="#inicio" class="floating-button" id="floating-home-button">
+    <i class="fas fa-home"></i>
+    <span>Inicio</span>
+</a>
 
 <!-- Footer -->
 <footer>
 © 2023 OfficeActiv Pro - Todos los derechos reservados.
 </footer>
+
+<script>
+// Manejo del formulario
+document.getElementById('activationForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Aquí normalmente enviarías los datos al servidor
+    // Por ahora simulamos el envío exitoso
+    
+    // Ocultar formulario y mostrar mensaje de confirmación
+    document.getElementById('activationForm').style.display = 'none';
+    document.getElementById('confirmation-message').style.display = 'block';
+    
+    // Opcional: Limpiar el formulario
+    this.reset();
+});
+
+// Smooth scroll para navegación
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if(targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if(targetElement) {
+            window.scrollTo({
+                top: targetElement.offsetTop - 80,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+</script>
 
 </body>
 </html>
