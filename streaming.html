@@ -421,6 +421,7 @@ videoModal.addEventListener('click', (e) => {
 });
 
 // ---------------- Plataformas ----------------
+// IDENTIFICADOR: OBJETO PRINCIPAL DE PLATAFORMAS - AQUÍ AGREGA NUEVAS PLATAFORMAS
 const platforms = {
   netflix:{
     id:"netflix",
@@ -543,13 +544,28 @@ const platforms = {
     badge:"RECOMENDADO",
     type:"video" // IDENTIFICADOR: tipo de plataforma
   }
+  // IDENTIFICADOR: AQUÍ AGREGA NUEVAS PLATAFORMAS - SIGUE EL MISMO FORMATO
+  /*
+  ,nuevaplataforma:{
+    id:"nuevaplataforma",
+    name:"Nombre Nueva Plataforma",
+    description:"Descripción del servicio",
+    logo:"https://url-del-logo.jpg",
+    price:["$precio MXN / tiempo"],
+    screens:"Número de dispositivos",
+    quality:"Calidad del servicio",
+    badge:"TIPO",
+    type:"video" o "audio"
+  }
+  */
 };
 
+// IDENTIFICADOR: CONTENEDOR DONDE SE MUESTRAN LAS PLATAFORMAS
 const platformsContainer = document.getElementById("platformsContainer");
 for(const key in platforms){
   const p = platforms[key];
   
-  // <-- Aquí quité la generación e inyección de priceHTML para que NO aparezcan precios en la tarjeta -->
+  // IDENTIFICADOR: GENERACIÓN DINÁMICA DE TARJETAS DE PLATAFORMAS
   platformsContainer.innerHTML += `
     <div id="platform-${p.id}" class="platform-card">
       <div class="platform-badge">${p.badge}</div>
@@ -562,19 +578,20 @@ for(const key in platforms){
   `;
 }
 
-// Rellenar select plataformas en Referencias
+// IDENTIFICADOR: SELECTOR DE PLATAFORMAS EN FORMULARIO DE REFERENCIAS
 const reviewPlatformSelect = document.getElementById("reviewPlatform");
 for(const key in platforms){
   const p = platforms[key];
   reviewPlatformSelect.innerHTML += `<option value="${p.name}">${p.name}</option>`;
 }
 
+// IDENTIFICADOR: FUNCIÓN PARA ABRIR MODAL DE PLATAFORMAS
 function openPlatformModal(id){
   const p = platforms[id];
   const modal = document.getElementById("platformModal");
   const content = document.getElementById("platformModalContent");
   
-  // IDENTIFICADOR: Generar HTML específico según el tipo de plataforma
+  // IDENTIFICADOR: LÓGICA QUE DIFERENCIA PLATAFORMAS DE AUDIO Y VIDEO
   let deviceHTML = '';
   let qualityHTML = '';
   
@@ -586,12 +603,13 @@ function openPlatformModal(id){
     qualityHTML = `<li>🔊 Calidad de audio: ${p.quality}</li>`;
   }
   
-  // Generar HTML para los precios en el modal
+  // IDENTIFICADOR: GENERACIÓN DE PRECIOS EN EL MODAL
   let priceHTML = '';
   p.price.forEach(price => {
     priceHTML += `<li>💰 Precio: ${price}</li>`;
   });
   
+  // IDENTIFICADOR: CONTENIDO DEL MODAL DE PLATAFORMAS
   content.innerHTML = `
     <div style="display:flex; justify-content:center; margin-bottom:20px;">
       <div style="width:150px; height:150px; overflow:hidden; border:3px solid var(--neon-blue); box-shadow:0 0 15px var(--neon-blue); display:flex; align-items:center; justify-content:center;">
