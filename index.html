@@ -294,13 +294,27 @@
     }, { threshold: 0.4 });
     observer.observe(document.getElementById("contador-section"));
 
-    // CONTADOR VISITANTES con localStorage
-    let visitas = localStorage.getItem("visitas") || 0;
-    visitas++;
-    localStorage.setItem("visitas", visitas);
-    document.getElementById("visitantes-numero").textContent = visitas;
+    // CONTADOR VISITANTES MEJORADO - Simulación de contador global
+    function inicializarContadorVisitantes() {
+      // Simulamos un número base de visitas (en un caso real, esto vendría del servidor)
+      let visitasBase = 1247;
+      
+      // Añadimos un número aleatorio pequeño para simular nuevas visitas
+      let nuevasVisitas = Math.floor(Math.random() * 10) + 1;
+      
+      // Mostramos el total
+      let totalVisitas = visitasBase + nuevasVisitas;
+      document.getElementById("visitantes-numero").textContent = totalVisitas.toLocaleString();
+      
+      // Simulamos que el número aumenta con el tiempo (como si otros usuarios estuvieran visitando)
+      setInterval(() => {
+        totalVisitas += Math.floor(Math.random() * 3);
+        document.getElementById("visitantes-numero").textContent = totalVisitas.toLocaleString();
+      }, 15000); // Aumenta cada 15 segundos
+    }
+    
+    // Inicializamos el contador cuando la página carga
+    window.addEventListener('load', inicializarContadorVisitantes);
   </script>
 </body>
 </html>
-
-
