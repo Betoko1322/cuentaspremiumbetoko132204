@@ -430,7 +430,8 @@ const platforms = {
     price:["$110 MXN / 1 mes"],
     screens:"1 Dispositivo",
     quality:"Ultra HD",
-    badge:"POPULAR"
+    badge:"POPULAR",
+    type:"video" // IDENTIFICADOR: tipo de plataforma
   },
   disney:{
     id:"disney",
@@ -440,7 +441,8 @@ const platforms = {
     price:["$160 MXN / 1 mes"],
     screens:"3 pantallas simultáneas",
     quality:"Ultra HD",
-    badge:"TOP"
+    badge:"TOP",
+    type:"video" // IDENTIFICADOR: tipo de plataforma
   },
   hbo:{
     id:"hbo",
@@ -450,7 +452,8 @@ const platforms = {
     price:["$80 MXN / 1 mes"],
     screens:"3 pantallas simultáneas",
     quality:"Full HD / 4K",
-    badge:"NUEVO"
+    badge:"NUEVO",
+    type:"video" // IDENTIFICADOR: tipo de plataforma
   },
   vix:{
     id:"vix",
@@ -460,7 +463,8 @@ const platforms = {
     price:["$80 MXN / 1 mes"],
     screens:"3 pantallas simultáneas",
     quality:"Full HD",
-    badge:"ECONÓMICO"
+    badge:"ECONÓMICO",
+    type:"video" // IDENTIFICADOR: tipo de plataforma
   },
   primevideo:{
     id:"primevideo",
@@ -470,7 +474,8 @@ const platforms = {
     price:["$80 MXN / 1 mes Con Anuncios", "$110 MXN / 1 mes Sin Anuncios"],
     screens:"3 pantallas simultáneas",
     quality:"4K Ultra HD",
-    badge:"RECOMENDADO"
+    badge:"RECOMENDADO",
+    type:"video" // IDENTIFICADOR: tipo de plataforma
   },
   paramount:{
     id:"paramount",
@@ -480,17 +485,19 @@ const platforms = {
     price:["$00 MXN / 1 mes"],
     screens:"3 pantallas simultáneas",
     quality:"Premium",
-    badge:"RECOMENDADO"
+    badge:"RECOMENDADO",
+    type:"video" // IDENTIFICADOR: tipo de plataforma
   },
   crunchyroll:{
     id:"crunchyroll",
     name:"Crunchyroll",
     description:"Servicio de streaming especializado en anime",
-    logo:"https://cdn-icon.bluestacks.com/BGP/latam/gametiles_com.crunchyroll.crunchyroid.jpg",
+    logo:"https://assets.aboutamazon.com/f8/2a/e21459814491b9aac0134bfffaf8/cr-1920x1080.jpg",
     price:["$80 MXN / 1 mes"],
     screens:"3 pantallas simultáneas",
     quality:"Premium",
-    badge:"RECOMENDADO"
+    badge:"RECOMENDADO",
+    type:"video" // IDENTIFICADOR: tipo de plataforma
   },
   spotify:{
     id:"spotify",
@@ -500,7 +507,8 @@ const platforms = {
     price:["$100 MXN / 1 mes", "$210 MXN / 3 meses"],
     screens:"1 Dispositivo",
     quality:"Premium",
-    badge:"RECOMENDADO"
+    badge:"RECOMENDADO",
+    type:"audio" // IDENTIFICADOR: tipo de plataforma
   },
   youtubepremium:{
     id:"youtubepremium",
@@ -510,7 +518,8 @@ const platforms = {
     price:["$100 MXN / 1 mes individual", "$160 MXN / 1 mes familiar"],
     screens:"Individual y Familiar",
     quality:"Premium",
-    badge:"RECOMENDADO"
+    badge:"RECOMENDADO",
+    type:"audio" // IDENTIFICADOR: tipo de plataforma
   },
   amazonmusic:{
     id:"amazonmusic",
@@ -520,7 +529,8 @@ const platforms = {
     price:["$80 MXN / 1 mes individual", "$150 MXN / 1 mes familiar"],
     screens:"1 Dispositivo",
     quality:"Premium",
-    badge:"RECOMENDADO"
+    badge:"RECOMENDADO",
+    type:"audio" // IDENTIFICADOR: tipo de plataforma
   },
   iboplayerproiptv:{
     id:"iboplayerproiptv",
@@ -530,7 +540,8 @@ const platforms = {
     price:["$150 MXN / 1 mes"],
     screens:"1 Dispositivo",
     quality:"Premium",
-    badge:"RECOMENDADO"
+    badge:"RECOMENDADO",
+    type:"video" // IDENTIFICADOR: tipo de plataforma
   }
 };
 
@@ -563,6 +574,18 @@ function openPlatformModal(id){
   const modal = document.getElementById("platformModal");
   const content = document.getElementById("platformModalContent");
   
+  // IDENTIFICADOR: Generar HTML específico según el tipo de plataforma
+  let deviceHTML = '';
+  let qualityHTML = '';
+  
+  if (p.type === "video") {
+    deviceHTML = `<li>📺 Pantallas: ${p.screens}</li>`;
+    qualityHTML = `<li>🎬 Calidad: ${p.quality}</li>`;
+  } else if (p.type === "audio") {
+    deviceHTML = `<li>🎧 Dispositivos: ${p.screens}</li>`;
+    qualityHTML = `<li>🔊 Calidad de audio: ${p.quality}</li>`;
+  }
+  
   // Generar HTML para los precios en el modal
   let priceHTML = '';
   p.price.forEach(price => {
@@ -579,8 +602,8 @@ function openPlatformModal(id){
     <ul style="list-style:none; padding:0; margin:0 0 20px 0; line-height:1.8; text-align:left;">
       <li>💻 ${p.description}</li>
       ${priceHTML}
-      <li>📺 Pantallas: ${p.screens}</li>
-      <li>🎬 Calidad: ${p.quality}</li>
+      ${deviceHTML}
+      ${qualityHTML}
     </ul>
     <div style="text-align:center; margin-top:15px;">
       <a class="whatsapp-btn" href="https://wa.me/5215555555555?text=Hola,%20quiero%20más%20información%20sobre%20${encodeURIComponent(p.name)}" target="_blank" style="display:inline-flex; align-items:center; gap:8px; font-weight:bold; text-decoration:none; color:var(--neon-green); border:2px solid var(--neon-green); padding:10px 15px; border-radius:8px; transition: all 0.3s;">
