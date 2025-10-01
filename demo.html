@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Demo Venta de Streaming</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     body, html { height: 100%; margin: 0; font-family: 'Segoe UI', sans-serif; }
@@ -23,6 +23,15 @@
     @keyframes zoomIn { from { transform: scale(0.7); opacity: 0; } to { transform: scale(1); opacity: 1; } }
     .pulse-glow { animation: pulse 1.5s infinite; }
     @keyframes pulse { 0% { box-shadow: 0 0 10px #00ff99; } 50% { box-shadow: 0 0 25px #00ff99; } 100% { box-shadow: 0 0 10px #00ff99; } }
+
+    /* 🔧 ESTILOS CORREGIDOS PARA EL MODAL */
+    body.modal-open {
+      overflow: hidden; /* Elimina el scroll del fondo cuando el modal está abierto */
+    }
+    #modal {
+      position: fixed; /* Fija el modal respecto a la ventana */
+      z-index: 1000; /* Asegura que esté por encima de todo */
+    }
   </style>
 </head>
 <body class="text-white bg-black">
@@ -96,18 +105,6 @@
     </form>
   </section>
 
-  <!-- Formulario de referencias -->
-  <section id="form-referencias" class="overlay neon-border fade-in max-w-3xl mx-auto">
-    <h2 class="text-3xl mb-4 text-yellow-400 font-bold">Referencias de Clientes</h2>
-    <p class="mb-4 text-sm text-yellow-300">⚠️ Editable con tus testimonios reales</p>
-    <form class="grid gap-4">
-      <input type="text" id="nombreRef" placeholder="Nombre" class="p-3 rounded-lg text-black">
-      <input type="text" id="plataformaRef" placeholder="Plataforma adquirida" class="p-3 rounded-lg text-black">
-      <textarea id="comentarioRef" placeholder="Comentario" class="p-3 rounded-lg text-black"></textarea>
-      <button type="submit" class="bg-purple-600 py-2 rounded-lg hover:bg-purple-700">Enviar</button>
-    </form>
-  </section>
-
   <!-- Footer -->
   <footer id="footer" class="bg-gray-900 text-center py-6 mt-10 fade-in">
     <p class="text-gray-400">© 2025 Tu Empresa de Streaming. Todos los derechos reservados.</p>
@@ -128,9 +125,11 @@
       document.getElementById('modalLine4').innerHTML = '<i class="fas fa-film text-pink-400 mr-2"></i>' + line4;
       document.getElementById('modalLink').href = link;
       document.getElementById('modal').classList.remove('hidden');
+      document.body.classList.add('modal-open'); // 🔥 Añade esta línea
     }
     function cerrarModal() {
       document.getElementById('modal').classList.add('hidden');
+      document.body.classList.remove('modal-open'); // 🔥 Añade esta línea
     }
 
     // Animación de aparición al hacer scroll
