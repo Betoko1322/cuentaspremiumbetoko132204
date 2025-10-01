@@ -23,15 +23,24 @@
     @keyframes zoomIn { from { transform: scale(0.7); opacity: 0; } to { transform: scale(1); opacity: 1; } }
     .pulse-glow { animation: pulse 1.5s infinite; }
     @keyframes pulse { 0% { box-shadow: 0 0 10px #00ff99; } 50% { box-shadow: 0 0 25px #00ff99; } 100% { box-shadow: 0 0 10px #00ff99; } }
-
+    
     /* 🔧 ESTILOS CORREGIDOS PARA EL MODAL */
     body.modal-open {
-      overflow: hidden; /* Elimina el scroll del fondo cuando el modal está abierto */
+      overflow: hidden;
     }
     #modal {
-      position: fixed; /* Fija el modal respecto a la ventana */
-      z-index: 1000; /* Asegura que esté por encima de todo */
+      position: fixed;
+      z-index: 1000;
     }
+    
+    /* Nuevos estilos para secciones añadidas */
+    .process-step { transition: all 0.3s ease; }
+    .process-step:hover { transform: translateY(-5px); }
+    .testimonial-card { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); }
+    .faq-item { margin-bottom: 1rem; }
+    .faq-question { cursor: pointer; padding: 1rem; background: rgba(138, 43, 226, 0.2); border-radius: 0.5rem; }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding: 0 1rem; }
+    .faq-answer.open { max-height: 500px; padding: 1rem; }
   </style>
 </head>
 <body class="text-white bg-black">
@@ -40,39 +49,149 @@
 
   <!-- Título -->
   <header id="header" class="text-center py-10 fade-in">
-    <h1 class="text-5xl font-extrabold text-purple-400">Venta de Plataformas Streaming</h1>
-    <p class="mt-2 text-yellow-400">⚠️ Este demo es editable según lo que el cliente necesite</p>
+    <h1 id="main-title" class="text-5xl font-extrabold text-purple-400">Venta de Plataformas Streaming</h1>
+    <p id="demo-warning" class="mt-2 text-yellow-400">⚠️ Este demo es editable según lo que el cliente necesite</p>
   </header>
+
+  <!-- Sección Hero Mejorada -->
+  <section id="hero" class="overlay neon-border fade-in max-w-6xl mx-auto text-center">
+    <h2 id="hero-title" class="text-4xl mb-6 font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">Disfruta del Mejor Entretenimiento</h2>
+    <p id="hero-description" class="text-xl mb-8">Accede a todas las plataformas de streaming con un solo pago. Calidad premium, soporte 24/7 y garantía de satisfacción.</p>
+    <div class="flex justify-center space-x-4">
+      <button id="btn-ver-planes" class="bg-purple-600 px-6 py-3 rounded-lg text-lg font-bold hover:bg-purple-700 pulse-glow">Ver Planes</button>
+    </div>
+  </section>
 
   <!-- Estrenos de series -->
   <section id="estrenos" class="overlay neon-border fade-in max-w-5xl mx-auto">
-    <h2 class="text-3xl mb-4 text-blue-400 font-bold">Estrenos de Series</h2>
-    <p class="mb-4 text-sm text-yellow-300">⚠️ Esta sección se edita al gusto del cliente</p>
+    <h2 id="estrenos-title" class="text-3xl mb-4 text-blue-400 font-bold">Estrenos de Series</h2>
+    <p id="estrenos-warning" class="mb-4 text-sm text-yellow-300">⚠️ Esta sección se edita al gusto del cliente</p>
     <div class="grid md:grid-cols-2 gap-8">
       <iframe class="w-full h-64 rounded-xl video-frame" src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
       <iframe class="w-full h-64 rounded-xl video-frame" src="https://www.youtube.com/embed/9bZkp7q19f0" allowfullscreen></iframe>
     </div>
   </section>
 
+  <!-- Proceso de Compra -->
+  <section id="proceso" class="overlay neon-border fade-in max-w-6xl mx-auto">
+    <h2 id="proceso-title" class="text-3xl mb-8 text-green-400 font-bold text-center">¿Cómo Comprar?</h2>
+    <div class="grid md:grid-cols-4 gap-6">
+      <div id="paso-1" class="bg-gray-800 p-6 rounded-xl text-center process-step neon-border">
+        <div class="text-4xl mb-4 text-yellow-400"><i class="fas fa-mouse-pointer"></i></div>
+        <h3 class="text-xl font-semibold mb-2">Paso 1</h3>
+        <p class="text-gray-300">Selecciona tu plataforma favorita</p>
+      </div>
+      <div id="paso-2" class="bg-gray-800 p-6 rounded-xl text-center process-step neon-border">
+        <div class="text-4xl mb-4 text-yellow-400"><i class="fas fa-whatsapp"></i></div>
+        <h3 class="text-xl font-semibold mb-2">Paso 2</h3>
+        <p class="text-gray-300">Contáctanos por WhatsApp</p>
+      </div>
+      <div id="paso-3" class="bg-gray-800 p-6 rounded-xl text-center process-step neon-border">
+        <div class="text-4xl mb-4 text-yellow-400"><i class="fas fa-credit-card"></i></div>
+        <h3 class="text-xl font-semibold mb-2">Paso 3</h3>
+        <p class="text-gray-300">Realiza el pago seguro</p>
+      </div>
+      <div id="paso-4" class="bg-gray-800 p-6 rounded-xl text-center process-step neon-border">
+        <div class="text-4xl mb-4 text-yellow-400"><i class="fas fa-play-circle"></i></div>
+        <h3 class="text-xl font-semibold mb-2">Paso 4</h3>
+        <p class="text-gray-300">Disfruta de tu contenido</p>
+      </div>
+    </div>
+  </section>
+
   <!-- Plataformas disponibles -->
   <section id="plataformas" class="overlay neon-border fade-in max-w-6xl mx-auto">
-    <h2 class="text-3xl mb-4 text-green-400 font-bold">Plataformas Disponibles</h2>
-    <p class="mb-4 text-sm text-yellow-300">⚠️ Personalizable con tus plataformas</p>
+    <h2 id="plataformas-title" class="text-3xl mb-4 text-green-400 font-bold">Plataformas Disponibles</h2>
+    <p id="plataformas-warning" class="mb-4 text-sm text-yellow-300">⚠️ Personalizable con tus plataformas</p>
     <div class="grid md:grid-cols-3 gap-8">
-      <div class="bg-gray-800 p-4 rounded-xl text-center neon-border">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix" class="mx-auto h-16 mb-3">
-        <h3 class="text-xl font-semibold">Netflix</h3>
-        <button onclick="mostrarInfo('Netflix Premium','💻 Acceso ilimitado en Ultra HD con 4 pantallas simultáneas.','💰 Precio: $110 MXN / 1 mes','📺 Pantallas: 1 Dispositivo','🎬 Calidad: Ultra HD','https://wa.me/521234567890')" class="mt-4 bg-purple-600 px-4 py-2 rounded-lg hover:bg-purple-700">Información</button>
+      <div id="netflix-card" class="bg-gray-800 p-4 rounded-xl text-center neon-border">
+        <img id="netflix-logo" src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix" class="mx-auto h-16 mb-3">
+        <h3 id="netflix-title" class="text-xl font-semibold">Netflix</h3>
+        <button onclick="mostrarInfo('Netflix Premium','💻 Acceso ilimitado en Ultra HD con 4 pantallas simultáneas.','💰 Precio: $110 MXN / 1 mes','📺 Pantallas: 1 Dispositivo','🎬 Calidad: Ultra HD','https://wa.me/521234567890', 'https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg')" class="mt-4 bg-purple-600 px-4 py-2 rounded-lg hover:bg-purple-700">Información</button>
       </div>
-      <div class="bg-gray-800 p-4 rounded-xl text-center neon-border">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg" alt="Disney+" class="mx-auto h-16 mb-3">
-        <h3 class="text-xl font-semibold">Disney+</h3>
-        <button onclick="mostrarInfo('Disney+ Familiar','💻 Acceso para toda la familia en HD y 4K.','💰 Precio: $180 MXN / 1 mes','📺 Perfiles: Hasta 7','🎬 Exclusivo Marvel, Pixar y Star Wars','https://wa.me/521234567890')" class="mt-4 bg-purple-600 px-4 py-2 rounded-lg hover:bg-purple-700">Información</button>
+      <div id="disney-card" class="bg-gray-800 p-4 rounded-xl text-center neon-border">
+        <img id="disney-logo" src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg" alt="Disney+" class="mx-auto h-16 mb-3">
+        <h3 id="disney-title" class="text-xl font-semibold">Disney+</h3>
+        <button onclick="mostrarInfo('Disney+ Familiar','💻 Acceso para toda la familia en HD y 4K.','💰 Precio: $180 MXN / 1 mes','📺 Perfiles: Hasta 7','🎬 Exclusivo Marvel, Pixar y Star Wars','https://wa.me/521234567890', 'https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg')" class="mt-4 bg-purple-600 px-4 py-2 rounded-lg hover:bg-purple-700">Información</button>
       </div>
-      <div class="bg-gray-800 p-4 rounded-xl text-center neon-border">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/1/17/HBO_Max_Logo.svg" alt="HBO Max" class="mx-auto h-16 mb-3">
-        <h3 class="text-xl font-semibold">HBO Max</h3>
-        <button onclick="mostrarInfo('HBO Max Premium','💻 Acceso exclusivo en HD y 4K.','💰 Precio: $210 MXN / 1 mes','📺 Dispositivos: 3 en simultáneo','🎬 Estrenos Warner y HBO','https://wa.me/521234567890')" class="mt-4 bg-purple-600 px-4 py-2 rounded-lg hover:bg-purple-700">Información</button>
+      <div id="hbo-card" class="bg-gray-800 p-4 rounded-xl text-center neon-border">
+        <img id="hbo-logo" src="https://upload.wikimedia.org/wikipedia/commons/1/17/HBO_Max_Logo.svg" alt="HBO Max" class="mx-auto h-16 mb-3">
+        <h3 id="hbo-title" class="text-xl font-semibold">HBO Max</h3>
+        <button onclick="mostrarInfo('HBO Max Premium','💻 Acceso exclusivo en HD y 4K.','💰 Precio: $210 MXN / 1 mes','📺 Dispositivos: 3 en simultáneo','🎬 Estrenos Warner y HBO','https://wa.me/521234567890', 'https://upload.wikimedia.org/wikipedia/commons/1/17/HBO_Max_Logo.svg')" class="mt-4 bg-purple-600 px-4 py-2 rounded-lg hover:bg-purple-700">Información</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonios -->
+  <section id="testimonios" class="overlay neon-border fade-in max-w-4xl mx-auto">
+    <h2 id="testimonios-title" class="text-3xl mb-6 text-pink-400 font-bold text-center">Opiniones de Clientes</h2>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div id="testimonio-1" class="testimonial-card p-6 rounded-xl neon-border">
+        <div class="flex items-center mb-4">
+          <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mr-4">
+            <span class="font-bold">M</span>
+          </div>
+          <div>
+            <h4 class="font-semibold">María González</h4>
+            <div class="text-yellow-400">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+        </div>
+        <p class="text-gray-300">"Excelente servicio, me activaron Netflix en menos de 10 minutos. 100% recomendado."</p>
+      </div>
+      <div id="testimonio-2" class="testimonial-card p-6 rounded-xl neon-border">
+        <div class="flex items-center mb-4">
+          <div class="w-12 h-12 bg-cyan-500 rounded-full flex items-center justify-center mr-4">
+            <span class="font-bold">C</span>
+          </div>
+          <div>
+            <h4 class="font-semibold">Carlos Rodríguez</h4>
+            <div class="text-yellow-400">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
+          </div>
+        </div>
+        <p class="text-gray-300">"Llevo 6 meses con Disney+ y todo perfecto. El soporte responde rápido cuando hay problemas."</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Preguntas Frecuentes -->
+  <section id="faq" class="overlay neon-border fade-in max-w-4xl mx-auto">
+    <h2 id="faq-title" class="text-3xl mb-6 text-yellow-400 font-bold text-center">Preguntas Frecuentes</h2>
+    <div id="faq-container" class="faq-container">
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <h3 class="font-semibold">¿Qué métodos de pago aceptan?</h3>
+        </div>
+        <div class="faq-answer">
+          <p class="text-gray-300">Aceptamos transferencias bancarias, PayPal, Mercado Pago y tarjetas de crédito/débito.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <h3 class="font-semibold">¿Cuánto tarda la activación?</h3>
+        </div>
+        <div class="faq-answer">
+          <p class="text-gray-300">La activación es inmediata una vez confirmado el pago. Normalmente en menos de 15 minutos.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <h3 class="font-semibold">¿Ofrecen garantía?</h3>
+        </div>
+        <div class="faq-answer">
+          <p class="text-gray-300">Sí, ofrecemos garantía de 30 días. Si hay problemas con tu cuenta, te la reemplazamos sin costo.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -80,6 +199,7 @@
   <!-- Modal de información -->
   <div id="modal" class="fixed inset-0 hidden bg-black bg-opacity-90 flex items-center justify-center">
     <div class="bg-gray-900 p-8 rounded-2xl w-96 text-center neon-border modal-card">
+      <img id="modal-imagen" src="" alt="" class="mx-auto h-16 mb-4">
       <h3 id="modalTitulo" class="text-2xl font-bold text-purple-400"></h3>
       <ul class="text-left mt-6 space-y-3">
         <li id="modalLine1" class="flex items-center text-gray-200"><i class="fas fa-laptop text-green-400 mr-2"></i></li>
@@ -95,8 +215,8 @@
 
   <!-- Formulario de informes -->
   <section id="form-informes" class="overlay neon-border fade-in max-w-3xl mx-auto">
-    <h2 class="text-3xl mb-4 text-pink-400 font-bold">Solicitar Informes</h2>
-    <p class="mb-4 text-sm text-yellow-300">⚠️ Este formulario se adapta a tus necesidades</p>
+    <h2 id="form-informes-title" class="text-3xl mb-4 text-pink-400 font-bold">Solicitar Informes</h2>
+    <p id="form-informes-warning" class="mb-4 text-sm text-yellow-300">⚠️ Este formulario se adapta a tus necesidades</p>
     <form class="grid gap-4">
       <input type="text" id="nombreInforme" placeholder="Tu nombre" class="p-3 rounded-lg text-black">
       <input type="email" id="emailInforme" placeholder="Tu correo" class="p-3 rounded-lg text-black">
@@ -107,7 +227,7 @@
 
   <!-- Footer -->
   <footer id="footer" class="bg-gray-900 text-center py-6 mt-10 fade-in">
-    <p class="text-gray-400">© 2025 Tu Empresa de Streaming. Todos los derechos reservados.</p>
+    <p id="footer-text" class="text-gray-400">© 2025 Tu Empresa de Streaming. Todos los derechos reservados.</p>
     <div class="flex justify-center space-x-6 mt-4">
       <a href="#" class="text-white text-2xl social-icon"><i class="fab fa-facebook"></i></a>
       <a href="#" class="text-white text-2xl social-icon"><i class="fab fa-instagram"></i></a>
@@ -117,20 +237,38 @@
 
   <!-- Scripts -->
   <script>
-    function mostrarInfo(nombre, line1, line2, line3, line4, link) {
+    // Función para mostrar información con imagen
+    function mostrarInfo(nombre, line1, line2, line3, line4, link, imagenUrl) {
       document.getElementById('modalTitulo').innerText = nombre;
       document.getElementById('modalLine1').innerHTML = '<i class="fas fa-laptop text-green-400 mr-2"></i>' + line1;
       document.getElementById('modalLine2').innerHTML = '<i class="fas fa-money-bill text-yellow-400 mr-2"></i>' + line2;
       document.getElementById('modalLine3').innerHTML = '<i class="fas fa-tv text-blue-400 mr-2"></i>' + line3;
       document.getElementById('modalLine4').innerHTML = '<i class="fas fa-film text-pink-400 mr-2"></i>' + line4;
       document.getElementById('modalLink').href = link;
+      
+      // Agregar la imagen de la plataforma al modal
+      document.getElementById('modal-imagen').src = imagenUrl;
+      document.getElementById('modal-imagen').alt = nombre;
+      
       document.getElementById('modal').classList.remove('hidden');
-      document.body.classList.add('modal-open'); // 🔥 Añade esta línea
+      document.body.classList.add('modal-open');
     }
+    
     function cerrarModal() {
       document.getElementById('modal').classList.add('hidden');
-      document.body.classList.remove('modal-open'); // 🔥 Añade esta línea
+      document.body.classList.remove('modal-open');
     }
+
+    function toggleFaq(element) {
+      const answer = element.nextElementSibling;
+      answer.classList.toggle('open');
+    }
+
+    // Event listener para el botón "Ver Planes"
+    document.getElementById('btn-ver-planes').addEventListener('click', function() {
+      // Mostrar información de Netflix por defecto al hacer clic en "Ver Planes"
+      mostrarInfo('Netflix Premium','💻 Acceso ilimitado en Ultra HD con 4 pantallas simultáneas.','💰 Precio: $110 MXN / 1 mes','📺 Pantallas: 1 Dispositivo','🎬 Calidad: Ultra HD','https://wa.me/521234567890', 'https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg');
+    });
 
     // Animación de aparición al hacer scroll
     const elements = document.querySelectorAll('.fade-in');
