@@ -472,7 +472,8 @@ const platforms = {
     screens:"1 Dispositivo",
     quality:"Ultra HD",
     badge:"POPULAR",
-    type:"video" // IDENTIFICADOR: tipo de plataforma
+    type:"video", // IDENTIFICADOR: tipo de plataforma
+    moreMonths: false // IDENTIFICADOR: indica si tiene opción de más meses
   },
   disney:{
     id:"disney",
@@ -483,7 +484,8 @@ const platforms = {
     screens:"3 pantallas simultáneas",
     quality:"Ultra HD",
     badge:"TOP",
-    type:"video" // IDENTIFICADOR: tipo de plataforma
+    type:"video", // IDENTIFICADOR: tipo de plataforma
+    moreMonths: false // IDENTIFICADOR: indica si tiene opción de más meses
   },
   hbo:{
     id:"hbo",
@@ -494,7 +496,8 @@ const platforms = {
     screens:"3 pantallas simultáneas",
     quality:"Full HD / 4K",
     badge:"NUEVO",
-    type:"video" // IDENTIFICADOR: tipo de plataforma
+    type:"video", // IDENTIFICADOR: tipo de plataforma
+    moreMonths: true // IDENTIFICADOR: indica si tiene opción de más meses
   },
   vix:{
     id:"vix",
@@ -505,7 +508,8 @@ const platforms = {
     screens:"3 pantallas simultáneas",
     quality:"Full HD",
     badge:"ECONÓMICO",
-    type:"video" // IDENTIFICADOR: tipo de plataforma
+    type:"video", // IDENTIFICADOR: tipo de plataforma
+    moreMonths: true // IDENTIFICADOR: indica si tiene opción de más meses
   },
   primevideo:{
     id:"primevideo",
@@ -516,7 +520,8 @@ const platforms = {
     screens:"3 pantallas simultáneas",
     quality:"4K Ultra HD",
     badge:"RECOMENDADO",
-    type:"video" // IDENTIFICADOR: tipo de plataforma
+    type:"video", // IDENTIFICADOR: tipo de plataforma
+    moreMonths: true // IDENTIFICADOR: indica si tiene opción de más meses
   },
   paramount:{
     id:"paramount",
@@ -527,7 +532,8 @@ const platforms = {
     screens:"3 pantallas simultáneas",
     quality:"Premium",
     badge:"RECOMENDADO",
-    type:"video" // IDENTIFICADOR: tipo de plataforma
+    type:"video", // IDENTIFICADOR: tipo de plataforma
+    moreMonths: false // IDENTIFICADOR: indica si tiene opción de más meses
   },
   crunchyroll:{
     id:"crunchyroll",
@@ -538,7 +544,8 @@ const platforms = {
     screens:"3 pantallas simultáneas",
     quality:"Premium",
     badge:"RECOMENDADO",
-    type:"video" // IDENTIFICADOR: tipo de plataforma
+    type:"video", // IDENTIFICADOR: tipo de plataforma
+    moreMonths: true // IDENTIFICADOR: indica si tiene opción de más meses
   },
   spotify:{
     id:"spotify",
@@ -549,7 +556,8 @@ const platforms = {
     screens:"1 Dispositivo",
     quality:"Premium",
     badge:"RECOMENDADO",
-    type:"audio" // IDENTIFICADOR: tipo de plataforma
+    type:"audio", // IDENTIFICADOR: tipo de plataforma
+    moreMonths: true // IDENTIFICADOR: indica si tiene opción de más meses
   },
   youtubepremium:{
     id:"youtubepremium",
@@ -560,7 +568,8 @@ const platforms = {
     screens:"Individual y Familiar",
     quality:"Premium",
     badge:"RECOMENDADO",
-    type:"audio" // IDENTIFICADOR: tipo de plataforma
+    type:"audio", // IDENTIFICADOR: tipo de plataforma
+    moreMonths: false // IDENTIFICADOR: indica si tiene opción de más meses
   },
   amazonmusic:{
     id:"amazonmusic",
@@ -571,7 +580,8 @@ const platforms = {
     screens:"1 Dispositivo",
     quality:"Premium",
     badge:"RECOMENDADO",
-    type:"audio" // IDENTIFICADOR: tipo de plataforma
+    type:"audio", // IDENTIFICADOR: tipo de plataforma
+    moreMonths: true // IDENTIFICADOR: indica si tiene opción de más meses
   },
   iboplayerproiptv:{
     id:"iboplayerproiptv",
@@ -582,7 +592,8 @@ const platforms = {
     screens:"1 Dispositivo",
     quality:"Premium",
     badge:"RECOMENDADO",
-    type:"video" // IDENTIFICADOR: tipo de plataforma
+    type:"video", // IDENTIFICADOR: tipo de plataforma
+    moreMonths: false // IDENTIFICADOR: indica si tiene opción de más meses
   }
   // IDENTIFICADOR: AQUÍ AGREGA NUEVAS PLATAFORMAS - SIGUE EL MISMO FORMATO
   /*
@@ -595,7 +606,8 @@ const platforms = {
     screens:"Número de dispositivos",
     quality:"Calidad del servicio",
     badge:"TIPO",
-    type:"video" o "audio"
+    type:"video" o "audio",
+    moreMonths: true o false
   }
   */
 };
@@ -606,6 +618,7 @@ for(const key in platforms){
   const p = platforms[key];
   
   // IDENTIFICADOR: GENERACIÓN DINÁMICA DE TARJETAS DE PLATAFORMAS
+  // NOTA: Se eliminó el HTML de moreMonths de las tarjetas
   platformsContainer.innerHTML += `
     <div id="platform-${p.id}" class="platform-card">
       <div class="platform-badge">${p.badge}</div>
@@ -649,6 +662,17 @@ function openPlatformModal(id){
     priceHTML += `<li>💰 Precio: ${price}</li>`;
   });
   
+  // IDENTIFICADOR: AGREGAR INFORMACIÓN DE MÁS MESES EN EL MODAL
+  let moreMonthsModalHTML = '';
+  if (p.moreMonths) {
+    moreMonthsModalHTML = `
+      <li style="color: var(--neon-blue); margin-top: 10px; display: flex; align-items: center; gap: 8px;">
+        <span style="font-size: 1.2rem;">📅</span>
+        <span><strong>Más meses disponibles:</strong> Consulta por 3, 6 o 12 meses con descuentos especiales</span>
+      </li>
+    `;
+  }
+  
   // IDENTIFICADOR: CONTENIDO DEL MODAL DE PLATAFORMAS
   content.innerHTML = `
     <div style="display:flex; justify-content:center; margin-bottom:20px;">
@@ -662,6 +686,7 @@ function openPlatformModal(id){
       ${priceHTML}
       ${deviceHTML}
       ${qualityHTML}
+      ${moreMonthsModalHTML}
     </ul>
     <div style="text-align:center; margin-top:15px;">
       <a class="whatsapp-btn" href="https://wa.me/5536509109?text=Hola,%20quiero%20más%20información%20sobre%20${encodeURIComponent(p.name)}" target="_blank" style="display:inline-flex; align-items:center; gap:8px; font-weight:bold; text-decoration:none; color:var(--neon-green); border:2px solid var(--neon-green); padding:10px 15px; border-radius:8px; transition: all 0.3s;">
