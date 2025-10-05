@@ -530,6 +530,7 @@ const platforms = {
     price:["$80 MXN / 1 mes individual", "$150 MXN / 1 mes familiar"],
     screens:"1 Dispositivo",
     quality:"Premium",
+    month:"Mas meses checar disponibilidad",
     badge:"RECOMENDADO",
     type:"audio" // IDENTIFICADOR: tipo de plataforma
   },
@@ -552,6 +553,7 @@ const platforms = {
     description:"Descripción del servicio",
     logo:"https://url-del-logo.jpg",
     price:["$precio MXN / tiempo"],
+    month:"meses de servicio",
     screens:"Número de dispositivos",
     quality:"Calidad del servicio",
     badge:"TIPO",
@@ -598,6 +600,7 @@ function openPlatformModal(id){
   if (p.type === "video") {
     deviceHTML = `<li>📺 Pantallas: ${p.screens}</li>`;
     qualityHTML = `<li>🎬 Calidad: ${p.quality}</li>`;
+    monthHTML = `<li>📅 meses: ${p.month}</li>`;
   } else if (p.type === "audio") {
     deviceHTML = `<li>🎧 Dispositivos: ${p.screens}</li>`;
     qualityHTML = `<li>🔊 Calidad de audio: ${p.quality}</li>`;
@@ -663,6 +666,7 @@ videoCarousel.style.transform = `translateX(0)`;
 </script>
 </body>
 </html>
+
 
 
 
