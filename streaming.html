@@ -25,19 +25,25 @@ h1#mainTitle {font-size:2rem; color: var(--neon-green); text-shadow:0 0 10px var
 .section {margin:30px auto; max-width:1200px; padding:20px; position:relative;}
 h2.section-title {font-size:1.6rem; margin-bottom:20px; color:var(--neon-purple); text-shadow:0 0 5px var(--neon-purple); border-bottom:1px solid var(--neon-purple); padding-bottom:5px;}
 
-/* ---------- Carrusel de videos ---------- */
+/* ---------- Carrusel de videos - CORREGIDO ---------- */
 #videoSlider {position:relative; overflow:hidden; padding:20px 0;}
 #videoCarousel {
   display:flex; 
-  align-items:center; 
-  justify-content:flex-start; 
-  gap:20px; 
   transition:transform 0.5s ease;
+  width: 100%;
+}
+.video-slide {
+  display: flex;
+  flex: 0 0 100%;
+  justify-content: center;
+  gap: 20px;
+  padding: 0 10px;
 }
 .video-item {
-  min-width:300px; 
+  flex: 1;
+  min-width: 0; /* Permite que los elementos se ajusten */
+  max-width: 350px;
   height: 280px; 
-  margin:0; 
   cursor:pointer; 
   transition:transform 0.4s, box-shadow 0.4s;
   position: relative; 
@@ -250,12 +256,34 @@ h2.section-title {font-size:1.6rem; margin-bottom:20px; color:var(--neon-purple)
 footer#footer {text-align:center; padding:20px; border-top:1px solid var(--neon-purple); box-shadow:0 0 10px var(--neon-purple); }
 
 /* ---------- Responsive ---------- */
-@media(max-width:1200px){#platformsContainer{grid-template-columns:repeat(3,1fr);} }
-@media(max-width:900px){#platformsContainer{grid-template-columns:repeat(2,1fr);} }
-@media(max-width:600px){#platformsContainer{grid-template-columns:1fr;} }
+@media(max-width:1200px){
+  #platformsContainer{grid-template-columns:repeat(3,1fr);}
+  .video-slide {
+    flex-wrap: wrap;
+  }
+  .video-item {
+    flex: 0 0 calc(33.333% - 20px);
+  }
+}
+@media(max-width:900px){
+  #platformsContainer{grid-template-columns:repeat(2,1fr);}
+  .video-slide {
+    flex-wrap: wrap;
+  }
+  .video-item {
+    flex: 0 0 calc(50% - 20px);
+  }
+}
+@media(max-width:600px){
+  #platformsContainer{grid-template-columns:1fr;}
+  .video-slide {
+    flex-wrap: wrap;
+  }
+  .video-item {
+    flex: 0 0 100%;
+  }
+}
 @media(max-width:768px){
-  .video-item{min-width:250px;}
-  #videoCarousel {gap:15px;}
   #floatingHomeBtn {
     width: 50px;
     height: 50px;
@@ -265,8 +293,6 @@ footer#footer {text-align:center; padding:20px; border-top:1px solid var(--neon-
   }
 }
 @media(max-width:480px){
-  .video-item{min-width:200px;}
-  #videoCarousel {gap:10px;}
   #floatingHomeBtn {
     width: 45px;
     height: 45px;
@@ -383,25 +409,39 @@ const estrenos = [
 ];
 
 const videoCarousel = document.getElementById("videoCarousel");
-estrenos.forEach(v=>{
-  videoCarousel.innerHTML += `
-    <div id="video-${v.id}" class="video-item" onclick="openModal('${v.url}')">
-      <div class="video-thumbnail">
-        <img src="${v.thumb}" alt="${v.title}">
-        <div class="play-icon">▶</div>
+
+// Crear grupos de 3 videos por slide
+for (let i = 0; i < estrenos.length; i += 3) {
+  const slide = document.createElement("div");
+  slide.className = "video-slide";
+  
+  // Agregar hasta 3 videos en este slide
+  for (let j = i; j < i + 3 && j < estrenos.length; j++) {
+    const v = estrenos[j];
+    slide.innerHTML += `
+      <div id="video-${v.id}" class="video-item" onclick="openModal('${v.url}')">
+        <div class="video-thumbnail">
+          <img src="${v.thumb}" alt="${v.title}">
+          <div class="play-icon">▶</div>
+        </div>
+        <h3 class="video-title">${v.title}</h3>
       </div>
-      <h3 class="video-title">${v.title}</h3>
-    </div>
-  `;
-});
+    `;
+  }
+  
+  videoCarousel.appendChild(slide);
+}
 
 let currentIndex = 0;
+const slides = document.querySelectorAll('.video-slide');
+const totalSlides = slides.length;
+
 function moveSlider(dir){
-  const items = estrenos.length;
   currentIndex += dir;
-  if(currentIndex < 0) currentIndex = items-1;
-  if(currentIndex >= items) currentIndex = 0;
-  videoCarousel.style.transform = `translateX(-${currentIndex*320}px)`;
+  if(currentIndex < 0) currentIndex = totalSlides - 1;
+  if(currentIndex >= totalSlides) currentIndex = 0;
+  
+  videoCarousel.style.transform = `translateX(-${currentIndex * 100}%)`;
 }
 
 const videoModal = document.getElementById("videoModal");
@@ -530,7 +570,6 @@ const platforms = {
     price:["$80 MXN / 1 mes individual", "$150 MXN / 1 mes familiar"],
     screens:"1 Dispositivo",
     quality:"Premium",
-    month:"Mas meses checar disponibilidad",
     badge:"RECOMENDADO",
     type:"audio" // IDENTIFICADOR: tipo de plataforma
   },
@@ -553,7 +592,6 @@ const platforms = {
     description:"Descripción del servicio",
     logo:"https://url-del-logo.jpg",
     price:["$precio MXN / tiempo"],
-    month:"meses de servicio",
     screens:"Número de dispositivos",
     quality:"Calidad del servicio",
     badge:"TIPO",
@@ -600,7 +638,6 @@ function openPlatformModal(id){
   if (p.type === "video") {
     deviceHTML = `<li>📺 Pantallas: ${p.screens}</li>`;
     qualityHTML = `<li>🎬 Calidad: ${p.quality}</li>`;
-    monthHTML = `<li>📅 meses: ${p.month}</li>`;
   } else if (p.type === "audio") {
     deviceHTML = `<li>🎧 Dispositivos: ${p.screens}</li>`;
     qualityHTML = `<li>🔊 Calidad de audio: ${p.quality}</li>`;
@@ -666,7 +703,3 @@ videoCarousel.style.transform = `translateX(0)`;
 </script>
 </body>
 </html>
-
-
-
-
