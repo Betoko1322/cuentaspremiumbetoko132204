@@ -41,13 +41,12 @@
       border-radius: 20px;
       margin: 20px 0;
       box-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
-      animation: bounceIn 1.5s ease;
+      animation: floatUpDown 2s ease-in-out infinite;
     }
 
-    @keyframes bounceIn {
-      0% { transform: scale(0.5); opacity: 0; }
-      60% { transform: scale(1.2); opacity: 1; }
-      100% { transform: scale(1); }
+    @keyframes floatUpDown {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
     }
 
     #btn-enter {
