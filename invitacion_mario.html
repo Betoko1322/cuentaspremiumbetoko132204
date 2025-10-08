@@ -24,10 +24,34 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    #welcome-screen h1 {
+      max-width: 90%;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 20px;
+      border-radius: 15px;
+      line-height: 1.6;
+    }
+
+    #birthday-img {
+      width: 200px;
+      height: auto;
+      border-radius: 20px;
+      margin: 20px 0;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+      animation: bounceIn 1.5s ease;
+    }
+
+    @keyframes bounceIn {
+      0% { transform: scale(0.5); opacity: 0; }
+      60% { transform: scale(1.2); opacity: 1; }
+      100% { transform: scale(1); }
     }
 
     #btn-enter {
-      margin-top: 40px;
+      margin-top: 20px;
       padding: 20px 40px;
       background-color: #ff0000;
       border: none;
@@ -154,7 +178,8 @@
 
   <!-- Pantalla de bienvenida -->
   <section id="welcome-screen">
-    <h1>¡Te invito a mi cumpleaños!</h1>
+    <h1>🎉 ¡Vamos al mundo de los champiñones a festejar mi cumpleaños! 🎂<br><br>Prepárate para saltar, correr y divertirte como un verdadero héroe del Reino Champiñón. ¡No te lo puedes perder!</h1>
+    <img id="birthday-img" src="https://upload.wikimedia.org/wikipedia/commons/1/14/Mario_Series_Character_Art.png" alt="Cumpleañero">
     <button id="btn-enter">Entrar al mundo de Mario 🎮</button>
   </section>
 
