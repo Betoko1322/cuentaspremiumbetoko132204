@@ -21,9 +21,9 @@
     p { margin-bottom: 15px; line-height: 1.6; }
 
     /* ENCABEZADO */
-    #header { 
-      text-align: center; 
-      margin: 20px 0 40px; 
+    #header {
+      text-align: center;
+      margin: 20px 0 40px;
     }
     #header h1 { font-size: 3em; margin-bottom: 10px; }
     #header p { font-size: 1.2em; color: #ddd; }
@@ -53,10 +53,10 @@
 
     /* TARJETAS */
     .servicios {
-      display: flex; 
-      justify-content: center; 
-      gap: 35px; 
-      flex-wrap: wrap; 
+      display: flex;
+      justify-content: center;
+      gap: 35px;
+      flex-wrap: wrap;
       margin-top: 40px;
     }
     .servicio-card {
@@ -73,14 +73,14 @@
 
     .servicio-imagen {
       width: 100%;
-      height: 180px; 
+      height: 180px;
       overflow: hidden;
     }
 
-    .servicio-imagen img { 
-      width: 100%; 
-      height: 100%; 
-      object-fit: cover; 
+    .servicio-imagen img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       display: block;
     }
 
@@ -227,9 +227,8 @@
           <a href="office.html" target="_blank" class="btn-info" id="btn-office">Más Información</a>
         </div>
       </div>
-    </section>
 
-          <!-- CARD INVITACIONES -->
+      <!-- CARD INVITACIONES -->
       <div class="servicio-card" id="card-invitaciones">
         <div class="servicio-imagen" id="img-invitaciones-container">
           <img src="https://lluviadenova.com/wp-content/uploads/2024/10/blog3-3.webp" alt="Invitaciones Digitales" id="img-invitaciones">
@@ -239,9 +238,38 @@
             <h3>Invitaciones Digitales Web</h3>
             <p>Dale un toque diferente y personalizado a tus eventos.</p>
           </div>
-          <a href="#." target="_blank" class="btn-info" id="btn-streaming">Más Información</a>
+          <a href="invitaciones.html" target="_blank" class="btn-info" id="btn-invitaciones">Más Información</a>
         </div>
       </div>
+
+      <!-- CARD DISEÑO GRAFICO -->
+      <div class="servicio-card" id="card-diseno">
+        <div class="servicio-imagen" id="img-diseno-container">
+          <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=800&q=80" alt="Diseño Gráfico" id="img-diseno">
+        </div>
+        <div class="servicio-contenido" id="content-diseno">
+          <div>
+            <h3>Diseño Gráfico</h3>
+            <p>Creación de identidad visual, logos y material publicitario profesional.</p>
+          </div>
+          <a href="diseno.html" target="_blank" class="btn-info" id="btn-diseno">Más Información</a>
+        </div>
+      </div>
+
+      <!-- CARD MARKETING DIGITAL -->
+      <div class="servicio-card" id="card-marketing">
+        <div class="servicio-imagen" id="img-marketing-container">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Marketing Digital" id="img-marketing">
+        </div>
+        <div class="servicio-contenido" id="content-marketing">
+          <div>
+            <h3>Marketing Digital</h3>
+            <p>Estrategias de marketing online para aumentar tu presencia digital.</p>
+          </div>
+          <a href="marketing.html" target="_blank" class="btn-info" id="btn-marketing">Más Información</a>
+        </div>
+      </div>
+    </section>
 
     <!-- CONTADOR LOGROS -->
     <section id="contador-section">
@@ -312,24 +340,23 @@
     function inicializarContadorVisitantes() {
       // Simulamos un número base de visitas (en un caso real, esto vendría del servidor)
       let visitasBase = 1247;
-      
+     
       // Añadimos un número aleatorio pequeño para simular nuevas visitas
       let nuevasVisitas = Math.floor(Math.random() * 10) + 1;
-      
+     
       // Mostramos el total
       let totalVisitas = visitasBase + nuevasVisitas;
       document.getElementById("visitantes-numero").textContent = totalVisitas.toLocaleString();
-      
+     
       // Simulamos que el número aumenta con el tiempo (como si otros usuarios estuvieran visitando)
       setInterval(() => {
         totalVisitas += Math.floor(Math.random() * 3);
         document.getElementById("visitantes-numero").textContent = totalVisitas.toLocaleString();
       }, 15000); // Aumenta cada 15 segundos
     }
-    
+   
     // Inicializamos el contador cuando la página carga
     window.addEventListener('load', inicializarContadorVisitantes);
   </script>
 </body>
 </html>
-
