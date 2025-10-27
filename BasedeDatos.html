@@ -1087,7 +1087,7 @@
                         </div>
                         <div class="form-group">
                             <label for="sheetName" class="form-label">Nombre de la Hoja</label>
-                            <input type="text" id="sheetName" class="form-control" placeholder="Ej: Clientes" value="Clientes">
+                            <input type="text" id="sheetName" class="form-control" placeholder="Ej: CLientes" value="CLientes">
                         </div>
                         <button id="saveSheetsConfig" class="btn btn-purple btn-block">Guardar Configuración de Sheets</button>
                         <button id="testConnection" class="btn btn-block" style="margin-top: 10px;">Probar Conexión</button>
@@ -1164,16 +1164,17 @@
     </div>
 
     <script>
-        // Configuración de Google Sheets actualizada
+        // Configuración de Google Sheets ACTUALIZADA con tus datos
         const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx6feKYvFGKgN-J3OSm5E6goJ3YAYu5G0Zxa0hy63g5A6mkiXIZmp8j4J81DfGhR33A/exec';
         const DEFAULT_SHEET_ID = '1NG5wv0XJR_NjRm8etHaTHHWf15iFk4SJbFp3NLGxOL4';
+        const DEFAULT_SHEET_NAME = 'Clientes'; // Exactamente como está en tu Google Sheet
         
         // Datos de ejemplo para simular la base de datos
         let clients = JSON.parse(localStorage.getItem('streamingClients')) || [];
         let currentUser = JSON.parse(localStorage.getItem('currentUser')) || { username: 'admin', password: 'admin123' };
         let sheetsConfig = JSON.parse(localStorage.getItem('sheetsConfig')) || { 
             sheetId: DEFAULT_SHEET_ID, 
-            sheetName: 'Clientes',
+            sheetName: DEFAULT_SHEET_NAME,
             connected: false
         };
 
@@ -1237,7 +1238,10 @@
             
             // Intentar cargar datos desde Google Sheets si está configurado
             if (sheetsConfig.sheetId) {
-                loadDataFromSheets();
+                // Probar conexión automáticamente al cargar
+                setTimeout(() => {
+                    testSheetsConnection();
+                }, 1000);
             }
         });
 
@@ -1399,7 +1403,7 @@
         // Guardar configuración de Google Sheets
         saveSheetsConfigBtn.addEventListener('click', function() {
             const sheetId = sheetIdInput.value.trim();
-            const sheetName = sheetNameInput.value.trim() || 'Clientes';
+            const sheetName = sheetNameInput.value.trim() || DEFAULT_SHEET_NAME;
             
             if (!sheetId) {
                 alert('Por favor, ingresa el ID de la hoja de cálculo');
@@ -1413,6 +1417,11 @@
             localStorage.setItem('sheetsConfig', JSON.stringify(sheetsConfig));
             updateSyncStatus();
             alert('Configuración de Google Sheets guardada');
+            
+            // Probar conexión automáticamente después de guardar
+            setTimeout(() => {
+                testSheetsConnection();
+            }, 500);
         });
 
         // Probar conexión con Google Sheets
@@ -1714,6 +1723,11 @@
                     localStorage.setItem('sheetsConfig', JSON.stringify(sheetsConfig));
                     updateSyncStatus();
                     alert('✅ Conexión exitosa con Google Sheets');
+                    
+                    // Cargar datos automáticamente después de conectar
+                    setTimeout(() => {
+                        loadDataFromSheets();
+                    }, 1000);
                 } else {
                     sheetsConfig.connected = false;
                     localStorage.setItem('sheetsConfig', JSON.stringify(sheetsConfig));
@@ -1790,9 +1804,11 @@
                 
                 if (!result.success) {
                     console.error('Error al guardar en Google Sheets: ' + result.message);
+                    alert('❌ Error al guardar en Google Sheets: ' + result.message);
                 }
             } catch (error) {
                 console.error('Error de conexión: ' + error.message);
+                alert('❌ Error de conexión al guardar: ' + error.message);
             }
         }
 
