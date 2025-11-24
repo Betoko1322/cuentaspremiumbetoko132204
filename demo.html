@@ -1,298 +1,2075 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Demo Venta de Streaming</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    body, html { height: 100%; margin: 0; font-family: 'Segoe UI', sans-serif; }
-    #particles-js { position: fixed; width: 100%; height: 100%; z-index: -1; top: 0; left: 0; }
-    .overlay { background: rgba(0,0,0,0.7); padding: 2rem; border-radius: 1rem; margin-bottom: 3rem; }
-    .neon-border { border: 2px solid #8a2be2; box-shadow: 0 0 15px #8a2be2, 0 0 30px #00f7ff; transition: all 0.3s ease; }
-    .neon-border:hover { transform: scale(1.02); box-shadow: 0 0 25px #ff00ff, 0 0 50px #00f7ff; }
-    .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
-    .social-icon { transition: transform 0.4s ease, color 0.4s ease; }
-    .social-icon:hover { transform: scale(1.3) rotate(10deg); color: #00f7ff; }
-    .video-frame { border: 2px solid #39ff14; box-shadow: 0 0 20px #39ff14, 0 0 40px #00f7ff; transition: all 0.3s ease; }
-    .video-frame:hover { transform: scale(1.02); box-shadow: 0 0 35px #ff00ff, 0 0 70px #39ff14; }
-    .modal-card { animation: zoomIn 0.4s ease; }
-    @keyframes zoomIn { from { transform: scale(0.7); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-    .pulse-glow { animation: pulse 1.5s infinite; }
-    @keyframes pulse { 0% { box-shadow: 0 0 10px #00ff99; } 50% { box-shadow: 0 0 25px #00ff99; } 100% { box-shadow: 0 0 10px #00ff99; } }
-    
-    /* 🔧 ESTILOS CORREGIDOS PARA EL MODAL */
-    body.modal-open {
-      overflow: hidden;
-    }
-    #modal {
-      position: fixed;
-      z-index: 1000;
-    }
-    
-    /* Nuevos estilos para secciones añadidas */
-    .process-step { transition: all 0.3s ease; }
-    .process-step:hover { transform: translateY(-5px); }
-    .testimonial-card { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); }
-    .faq-item { margin-bottom: 1rem; }
-    .faq-question { cursor: pointer; padding: 1rem; background: rgba(138, 43, 226, 0.2); border-radius: 0.5rem; }
-    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding: 0 1rem; }
-    .faq-answer.open { max-height: 500px; padding: 1rem; }
-  </style>
-</head>
-<body class="text-white bg-black">
-  <!-- Fondo de partículas -->
-  <div id="particles-js"></div>
-
-  <!-- Título -->
-  <header id="header" class="text-center py-10 fade-in">
-    <h1 id="main-title" class="text-5xl font-extrabold text-purple-400">Venta de Plataformas Streaming</h1>
-    <p id="demo-warning" class="mt-2 text-yellow-400">⚠️ Este demo es editable según lo que el cliente necesite</p>
-  </header>
-
-  <!-- Sección Hero Mejorada -->
-  <section id="hero" class="overlay neon-border fade-in max-w-6xl mx-auto text-center">
-    <h2 id="hero-title" class="text-4xl mb-6 font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">Disfruta del Mejor Entretenimiento</h2>
-    <p id="hero-description" class="text-xl mb-8">Accede a todas las plataformas de streaming con un solo pago. Calidad premium, soporte 24/7 y garantía de satisfacción.</p>
-    <div class="flex justify-center space-x-4">
-      <button id="btn-ver-planes" class="bg-purple-600 px-6 py-3 rounded-lg text-lg font-bold hover:bg-purple-700 pulse-glow">Ver Planes</button>
-    </div>
-  </section>
-
-  <!-- Estrenos de series -->
-  <section id="estrenos" class="overlay neon-border fade-in max-w-5xl mx-auto">
-    <h2 id="estrenos-title" class="text-3xl mb-4 text-blue-400 font-bold">Estrenos de Series</h2>
-    <p id="estrenos-warning" class="mb-4 text-sm text-yellow-300">⚠️ Esta sección se edita al gusto del cliente</p>
-    <div class="grid md:grid-cols-2 gap-8">
-      <iframe class="w-full h-64 rounded-xl video-frame" src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
-      <iframe class="w-full h-64 rounded-xl video-frame" src="https://www.youtube.com/embed/9bZkp7q19f0" allowfullscreen></iframe>
-    </div>
-  </section>
-
-  <!-- Proceso de Compra -->
-  <section id="proceso" class="overlay neon-border fade-in max-w-6xl mx-auto">
-    <h2 id="proceso-title" class="text-3xl mb-8 text-green-400 font-bold text-center">¿Cómo Comprar?</h2>
-    <div class="grid md:grid-cols-4 gap-6">
-      <div id="paso-1" class="bg-gray-800 p-6 rounded-xl text-center process-step neon-border">
-        <div class="text-4xl mb-4 text-yellow-400"><i class="fas fa-mouse-pointer"></i></div>
-        <h3 class="text-xl font-semibold mb-2">Paso 1</h3>
-        <p class="text-gray-300">Selecciona tu plataforma favorita</p>
-      </div>
-      <div id="paso-2" class="bg-gray-800 p-6 rounded-xl text-center process-step neon-border">
-        <div class="text-4xl mb-4 text-yellow-400"><i class="fas fa-whatsapp"></i></div>
-        <h3 class="text-xl font-semibold mb-2">Paso 2</h3>
-        <p class="text-gray-300">Contáctanos por WhatsApp</p>
-      </div>
-      <div id="paso-3" class="bg-gray-800 p-6 rounded-xl text-center process-step neon-border">
-        <div class="text-4xl mb-4 text-yellow-400"><i class="fas fa-credit-card"></i></div>
-        <h3 class="text-xl font-semibold mb-2">Paso 3</h3>
-        <p class="text-gray-300">Realiza el pago seguro</p>
-      </div>
-      <div id="paso-4" class="bg-gray-800 p-6 rounded-xl text-center process-step neon-border">
-        <div class="text-4xl mb-4 text-yellow-400"><i class="fas fa-play-circle"></i></div>
-        <h3 class="text-xl font-semibold mb-2">Paso 4</h3>
-        <p class="text-gray-300">Disfruta de tu contenido</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Plataformas disponibles -->
-  <section id="plataformas" class="overlay neon-border fade-in max-w-6xl mx-auto">
-    <h2 id="plataformas-title" class="text-3xl mb-4 text-green-400 font-bold">Plataformas Disponibles</h2>
-    <p id="plataformas-warning" class="mb-4 text-sm text-yellow-300">⚠️ Personalizable con tus plataformas</p>
-    <div class="grid md:grid-cols-3 gap-8">
-      <div id="netflix-card" class="bg-gray-800 p-4 rounded-xl text-center neon-border">
-        <img id="netflix-logo" src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix" class="mx-auto h-16 mb-3">
-        <h3 id="netflix-title" class="text-xl font-semibold">Netflix</h3>
-        <button onclick="mostrarInfo('Netflix Premium','💻 Acceso ilimitado en Ultra HD con 4 pantallas simultáneas.','💰 Precio: $110 MXN / 1 mes','📺 Pantallas: 1 Dispositivo','🎬 Calidad: Ultra HD','https://wa.me/521234567890', 'https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg')" class="mt-4 bg-purple-600 px-4 py-2 rounded-lg hover:bg-purple-700">Información</button>
-      </div>
-      <div id="disney-card" class="bg-gray-800 p-4 rounded-xl text-center neon-border">
-        <img id="disney-logo" src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg" alt="Disney+" class="mx-auto h-16 mb-3">
-        <h3 id="disney-title" class="text-xl font-semibold">Disney+</h3>
-        <button onclick="mostrarInfo('Disney+ Familiar','💻 Acceso para toda la familia en HD y 4K.','💰 Precio: $180 MXN / 1 mes','📺 Perfiles: Hasta 7','🎬 Exclusivo Marvel, Pixar y Star Wars','https://wa.me/521234567890', 'https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg')" class="mt-4 bg-purple-600 px-4 py-2 rounded-lg hover:bg-purple-700">Información</button>
-      </div>
-      <div id="hbo-card" class="bg-gray-800 p-4 rounded-xl text-center neon-border">
-        <img id="hbo-logo" src="https://upload.wikimedia.org/wikipedia/commons/1/17/HBO_Max_Logo.svg" alt="HBO Max" class="mx-auto h-16 mb-3">
-        <h3 id="hbo-title" class="text-xl font-semibold">HBO Max</h3>
-        <button onclick="mostrarInfo('HBO Max Premium','💻 Acceso exclusivo en HD y 4K.','💰 Precio: $210 MXN / 1 mes','📺 Dispositivos: 3 en simultáneo','🎬 Estrenos Warner y HBO','https://wa.me/521234567890', 'https://upload.wikimedia.org/wikipedia/commons/1/17/HBO_Max_Logo.svg')" class="mt-4 bg-purple-600 px-4 py-2 rounded-lg hover:bg-purple-700">Información</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- Testimonios -->
-  <section id="testimonios" class="overlay neon-border fade-in max-w-4xl mx-auto">
-    <h2 id="testimonios-title" class="text-3xl mb-6 text-pink-400 font-bold text-center">Opiniones de Clientes</h2>
-    <div class="grid md:grid-cols-2 gap-6">
-      <div id="testimonio-1" class="testimonial-card p-6 rounded-xl neon-border">
-        <div class="flex items-center mb-4">
-          <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mr-4">
-            <span class="font-bold">M</span>
-          </div>
-          <div>
-            <h4 class="font-semibold">María González</h4>
-            <div class="text-yellow-400">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-            </div>
-          </div>
-        </div>
-        <p class="text-gray-300">"Excelente servicio, me activaron Netflix en menos de 10 minutos. 100% recomendado."</p>
-      </div>
-      <div id="testimonio-2" class="testimonial-card p-6 rounded-xl neon-border">
-        <div class="flex items-center mb-4">
-          <div class="w-12 h-12 bg-cyan-500 rounded-full flex items-center justify-center mr-4">
-            <span class="font-bold">C</span>
-          </div>
-          <div>
-            <h4 class="font-semibold">Carlos Rodríguez</h4>
-            <div class="text-yellow-400">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star-half-alt"></i>
-            </div>
-          </div>
-        </div>
-        <p class="text-gray-300">"Llevo 6 meses con Disney+ y todo perfecto. El soporte responde rápido cuando hay problemas."</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Preguntas Frecuentes -->
-  <section id="faq" class="overlay neon-border fade-in max-w-4xl mx-auto">
-    <h2 id="faq-title" class="text-3xl mb-6 text-yellow-400 font-bold text-center">Preguntas Frecuentes</h2>
-    <div id="faq-container" class="faq-container">
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3 class="font-semibold">¿Qué métodos de pago aceptan?</h3>
-        </div>
-        <div class="faq-answer">
-          <p class="text-gray-300">Aceptamos transferencias bancarias, PayPal, Mercado Pago y tarjetas de crédito/débito.</p>
-        </div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3 class="font-semibold">¿Cuánto tarda la activación?</h3>
-        </div>
-        <div class="faq-answer">
-          <p class="text-gray-300">La activación es inmediata una vez confirmado el pago. Normalmente en menos de 15 minutos.</p>
-        </div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3 class="font-semibold">¿Ofrecen garantía?</h3>
-        </div>
-        <div class="faq-answer">
-          <p class="text-gray-300">Sí, ofrecemos garantía de 30 días. Si hay problemas con tu cuenta, te la reemplazamos sin costo.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Modal de información -->
-  <div id="modal" class="fixed inset-0 hidden bg-black bg-opacity-90 flex items-center justify-center">
-    <div class="bg-gray-900 p-8 rounded-2xl w-96 text-center neon-border modal-card">
-      <img id="modal-imagen" src="" alt="" class="mx-auto h-16 mb-4">
-      <h3 id="modalTitulo" class="text-2xl font-bold text-purple-400"></h3>
-      <ul class="text-left mt-6 space-y-3">
-        <li id="modalLine1" class="flex items-center text-gray-200"><i class="fas fa-laptop text-green-400 mr-2"></i></li>
-        <li id="modalLine2" class="flex items-center text-gray-200"><i class="fas fa-money-bill text-yellow-400 mr-2"></i></li>
-        <li id="modalLine3" class="flex items-center text-gray-200"><i class="fas fa-tv text-blue-400 mr-2"></i></li>
-        <li id="modalLine4" class="flex items-center text-gray-200"><i class="fas fa-film text-pink-400 mr-2"></i></li>
-      </ul>
-      <a id="modalLink" target="_blank" class="mt-6 inline-block bg-green-600 px-5 py-3 rounded-lg text-lg font-bold hover:bg-green-700 pulse-glow">Contratar por WhatsApp</a>
-      <br>
-      <button onclick="cerrarModal()" class="mt-4 text-red-400 hover:text-red-500 font-semibold">Cerrar</button>
-    </div>
-  </div>
-
-  <!-- Formulario de informes -->
-  <section id="form-informes" class="overlay neon-border fade-in max-w-3xl mx-auto">
-    <h2 id="form-informes-title" class="text-3xl mb-4 text-pink-400 font-bold">Solicitar Informes</h2>
-    <p id="form-informes-warning" class="mb-4 text-sm text-yellow-300">⚠️ Este formulario se adapta a tus necesidades</p>
-    <form class="grid gap-4">
-      <input type="text" id="nombreInforme" placeholder="Tu nombre" class="p-3 rounded-lg text-black">
-      <input type="email" id="emailInforme" placeholder="Tu correo" class="p-3 rounded-lg text-black">
-      <textarea id="mensajeInforme" placeholder="Tu mensaje" class="p-3 rounded-lg text-black"></textarea>
-      <button type="submit" class="bg-blue-600 py-2 rounded-lg hover:bg-blue-700">Enviar</button>
-    </form>
-  </section>
-
-  <!-- Footer -->
-  <footer id="footer" class="bg-gray-900 text-center py-6 mt-10 fade-in">
-    <p id="footer-text" class="text-gray-400">© 2025 Tu Empresa de Streaming. Todos los derechos reservados.</p>
-    <div class="flex justify-center space-x-6 mt-4">
-      <a href="#" class="text-white text-2xl social-icon"><i class="fab fa-facebook"></i></a>
-      <a href="#" class="text-white text-2xl social-icon"><i class="fab fa-instagram"></i></a>
-      <a href="#" class="text-white text-2xl social-icon"><i class="fab fa-whatsapp"></i></a>
-    </div>
-  </footer>
-
-  <!-- Scripts -->
-  <script>
-    // Función para mostrar información con imagen
-    function mostrarInfo(nombre, line1, line2, line3, line4, link, imagenUrl) {
-      document.getElementById('modalTitulo').innerText = nombre;
-      document.getElementById('modalLine1').innerHTML = '<i class="fas fa-laptop text-green-400 mr-2"></i>' + line1;
-      document.getElementById('modalLine2').innerHTML = '<i class="fas fa-money-bill text-yellow-400 mr-2"></i>' + line2;
-      document.getElementById('modalLine3').innerHTML = '<i class="fas fa-tv text-blue-400 mr-2"></i>' + line3;
-      document.getElementById('modalLine4').innerHTML = '<i class="fas fa-film text-pink-400 mr-2"></i>' + line4;
-      document.getElementById('modalLink').href = link;
-      
-      // Agregar la imagen de la plataforma al modal
-      document.getElementById('modal-imagen').src = imagenUrl;
-      document.getElementById('modal-imagen').alt = nombre;
-      
-      document.getElementById('modal').classList.remove('hidden');
-      document.body.classList.add('modal-open');
-    }
-    
-    function cerrarModal() {
-      document.getElementById('modal').classList.add('hidden');
-      document.body.classList.remove('modal-open');
-    }
-
-    function toggleFaq(element) {
-      const answer = element.nextElementSibling;
-      answer.classList.toggle('open');
-    }
-
-    // Event listener para el botón "Ver Planes"
-    document.getElementById('btn-ver-planes').addEventListener('click', function() {
-      // Mostrar información de Netflix por defecto al hacer clic en "Ver Planes"
-      mostrarInfo('Netflix Premium','💻 Acceso ilimitado en Ultra HD con 4 pantallas simultáneas.','💰 Precio: $110 MXN / 1 mes','📺 Pantallas: 1 Dispositivo','🎬 Calidad: Ultra HD','https://wa.me/521234567890', 'https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg');
-    });
-
-    // Animación de aparición al hacer scroll
-    const elements = document.querySelectorAll('.fade-in');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Punto de Venta - Plataformas de Streaming</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #6e48aa;
+            --secondary-color: #9d50bb;
+            --accent-color: #25D366;
+            --text-color: #333;
+            --light-bg: #f5f5f5;
+            --white: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --customizable-color: #ff9900;
+            --gradient: linear-gradient(135deg, #6e48aa, #9d50bb);
+            
+            /* Colores modo nocturno */
+            --dark-bg: #121212;
+            --dark-surface: #1e1e1e;
+            --dark-text: #e0e0e0;
+            --dark-primary: #bb86fc;
+            --dark-secondary: #9d50bb;
+            --dark-gradient: linear-gradient(135deg, #bb86fc, #9d50bb);
         }
-      });
-    }, { threshold: 0.2 });
-    elements.forEach(el => observer.observe(el));
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+        }
+        
+        body.dark-mode {
+            background-color: var(--dark-bg);
+            color: var(--dark-text);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Animaciones */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+        
+        header {
+            background: var(--gradient);
+            color: var(--white);
+            padding: 30px 0;
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            position: relative;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            animation: fadeIn 1s ease;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+            background-size: 1000px 100%;
+            animation: shimmer 3s infinite linear;
+        }
+        
+        body.dark-mode header {
+            background: var(--dark-gradient);
+        }
+        
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 20px;
+            padding: 8px 15px;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+        
+        .customizable-indicator {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: var(--customizable-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            z-index: 10;
+            animation: pulse 2s infinite;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        /* Estilos para las pestañas */
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: background 0.3s ease;
+            animation: fadeIn 1s ease 0.2s both;
+        }
+        
+        body.dark-mode .tabs {
+            background: var(--dark-surface);
+        }
+        
+        .tab {
+            flex: 1;
+            padding: 15px 20px;
+            text-align: center;
+            background: var(--white);
+            border: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-color);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tab::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: var(--primary-color);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        
+        body.dark-mode .tab {
+            background: var(--dark-surface);
+            color: var(--dark-text);
+        }
+        
+        .tab.active {
+            color: var(--primary-color);
+        }
+        
+        body.dark-mode .tab.active {
+            color: var(--dark-primary);
+        }
+        
+        .tab.active::after {
+            width: 80%;
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+            color: var(--primary-color);
+            position: relative;
+            transition: all 0.3s ease;
+            animation: fadeIn 1s ease 0.4s both;
+        }
+        
+        body.dark-mode .section-title {
+            color: var(--dark-primary);
+            border-bottom: 2px solid var(--dark-secondary);
+        }
+        
+        .customizable-text {
+            border-bottom: 2px dotted var(--customizable-color);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .customizable-text::after {
+            content: "🔧";
+            position: absolute;
+            right: -25px;
+            top: 0;
+            font-size: 0.8rem;
+        }
+        
+        .customizable-price {
+            background-color: rgba(255, 153, 0, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px dashed var(--customizable-color);
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        .product-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            animation: fadeIn 1s ease;
+            animation-fill-mode: both;
+        }
+        
+        .product-card:nth-child(1) { animation-delay: 0.1s; }
+        .product-card:nth-child(2) { animation-delay: 0.2s; }
+        .product-card:nth-child(3) { animation-delay: 0.3s; }
+        .product-card:nth-child(4) { animation-delay: 0.4s; }
+        .product-card:nth-child(5) { animation-delay: 0.5s; }
+        .product-card:nth-child(6) { animation-delay: 0.6s; }
+        .product-card:nth-child(7) { animation-delay: 0.7s; }
+        .product-card:nth-child(8) { animation-delay: 0.8s; }
+        
+        body.dark-mode .product-card {
+            background: var(--dark-surface);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .product-image {
+            height: 150px;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #f8f8f8;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40%;
+            background: linear-gradient(to top, rgba(255,255,255,0.8), transparent);
+        }
+        
+        body.dark-mode .product-image {
+            background-color: #2a2a2a;
+        }
+        
+        body.dark-mode .product-image::after {
+            background: linear-gradient(to top, rgba(30,30,30,0.8), transparent);
+        }
+        
+        .product-info {
+            padding: 15px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .product-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--text-color);
+            text-align: center;
+            transition: color 0.3s ease;
+        }
+        
+        body.dark-mode .product-title {
+            color: var(--dark-text);
+        }
+        
+        .product-description {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            text-align: center;
+            transition: color 0.3s ease;
+        }
+        
+        body.dark-mode .product-description {
+            color: #aaa;
+        }
+        
+        .product-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .option-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        
+        body.dark-mode .option-group {
+            border: 1px solid #444;
+        }
+        
+        .option-group.selected {
+            border-color: var(--primary-color);
+            background-color: rgba(110, 72, 170, 0.05);
+            transform: scale(1.02);
+        }
+        
+        body.dark-mode .option-group.selected {
+            border-color: var(--dark-primary);
+            background-color: rgba(187, 134, 252, 0.1);
+        }
+        
+        .option-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+        
+        .option-price {
+            font-weight: bold;
+            color: var(--primary-color);
+            transition: color 0.3s ease;
+        }
+        
+        body.dark-mode .option-price {
+            color: var(--dark-primary);
+        }
+        
+        .add-to-cart {
+            background: var(--gradient);
+            color: var(--white);
+            border: none;
+            padding: 12px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            margin-top: auto;
+            position: relative;
+            overflow: hidden;
+            font-weight: 600;
+        }
+        
+        .add-to-cart::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .add-to-cart:hover::before {
+            left: 100%;
+        }
+        
+        body.dark-mode .add-to-cart {
+            background: var(--dark-gradient);
+        }
+        
+        .add-to-cart:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .cart {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+            transition: background 0.3s ease;
+            animation: fadeIn 1s ease;
+        }
+        
+        body.dark-mode .cart {
+            background: var(--dark-surface);
+        }
+        
+        .cart-items {
+            margin-bottom: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+            transition: border-color 0.3s ease;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        body.dark-mode .cart-item {
+            border-bottom: 1px solid #333;
+        }
+        
+        .cart-item-info {
+            flex: 1;
+        }
+        
+        .cart-item-title {
+            font-weight: bold;
+        }
+        
+        .cart-item-option {
+            font-size: 0.9rem;
+            color: #666;
+            transition: color 0.3s ease;
+        }
+        
+        body.dark-mode .cart-item-option {
+            color: #aaa;
+        }
+        
+        .cart-item-price {
+            color: var(--primary-color);
+            transition: color 0.3s ease;
+        }
+        
+        body.dark-mode .cart-item-price {
+            color: var(--dark-primary);
+        }
+        
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .quantity-btn {
+            background: #f0f0f0;
+            border: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+        
+        .quantity-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        body.dark-mode .quantity-btn {
+            background: #333;
+            color: var(--dark-text);
+        }
+        
+        .remove-btn {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+        
+        .remove-btn:hover {
+            background: #ff5252;
+            transform: scale(1.05);
+        }
+        
+        .cart-total {
+            font-size: 1.3rem;
+            font-weight: bold;
+            text-align: right;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            transition: color 0.3s ease;
+            padding: 10px;
+            border-top: 2px dashed #ddd;
+        }
+        
+        body.dark-mode .cart-total {
+            color: var(--dark-primary);
+            border-top: 2px dashed #444;
+        }
+        
+        .checkout-form {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+            transition: background 0.3s ease;
+            animation: fadeIn 1s ease;
+        }
+        
+        body.dark-mode .checkout-form {
+            background: var(--dark-surface);
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+            animation: fadeIn 1s ease;
+            animation-fill-mode: both;
+        }
+        
+        .form-group:nth-child(1) { animation-delay: 0.1s; }
+        .form-group:nth-child(2) { animation-delay: 0.2s; }
+        .form-group:nth-child(3) { animation-delay: 0.3s; }
+        .form-group:nth-child(4) { animation-delay: 0.4s; }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: var(--white);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+        
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(110, 72, 170, 0.2);
+        }
+        
+        body.dark-mode input, body.dark-mode textarea {
+            background: #2a2a2a;
+            border: 1px solid #444;
+            color: var(--dark-text);
+        }
+        
+        body.dark-mode input:focus, body.dark-mode textarea:focus {
+            border-color: var(--dark-primary);
+            box-shadow: 0 0 0 2px rgba(187, 134, 252, 0.2);
+        }
+        
+        .submit-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .submit-btn {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .submit-order-btn {
+            background: var(--gradient);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .submit-order-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .submit-order-btn:hover::before {
+            left: 100%;
+        }
+        
+        body.dark-mode .submit-order-btn {
+            background: var(--dark-gradient);
+        }
+        
+        .submit-order-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .empty-cart {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            transition: color 0.3s ease;
+        }
+        
+        body.dark-mode .empty-cart {
+            color: #aaa;
+        }
+        
+        .cart-badge {
+            background: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            margin-left: 5px;
+            animation: pulse 1.5s infinite;
+        }
+        
+        .customization-note {
+            background: #fff8e1;
+            border-left: 4px solid var(--customizable-color);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            animation: fadeIn 1s ease 0.6s both;
+        }
+        
+        body.dark-mode .customization-note {
+            background: #332900;
+            color: #ffd166;
+        }
+        
+        .product-customizable {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--customizable-color);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            z-index: 5;
+        }
+        
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .floating-element {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 15s infinite ease-in-out;
+        }
+        
+        .floating-element:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+            width: 60px;
+            height: 60px;
+        }
+        
+        .floating-element:nth-child(2) {
+            top: 60%;
+            left: 80%;
+            animation-delay: 2s;
+            width: 40px;
+            height: 40px;
+        }
+        
+        .floating-element:nth-child(3) {
+            top: 30%;
+            left: 85%;
+            animation-delay: 4s;
+            width: 70px;
+            height: 70px;
+        }
+        
+        .floating-element:nth-child(4) {
+            top: 80%;
+            left: 15%;
+            animation-delay: 6s;
+            width: 30px;
+            height: 30px;
+        }
+        
+        .floating-element:nth-child(5) {
+            top: 20%;
+            left: 50%;
+            animation-delay: 8s;
+            width: 50px;
+            height: 50px;
+        }
+        
+        .pdf-preview {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+            transition: background 0.3s ease;
+            display: none;
+        }
+        
+        body.dark-mode .pdf-preview {
+            background: var(--dark-surface);
+        }
+        
+        .pdf-preview.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .pdf-preview-content {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            background: white;
+            color: #333;
+            min-height: 400px;
+        }
+        
+        .pdf-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #6e48aa;
+        }
+        
+        .pdf-logo {
+            max-width: 150px;
+            max-height: 80px;
+        }
+        
+        .pdf-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #6e48aa;
+        }
+        
+        .pdf-details {
+            margin-bottom: 20px;
+        }
+        
+        .pdf-order-items {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .pdf-order-items th {
+            background: #6e48aa;
+            color: white;
+            padding: 12px 15px;
+            text-align: center;
+            font-weight: 600;
+            border: 1px solid #5a3a8a;
+        }
+        
+        .pdf-order-items td {
+            padding: 12px 15px;
+            border: 1px solid #eee;
+            text-align: center;
+        }
+        
+        .pdf-order-items tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .pdf-totals {
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 2px solid #6e48aa;
+        }
+        
+        .pdf-total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            padding: 5px 0;
+        }
+        
+        .pdf-total-label {
+            font-weight: 500;
+        }
+        
+        .pdf-total-value {
+            font-weight: 600;
+        }
+        
+        .pdf-grand-total {
+            font-size: 18px;
+            font-weight: bold;
+            color: #6e48aa;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+        
+        .pdf-footer {
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid #ddd;
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+        }
+        
+        .confirmation-message {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+            transition: background 0.3s ease;
+            display: none;
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        body.dark-mode .confirmation-message {
+            background: var(--dark-surface);
+        }
+        
+        .confirmation-message.active {
+            display: block;
+        }
+        
+        .confirmation-icon {
+            font-size: 64px;
+            color: #25D366;
+            margin-bottom: 20px;
+        }
+        
+        .confirmation-title {
+            font-size: 28px;
+            color: #6e48aa;
+            margin-bottom: 15px;
+        }
+        
+        .confirmation-text {
+            font-size: 16px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .confirmation-details {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        
+        body.dark-mode .confirmation-details {
+            background: #2a2a2a;
+        }
+        
+        .confirmation-contact {
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px dashed #ddd;
+        }
+        
+        @media (max-width: 768px) {
+            .submit-buttons {
+                flex-direction: column;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .theme-toggle {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin: 10px auto;
+                display: flex;
+                justify-content: center;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .pdf-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .pdf-logo {
+                margin-bottom: 15px;
+            }
+        }
+        
+        .discount-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #ff4757;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            z-index: 5;
+            animation: pulse 2s infinite;
+        }
+        
+        .price-strike {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 0.8rem;
+            margin-right: 5px;
+        }
+        
+        /* Nuevos estilos para el campo de mensaje personalizado */
+        .whatsapp-message-container {
+            background: #fff8e1;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid var(--customizable-color);
+            transition: all 0.3s ease;
+        }
+        
+        body.dark-mode .whatsapp-message-container {
+            background: #332900;
+        }
+        
+        .whatsapp-message-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            color: #25D366;
+            font-weight: 600;
+        }
+        
+        .whatsapp-message-header i {
+            font-size: 1.5rem;
+        }
+        
+        .whatsapp-message-preview {
+            background: #f0f0f0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #333;
+            border-left: 3px solid #25D366;
+            transition: all 0.3s ease;
+        }
+        
+        body.dark-mode .whatsapp-message-preview {
+            background: #2a2a2a;
+            color: #e0e0e0;
+        }
+        
+        .whatsapp-message-preview h4 {
+            margin-bottom: 10px;
+            color: #25D366;
+        }
+        
+        .whatsapp-message-preview-content {
+            white-space: pre-line;
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-elements">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+    </div>
+    
+    <div class="container">
+        <header id="main-header">
+            <div class="customizable-indicator">PERSONALIZABLE</div>
+            <button class="theme-toggle" id="theme-toggle">
+                <span id="theme-icon">🌙</span>
+                <span id="theme-text">Modo Nocturno</span>
+            </button>
+            <h1><span class="customizable-text">Punto de Venta Streaming</span></h1>
+            <p class="subtitle"><span class="customizable-text">Suscripciones a las mejores plataformas de streaming</span></p>
+        </header>
+        
+        <div class="customization-note">
+            <strong>Nota para el cliente:</strong> Las áreas marcadas con 🔧 y subrayadas son personalizables según sus necesidades. Puede modificar textos, colores, productos, precios y funcionalidades.
+        </div>
+        
+        <!-- Pestañas de navegación -->
+        <div class="tabs" id="tabs-container">
+            <button class="tab active" data-tab="products-tab"><span class="customizable-text">Plataformas</span></button>
+            <button class="tab" data-tab="cart-tab">
+                <span class="customizable-text">Carrito</span> <span class="cart-badge" id="cart-badge">0</span>
+            </button>
+        </div>
+        
+        <!-- Contenido de la pestaña Productos -->
+        <div class="tab-content active" id="products-tab">
+            <section class="products-section" id="products-section">
+                <h2 class="section-title"><span class="customizable-text">Plataformas Disponibles</span></h2>
+                <div class="products-grid" id="products-grid">
+                    <!-- Los productos se cargarán aquí con JavaScript -->
+                </div>
+            </section>
+        </div>
+        
+        <!-- Contenido de la pestaña Carrito -->
+        <div class="tab-content" id="cart-tab">
+            <section class="cart-section" id="cart-section">
+                <h2 class="section-title"><span class="customizable-text">Tu Carrito</span></h2>
+                
+                <!-- Mensaje de confirmación -->
+                <div class="confirmation-message" id="confirmation-message">
+                    <div class="confirmation-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h2 class="confirmation-title">¡Pedido Enviado Exitosamente!</h2>
+                    <p class="confirmation-text">
+                        Su pedido ha sido procesado correctamente. Hemos generado un recibo PDF para usted 
+                        y nos pondremos en contacto con usted a través de los medios que proporcionó para finalizar el proceso.
+                    </p>
+                    <div class="confirmation-details">
+                        <p><strong>Resumen de su pedido:</strong></p>
+                        <p id="order-summary">Cargando información del pedido...</p>
+                    </div>
+                    <div class="confirmation-contact">
+                        <p><strong>Le agradecemos por su compra y estaremos atentos a sus medios de contacto.</strong></p>
+                        <p>Si tiene alguna pregunta, no dude en contactarnos.</p>
+                    </div>
+                    <div class="submit-buttons">
+                        <button class="submit-btn submit-order-btn" id="new-order-btn">
+                            <span class="customizable-text">Realizar Nuevo Pedido</span>
+                            <i class="fas fa-shopping-cart"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="cart" id="cart-container">
+                    <div class="cart-items" id="cart-items">
+                        <!-- Los items del carrito se mostrarán aquí -->
+                        <div class="empty-cart"><span class="customizable-text">Tu carrito está vacío</span></div>
+                    </div>
+                    <div class="cart-total" id="cart-total"><span class="customizable-text">Total:</span> $<span id="total-amount">0.00</span> MXN</div>
+                </div>
+                
+                <!-- Vista previa del PDF -->
+                <div class="pdf-preview" id="pdf-preview">
+                    <h2 class="section-title"><span class="customizable-text">Vista Previa del Recibo</span></h2>
+                    <div class="pdf-preview-content" id="pdf-preview-content">
+                        <!-- El contenido del PDF se generará aquí -->
+                    </div>
+                    
+                    <!-- Sección para personalizar el mensaje de WhatsApp -->
+                    <div class="whatsapp-message-container">
+                        <div class="whatsapp-message-header">
+                            <i class="fab fa-whatsapp"></i>
+                            <h3>Personalizar Mensaje de WhatsApp</h3>
+                        </div>
+                        <div class="form-group">
+                            <label for="whatsapp-message"><span class="customizable-text">Mensaje personalizado para WhatsApp</span></label>
+                            <textarea id="whatsapp-message" name="whatsapp-message" rows="4" placeholder="Escribe aquí el mensaje que quieres enviar por WhatsApp..."></textarea>
+                        </div>
+                        <div class="whatsapp-message-preview">
+                            <h4>Vista previa del mensaje:</h4>
+                            <div class="whatsapp-message-preview-content" id="whatsapp-message-preview">
+                                <!-- Aquí se mostrará la vista previa del mensaje -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="submit-buttons">
+                        <button class="submit-btn submit-order-btn" id="download-pdf-btn">
+                            <span class="customizable-text">Descargar PDF y Enviar Pedido</span>
+                            <i class="fas fa-download"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="checkout-form" id="checkout-form">
+                    <h2 class="section-title"><span class="customizable-text">Información de Contacto</span></h2>
+                    <form id="order-form">
+                        <div class="form-group">
+                            <label for="name"><span class="customizable-text">Nombre completo</span></label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email"><span class="customizable-text">Correo electrónico</span></label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone"><span class="customizable-text">Teléfono</span></label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message"><span class="customizable-text">Mensaje adicional (opcional)</span></label>
+                            <textarea id="message" name="message" rows="3"></textarea>
+                        </div>
+                        <div class="submit-buttons">
+                            <button type="submit" class="submit-btn submit-order-btn">
+                                <span class="customizable-text">Generar Recibo PDF</span>
+                                <i class="fas fa-file-pdf"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
 
-    // Partículas
-    particlesJS('particles-js', {
-      particles: {
-        number: { value: 100 },
-        color: { value: '#ffffff' },
-        shape: { type: 'circle' },
-        opacity: { value: 0.5 },
-        size: { value: 3 },
-        line_linked: { enable: true, color: '#888888' },
-        move: { enable: true, speed: 2 }
-      }
-    });
-  </script>
+    <script>
+        // =============================================
+        // ÁREA PERSONALIZABLE: PRODUCTOS Y PRECIOS
+        // =============================================
+        // (Modifique esta lista según las necesidades del cliente)
+        const products = [
+            {
+                id: 1,
+                name: "Netflix", // (Nombre personalizable)
+                description: "Películas y series en streaming", // (Descripción personalizable)
+                image: "https://m.media-amazon.com/images/I/31JfJ6dXD9L.png", // (Imagen personalizable - cambiar URL)
+                options: [
+                    { id: 1, name: "1 Pantalla", price: 179.99, originalPrice: 199.99 }, // (Opción y precio personalizables)
+                    { id: 2, name: "Cuenta Completa", price: 319.99, originalPrice: 349.99 } // (Opción y precio personalizables)
+                ]
+            },
+            {
+                id: 2,
+                name: "Disney+", // (Nombre personalizable)
+                description: "Todo el contenido de Disney, Marvel y Star Wars", // (Descripción personalizable)
+                image: "https://library.sportingnews.com/styles/crop_style_16_9_desktop_webp/s3/2024-05/How-to-watch-Partner-FTRs-%28Disney%2B%29.jpg.webp?itok=IskYvWMX", // (Imagen personalizable - cambiar URL)
+                options: [
+                    { id: 1, name: "1 Pantalla", price: 159.99, originalPrice: 179.99 }, // (Opción y precio personalizables)
+                    { id: 2, name: "Cuenta Completa", price: 259.99, originalPrice: 289.99 } // (Opción y precio personalizables)
+                ]
+            },
+            {
+                id: 3,
+                name: "HBO Max", // (Nombre personalizable)
+                description: "Series exclusivas y películas de estreno", // (Descripción personalizable)
+                image: "https://i.blogs.es/19be90/1366_2000-42-/450_1000.jpeg", // (Imagen personalizable - cambiar URL)
+                options: [
+                    { id: 1, name: "1 Pantalla", price: 179.99, originalPrice: 199.99 }, // (Opción y precio personalizables)
+                    { id: 2, name: "Cuenta Completa", price: 299.99, originalPrice: 329.99 } // (Opción y precio personalizables)
+                ]
+            },
+            {
+                id: 4,
+                name: "Amazon Prime Video", // (Nombre personalizable)
+                description: "Series originales y envíos gratis en Amazon", // (Descripción personalizable)
+                image: "https://m.media-amazon.com/images/G/01/primevideo/seo/primevideo-seo-logo.png", // (Imagen personalizable - cambiar URL)
+                options: [
+                    { id: 1, name: "1 Pantalla", price: 119.99, originalPrice: 139.99 }, // (Opción y precio personalizables)
+                    { id: 2, name: "Cuenta Completa", price: 199.99, originalPrice: 229.99 } // (Opción y precio personalizables)
+                ]
+            },
+            {
+                id: 5,
+                name: "Apple TV+", // (Nombre personalizable)
+                description: "Contenido original de Apple", // (Descripción personalizable)
+                image: "https://www.apple.com/v/apple-tv-plus/an/images/meta/apple-tv__e7aqjl2rqzau_og.png", // (Imagen personalizable - cambiar URL)
+                options: [
+                    { id: 1, name: "1 Pantalla", price: 99.99, originalPrice: 119.99 }, // (Opción y precio personalizables)
+                    { id: 2, name: "Cuenta Completa", price: 159.99, originalPrice: 179.99 } // (Opción y precio personalizables)
+                ]
+            },
+            {
+                id: 6,
+                name: "Spotify Premium", // (Nombre personalizable)
+                description: "Música sin anuncios y descargas offline", // (Descripción personalizable)
+                image: "https://www.liderlogo.es/wp-content/uploads/2022/12/pasted-image-0-4.png", // (Imagen personalizable - cambiar URL)
+                options: [
+                    { id: 1, name: "Individual", price: 199.99, originalPrice: 229.99 }, // (Opción y precio personalizables)
+                    { id: 2, name: "Familiar", price: 319.99, originalPrice: 349.99 } // (Opción y precio personalizables)
+                ]
+            },
+            {
+                id: 7,
+                name: "YouTube Premium", // (Nombre personalizable)
+                description: "YouTube sin anuncios y música ilimitada", // (Descripción personalizable)
+                image: "https://indiehoy.com/wp-content/uploads/2020/01/youtubepremium-youtubemusic-640x347.png", // (Imagen personalizable - cambiar URL)
+                options: [
+                    { id: 1, name: "Individual", price: 239.99, originalPrice: 269.99 }, // (Opción y precio personalizables)
+                    { id: 2, name: "Familiar", price: 359.99, originalPrice: 389.99 } // (Opción y precio personalizables)
+                ]
+            },
+            {
+                id: 8,
+                name: "Paramount+", // (Nombre personalizable)
+                description: "Contenido exclusivo de Paramount", // (Descripción personalizable)
+                image: "https://tecolotito.elsiglodedurango.com.mx/cdn-cgi/image/format=auto,width=1024/i/2021/03/960729.jpeg", // (Imagen personalizable - cambiar URL)
+                options: [
+                    { id: 1, name: "Básico", price: 99.99, originalPrice: 119.99 }, // (Opción y precio personalizables)
+                    { id: 2, name: "Premium", price: 199.99, originalPrice: 229.99 } // (Opción y precio personalizables)
+                ]
+            }
+        ];
+
+        // =============================================
+        // ÁREA PERSONALIZABLE: CONFIGURACIÓN DE PDF
+        // =============================================
+        // (Modifique estos valores según sus necesidades)
+        const COMPANY_NAME = "Streaming Premium MX"; // (Nombre de la empresa personalizable)
+        const COMPANY_LOGO = "https://codigo8.com/wp-content/uploads/2021/09/tu-logo-aqui.png"; // (URL del logo personalizable)
+        const COMPANY_ADDRESS = "Av. Insurgentes 123, CDMX, México"; // (Dirección personalizable)
+        const COMPANY_PHONE = "+52 (55) 1234-5678"; // (Teléfono personalizable)
+        const COMPANY_EMAIL = "ventas@streamingpremium.mx"; // (Email personalizable)
+
+        // =============================================
+        // ÁREA PERSONALIZABLE: CONFIGURACIÓN DE ENVÍO
+        // =============================================
+        // (Modifique estos valores según las necesidades del cliente)
+        const FORMSPREE_URL = 'https://formspree.io/f/movkaeqd'; // (URL de Formspree personalizable)
+        const WHATSAPP_NUMBER = '1234567890'; // (Número de WhatsApp personalizable)
+        const WHATSAPP_PREFIX = 'https://wa.me/'; // (Prefijo de WhatsApp personalizable si es necesario)
+
+        // =============================================
+        // ÁREA PERSONALIZABLE: MENSAJE DE WHATSAPP POR DEFECTO
+        // =============================================
+        const DEFAULT_WHATSAPP_MESSAGE = `Hola, me interesa contratar los siguientes servicios:\n\n`;
+
+        // Carrito de compras
+        let cart = [];
+
+        // Función para cambiar entre modo claro y oscuro
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            const themeText = document.getElementById('theme-text');
+            
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                themeIcon.textContent = '☀️';
+                themeText.textContent = 'Modo Claro';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeIcon.textContent = '🌙';
+                themeText.textContent = 'Modo Nocturno';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Cargar productos en la página
+        function loadProducts() {
+            const productsGrid = document.getElementById('products-grid');
+            productsGrid.innerHTML = '';
+            
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                
+                // Verificar si hay descuento para mostrar badge
+                const hasDiscount = product.options.some(option => option.originalPrice && option.originalPrice > option.price);
+                
+                productCard.innerHTML = `
+                    ${hasDiscount ? '<div class="discount-badge">¡Oferta!</div>' : ''}
+                    <div class="product-customizable">PERSONALIZABLE</div>
+                    <div class="product-image" style="background-image: url('${product.image}')"></div>
+                    <div class="product-info">
+                        <h3 class="product-title"><span class="customizable-text">${product.name}</span></h3>
+                        <p class="product-description"><span class="customizable-text">${product.description}</span></p>
+                        <div class="product-options" id="options-${product.id}">
+                            ${product.options.map(option => `
+                                <div class="option-group" data-product-id="${product.id}" data-option-id="${option.id}">
+                                    <label class="option-label">
+                                        <input type="radio" name="option-${product.id}" value="${option.id}" ${option.id === 1 ? 'checked' : ''}>
+                                        <span class="customizable-text">${option.name}</span>
+                                    </label>
+                                    <span class="option-price">
+                                        ${option.originalPrice ? `<span class="price-strike">$${option.originalPrice.toFixed(2)}</span>` : ''}
+                                        <span class="customizable-price">$${option.price.toFixed(2)}</span>/mes
+                                    </span>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <button class="add-to-cart" data-id="${product.id}"><span class="customizable-text">Agregar al Carrito</span></button>
+                    </div>
+                `;
+                productsGrid.appendChild(productCard);
+            });
+            
+            // Agregar event listeners a los botones
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = parseInt(this.getAttribute('data-id'));
+                    addToCart(productId);
+                });
+            });
+            
+            // Agregar event listeners a las opciones
+            document.querySelectorAll('.option-group').forEach(group => {
+                group.addEventListener('click', function() {
+                    const productId = parseInt(this.getAttribute('data-product-id'));
+                    const optionId = parseInt(this.getAttribute('data-option-id'));
+                    
+                    // Seleccionar esta opción
+                    const optionsContainer = document.getElementById(`options-${productId}`);
+                    optionsContainer.querySelectorAll('.option-group').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    this.classList.add('selected');
+                    
+                    // Marcar el radio button correspondiente
+                    const radio = this.querySelector('input[type="radio"]');
+                    radio.checked = true;
+                });
+            });
+        }
+
+        // Agregar producto al carrito
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const optionsContainer = document.getElementById(`options-${productId}`);
+            const selectedOption = optionsContainer.querySelector('input[type="radio"]:checked');
+            const optionId = parseInt(selectedOption.value);
+            const option = product.options.find(o => o.id === optionId);
+            
+            const existingItem = cart.find(item => item.id === productId && item.optionId === optionId);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    optionId: option.id,
+                    optionName: option.name,
+                    price: option.price,
+                    quantity: 1
+                });
+            }
+            
+            updateCart();
+            updateCartBadge();
+            
+            // Mostrar notificación
+            showNotification(`${product.name} agregado al carrito`);
+        }
+
+        // Mostrar notificación
+        function showNotification(message) {
+            // Crear elemento de notificación
+            const notification = document.createElement('div');
+            notification.textContent = message;
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: var(--primary-color);
+                color: white;
+                padding: 15px 20px;
+                border-radius: 5px;
+                box-shadow: var(--shadow);
+                z-index: 1000;
+                transition: opacity 0.3s ease;
+                animation: fadeIn 0.5s ease;
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Eliminar notificación después de 3 segundos
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+
+        // Actualizar visualización del carrito
+        function updateCart() {
+            const cartItems = document.getElementById('cart-items');
+            const totalAmount = document.getElementById('total-amount');
+            
+            // Limpiar carrito
+            cartItems.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<div class="empty-cart"><span class="customizable-text">Tu carrito está vacío</span></div>';
+                totalAmount.textContent = '0.00';
+                return;
+            }
+            
+            // Calcular total
+            let total = 0;
+            
+            // Mostrar items del carrito
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+                    <div class="cart-item-info">
+                        <div class="cart-item-title"><span class="customizable-text">${item.name}</span></div>
+                        <div class="cart-item-option"><span class="customizable-text">${item.optionName}</span></div>
+                        <div class="cart-item-price"><span class="customizable-price">$${item.price.toFixed(2)}</span> MXN c/u</div>
+                    </div>
+                    <div class="cart-item-actions">
+                        <button class="quantity-btn decrease" data-id="${item.id}" data-option-id="${item.optionId}">-</button>
+                        <span>${item.quantity}</span>
+                        <button class="quantity-btn increase" data-id="${item.id}" data-option-id="${item.optionId}">+</button>
+                        <button class="remove-btn" data-id="${item.id}" data-option-id="${item.optionId}"><span class="customizable-text">Eliminar</span></button>
+                    </div>
+                `;
+                cartItems.appendChild(cartItem);
+            });
+            
+            // Actualizar total
+            totalAmount.textContent = total.toFixed(2);
+            
+            // Agregar event listeners a los botones del carrito
+            document.querySelectorAll('.decrease').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = parseInt(this.getAttribute('data-id'));
+                    const optionId = parseInt(this.getAttribute('data-option-id'));
+                    decreaseQuantity(productId, optionId);
+                });
+            });
+            
+            document.querySelectorAll('.increase').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = parseInt(this.getAttribute('data-id'));
+                    const optionId = parseInt(this.getAttribute('data-option-id'));
+                    increaseQuantity(productId, optionId);
+                });
+            });
+            
+            document.querySelectorAll('.remove-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = parseInt(this.getAttribute('data-id'));
+                    const optionId = parseInt(this.getAttribute('data-option-id'));
+                    removeFromCart(productId, optionId);
+                });
+            });
+        }
+
+        // Actualizar el badge del carrito
+        function updateCartBadge() {
+            const cartBadge = document.getElementById('cart-badge');
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            cartBadge.textContent = totalItems;
+        }
+
+        // Disminuir cantidad de un producto
+        function decreaseQuantity(productId, optionId) {
+            const item = cart.find(item => item.id === productId && item.optionId === optionId);
+            if (item && item.quantity > 1) {
+                item.quantity -= 1;
+                updateCart();
+                updateCartBadge();
+            }
+        }
+
+        // Aumentar cantidad de un producto
+        function increaseQuantity(productId, optionId) {
+            const item = cart.find(item => item.id === productId && item.optionId === optionId);
+            if (item) {
+                item.quantity += 1;
+                updateCart();
+                updateCartBadge();
+            }
+        }
+
+        // Eliminar producto del carrito
+        function removeFromCart(productId, optionId) {
+            cart = cart.filter(item => !(item.id === productId && item.optionId === optionId));
+            updateCart();
+            updateCartBadge();
+        }
+
+        // Generar vista previa del PDF
+        function generatePDFPreview() {
+            const pdfPreviewContent = document.getElementById('pdf-preview-content');
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const message = document.getElementById('message').value;
+            
+            // Calcular total
+            let total = 0;
+            cart.forEach(item => {
+                total += item.price * item.quantity;
+            });
+            
+            // Generar contenido del PDF
+            pdfPreviewContent.innerHTML = `
+                <div class="pdf-header">
+                    <img src="${COMPANY_LOGO}" alt="${COMPANY_NAME}" class="pdf-logo">
+                    <div class="pdf-title">Recibo de Pedido</div>
+                </div>
+                
+                <div class="pdf-details">
+                    <h3>Información del Cliente</h3>
+                    <p><strong>Nombre:</strong> ${name}</p>
+                    <p><strong>Email:</strong> ${email}</p>
+                    <p><strong>Teléfono:</strong> ${phone}</p>
+                    ${message ? `<p><strong>Mensaje:</strong> ${message}</p>` : ''}
+                    <p><strong>Fecha:</strong> ${new Date().toLocaleDateString()}</p>
+                    <p><strong>Número de Pedido:</strong> #${Math.floor(100000 + Math.random() * 900000)}</p>
+                </div>
+                
+                <h3>Detalles del Pedido</h3>
+                <table class="pdf-order-items">
+                    <thead>
+                        <tr>
+                            <th style="width: 25%;">Servicio</th>
+                            <th style="width: 25%;">Opción</th>
+                            <th style="width: 15%;">Cantidad</th>
+                            <th style="width: 20%;">Precio Unitario</th>
+                            <th style="width: 15%;">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${cart.map(item => `
+                            <tr>
+                                <td>${item.name}</td>
+                                <td>${item.optionName}</td>
+                                <td>${item.quantity}</td>
+                                <td>$${item.price.toFixed(2)} MXN</td>
+                                <td>$${(item.price * item.quantity).toFixed(2)} MXN</td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+                
+                <div class="pdf-totals">
+                    <div class="pdf-total-row pdf-grand-total">
+                        <span class="pdf-total-label">Total:</span>
+                        <span class="pdf-total-value">$${total.toFixed(2)} MXN</span>
+                    </div>
+                </div>
+                
+                <div class="pdf-footer">
+                    <p>${COMPANY_NAME} | ${COMPANY_ADDRESS} | ${COMPANY_PHONE} | ${COMPANY_EMAIL}</p>
+                    <p>¡Gracias por su compra! Este recibo es válido como comprobante de pedido.</p>
+                </div>
+            `;
+            
+            // Actualizar vista previa del mensaje de WhatsApp
+            updateWhatsAppMessagePreview();
+            
+            // Mostrar vista previa
+            document.getElementById('pdf-preview').classList.add('active');
+            
+            // Desplazar hacia la vista previa
+            document.getElementById('pdf-preview').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Actualizar la vista previa del mensaje de WhatsApp
+        function updateWhatsAppMessagePreview() {
+            const whatsappMessage = document.getElementById('whatsapp-message').value || DEFAULT_WHATSAPP_MESSAGE;
+            const previewElement = document.getElementById('whatsapp-message-preview');
+            
+            // Generar detalles del pedido
+            let orderDetails = '';
+            let total = 0;
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                orderDetails += `${item.name} - ${item.optionName} x${item.quantity}: $${itemTotal.toFixed(2)} MXN\n`;
+            });
+            
+            orderDetails += `\nTOTAL: $${total.toFixed(2)} MXN`;
+            
+            // Mostrar vista previa
+            previewElement.textContent = whatsappMessage + orderDetails;
+        }
+
+        // Descargar PDF - VERSIÓN CORREGIDA
+        function downloadPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const message = document.getElementById('message').value;
+            
+            // Calcular total
+            let total = 0;
+            cart.forEach(item => {
+                total += item.price * item.quantity;
+            });
+            
+            // Configuración de márgenes y dimensiones
+            const margin = 20;
+            const pageWidth = doc.internal.pageSize.width;
+            const contentWidth = pageWidth - (margin * 2);
+            let yPosition = margin;
+            
+            // Configurar fuente y colores
+            doc.setFont('helvetica');
+            
+            // Encabezado
+            doc.setFontSize(22);
+            doc.setTextColor(110, 72, 170);
+            doc.text('RECIBO DE PEDIDO', pageWidth / 2, yPosition, { align: 'center' });
+            yPosition += 15;
+            
+            // Información de la empresa
+            doc.setFontSize(10);
+            doc.setTextColor(100, 100, 100);
+            doc.text(COMPANY_NAME, margin, yPosition);
+            yPosition += 5;
+            doc.text(COMPANY_ADDRESS, margin, yPosition);
+            yPosition += 5;
+            doc.text(`Tel: ${COMPANY_PHONE} | Email: ${COMPANY_EMAIL}`, margin, yPosition);
+            yPosition += 15;
+            
+            // Línea separadora
+            doc.setDrawColor(110, 72, 170);
+            doc.setLineWidth(0.5);
+            doc.line(margin, yPosition, pageWidth - margin, yPosition);
+            yPosition += 10;
+            
+            // Información del cliente
+            doc.setFontSize(12);
+            doc.setTextColor(0, 0, 0);
+            doc.text(`Cliente: ${name}`, margin, yPosition);
+            yPosition += 7;
+            doc.text(`Email: ${email}`, margin, yPosition);
+            yPosition += 7;
+            doc.text(`Teléfono: ${phone}`, margin, yPosition);
+            yPosition += 7;
+            
+            if (message) {
+                const messageLines = doc.splitTextToSize(`Mensaje: ${message}`, contentWidth);
+                doc.text(messageLines, margin, yPosition);
+                yPosition += (messageLines.length * 7);
+            }
+            
+            doc.text(`Fecha: ${new Date().toLocaleDateString()}`, margin, yPosition);
+            yPosition += 7;
+            doc.text(`Número de Pedido: #${Math.floor(100000 + Math.random() * 900000)}`, margin, yPosition);
+            yPosition += 15;
+            
+            // Título de la tabla
+            doc.setFontSize(14);
+            doc.setFont(undefined, 'bold');
+            doc.text('DETALLES DEL PEDIDO', margin, yPosition);
+            yPosition += 10;
+            
+            // Configurar columnas de la tabla
+            const colWidths = [70, 50, 25, 30, 25]; // Anchos de columnas
+            const colPositions = [margin];
+            for (let i = 1; i < colWidths.length; i++) {
+                colPositions.push(colPositions[i-1] + colWidths[i-1]);
+            }
+            
+            // Encabezado de la tabla
+            doc.setFillColor(110, 72, 170);
+            doc.setTextColor(255, 255, 255);
+            doc.rect(margin, yPosition, contentWidth, 10, 'F');
+            
+            const headers = ['Servicio', 'Opción', 'Cant.', 'Precio', 'Total'];
+            headers.forEach((header, index) => {
+                doc.text(header, colPositions[index] + 3, yPosition + 7);
+            });
+            
+            yPosition += 12;
+            
+            // Detalles del pedido
+            doc.setFontSize(10);
+            doc.setTextColor(0, 0, 0);
+            doc.setFont(undefined, 'normal');
+            
+            cart.forEach(item => {
+                // Verificar si necesitamos una nueva página
+                if (yPosition > 250) {
+                    doc.addPage();
+                    yPosition = margin;
+                    
+                    // Redibujar encabezado de tabla en nueva página
+                    doc.setFillColor(110, 72, 170);
+                    doc.setTextColor(255, 255, 255);
+                    doc.rect(margin, yPosition, contentWidth, 10, 'F');
+                    headers.forEach((header, index) => {
+                        doc.text(header, colPositions[index] + 3, yPosition + 7);
+                    });
+                    yPosition += 12;
+                }
+                
+                // Procesar cada celda con splitTextToSize para evitar desbordamiento
+                const serviceLines = doc.splitTextToSize(item.name, colWidths[0] - 6);
+                const optionLines = doc.splitTextToSize(item.optionName, colWidths[1] - 6);
+                
+                // Calcular altura máxima de fila
+                const maxLines = Math.max(serviceLines.length, optionLines.length);
+                const rowHeight = maxLines * 5;
+                
+                // Dibujar celdas
+                doc.text(serviceLines, colPositions[0] + 3, yPosition + 4);
+                doc.text(optionLines, colPositions[1] + 3, yPosition + 4);
+                doc.text(item.quantity.toString(), colPositions[2] + 3, yPosition + 4);
+                doc.text(`$${item.price.toFixed(2)}`, colPositions[3] + 3, yPosition + 4);
+                doc.text(`$${(item.price * item.quantity).toFixed(2)}`, colPositions[4] + 3, yPosition + 4);
+                
+                // Líneas divisorias de la tabla
+                doc.setDrawColor(200, 200, 200);
+                doc.setLineWidth(0.2);
+                doc.line(margin, yPosition + rowHeight, pageWidth - margin, yPosition + rowHeight);
+                
+                yPosition += rowHeight + 2;
+            });
+            
+            // Total
+            yPosition += 10;
+            doc.setFontSize(14);
+            doc.setFont(undefined, 'bold');
+            doc.setTextColor(110, 72, 170);
+            doc.text('TOTAL:', pageWidth - margin - 50, yPosition);
+            doc.text(`$${total.toFixed(2)} MXN`, pageWidth - margin - 5, yPosition, { align: 'right' });
+            
+            // Pie de página
+            yPosition += 20;
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'normal');
+            doc.setTextColor(100, 100, 100);
+            
+            doc.text('¡Gracias por su compra!', pageWidth / 2, yPosition, { align: 'center' });
+            yPosition += 5;
+            doc.text('Este recibo es válido como comprobante de pedido.', pageWidth / 2, yPosition, { align: 'center' });
+            yPosition += 10;
+            
+            const footerLines = doc.splitTextToSize(`${COMPANY_NAME} | ${COMPANY_ADDRESS} | ${COMPANY_PHONE} | ${COMPANY_EMAIL}`, contentWidth);
+            footerLines.forEach(line => {
+                doc.text(line, pageWidth / 2, yPosition, { align: 'center' });
+                yPosition += 5;
+            });
+            
+            // Guardar PDF
+            doc.save(`recibo_${name.replace(/\s+/g, '_')}_${Date.now()}.pdf`);
+        }
+
+        // Obtener detalles del pedido
+        function getOrderDetails() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const message = document.getElementById('message').value;
+            
+            let details = `Cliente: ${name}\n`;
+            details += `Email: ${email}\n`;
+            details += `Teléfono: ${phone}\n`;
+            
+            if (message) {
+                details += `Mensaje: ${message}\n`;
+            }
+            
+            details += `\n--- PEDIDO ---\n`;
+            
+            let total = 0;
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                details += `${item.name} - ${item.optionName} x${item.quantity}: $${itemTotal.toFixed(2)} MXN\n`;
+            });
+            
+            details += `\nTOTAL: $${total.toFixed(2)} MXN`;
+            
+            return details;
+        }
+
+        // Mostrar mensaje de confirmación
+        function showConfirmation() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            
+            // Calcular total
+            let total = 0;
+            cart.forEach(item => {
+                total += item.price * item.quantity;
+            });
+            
+            // Generar resumen del pedido
+            let orderSummary = '';
+            cart.forEach(item => {
+                orderSummary += `${item.name} - ${item.optionName} x${item.quantity}: $${(item.price * item.quantity).toFixed(2)} MXN\n`;
+            });
+            orderSummary += `\nTotal: $${total.toFixed(2)} MXN`;
+            
+            // Actualizar el resumen en el mensaje de confirmación
+            document.getElementById('order-summary').innerText = orderSummary;
+            
+            // Ocultar otros elementos y mostrar confirmación
+            document.getElementById('cart-container').style.display = 'none';
+            document.getElementById('pdf-preview').style.display = 'none';
+            document.getElementById('checkout-form').style.display = 'none';
+            document.getElementById('confirmation-message').classList.add('active');
+            
+            // Desplazar hacia el mensaje de confirmación
+            document.getElementById('confirmation-message').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Reiniciar para nuevo pedido
+        function resetForNewOrder() {
+            // Limpiar carrito
+            cart = [];
+            updateCart();
+            updateCartBadge();
+            
+            // Limpiar formulario
+            document.getElementById('order-form').reset();
+            
+            // Limpiar mensaje de WhatsApp personalizado
+            document.getElementById('whatsapp-message').value = '';
+            
+            // Ocultar mensaje de confirmación y mostrar elementos normales
+            document.getElementById('confirmation-message').classList.remove('active');
+            document.getElementById('cart-container').style.display = 'block';
+            document.getElementById('checkout-form').style.display = 'block';
+            
+            // Cambiar a la pestaña de productos
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            document.querySelector('[data-tab="products-tab"]').classList.add('active');
+            document.getElementById('products-tab').classList.add('active');
+        }
+
+        // Enviar pedido por Formspree
+        function sendFormspree() {
+            const form = document.getElementById('order-form');
+            const formData = new FormData(form);
+            
+            // Agregar detalles del pedido al FormData
+            const orderDetails = getOrderDetails();
+            formData.append('order_details', orderDetails);
+            formData.append('_subject', `Nuevo pedido de ${document.getElementById('name').value}`);
+            
+            fetch(FORMSPREE_URL, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Pedido enviado a Formspree exitosamente');
+                } else {
+                    console.error('Error al enviar el pedido a Formspree');
+                }
+            })
+            .catch(error => {
+                console.error('Error al enviar el pedido a Formspree:', error);
+            });
+        }
+
+        // Enviar pedido por WhatsApp
+        function sendWhatsApp() {
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            
+            if (!name || !phone) {
+                alert('Por favor, completa tu nombre y teléfono antes de enviar por WhatsApp');
+                return;
+            }
+            
+            // Obtener el mensaje personalizado o usar el predeterminado
+            const whatsappMessage = document.getElementById('whatsapp-message').value || DEFAULT_WHATSAPP_MESSAGE;
+            
+            // Generar detalles del pedido
+            let orderDetails = '';
+            let total = 0;
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                orderDetails += `${item.name} - ${item.optionName} x${item.quantity}: $${itemTotal.toFixed(2)} MXN\n`;
+            });
+            
+            orderDetails += `\nTOTAL: $${total.toFixed(2)} MXN`;
+            
+            // Combinar mensaje personalizado con detalles del pedido
+            const fullMessage = whatsappMessage + orderDetails;
+            
+            // Crear enlace de WhatsApp
+            const whatsappUrl = `${WHATSAPP_PREFIX}${WHATSAPP_NUMBER}?text=${encodeURIComponent(fullMessage)}`;
+            
+            // Abrir en nueva ventana
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // Enviar pedido por ambos medios
+        function sendOrder() {
+            // Validar que el carrito no esté vacío
+            if (cart.length === 0) {
+                alert('Tu carrito está vacío. Agrega productos antes de enviar.');
+                return;
+            }
+            
+            // Enviar por Formspree
+            sendFormspree();
+            
+            // Enviar por WhatsApp
+            sendWhatsApp();
+            
+            // Mostrar mensaje de confirmación
+            showConfirmation();
+        }
+
+        // Cambiar entre pestañas
+        function setupTabs() {
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const targetTab = tab.getAttribute('data-tab');
+                    
+                    // Remover clase active de todas las pestañas y contenidos
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Agregar clase active a la pestaña y contenido seleccionados
+                    tab.classList.add('active');
+                    document.getElementById(targetTab).classList.add('active');
+                });
+            });
+        }
+
+        // Inicializar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            // Verificar preferencia de tema guardada
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                document.getElementById('theme-icon').textContent = '☀️';
+                document.getElementById('theme-text').textContent = 'Modo Claro';
+            }
+            
+            loadProducts();
+            setupTabs();
+            updateCartBadge();
+            
+            // Event listener para el botón de tema
+            document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+            
+            // Event listener para el formulario
+            document.getElementById('order-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                generatePDFPreview();
+            });
+            
+            // Event listener para el botón de descargar PDF
+            document.getElementById('download-pdf-btn').addEventListener('click', function() {
+                downloadPDF();
+                sendOrder();
+            });
+            
+            // Event listener para el botón de nuevo pedido
+            document.getElementById('new-order-btn').addEventListener('click', resetForNewOrder);
+            
+            // Event listener para actualizar la vista previa del mensaje de WhatsApp
+            document.getElementById('whatsapp-message').addEventListener('input', updateWhatsAppMessagePreview);
+        });
+    </script>
 </body>
 </html>
