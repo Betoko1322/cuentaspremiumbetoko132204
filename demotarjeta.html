@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarjeta Digital - Dr. Alejandro Rodríguez</title>
+    <meta name="description" content="Tarjeta digital profesional del Dr. Alejandro Rodríguez - Especialista en Ortodoncia">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ============================================
+           VARIABLES DE DISEÑO CORPORATIVO
+        ============================================ */
+        :root {
+            /* Paleta de colores profesional dental */
+            --primary-blue: #0d47a1;          /* Azul corporativo */
+            --secondary-teal: #00897b;        /* Verde dental profesional */
+            --accent-gold: #ffb300;           /* Acento de calidad */
+            --light-bg: #f8fdff;              /* Fondo claro */
+            --dark-bg: #1a237e;               /* Fondo oscuro */
+            --text-dark: #263238;             /* Texto oscuro */
+            --text-light: #ffffff;            /* Texto claro */
+            --card-white: #ffffff;            /* Fondo tarjeta */
+            --shadow-light: rgba(13, 71, 161, 0.1);
+            --shadow-dark: rgba(0, 0, 0, 0.3);
+            --transition-speed: 0.3s;
+        }
+
+        /* ============================================
+           ESTILOS BASE
+        ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-teal));
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            transition: background var(--transition-speed);
+        }
+
+        /* ============================================
+           TARJETA PRINCIPAL - RESPONSIVE
+        ============================================ */
+        .card-container {
+            width: 100%;
+            max-width: 420px;
+            margin: 0 auto;
+        }
+
+        .dentist-card {
+            background: var(--card-white);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px var(--shadow-light);
+            position: relative;
+            animation: fadeIn 0.8s ease-out;
+            width: 100%;
+        }
+
+        /* ============================================
+           CABECERA DE LA TARJETA
+        ============================================ */
+        .card-header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-teal));
+            color: var(--text-light);
+            padding: 30px 25px;
+            text-align: center;
+            position: relative;
+        }
+
+        .clinic-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent-gold);
+            color: var(--text-dark);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .profile-image-container {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        #profileImage {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-speed);
+        }
+
+        .profile-image-container:hover #profileImage {
+            transform: scale(1.05);
+        }
+
+        #dentistName {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        #dentistSpecialty {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        .clinic-name {
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* ============================================
+           CUERPO DE LA TARJETA
+        ============================================ */
+        .card-body {
+            padding: 30px;
+        }
+
+        /* ============================================
+           CONTACTOS
+        ============================================ */
+        .contact-section {
+            margin-bottom: 25px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            margin-bottom: 12px;
+            background: var(--light-bg);
+            border-radius: 12px;
+            transition: all var(--transition-speed);
+            text-decoration: none;
+            color: var(--text-dark);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-item:hover {
+            background: #e3f2fd;
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .contact-icon {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-teal));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: white;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 0; /* Para que el texto no desborde */
+        }
+
+        .contact-label {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .contact-value {
+            font-weight: 600;
+            font-size: 1rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* ============================================
+           REDES SOCIALES
+        ============================================ */
+        .social-section {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: var(--primary-blue);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title i {
+            margin-right: 10px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.3rem;
+            text-decoration: none;
+            transition: all var(--transition-speed);
+            flex-shrink: 0;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .facebook {
+            background: #3b5998;
+        }
+
+        .instagram {
+            background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+        }
+
+        .whatsapp {
+            background: #25d366;
+        }
+
+        .linkedin {
+            background: #0077b5;
+        }
+
+        /* ============================================
+           BOTONES DE ACCIÓN
+        ============================================ */
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .action-btn {
+            padding: 16px;
+            border-radius: 12px;
+            border: none;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-speed);
+        }
+
+        .action-btn i {
+            margin-right: 10px;
+        }
+
+        #saveContactBtn {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-teal));
+            color: white;
+        }
+
+        #saveContactBtn:hover {
+            background: linear-gradient(135deg, #0b3d91, #00796b);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px var(--shadow-light);
+        }
+
+        #darkModeToggle {
+            background: #f0f0f0;
+            color: var(--text-dark);
+        }
+
+        #darkModeToggle:hover {
+            background: #e0e0e0;
+            transform: translateY(-3px);
+        }
+
+        /* ============================================
+           MODO OSCURO
+        ============================================ */
+        body.dark-mode {
+            background: linear-gradient(135deg, #121212, #1a1a2e);
+        }
+
+        body.dark-mode .dentist-card {
+            background: #2d2d2d;
+            color: var(--text-light);
+        }
+
+        body.dark-mode .contact-item {
+            background: #3a3a3a;
+            color: var(--text-light);
+        }
+
+        body.dark-mode .contact-item:hover {
+            background: #444;
+        }
+
+        body.dark-mode .contact-label {
+            color: #aaa;
+        }
+
+        body.dark-mode #darkModeToggle {
+            background: #444;
+            color: var(--text-light);
+        }
+
+        body.dark-mode #darkModeToggle:hover {
+            background: #555;
+        }
+
+        /* ============================================
+           RESPONSIVE DESIGN
+        ============================================ */
+        @media (max-width: 480px) {
+            .card-container {
+                max-width: 100%;
+                padding: 0 10px;
+            }
+            
+            .dentist-card {
+                border-radius: 20px;
+            }
+            
+            .card-header {
+                padding: 25px 20px;
+            }
+            
+            .card-body {
+                padding: 25px 20px;
+            }
+            
+            .profile-image-container {
+                width: 120px;
+                height: 120px;
+            }
+            
+            #dentistName {
+                font-size: 1.6rem;
+            }
+            
+            #dentistSpecialty {
+                font-size: 1rem;
+            }
+            
+            .contact-item {
+                padding: 14px;
+            }
+            
+            .contact-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.1rem;
+                margin-right: 12px;
+            }
+            
+            .contact-label {
+                font-size: 0.8rem;
+            }
+            
+            .contact-value {
+                font-size: 0.95rem;
+            }
+            
+            .social-icon {
+                width: 48px;
+                height: 48px;
+                font-size: 1.2rem;
+            }
+            
+            .action-btn {
+                padding: 14px;
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .card-header {
+                padding: 20px 15px;
+            }
+            
+            .card-body {
+                padding: 20px 15px;
+            }
+            
+            .profile-image-container {
+                width: 110px;
+                height: 110px;
+            }
+            
+            #dentistName {
+                font-size: 1.4rem;
+            }
+            
+            .contact-item {
+                flex-direction: column;
+                text-align: center;
+                padding: 12px;
+            }
+            
+            .contact-icon {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            
+            .social-icons {
+                gap: 10px;
+            }
+            
+            .social-icon {
+                width: 44px;
+                height: 44px;
+                font-size: 1.1rem;
+            }
+        }
+
+        /* ============================================
+           ANIMACIONES
+        ============================================ */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .clinic-badge {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body id="body">
+    <div class="card-container">
+        <div class="dentist-card" id="dentistCard">
+            <div class="card-header">
+                <div class="clinic-badge">CLÍNICA PREMIUM</div>
+                <div class="profile-image-container">
+                    <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                         alt="Dr. Alejandro Rodríguez" id="profileImage">
+                </div>
+                <h1 id="dentistName">Dr. Alejandro Rodríguez</h1>
+                <p id="dentistSpecialty">Especialista en Ortodoncia</p>
+                <p class="clinic-name">Clínica Dental Élite</p>
+            </div>
+            
+            <div class="card-body">
+                <!-- SECCIÓN DE CONTACTO -->
+                <div class="contact-section">
+                    <a href="tel:+5215551234567" class="contact-item" id="phoneLink">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-info">
+                            <div class="contact-label">Teléfono Consultorio</div>
+                            <div class="contact-value" id="phoneText">+52 (55) 5123-4567</div>
+                        </div>
+                    </a>
+                    
+                    <a href="mailto:contacto@clinicadentalelite.com" class="contact-item" id="emailLink">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-info">
+                            <div class="contact-label">Email Corporativo</div>
+                            <div class="contact-value" id="emailText">contacto@clinicadentalelite.com</div>
+                        </div>
+                    </a>
+                    
+                    <a href="https://wa.me/5215551234567?text=Hola%20Dr.%20Rodríguez,%20quisiera%20agendar%20una%20consulta" 
+                       class="contact-item" id="whatsappLink" target="_blank">
+                        <div class="contact-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="contact-info">
+                            <div class="contact-label">WhatsApp Empresarial</div>
+                            <div class="contact-value">+52 (55) 5123-4567</div>
+                        </div>
+                    </a>
+                    
+                    <a href="https://goo.gl/maps/ejemplo" class="contact-item" id="mapLink" target="_blank">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-info">
+                            <div class="contact-label">Ubicación</div>
+                            <div class="contact-value" id="addressText">Av. Reforma 123, CDMX</div>
+                        </div>
+                    </a>
+                    
+                    <a href="#" class="contact-item" id="scheduleLink">
+                        <div class="contact-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="contact-info">
+                            <div class="contact-label">Horario de Atención</div>
+                            <div class="contact-value" id="scheduleText">Lun-Vie: 9:00 - 18:00</div>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- SECCIÓN DE REDES SOCIALES -->
+                <div class="social-section">
+                    <div class="section-title">
+                        <i class="fas fa-share-alt"></i> Conecte en Redes
+                    </div>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon facebook" id="facebookLink">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-icon instagram" id="instagramLink">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://wa.me/5215551234567" class="social-icon whatsapp" id="whatsappSocialLink">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="#" class="social-icon linkedin" id="linkedinLink">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- BOTONES DE ACCIÓN -->
+                <div class="action-buttons">
+                    <button class="action-btn" id="saveContactBtn">
+                        <i class="fas fa-save"></i> Guardar Contacto
+                    </button>
+                    <button class="action-btn" id="darkModeToggle">
+                        <i class="fas fa-moon"></i> Modo Oscuro/Claro
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // CONFIGURACIÓN DE LA TARJETA
+        // ============================================
+        const dentistCardData = {
+            name: "Dr. Alejandro Rodríguez",
+            specialty: "Especialista en Ortodoncia",
+            clinic: "Clínica Dental Élite",
+            phone: "+5215551234567",
+            phoneDisplay: "+52 (55) 5123-4567",
+            email: "contacto@clinicadentalelite.com",
+            address: "Av. Reforma 123, Ciudad de México",
+            whatsapp: "https://wa.me/5215551234567?text=Hola%20Dr.%20Rodríguez,%20quisiera%20agendar%20una%20consulta",
+            location: "https://goo.gl/maps/ejemplo",
+            facebook: "https://facebook.com/clinicadentalelite",
+            instagram: "https://instagram.com/clinicadentalelite",
+            linkedin: "https://linkedin.com/in/clinicadentalelite",
+            schedule: "Lun-Vie: 9:00 - 18:00 | Sáb: 9:00 - 14:00",
+            profileImage: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+        };
+
+        // ============================================
+        // INICIALIZACIÓN DE ELEMENTOS
+        // ============================================
+        document.addEventListener('DOMContentLoaded', function() {
+            // Referencias a elementos
+            const elements = {
+                body: document.getElementById('body'),
+                profileImage: document.getElementById('profileImage'),
+                dentistName: document.getElementById('dentistName'),
+                dentistSpecialty: document.getElementById('dentistSpecialty'),
+                phoneLink: document.getElementById('phoneLink'),
+                phoneText: document.getElementById('phoneText'),
+                emailLink: document.getElementById('emailLink'),
+                emailText: document.getElementById('emailText'),
+                whatsappLink: document.getElementById('whatsappLink'),
+                mapLink: document.getElementById('mapLink'),
+                addressText: document.getElementById('addressText'),
+                scheduleLink: document.getElementById('scheduleLink'),
+                scheduleText: document.getElementById('scheduleText'),
+                facebookLink: document.getElementById('facebookLink'),
+                instagramLink: document.getElementById('instagramLink'),
+                whatsappSocialLink: document.getElementById('whatsappSocialLink'),
+                linkedinLink: document.getElementById('linkedinLink'),
+                saveContactBtn: document.getElementById('saveContactBtn'),
+                darkModeToggle: document.getElementById('darkModeToggle')
+            };
+
+            // ============================================
+            // CARGAR DATOS EN LA TARJETA
+            // ============================================
+            function loadCardData() {
+                elements.profileImage.src = dentistCardData.profileImage;
+                elements.dentistName.textContent = dentistCardData.name;
+                elements.dentistSpecialty.textContent = dentistCardData.specialty;
+                elements.phoneLink.href = `tel:${dentistCardData.phone}`;
+                elements.phoneText.textContent = dentistCardData.phoneDisplay;
+                elements.emailLink.href = `mailto:${dentistCardData.email}`;
+                elements.emailText.textContent = dentistCardData.email;
+                elements.whatsappLink.href = dentistCardData.whatsapp;
+                elements.mapLink.href = dentistCardData.location;
+                elements.addressText.textContent = dentistCardData.address;
+                elements.scheduleText.textContent = dentistCardData.schedule;
+                elements.facebookLink.href = dentistCardData.facebook;
+                elements.instagramLink.href = dentistCardData.instagram;
+                elements.whatsappSocialLink.href = `https://wa.me/${dentistCardData.phone.replace(/\D/g, '')}`;
+                elements.linkedinLink.href = dentistCardData.linkedin;
+            }
+
+            // ============================================
+            // FUNCIONALIDAD MODO OSCURO/CLARO
+            // ============================================
+            elements.darkModeToggle.addEventListener('click', function() {
+                elements.body.classList.toggle('dark-mode');
+                const icon = this.querySelector('i');
+                if (elements.body.classList.contains('dark-mode')) {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                } else {
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                }
+            });
+
+            // ============================================
+            // FUNCIONALIDAD GUARDAR CONTACTO
+            // ============================================
+            elements.saveContactBtn.addEventListener('click', function() {
+                const vCard = `BEGIN:VCARD
+VERSION:3.0
+FN:${dentistCardData.name}
+ORG:${dentistCardData.clinic}
+TITLE:${dentistCardData.specialty}
+TEL;TYPE=WORK,VOICE:${dentistCardData.phone}
+EMAIL:${dentistCardData.email}
+URL:${dentistCardData.facebook}
+ADR;TYPE=WORK:;;${dentistCardData.address}
+NOTE:Horario: ${dentistCardData.schedule}
+END:VCARD`;
+
+                const blob = new Blob([vCard], { type: 'text/vcard' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `${dentistCardData.name.replace(/\s+/g, '_')}.vcf`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+
+                // Feedback visual
+                const originalText = this.innerHTML;
+                const originalBg = this.style.background;
+                this.innerHTML = '<i class="fas fa-check"></i> Contacto Guardado';
+                this.style.background = 'linear-gradient(135deg, #4CAF50, #2E7D32)';
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                    this.style.background = originalBg;
+                }, 2000);
+            });
+
+            // ============================================
+            // INICIALIZAR
+            // ============================================
+            loadCardData();
+
+            // ============================================
+            // EXPORTAR PARA USO EXTERNO
+            // ============================================
+            window.dentistDigitalCard = {
+                elements: elements,
+                data: dentistCardData,
+                updateData: function(newData) {
+                    Object.assign(dentistCardData, newData);
+                    loadCardData();
+                },
+                updateBranding: function(colors) {
+                    const root = document.documentElement;
+                    if (colors.primary) root.style.setProperty('--primary-blue', colors.primary);
+                    if (colors.secondary) root.style.setProperty('--secondary-teal', colors.secondary);
+                    if (colors.accent) root.style.setProperty('--accent-gold', colors.accent);
+                },
+                updateImage: function(imageUrl) {
+                    dentistCardData.profileImage = imageUrl;
+                    elements.profileImage.src = imageUrl;
+                }
+            };
+        });
+    </script>
+</body>
+</html>
