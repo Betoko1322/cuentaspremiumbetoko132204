@@ -78,16 +78,23 @@
             position: relative;
         }
 
-        .clinic-badge {
+        /* BADGE PREMIUM MEJORADO - AHORA DELANTE DE LA FOTO */
+        .premium-badge {
             position: absolute;
             top: 15px;
             right: 15px;
-            background: var(--accent-gold);
-            color: var(--text-dark);
-            padding: 6px 12px;
+            background: linear-gradient(135deg, #ffb300, #ff8f00);
+            color: #fff;
+            padding: 8px 16px;
             border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 10; /* Ahora está por encima de todo */
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            animation: pulse 2s infinite;
         }
 
         .profile-image-container {
@@ -99,6 +106,7 @@
             overflow: hidden;
             position: relative;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            z-index: 5; /* La foto queda detrás del badge */
         }
 
         #profileImage {
@@ -364,6 +372,13 @@
                 padding: 25px 20px;
             }
             
+            .premium-badge {
+                top: 10px;
+                right: 10px;
+                padding: 6px 12px;
+                font-size: 0.75rem;
+            }
+            
             .profile-image-container {
                 width: 120px;
                 height: 120px;
@@ -417,6 +432,11 @@
                 padding: 20px 15px;
             }
             
+            .premium-badge {
+                padding: 5px 10px;
+                font-size: 0.7rem;
+            }
+            
             .profile-image-container {
                 width: 110px;
                 height: 110px;
@@ -457,13 +477,23 @@
         }
 
         @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+            0% { 
+                transform: scale(1); 
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            }
+            50% { 
+                transform: scale(1.05); 
+                box-shadow: 0 5px 20px rgba(255, 179, 0, 0.4);
+            }
+            100% { 
+                transform: scale(1); 
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            }
         }
 
-        .clinic-badge {
-            animation: pulse 2s infinite;
+        @keyframes shine {
+            0% { background-position: -100px; }
+            100% { background-position: 200px; }
         }
     </style>
 </head>
@@ -471,7 +501,11 @@
     <div class="card-container">
         <div class="dentist-card" id="dentistCard">
             <div class="card-header">
-                <div class="clinic-badge">CLÍNICA PREMIUM</div>
+                <!-- BADGE PREMIUM MEJORADO - AHORA CON MEJOR VISIBILIDAD -->
+                <div class="premium-badge" id="premiumBadge">
+                    <i class="fas fa-crown"></i> Premium
+                </div>
+                
                 <div class="profile-image-container">
                     <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
                          alt="Dr. Alejandro Rodríguez" id="profileImage">
@@ -490,7 +524,7 @@
                         </div>
                         <div class="contact-info">
                             <div class="contact-label">Teléfono Consultorio</div>
-                            <div class="contact-value" id="phoneText">+52 (55) 1234-5678</div>
+                            <div class="contact-value" id="phoneText">+52 (55) 5123-4567</div>
                         </div>
                     </a>
                     
@@ -583,7 +617,7 @@
             email: "contacto@clinicadentalelite.com",
             address: "Av. Reforma 123, Ciudad de México",
             whatsapp: "https://wa.me/5215551234567?text=Hola%20Dr.%20Rodríguez,%20quisiera%20agendar%20una%20consulta",
-            location: "https://maps.app.goo.gl/ri2Bwa7JTiWfH6N67",
+            location: "https://goo.gl/maps/ejemplo",
             facebook: "https://facebook.com/clinicadentalelite",
             instagram: "https://instagram.com/clinicadentalelite",
             linkedin: "https://linkedin.com/in/clinicadentalelite",
@@ -615,7 +649,8 @@
                 whatsappSocialLink: document.getElementById('whatsappSocialLink'),
                 linkedinLink: document.getElementById('linkedinLink'),
                 saveContactBtn: document.getElementById('saveContactBtn'),
-                darkModeToggle: document.getElementById('darkModeToggle')
+                darkModeToggle: document.getElementById('darkModeToggle'),
+                premiumBadge: document.getElementById('premiumBadge')
             };
 
             // ============================================
@@ -692,6 +727,19 @@ END:VCARD`;
             });
 
             // ============================================
+            // ANIMACIÓN PARA EL BADGE PREMIUM
+            // ============================================
+            elements.premiumBadge.addEventListener('mouseover', function() {
+                this.style.transform = 'scale(1.1)';
+                this.style.boxShadow = '0 8px 25px rgba(255, 179, 0, 0.5)';
+            });
+            
+            elements.premiumBadge.addEventListener('mouseout', function() {
+                this.style.transform = 'scale(1)';
+                this.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.2)';
+            });
+
+            // ============================================
             // INICIALIZAR
             // ============================================
             loadCardData();
@@ -715,10 +763,13 @@ END:VCARD`;
                 updateImage: function(imageUrl) {
                     dentistCardData.profileImage = imageUrl;
                     elements.profileImage.src = imageUrl;
+                },
+                updatePremiumBadge: function(text, color) {
+                    if (text) elements.premiumBadge.innerHTML = `<i class="fas fa-crown"></i> ${text}`;
+                    if (color) elements.premiumBadge.style.background = color;
                 }
             };
         });
     </script>
 </body>
-
 </html>
