@@ -2,17 +2,18 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Tarjeta Médica Premium | Ginecología</title>
+<title>Tarjeta Médica Profesional | Ginecología</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 :root {
-    --rosa-medico: #b84a7a;
-    --rosa-acento: #7a2e52;
+    --rosa-principal: #b84a7a;
+    --rosa-secundario: #7a2e52;
+    --rosa-suave: #f2c6d6;
 
-    --whatsapp: #25D366;
-    --telefono: #2f80ed;
-    --ubicacion: #d6455d;
+    --boton-wsp: #b84a7a;
+    --boton-call: #a34a6a;
+    --boton-map: #8e3f5d;
 
     --fondo-claro: #fdf7fa;
     --texto-claro: #2f2f2f;
@@ -47,10 +48,10 @@ body.dark-mode {
 
 /* TARJETA */
 #card-wrapper {
-    width: 360px;
+    width: 370px;
     background: white;
-    border-radius: 24px;
-    padding: 30px 26px 90px;
+    border-radius: 26px;
+    padding: 26px 26px 32px;
     box-shadow: 0 30px 70px rgba(0,0,0,0.25);
     position: relative;
     animation: entry 1.1s ease;
@@ -65,15 +66,6 @@ body.dark-mode #card-wrapper {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* BARRA */
-#top-accent {
-    height: 6px;
-    background: linear-gradient(to right, var(--rosa-medico), var(--rosa-acento));
-    position: absolute;
-    top: 0;
-    width: 100%;
-}
-
 /* TOGGLE */
 #theme-toggle {
     position: absolute;
@@ -83,26 +75,39 @@ body.dark-mode #card-wrapper {
     font-size: 14px;
 }
 
-/* ICONO CENTRAL */
-#center-contact-icon {
-    width: 96px;
-    height: 96px;
-    background: radial-gradient(circle, var(--rosa-medico), var(--rosa-acento));
+/* LOGO */
+#logo-container {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto;
     border-radius: 50%;
-    margin: 25px auto 20px;
+    background: var(--rosa-suave);
     display: flex;
-    justify-content: center;
     align-items: center;
-    animation: pulseMain 3s infinite;
+    justify-content: center;
+    overflow: hidden;
 }
 
-@keyframes pulseMain {
-    50% { transform: scale(1.08); }
+#logo-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-#center-contact-icon span {
-    color: white;
-    font-size: 36px;
+/* FOTO DOCTORA */
+#photo-container {
+    width: 110px;
+    height: 110px;
+    margin: 14px auto 12px;
+    border-radius: 50%;
+    border: 4px solid var(--rosa-principal);
+    overflow: hidden;
+}
+
+#photo-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 /* TEXTO */
@@ -110,7 +115,7 @@ body.dark-mode #card-wrapper {
     text-align: center;
     font-size: 22px;
     font-weight: 600;
-    color: var(--rosa-medico);
+    color: var(--rosa-principal);
 }
 
 #doctor-title {
@@ -124,7 +129,7 @@ body.dark-mode #card-wrapper {
     text-align: center;
     font-size: 14px;
     line-height: 1.6;
-    margin-bottom: 25px;
+    margin-bottom: 22px;
 }
 
 /* BOTONES */
@@ -132,56 +137,32 @@ body.dark-mode #card-wrapper {
     width: 100%;
     padding: 14px;
     margin-bottom: 12px;
-    border-radius: 14px;
+    border-radius: 16px;
     border: none;
     color: white;
-    font-size: 14px;
+    font-size: 15px;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
     cursor: pointer;
     transition: 0.35s;
 }
 
 .contact-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.35);
 }
 
 .contact-icon {
-    width: 22px;
-    height: 22px;
+    width: 26px;
+    height: 26px;
     fill: white;
 }
 
-/* COLORES + ANIMACIONES */
-#btn-whatsapp {
-    background: linear-gradient(135deg, var(--whatsapp), #1da851);
-    animation: pulseBtn 4s infinite;
-}
-
-#btn-phone {
-    background: linear-gradient(135deg, var(--telefono), #1c5dc1);
-    animation: shakeBtn 6s infinite;
-}
-
-#btn-location {
-    background: linear-gradient(135deg, var(--ubicacion), #b1374b);
-    animation: bounceBtn 5s infinite;
-}
-
-@keyframes pulseBtn {
-    50% { transform: scale(1.03); }
-}
-
-@keyframes shakeBtn {
-    2% { transform: translateX(-2px); }
-    4% { transform: translateX(2px); }
-}
-
-@keyframes bounceBtn {
-    50% { transform: translateY(-3px); }
-}
+/* BOTONES INDIVIDUALES */
+#btn-whatsapp { background: linear-gradient(135deg, var(--boton-wsp), var(--rosa-secundario)); }
+#btn-phone { background: linear-gradient(135deg, var(--boton-call), var(--rosa-secundario)); }
+#btn-location { background: linear-gradient(135deg, var(--boton-map), var(--rosa-secundario)); }
 
 /* FOOTER */
 #footer-note {
@@ -196,11 +177,19 @@ body.dark-mode #card-wrapper {
 <body>
 
 <div id="card-wrapper">
-    <div id="top-accent"></div>
-    <div id="theme-toggle">🌙 Modo</div>
 
-    <div id="center-contact-icon">
-        <span>☎</span>
+    <div id="theme-toggle">🌙</div>
+
+    <!-- LOGO -->
+    <div id="logo-container">
+        <!-- Reemplaza src -->
+        <img id="logo-img" src="logo.png" alt="Logo Clínica">
+    </div>
+
+    <!-- FOTO -->
+    <div id="photo-container">
+        <!-- Reemplaza src -->
+        <img id="doctor-photo" src="doctora.jpg" alt="Foto Doctora">
     </div>
 
     <div id="doctor-name">Dra. María González</div>
@@ -208,10 +197,10 @@ body.dark-mode #card-wrapper {
 
     <div id="doctor-description">
         Atención médica especializada en salud femenina,
-        con confianza, ética y tecnología.
+        con ética, confianza y enfoque humano.
     </div>
 
-    <!-- WhatsApp -->
+    <!-- WHATSAPP -->
     <button id="btn-whatsapp" class="contact-button">
         <svg class="contact-icon" viewBox="0 0 24 24">
             <path d="M12 2a10 10 0 0 0-8.94 14.5L2 22l5.65-1.48A10 10 0 1 0 12 2z"/>
@@ -219,25 +208,26 @@ body.dark-mode #card-wrapper {
         WhatsApp
     </button>
 
-    <!-- Llamar -->
+    <!-- LLAMAR -->
     <button id="btn-phone" class="contact-button">
         <svg class="contact-icon" viewBox="0 0 24 24">
-            <path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2c.3-.3.8-.4 1.2-.3 1.3.4 2.7.6 4.2.6"/>
+            <path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2"/>
         </svg>
         Llamar
     </button>
 
-    <!-- Ubicación -->
+    <!-- UBICACIÓN -->
     <button id="btn-location" class="contact-button">
         <svg class="contact-icon" viewBox="0 0 24 24">
-            <path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13"/>
+            <path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13z"/>
         </svg>
         Ubicación
     </button>
 
     <div id="footer-note">
-        Salud femenina con enfoque humano
+        Salud femenina en cada etapa de tu vida
     </div>
+
 </div>
 
 <script>
