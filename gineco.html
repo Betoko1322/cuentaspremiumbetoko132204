@@ -2,15 +2,17 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Tarjeta Médica Profesional | Ginecología</title>
+<title>Tarjeta Médica Premium | Ginecología</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-/* ================= VARIABLES ================= */
 :root {
     --rosa-medico: #b84a7a;
     --rosa-acento: #7a2e52;
-    --rosa-claro: #f2c6d6;
+
+    --whatsapp: #25D366;
+    --telefono: #2f80ed;
+    --ubicacion: #d6455d;
 
     --fondo-claro: #fdf7fa;
     --texto-claro: #2f2f2f;
@@ -20,7 +22,7 @@
     --texto-oscuro: #e6e6e6;
 }
 
-/* ================= RESET ================= */
+/* RESET */
 * {
     margin: 0;
     padding: 0;
@@ -28,7 +30,6 @@
     font-family: "Helvetica Neue", Arial, sans-serif;
 }
 
-/* ================= BODY ================= */
 body {
     background: var(--fondo-claro);
     color: var(--texto-claro);
@@ -36,7 +37,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: background 0.6s ease, color 0.6s ease;
+    transition: 0.6s;
 }
 
 body.dark-mode {
@@ -44,7 +45,7 @@ body.dark-mode {
     color: var(--texto-oscuro);
 }
 
-/* ================= TARJETA ================= */
+/* TARJETA */
 #card-wrapper {
     width: 360px;
     background: white;
@@ -52,43 +53,37 @@ body.dark-mode {
     padding: 30px 26px 90px;
     box-shadow: 0 30px 70px rgba(0,0,0,0.25);
     position: relative;
-    overflow: hidden;
-    animation: cardEntry 1.2s ease forwards;
-    transition: background 0.6s ease;
+    animation: entry 1.1s ease;
 }
 
 body.dark-mode #card-wrapper {
     background: var(--tarjeta-oscura);
 }
 
-/* ================= ANIMACIONES ================= */
-@keyframes cardEntry {
+@keyframes entry {
     from { opacity: 0; transform: translateY(50px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* ================= BARRA SUPERIOR ================= */
+/* BARRA */
 #top-accent {
     height: 6px;
     background: linear-gradient(to right, var(--rosa-medico), var(--rosa-acento));
     position: absolute;
     top: 0;
-    left: 0;
     width: 100%;
 }
 
-/* ================= TOGGLE DARK ================= */
+/* TOGGLE */
 #theme-toggle {
     position: absolute;
     top: 14px;
     right: 16px;
-    font-size: 14px;
     cursor: pointer;
-    user-select: none;
-    opacity: 0.8;
+    font-size: 14px;
 }
 
-/* ================= ICONO CENTRAL ================= */
+/* ICONO CENTRAL */
 #center-contact-icon {
     width: 96px;
     height: 96px;
@@ -96,24 +91,21 @@ body.dark-mode #card-wrapper {
     border-radius: 50%;
     margin: 25px auto 20px;
     display: flex;
-    align-items: center;
     justify-content: center;
-    box-shadow: 0 12px 30px rgba(184,74,122,0.6);
-    animation: pulse 2.8s infinite;
+    align-items: center;
+    animation: pulseMain 3s infinite;
 }
 
-@keyframes pulse {
-    0% { transform: scale(1); box-shadow: 0 0 0 rgba(184,74,122,0.6); }
-    50% { transform: scale(1.08); box-shadow: 0 0 25px rgba(184,74,122,0.9); }
-    100% { transform: scale(1); }
+@keyframes pulseMain {
+    50% { transform: scale(1.08); }
 }
 
 #center-contact-icon span {
-    font-size: 38px;
     color: white;
+    font-size: 36px;
 }
 
-/* ================= TEXTO ================= */
+/* TEXTO */
 #doctor-name {
     text-align: center;
     font-size: 22px;
@@ -135,18 +127,20 @@ body.dark-mode #card-wrapper {
     margin-bottom: 25px;
 }
 
-/* ================= BOTONES ================= */
+/* BOTONES */
 .contact-button {
     width: 100%;
     padding: 14px;
     margin-bottom: 12px;
     border-radius: 14px;
     border: none;
-    background: linear-gradient(135deg, var(--rosa-medico), var(--rosa-acento));
     color: white;
     font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
     cursor: pointer;
-    transition: all 0.35s ease;
+    transition: 0.35s;
 }
 
 .contact-button:hover {
@@ -154,34 +148,47 @@ body.dark-mode #card-wrapper {
     box-shadow: 0 12px 28px rgba(0,0,0,0.35);
 }
 
-/* ================= FOOTER ================= */
+.contact-icon {
+    width: 22px;
+    height: 22px;
+    fill: white;
+}
+
+/* COLORES + ANIMACIONES */
+#btn-whatsapp {
+    background: linear-gradient(135deg, var(--whatsapp), #1da851);
+    animation: pulseBtn 4s infinite;
+}
+
+#btn-phone {
+    background: linear-gradient(135deg, var(--telefono), #1c5dc1);
+    animation: shakeBtn 6s infinite;
+}
+
+#btn-location {
+    background: linear-gradient(135deg, var(--ubicacion), #b1374b);
+    animation: bounceBtn 5s infinite;
+}
+
+@keyframes pulseBtn {
+    50% { transform: scale(1.03); }
+}
+
+@keyframes shakeBtn {
+    2% { transform: translateX(-2px); }
+    4% { transform: translateX(2px); }
+}
+
+@keyframes bounceBtn {
+    50% { transform: translateY(-3px); }
+}
+
+/* FOOTER */
 #footer-note {
     text-align: center;
     font-size: 12px;
     opacity: 0.7;
     margin-top: 14px;
-}
-
-/* ================= EFECTO LUZ ================= */
-#light-overlay {
-    position: absolute;
-    top: -70%;
-    left: -70%;
-    width: 240%;
-    height: 240%;
-    background: linear-gradient(
-        120deg,
-        transparent 45%,
-        rgba(255,255,255,0.15) 50%,
-        transparent 55%
-    );
-    animation: lightMove 9s infinite;
-    pointer-events: none;
-}
-
-@keyframes lightMove {
-    from { transform: translateX(-100%); }
-    to { transform: translateX(100%); }
 }
 </style>
 </head>
@@ -189,45 +196,54 @@ body.dark-mode #card-wrapper {
 <body>
 
 <div id="card-wrapper">
-
     <div id="top-accent"></div>
-    <div id="light-overlay"></div>
-
-    <!-- TOGGLE -->
     <div id="theme-toggle">🌙 Modo</div>
 
-    <!-- ICONO CENTRAL -->
     <div id="center-contact-icon">
-        <span id="contact-icon-symbol">☎</span>
+        <span>☎</span>
     </div>
 
-    <!-- DATOS -->
     <div id="doctor-name">Dra. María González</div>
     <div id="doctor-title">Ginecología y Obstetricia</div>
 
     <div id="doctor-description">
-        Atención integral y especializada en salud femenina,
-        con tecnología, ética y calidez humana.
+        Atención médica especializada en salud femenina,
+        con confianza, ética y tecnología.
     </div>
 
-    <!-- BOTONES -->
-    <button id="btn-whatsapp" class="contact-button">WhatsApp</button>
-    <button id="btn-phone" class="contact-button">Llamar</button>
-    <button id="btn-location" class="contact-button">Ubicación</button>
+    <!-- WhatsApp -->
+    <button id="btn-whatsapp" class="contact-button">
+        <svg class="contact-icon" viewBox="0 0 24 24">
+            <path d="M12 2a10 10 0 0 0-8.94 14.5L2 22l5.65-1.48A10 10 0 1 0 12 2z"/>
+        </svg>
+        WhatsApp
+    </button>
+
+    <!-- Llamar -->
+    <button id="btn-phone" class="contact-button">
+        <svg class="contact-icon" viewBox="0 0 24 24">
+            <path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2c.3-.3.8-.4 1.2-.3 1.3.4 2.7.6 4.2.6"/>
+        </svg>
+        Llamar
+    </button>
+
+    <!-- Ubicación -->
+    <button id="btn-location" class="contact-button">
+        <svg class="contact-icon" viewBox="0 0 24 24">
+            <path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13"/>
+        </svg>
+        Ubicación
+    </button>
 
     <div id="footer-note">
-        Medicina femenina basada en confianza
+        Salud femenina con enfoque humano
     </div>
-
 </div>
 
 <script>
-/* ===== MODO OSCURO ===== */
-document.getElementById("theme-toggle").onclick = function () {
+document.getElementById("theme-toggle").onclick = () =>
     document.body.classList.toggle("dark-mode");
-};
 
-/* ===== ACCIONES ===== */
 document.getElementById("btn-whatsapp").onclick = () =>
     window.open("https://wa.me/5210000000000", "_blank");
 
