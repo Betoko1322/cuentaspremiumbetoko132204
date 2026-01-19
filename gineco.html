@@ -319,12 +319,56 @@
         .info-title {
             font-size: 1.3rem;
             font-weight: 600;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             color: var(--primary-color);
         }
 
         .dark-mode .info-title {
             color: var(--primary-light);
+        }
+
+        /* Estilos mejorados para horarios */
+        .schedule-container {
+            width: 100%;
+            text-align: left;
+            margin-bottom: 15px;
+        }
+
+        .schedule-day {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .dark-mode .schedule-day {
+            color: var(--primary-light);
+        }
+
+        .schedule-time {
+            display: block;
+            margin-bottom: 10px;
+            padding-left: 15px;
+            color: var(--text-light);
+        }
+
+        .dark-mode .schedule-time {
+            color: var(--text-dark);
+        }
+
+        .schedule-note {
+            display: block;
+            font-size: 0.9rem;
+            font-style: italic;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed rgba(138, 75, 175, 0.3);
+            color: var(--text-light);
+        }
+
+        .dark-mode .schedule-note {
+            color: var(--text-dark);
+            border-top-color: rgba(181, 126, 220, 0.3);
         }
 
         .info-text {
@@ -578,13 +622,21 @@
                         </button>
                     </div>
                     
-                    <!-- Información sobre horarios -->
+                    <!-- Información sobre horarios - MEJORADA -->
                     <div class="info-card">
                         <div class="info-icon">
                             <i class="fas fa-clock"></i>
                         </div>
                         <h3 class="info-title">Horarios de Atención</h3>
-                        <p class="info-text">Lunes a Viernes: 9:00 AM - 7:00 PM<br>Sábados: 9:00 AM - 1:00 PM<br>Consultas por emergencia disponibles con cita previa.</p>
+                        <div class="schedule-container">
+                            <span class="schedule-day">Lunes a Viernes:</span>
+                            <span class="schedule-time">9:00 AM - 7:00 PM</span>
+                            
+                            <span class="schedule-day">Sábados:</span>
+                            <span class="schedule-time">9:00 AM - 1:00 PM</span>
+                            
+                            <span class="schedule-note">Consultas por emergencia disponibles con cita previa.</span>
+                        </div>
                         <button class="info-button">
                             <i class="fas fa-phone-alt"></i> Llamar para Horarios
                         </button>
