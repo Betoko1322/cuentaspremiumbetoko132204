@@ -260,18 +260,22 @@
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
         }
 
-        /* Sección expandible con información */
+        /* Sección expandible con información - CORREGIDO */
         #expandable-info {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.5s ease-out;
-            background-color: rgba(255, 255, 255, 0.1);
+            transition: max-height 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            background-color: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             border-radius: 0 0 20px 20px;
         }
 
+        .dark-mode #expandable-info {
+            background-color: rgba(26, 26, 46, 0.95);
+        }
+
         #expandable-info.expanded {
-            max-height: 500px;
+            max-height: 800px; /* Aumentado para mostrar todo el contenido */
         }
 
         #info-content {
@@ -279,11 +283,19 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 25px;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        #expandable-info.expanded #info-content {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Tarjetas de información */
         .info-card {
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(255, 255, 255, 0.95);
             border-radius: 15px;
             padding: 25px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -292,10 +304,11 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
+            min-height: 320px; /* Altura mínima para consistencia */
         }
 
         .dark-mode .info-card {
-            background-color: rgba(26, 26, 46, 0.9);
+            background-color: rgba(22, 33, 62, 0.95);
         }
 
         .info-card:hover {
@@ -319,26 +332,40 @@
         .info-title {
             font-size: 1.3rem;
             font-weight: 600;
-            margin-bottom: 15px;
+            margin-bottom: 20px; /* Aumentado para mejor separación */
             color: var(--primary-color);
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .dark-mode .info-title {
             color: var(--primary-light);
         }
 
-        /* Estilos mejorados para horarios */
+        /* Contenedor de horarios mejorado */
         .schedule-container {
             width: 100%;
             text-align: left;
+            margin-bottom: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .schedule-item {
             margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
         }
 
         .schedule-day {
             font-weight: 600;
             color: var(--primary-color);
             margin-bottom: 5px;
-            display: block;
+            font-size: 1rem;
         }
 
         .dark-mode .schedule-day {
@@ -347,9 +374,10 @@
 
         .schedule-time {
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             padding-left: 15px;
             color: var(--text-light);
+            font-size: 0.95rem;
         }
 
         .dark-mode .schedule-time {
@@ -358,12 +386,13 @@
 
         .schedule-note {
             display: block;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-style: italic;
-            margin-top: 10px;
-            padding-top: 10px;
+            margin-top: 15px;
+            padding-top: 15px;
             border-top: 1px dashed rgba(138, 75, 175, 0.3);
             color: var(--text-light);
+            line-height: 1.4;
         }
 
         .dark-mode .schedule-note {
@@ -376,6 +405,9 @@
             line-height: 1.5;
             margin-bottom: 15px;
             color: var(--text-light);
+            flex-grow: 1;
+            text-align: left;
+            padding: 0 5px;
         }
 
         .dark-mode .info-text {
@@ -387,19 +419,23 @@
             color: white;
             border: none;
             border-radius: 50px;
-            padding: 10px 20px;
+            padding: 12px 25px;
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
-            margin-top: auto;
+            margin-top: 15px;
+            width: 100%;
+            max-width: 200px;
         }
 
         .info-button:hover {
             background-color: var(--primary-dark);
             transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(138, 75, 175, 0.3);
         }
 
         .dark-mode .info-button {
@@ -480,17 +516,23 @@
             color: white;
             border: none;
             border-radius: 50px;
-            padding: 8px 15px;
+            padding: 10px 20px;
             font-size: 0.9rem;
             cursor: pointer;
             transition: var(--transition);
             display: flex;
             align-items: center;
-            gap: 5px;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            width: 100%;
+            max-width: 160px;
         }
 
         .contact-button:hover {
             background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(138, 75, 175, 0.3);
         }
 
         .dark-mode .contact-button {
@@ -545,6 +587,10 @@
             #contact-section {
                 grid-template-columns: 1fr;
             }
+            
+            .info-card {
+                min-height: 300px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -562,6 +608,16 @@
             
             #info-content {
                 padding: 20px 15px;
+            }
+            
+            .info-card {
+                padding: 20px;
+                min-height: 280px;
+            }
+            
+            .info-title {
+                font-size: 1.2rem;
+                margin-bottom: 15px;
             }
         }
     </style>
@@ -607,7 +663,7 @@
                 </button>
             </div>
             
-            <!-- Información expandible -->
+            <!-- Información expandible - CORREGIDA -->
             <div id="expandable-info">
                 <div id="info-content">
                     <!-- Información sobre especialidades -->
@@ -629,11 +685,15 @@
                         </div>
                         <h3 class="info-title">Horarios de Atención</h3>
                         <div class="schedule-container">
-                            <span class="schedule-day">Lunes a Viernes:</span>
-                            <span class="schedule-time">9:00 AM - 7:00 PM</span>
+                            <div class="schedule-item">
+                                <span class="schedule-day">Lunes a Viernes:</span>
+                                <span class="schedule-time">9:00 AM - 7:00 PM</span>
+                            </div>
                             
-                            <span class="schedule-day">Sábados:</span>
-                            <span class="schedule-time">9:00 AM - 1:00 PM</span>
+                            <div class="schedule-item">
+                                <span class="schedule-day">Sábados:</span>
+                                <span class="schedule-time">9:00 AM - 1:00 PM</span>
+                            </div>
                             
                             <span class="schedule-note">Consultas por emergencia disponibles con cita previa.</span>
                         </div>
@@ -702,6 +762,7 @@
         const themeToggle = document.getElementById('theme-toggle');
         const expandButton = document.getElementById('expand-button');
         const expandableInfo = document.getElementById('expandable-info');
+        const infoContent = document.getElementById('info-content');
         const particlesContainer = document.getElementById('particles');
         const body = document.body;
         
@@ -720,18 +781,28 @@
             }
         });
         
-        // Función para expandir/contraer información
+        // Función para expandir/contraer información - CORREGIDA
         expandButton.addEventListener('click', () => {
-            expandableInfo.classList.toggle('expanded');
+            const isExpanded = expandableInfo.classList.toggle('expanded');
             
             // Cambiar ícono y texto del botón
             const icon = expandButton.querySelector('i');
-            if (expandableInfo.classList.contains('expanded')) {
+            if (isExpanded) {
                 icon.className = 'fas fa-chevron-up';
                 expandButton.innerHTML = '<i class="fas fa-chevron-up"></i> Menos Información';
+                
+                // Asegurarnos de que el contenido sea visible después de la animación
+                setTimeout(() => {
+                    infoContent.style.opacity = '1';
+                    infoContent.style.transform = 'translateY(0)';
+                }, 300);
             } else {
                 icon.className = 'fas fa-chevron-down';
                 expandButton.innerHTML = '<i class="fas fa-chevron-down"></i> Más Información';
+                
+                // Ocultar el contenido cuando se contrae
+                infoContent.style.opacity = '0';
+                infoContent.style.transform = 'translateY(-10px)';
             }
         });
         
@@ -807,6 +878,23 @@
                     element.style.transform = 'translateY(0)';
                 }, 100 * index);
             });
+        });
+        
+        // Ajustar automáticamente la altura de la sección expandible según el contenido
+        function adjustExpandableHeight() {
+            if (expandableInfo.classList.contains('expanded')) {
+                const contentHeight = infoContent.scrollHeight;
+                expandableInfo.style.maxHeight = `${contentHeight + 60}px`;
+            }
+        }
+        
+        // Ajustar altura al cambiar tamaño de ventana
+        window.addEventListener('resize', adjustExpandableHeight);
+        
+        // Inicializar con el contenido oculto
+        document.addEventListener('DOMContentLoaded', () => {
+            infoContent.style.opacity = '0';
+            infoContent.style.transform = 'translateY(-10px)';
         });
     </script>
 </body>
