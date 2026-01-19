@@ -3,898 +3,681 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dra. Laura Méndez - Ginecóloga</title>
+    <title>Tarjeta Digital - Ginecóloga</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #9c27b0;
+            --primary-light: #e1bee7;
+            --primary-dark: #7b1fa2;
+            --secondary-color: #f8bbd9;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --bg-light: #ffffff;
+            --bg-card: #f9f5fa;
+            --border-light: #e0e0e0;
+            --shadow: rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+            --radius: 16px;
+        }
+
+        .dark-mode {
+            --primary-color: #ce93d8;
+            --primary-light: #4a235a;
+            --primary-dark: #ab47bc;
+            --secondary-color: #38006b;
+            --text-dark: #f0f0f0;
+            --text-light: #cccccc;
+            --bg-light: #121212;
+            --bg-card: #1e1e1e;
+            --border-light: #333333;
+            --shadow: rgba(0, 0, 0, 0.25);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-
-        :root {
-            --primary-color: #8a4baf;
-            --primary-light: #b57edc;
-            --primary-dark: #6b3a8c;
-            --secondary-color: #4a9cc7;
-            --text-light: #333333;
-            --text-dark: #f5f5f5;
-            --bg-light: #ffffff;
-            --bg-dark: #1a1a2e;
-            --card-light: #f8f9fa;
-            --card-dark: #16213e;
-            --transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
         body {
             font-family: 'Montserrat', sans-serif;
             background-color: var(--bg-light);
-            color: var(--text-light);
-            transition: var(--transition);
+            color: var(--text-dark);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
+            line-height: 1.6;
         }
 
-        /* Modo Noche */
-        body.dark-mode {
-            background-color: var(--bg-dark);
-            color: var(--text-dark);
-        }
-
-        /* Contenedor principal */
-        #main-container {
+        .card-container {
+            max-width: 900px;
             width: 100%;
-            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border-radius: var(--radius);
+            box-shadow: 0 15px 35px var(--shadow);
+            overflow: hidden;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            gap: 25px;
-        }
-
-        /* Encabezado con botón modo noche */
-        #header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            padding: 0 10px;
-        }
-
-        /* Título principal */
-        #main-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            color: var(--primary-color);
-            text-align: center;
-            margin-bottom: 5px;
-        }
-
-        .dark-mode #main-title {
-            color: var(--primary-light);
-        }
-
-        #subtitle {
-            font-size: 1rem;
-            text-align: center;
-            color: var(--text-light);
-            opacity: 0.8;
-            margin-bottom: 15px;
-        }
-
-        .dark-mode #subtitle {
-            color: var(--text-dark);
-        }
-
-        /* Botón modo noche */
-        #theme-toggle {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            padding: 10px 15px;
-            cursor: pointer;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: var(--transition);
-            box-shadow: 0 4px 10px rgba(138, 75, 175, 0.3);
-        }
-
-        #theme-toggle:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-2px);
-        }
-
-        .dark-mode #theme-toggle {
-            background-color: var(--primary-light);
-            color: #333;
-        }
-
-        .dark-mode #theme-toggle:hover {
-            background-color: var(--primary-color);
-        }
-
-        /* Tarjeta principal */
-        #main-card {
-            width: 100%;
-            background-color: var(--card-light);
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            transition: var(--transition);
-            position: relative;
             animation: cardAppear 0.8s ease-out;
+            border: 1px solid var(--border-light);
         }
 
-        .dark-mode #main-card {
-            background-color: var(--card-dark);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes cardAppear {
-            0% { opacity: 0; transform: translateY(30px); }
-            100% { opacity: 1; transform: translateY(0); }
+            0% { transform: scale(0.95); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
         }
 
-        /* Sección superior de la tarjeta */
-        #card-top {
-            padding: 30px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        .card-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
             color: white;
+            padding: 30px;
             text-align: center;
             position: relative;
             overflow: hidden;
         }
 
-        /* Efecto de partículas animadas */
-        #particles {
+        .card-header::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 0;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.1;
         }
 
-        .particle {
+        #theme-toggle {
             position: absolute;
-            background-color: rgba(255, 255, 255, 0.3);
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
             border-radius: 50%;
-            animation: float 15s infinite linear;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0) translateX(0); }
-            25% { transform: translateY(-20px) translateX(20px); }
-            50% { transform: translateY(0) translateX(40px); }
-            75% { transform: translateY(20px) translateX(20px); }
-            100% { transform: translateY(0) translateX(0); }
-        }
-
-        /* Contenedores de logos */
-        #logos-container {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            margin-bottom: 20px;
-            z-index: 1;
-        }
-
-        #clinic-logo-container, #doctor-logo-container {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background-color: white;
+            width: 50px;
+            height: 50px;
+            color: white;
+            cursor: pointer;
+            font-size: 1.4rem;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            padding: 10px;
-            transition: var(--transition);
+            z-index: 10;
+            animation: pulse 2s infinite;
         }
 
-        #clinic-logo-container:hover, #doctor-logo-container:hover {
-            transform: scale(1.05);
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
         }
 
-        #clinic-logo, #doctor-logo {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
+        #theme-toggle:hover {
+            transform: rotate(30deg) scale(1.1);
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        #doctor-image {
+            width: 160px;
+            height: 160px;
             border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid rgba(255, 255, 255, 0.3);
+            margin-bottom: 20px;
+            animation: imageFloat 3s ease-in-out infinite;
         }
 
-        /* Información de la doctora */
-        #doctor-info {
-            z-index: 1;
-            margin-top: 10px;
+        @keyframes imageFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         #doctor-name {
             font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            margin-bottom: 5px;
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
         }
 
         #doctor-specialty {
             font-size: 1.2rem;
             opacity: 0.9;
-            margin-bottom: 10px;
+            font-weight: 500;
         }
 
-        #doctor-credential {
-            font-size: 0.9rem;
-            opacity: 0.8;
-            max-width: 600px;
-            line-height: 1.5;
-        }
-
-        /* Botón para expandir información */
-        #expand-button {
-            background-color: white;
-            color: var(--primary-color);
-            border: none;
-            border-radius: 50px;
-            padding: 12px 25px;
+        #clinic-name {
+            font-size: 1.5rem;
+            margin-top: 10px;
             font-weight: 600;
-            margin-top: 20px;
-            cursor: pointer;
-            transition: var(--transition);
+            color: var(--secondary-color);
+        }
+
+        .card-body {
             display: flex;
-            align-items: center;
-            gap: 10px;
-            z-index: 1;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            flex-wrap: wrap;
+            padding: 40px;
         }
 
-        #expand-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+        .info-section {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 20px;
         }
 
-        /* Sección expandible con información - CORREGIDO */
-        #expandable-info {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 0 0 20px 20px;
+        .contact-section {
+            flex: 1;
+            min-width: 300px;
+            padding-left: 20px;
+            border-left: 1px solid var(--border-light);
         }
 
-        .dark-mode #expandable-info {
-            background-color: rgba(26, 26, 46, 0.95);
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-light);
+            position: relative;
         }
 
-        #expandable-info.expanded {
-            max-height: 800px; /* Aumentado para mostrar todo el contenido */
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background-color: var(--primary-dark);
         }
 
-        #info-content {
-            padding: 30px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            opacity: 0;
-            transform: translateY(-10px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-
-        #expandable-info.expanded #info-content {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Tarjetas de información */
-        .info-card {
-            background-color: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: var(--transition);
+        .info-item {
+            margin-bottom: 20px;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            min-height: 320px; /* Altura mínima para consistencia */
+            align-items: flex-start;
+            animation: slideInLeft 0.8s ease-out;
+            animation-fill-mode: both;
         }
 
-        .dark-mode .info-card {
-            background-color: rgba(22, 33, 62, 0.95);
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
-        .info-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        }
+        .info-item:nth-child(1) { animation-delay: 0.1s; }
+        .info-item:nth-child(2) { animation-delay: 0.2s; }
+        .info-item:nth-child(3) { animation-delay: 0.3s; }
+        .info-item:nth-child(4) { animation-delay: 0.4s; }
 
         .info-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background-color: var(--primary-color);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 15px;
-            color: white;
-            font-size: 1.5rem;
-        }
-
-        .info-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 20px; /* Aumentado para mejor separación */
-            color: var(--primary-color);
-            min-height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .dark-mode .info-title {
-            color: var(--primary-light);
-        }
-
-        /* Contenedor de horarios mejorado */
-        .schedule-container {
-            width: 100%;
-            text-align: left;
-            margin-bottom: 20px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .schedule-item {
-            margin-bottom: 15px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .schedule-day {
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-bottom: 5px;
-            font-size: 1rem;
-        }
-
-        .dark-mode .schedule-day {
-            color: var(--primary-light);
-        }
-
-        .schedule-time {
-            display: block;
-            margin-bottom: 5px;
-            padding-left: 15px;
-            color: var(--text-light);
-            font-size: 0.95rem;
-        }
-
-        .dark-mode .schedule-time {
-            color: var(--text-dark);
-        }
-
-        .schedule-note {
-            display: block;
-            font-size: 0.85rem;
-            font-style: italic;
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px dashed rgba(138, 75, 175, 0.3);
-            color: var(--text-light);
-            line-height: 1.4;
-        }
-
-        .dark-mode .schedule-note {
-            color: var(--text-dark);
-            border-top-color: rgba(181, 126, 220, 0.3);
-        }
-
-        .info-text {
-            font-size: 0.95rem;
-            line-height: 1.5;
-            margin-bottom: 15px;
-            color: var(--text-light);
-            flex-grow: 1;
-            text-align: left;
-            padding: 0 5px;
-        }
-
-        .dark-mode .info-text {
-            color: var(--text-dark);
-        }
-
-        .info-button {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            padding: 12px 25px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 15px;
-            width: 100%;
-            max-width: 200px;
-        }
-
-        .info-button:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(138, 75, 175, 0.3);
-        }
-
-        .dark-mode .info-button {
             background-color: var(--primary-light);
-            color: #333;
-        }
-
-        .dark-mode .info-button:hover {
-            background-color: var(--primary-color);
-            color: white;
-        }
-
-        /* Sección de contacto */
-        #contact-section {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            width: 100%;
-            margin-top: 10px;
-        }
-
-        .contact-item {
-            background-color: var(--card-light);
-            border-radius: 15px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            transition: var(--transition);
-        }
-
-        .dark-mode .contact-item {
-            background-color: var(--card-dark);
-        }
-
-        .contact-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .contact-icon {
-            width: 50px;
-            height: 50px;
+            color: var(--primary-dark);
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            background-color: var(--primary-color);
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 15px;
-            color: white;
-            font-size: 1.3rem;
+            margin-right: 15px;
+            flex-shrink: 0;
         }
 
-        .contact-title {
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: var(--primary-color);
-        }
-
-        .dark-mode .contact-title {
-            color: var(--primary-light);
-        }
-
-        .contact-detail {
-            font-size: 0.9rem;
-            color: var(--text-light);
-            margin-bottom: 15px;
-        }
-
-        .dark-mode .contact-detail {
+        .info-content h3 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
             color: var(--text-dark);
+        }
+
+        .info-content p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .contact-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 10px;
         }
 
         .contact-button {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            padding: 10px 20px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: var(--transition);
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 8px;
+            padding: 15px 20px;
+            background-color: white;
+            border-radius: 12px;
             text-decoration: none;
-            width: 100%;
-            max-width: 160px;
+            color: var(--text-dark);
+            border: 1px solid var(--border-light);
+            transition: var(--transition);
+            animation: slideInRight 0.8s ease-out;
+            animation-fill-mode: both;
+            position: relative;
+            overflow: hidden;
         }
+
+        .contact-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(156, 39, 176, 0.1), transparent);
+            transition: left 0.7s;
+        }
+
+        .contact-button:hover::before {
+            left: 100%;
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .contact-button:nth-child(1) { animation-delay: 0.1s; }
+        .contact-button:nth-child(2) { animation-delay: 0.2s; }
+        .contact-button:nth-child(3) { animation-delay: 0.3s; }
+        .contact-button:nth-child(4) { animation-delay: 0.4s; }
 
         .contact-button:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(138, 75, 175, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px var(--shadow);
+            border-color: var(--primary-light);
         }
 
-        .dark-mode .contact-button {
+        .contact-button.call {
+            background: linear-gradient(to right, #4CAF50, #2E7D32);
+            color: white;
+        }
+
+        .contact-button.whatsapp {
+            background: linear-gradient(to right, #25D366, #128C7E);
+            color: white;
+        }
+
+        .contact-button.email {
+            background: linear-gradient(to right, #EA4335, #D14836);
+            color: white;
+        }
+
+        .contact-button.location {
+            background: linear-gradient(to right, #4285F4, #1A73E8);
+            color: white;
+        }
+
+        .contact-icon {
+            font-size: 1.4rem;
+            margin-right: 15px;
+            width: 30px;
+        }
+
+        .contact-text {
+            flex: 1;
+        }
+
+        .contact-text strong {
+            display: block;
+            font-size: 1rem;
+            margin-bottom: 3px;
+        }
+
+        .contact-text span {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .social-section {
+            margin-top: 40px;
+            padding-top: 25px;
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .social-title {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .social-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
             background-color: var(--primary-light);
-            color: #333;
+            color: var(--primary-dark);
+            font-size: 1.3rem;
+            text-decoration: none;
+            transition: var(--transition);
         }
 
-        .dark-mode .contact-button:hover {
+        .social-icon:hover {
+            transform: translateY(-5px) scale(1.1);
             background-color: var(--primary-color);
             color: white;
         }
 
-        /* Pie de página */
-        #footer {
+        .footer {
             text-align: center;
-            font-size: 0.8rem;
+            padding: 20px;
+            font-size: 0.9rem;
             color: var(--text-light);
-            opacity: 0.7;
-            margin-top: 10px;
-            padding: 10px;
+            border-top: 1px solid var(--border-light);
+            background-color: rgba(0, 0, 0, 0.02);
         }
 
-        .dark-mode #footer {
-            color: var(--text-dark);
+        .dark-mode .footer {
+            background-color: rgba(255, 255, 255, 0.02);
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
-            #main-title {
-                font-size: 1.8rem;
+            .card-body {
+                flex-direction: column;
+                padding: 30px;
+            }
+            
+            .info-section, .contact-section {
+                padding: 0;
+                border: none;
+            }
+            
+            .contact-section {
+                margin-top: 40px;
             }
             
             #doctor-name {
-                font-size: 1.7rem;
+                font-size: 1.8rem;
             }
             
-            #logos-container {
-                flex-direction: column;
-                align-items: center;
-                gap: 20px;
+            .section-title {
+                font-size: 1.3rem;
             }
             
-            #clinic-logo-container, #doctor-logo-container {
-                width: 80px;
-                height: 80px;
-            }
-            
-            #info-content {
-                grid-template-columns: 1fr;
-            }
-            
-            #contact-section {
-                grid-template-columns: 1fr;
-            }
-            
-            .info-card {
-                min-height: 300px;
+            #theme-toggle {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
             }
         }
 
         @media (max-width: 480px) {
-            #main-title {
-                font-size: 1.5rem;
-            }
-            
-            #doctor-name {
-                font-size: 1.5rem;
-            }
-            
-            #card-top {
-                padding: 20px 15px;
-            }
-            
-            #info-content {
-                padding: 20px 15px;
-            }
-            
-            .info-card {
+            .card-header {
                 padding: 20px;
-                min-height: 280px;
             }
             
-            .info-title {
+            .card-body {
+                padding: 20px;
+            }
+            
+            #doctor-image {
+                width: 140px;
+                height: 140px;
+            }
+            
+            .contact-button {
+                padding: 12px 15px;
+            }
+            
+            .social-icon {
+                width: 45px;
+                height: 45px;
                 font-size: 1.2rem;
-                margin-bottom: 15px;
             }
         }
     </style>
 </head>
 <body>
-    <div id="main-container">
-        <div id="header-container">
-            <h1 id="main-title">Consultorio Ginecológico</h1>
-            <button id="theme-toggle">
-                <i class="fas fa-moon"></i> Modo Noche
-            </button>
-        </div>
-        
-        <p id="subtitle">Atención especializada para la salud de la mujer</p>
-        
-        <div id="main-card">
-            <div id="card-top">
-                <!-- Efecto de partículas -->
-                <div id="particles"></div>
-                
-                <!-- Logos de la clínica y la doctora -->
-                <div id="logos-container">
-                    <div id="clinic-logo-container">
-                        <!-- Logo de la clínica - se puede reemplazar por imagen real -->
-                        <div id="clinic-logo">🏥</div>
-                    </div>
-                    <div id="doctor-logo-container">
-                        <!-- Logo/foto de la doctora - se puede reemplazar por imagen real -->
-                        <div id="doctor-logo">👩‍⚕️</div>
-                    </div>
-                </div>
-                
-                <!-- Información de la doctora -->
-                <div id="doctor-info">
-                    <h2 id="doctor-name">Dra. Laura Méndez</h2>
-                    <p id="doctor-specialty">Ginecología y Obstetricia</p>
-                    <p id="doctor-credential">Especialista en Ginecología Oncológica y Endocrinología Ginecológica. Más de 15 años de experiencia cuidando la salud integral de la mujer.</p>
-                </div>
-                
-                <!-- Botón para expandir información -->
-                <button id="expand-button">
-                    <i class="fas fa-chevron-down"></i> Más Información
+    <div class="card-container">
+        <div class="card" id="digital-card">
+            <div class="card-header">
+                <button id="theme-toggle" aria-label="Cambiar modo claro/oscuro">
+                    <i class="fas fa-moon"></i>
                 </button>
+                
+                <img id="doctor-image" src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80" alt="Dra. Laura Fernández">
+                
+                <h1 id="doctor-name">Dra. Laura Fernández</h1>
+                <p id="doctor-specialty">Ginecología y Obstetricia</p>
+                <h2 id="clinic-name">Clínica Mujer Integral</h2>
             </div>
             
-            <!-- Información expandible - CORREGIDA -->
-            <div id="expandable-info">
-                <div id="info-content">
-                    <!-- Información sobre especialidades -->
-                    <div class="info-card">
+            <div class="card-body">
+                <div class="info-section">
+                    <h3 class="section-title">Información Profesional</h3>
+                    
+                    <div class="info-item">
                         <div class="info-icon">
-                            <i class="fas fa-stethoscope"></i>
+                            <i class="fas fa-user-md"></i>
                         </div>
-                        <h3 class="info-title">Especialidades</h3>
-                        <p class="info-text">Control prenatal, planificación familiar, menopausia, enfermedades ginecológicas, cirugía laparoscópica, ecografías ginecológicas y obstetricias.</p>
-                        <button class="info-button">
-                            <i class="fas fa-calendar-check"></i> Agendar Cita
-                        </button>
+                        <div class="info-content">
+                            <h3>Especialidades</h3>
+                            <p>Ginecología, Obstetricia, Salud Femenina, Menopausia, Reproducción Asistida</p>
+                        </div>
                     </div>
                     
-                    <!-- Información sobre horarios - MEJORADA -->
-                    <div class="info-card">
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="info-content">
+                            <h3>Formación</h3>
+                            <p>Médico Cirujano - Universidad Nacional Autónoma de México<br>
+                            Especialidad en Ginecología y Obstetricia - Hospital Ángeles</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
                         <div class="info-icon">
                             <i class="fas fa-clock"></i>
                         </div>
-                        <h3 class="info-title">Horarios de Atención</h3>
-                        <div class="schedule-container">
-                            <div class="schedule-item">
-                                <span class="schedule-day">Lunes a Viernes:</span>
-                                <span class="schedule-time">9:00 AM - 7:00 PM</span>
-                            </div>
-                            
-                            <div class="schedule-item">
-                                <span class="schedule-day">Sábados:</span>
-                                <span class="schedule-time">9:00 AM - 1:00 PM</span>
-                            </div>
-                            
-                            <span class="schedule-note">Consultas por emergencia disponibles con cita previa.</span>
+                        <div class="info-content">
+                            <h3>Horarios de Atención</h3>
+                            <p>Lunes a Viernes: 9:00 AM - 7:00 PM<br>
+                            Sábados: 9:00 AM - 1:00 PM<br>
+                            Citas previa confirmación</p>
                         </div>
-                        <button class="info-button">
-                            <i class="fas fa-phone-alt"></i> Llamar para Horarios
-                        </button>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <div class="info-content">
+                            <h3>Certificaciones</h3>
+                            <p>Certificada por el Consejo Mexicano de Ginecología y Obstetricia<br>
+                            Miembro de la Asociación Mexicana de Ginecología y Obstetricia</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-section">
+                    <h3 class="section-title">Contacto</h3>
+                    
+                    <div class="contact-buttons">
+                        <a href="tel:+525512345678" class="contact-button call" id="call-button">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-text">
+                                <strong>Llamar ahora</strong>
+                                <span id="phone-number">+52 55 1234 5678</span>
+                            </div>
+                        </a>
+                        
+                        <a href="https://wa.me/525512345678" target="_blank" class="contact-button whatsapp" id="whatsapp-button">
+                            <div class="contact-icon">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div class="contact-text">
+                                <strong>WhatsApp</strong>
+                                <span>Envíe un mensaje directo</span>
+                            </div>
+                        </a>
+                        
+                        <a href="mailto:consulta@clinicamujerintegral.com" class="contact-button email" id="email-button">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <strong>Email</strong>
+                                <span id="email-address">consulta@clinicamujerintegral.com</span>
+                            </div>
+                        </a>
+                        
+                        <a href="https://goo.gl/maps/ejemplo" target="_blank" class="contact-button location" id="location-button">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <strong>Ubicación</strong>
+                                <span id="address">Av. Reforma 123, Col. Juárez, CDMX</span>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="social-section">
+                        <h4 class="social-title">Síguenos en redes sociales</h4>
+                        <div class="social-icons">
+                            <a href="#" class="social-icon" id="facebook-link">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-icon" id="instagram-link">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-icon" id="twitter-link">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-icon" id="linkedin-link">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        
-        <!-- Sección de contacto -->
-        <div id="contact-section">
-            <!-- Teléfono -->
-            <div class="contact-item">
-                <div class="contact-icon">
-                    <i class="fas fa-phone-alt"></i>
-                </div>
-                <h3 class="contact-title">Teléfono</h3>
-                <p class="contact-detail">Para consultas y citas</p>
-                <a href="tel:+525512345678" class="contact-button">
-                    <i class="fas fa-phone-alt"></i> Llamar ahora
-                </a>
-            </div>
             
-            <!-- Ubicación -->
-            <div class="contact-item">
-                <div class="contact-icon">
-                    <i class="fas fa-map-marker-alt"></i>
-                </div>
-                <h3 class="contact-title">Ubicación</h3>
-                <p class="contact-detail">Av. Reforma 123, Ciudad de México</p>
-                <a href="https://maps.google.com/?q=Av.+Reforma+123,Ciudad+de+México" target="_blank" class="contact-button">
-                    <i class="fas fa-directions"></i> Cómo llegar
-                </a>
+            <div class="footer">
+                <p>Clínica Mujer Integral © 2023 - Todos los derechos reservados</p>
             </div>
-            
-            <!-- WhatsApp -->
-            <div class="contact-item">
-                <div class="contact-icon">
-                    <i class="fab fa-whatsapp"></i>
-                </div>
-                <h3 class="contact-title">WhatsApp</h3>
-                <p class="contact-detail">Consultas rápidas</p>
-                <a href="https://wa.me/525512345678?text=Hola,%20me%20gustaría%20agendar%20una%20cita" target="_blank" class="contact-button">
-                    <i class="fab fa-whatsapp"></i> Enviar mensaje
-                </a>
-            </div>
-        </div>
-        
-        <!-- Pie de página -->
-        <div id="footer">
-            <p>© 2023 Dra. Laura Méndez - Ginecóloga. Todos los derechos reservados.</p>
         </div>
     </div>
 
     <script>
-        // IDs para referencia futura:
-        // main-container, header-container, main-title, subtitle, theme-toggle
-        // main-card, card-top, particles, logos-container, clinic-logo-container
-        // clinic-logo, doctor-logo-container, doctor-logo, doctor-info
-        // doctor-name, doctor-specialty, doctor-credential, expand-button
-        // expandable-info, info-content, contact-section, footer
-        
-        // Variables de elementos
-        const themeToggle = document.getElementById('theme-toggle');
-        const expandButton = document.getElementById('expand-button');
-        const expandableInfo = document.getElementById('expandable-info');
-        const infoContent = document.getElementById('info-content');
-        const particlesContainer = document.getElementById('particles');
-        const body = document.body;
-        
-        // Función para cambiar entre modo día y noche
-        themeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            
-            // Cambiar ícono y texto del botón
+        document.addEventListener('DOMContentLoaded', function() {
+            // Botón de modo nocturno
+            const themeToggle = document.getElementById('theme-toggle');
             const icon = themeToggle.querySelector('i');
-            if (body.classList.contains('dark-mode')) {
-                icon.className = 'fas fa-sun';
-                themeToggle.innerHTML = '<i class="fas fa-sun"></i> Modo Día';
-            } else {
-                icon.className = 'fas fa-moon';
-                themeToggle.innerHTML = '<i class="fas fa-moon"></i> Modo Noche';
-            }
-        });
-        
-        // Función para expandir/contraer información - CORREGIDA
-        expandButton.addEventListener('click', () => {
-            const isExpanded = expandableInfo.classList.toggle('expanded');
             
-            // Cambiar ícono y texto del botón
-            const icon = expandButton.querySelector('i');
-            if (isExpanded) {
-                icon.className = 'fas fa-chevron-up';
-                expandButton.innerHTML = '<i class="fas fa-chevron-up"></i> Menos Información';
+            themeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark-mode');
                 
-                // Asegurarnos de que el contenido sea visible después de la animación
+                if (document.body.classList.contains('dark-mode')) {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                    themeToggle.setAttribute('aria-label', 'Cambiar a modo claro');
+                } else {
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                    themeToggle.setAttribute('aria-label', 'Cambiar a modo oscuro');
+                }
+                
+                // Añadir animación al botón
+                themeToggle.style.transform = 'rotate(180deg) scale(1.1)';
                 setTimeout(() => {
-                    infoContent.style.opacity = '1';
-                    infoContent.style.transform = 'translateY(0)';
+                    themeToggle.style.transform = '';
                 }, 300);
-            } else {
-                icon.className = 'fas fa-chevron-down';
-                expandButton.innerHTML = '<i class="fas fa-chevron-down"></i> Más Información';
-                
-                // Ocultar el contenido cuando se contrae
-                infoContent.style.opacity = '0';
-                infoContent.style.transform = 'translateY(-10px)';
-            }
-        });
-        
-        // Crear partículas animadas
-        function createParticles() {
-            const particleCount = 20;
+            });
             
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
+            // Efectos de hover mejorados para botones de contacto
+            const contactButtons = document.querySelectorAll('.contact-button');
+            contactButtons.forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    const icon = this.querySelector('.contact-icon i');
+                    icon.style.transform = 'scale(1.2)';
+                });
                 
-                // Tamaño aleatorio
-                const size = Math.random() * 10 + 5;
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                
-                // Posición inicial aleatoria
-                particle.style.left = `${Math.random() * 100}%`;
-                particle.style.top = `${Math.random() * 100}%`;
-                
-                // Opacidad aleatoria
-                particle.style.opacity = Math.random() * 0.5 + 0.1;
-                
-                // Duración de animación aleatoria
-                const duration = Math.random() * 20 + 10;
-                particle.style.animationDuration = `${duration}s`;
-                
-                // Retraso de animación aleatorio
-                const delay = Math.random() * 5;
-                particle.style.animationDelay = `${delay}s`;
-                
-                particlesContainer.appendChild(particle);
-            }
-        }
-        
-        // Llamar a la función para crear partículas cuando la página se carga
-        document.addEventListener('DOMContentLoaded', createParticles);
-        
-        // Función para simular clics en botones de contacto (para propósitos de demostración)
-        document.querySelectorAll('.contact-button, .info-button').forEach(button => {
-            button.addEventListener('click', function(e) {
-                // Solo para enlaces que no tienen href (como los botones de agendar cita)
-                if (!this.getAttribute('href')) {
-                    e.preventDefault();
-                    
-                    // Efecto visual de clic
+                button.addEventListener('mouseleave', function() {
+                    const icon = this.querySelector('.contact-icon i');
+                    icon.style.transform = 'scale(1)';
+                });
+            });
+            
+            // Animación de entrada para elementos
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
+                    }
+                });
+            }, observerOptions);
+            
+            // Observar elementos para animarlos al hacer scroll
+            const elementsToAnimate = document.querySelectorAll('.info-item, .contact-button, .social-section');
+            elementsToAnimate.forEach(el => {
+                observer.observe(el);
+            });
+            
+            // Efecto de clic en botones de contacto
+            contactButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    // Efecto de pulsación
                     this.style.transform = 'scale(0.95)';
-                    
-                    // Mensaje de confirmación
-                    const action = this.textContent.includes('Agendar') ? 'agendar una cita' : 
-                                   this.textContent.includes('Llamar') ? 'realizar una llamada' : 
-                                   'realizar la acción';
-                    
                     setTimeout(() => {
                         this.style.transform = '';
-                        alert(`En una implementación real, esto ${action}.`);
                     }, 200);
-                }
+                    
+                    // Para demostración, prevenir navegación en algunos enlaces
+                    if (this.getAttribute('href') === '#') {
+                        e.preventDefault();
+                        alert('Enlace de demostración. En una implementación real, esto abriría la red social correspondiente.');
+                    }
+                });
             });
-        });
-        
-        // Efecto de aparición gradual de los elementos
-        document.addEventListener('DOMContentLoaded', () => {
-            const elements = document.querySelectorAll('#main-card, .contact-item');
             
-            elements.forEach((element, index) => {
-                element.style.opacity = '0';
-                element.style.transform = 'translateY(20px)';
-                
-                setTimeout(() => {
-                    element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                    element.style.opacity = '1';
-                    element.style.transform = 'translateY(0)';
-                }, 100 * index);
-            });
-        });
-        
-        // Ajustar automáticamente la altura de la sección expandible según el contenido
-        function adjustExpandableHeight() {
-            if (expandableInfo.classList.contains('expanded')) {
-                const contentHeight = infoContent.scrollHeight;
-                expandableInfo.style.maxHeight = `${contentHeight + 60}px`;
-            }
-        }
-        
-        // Ajustar altura al cambiar tamaño de ventana
-        window.addEventListener('resize', adjustExpandableHeight);
-        
-        // Inicializar con el contenido oculto
-        document.addEventListener('DOMContentLoaded', () => {
-            infoContent.style.opacity = '0';
-            infoContent.style.transform = 'translateY(-10px)';
+            // Efecto de carga inicial
+            setTimeout(() => {
+                document.body.style.opacity = 1;
+            }, 100);
         });
     </script>
 </body>
