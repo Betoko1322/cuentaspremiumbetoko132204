@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Tarjeta Digital Profesional</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+* { box-sizing: border-box; }
+body{
+  margin:0;
+  background:#000;
+  font-family:'Montserrat',sans-serif;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:100vh;
+  overflow:hidden;
+}
+
+canvas#particles{
+  position:fixed;
+  inset:0;
+  z-index:0;
+}
+
+.card{
+  position:relative;
+  z-index:1;
+  width:95%;
+  max-width:420px;
+  padding:32px 24px;
+  border-radius:20px;
+  background:rgba(0,0,0,0.90);
+  box-shadow:0 10px 35px rgba(201,162,39,0.45);
+  color:#fff;
+  text-align:center;
+  animation:cardFade 900ms ease;
+}
+
+.card::before{
+  content:"";
+  position:absolute;
+  top:-50%;
+  left:-50%;
+  width:200%;
+  height:200%;
+  background:linear-gradient(120deg, transparent 40%, rgba(255,215,0,0.12), transparent 60%);
+  transform: rotate(25deg);
+  animation:shine 7s linear infinite;
+}
+
+.logo-container{
+  position:relative;
+  width:160px;
+  height:130px;
+  margin:0 auto 10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  pointer-events:none;
+}
+
+.logo-bg{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  width:140px;
+  max-width:70%;
+  opacity:0.18;
+  filter:drop-shadow(0 0 10px rgba(201,162,39,0.6));
+  z-index:1;
+  pointer-events:none;
+  object-fit:contain;
+  animation:floatLogo 6s ease-in-out infinite;
+}
+
+/* 🔼 Ajuste hacia arriba aplicado */
+.logo-bg.modify-up{
+  transform: translate(-50%, calc(-50% - 10px));
+}
+
+.logo{
+  position:relative;
+  z-index:2;
+  font-family:'Playfair Display',serif;
+  font-size:64px;
+  color:#c9a227;
+  letter-spacing:6px;
+  animation:glow 3s infinite alternate;
+}
+
+@keyframes floatLogo {
+  0%{ transform: translate(-50%,-50%) translateY(0); }
+  50%{ transform: translate(-50%,-50%) translateY(-6px); }
+  100%{ transform: translate(-50%,-50%) translateY(0); }
+}
+
+@keyframes glow {
+  from{ text-shadow:0 0 10px #c9a227; }
+  to{ text-shadow:0 0 30px #ffd700; }
+}
+
+@keyframes shine {
+  from{ transform: translateX(-100%) rotate(25deg); }
+  to{ transform: translateX(100%) rotate(25deg); }
+}
+
+@keyframes cardFade {
+  from{ opacity:0; transform: translateY(18px); }
+  to{ opacity:1; transform: translateY(0); }
+}
+
+.name { font-size:18px; margin-top:6px; font-weight:500; }
+.tagline { font-size:13px; color:#c9a227; margin:6px 0 14px; }
+
+.divider{
+  height:2px;
+  background:linear-gradient(90deg, transparent, #c9a227, transparent);
+  margin:12px 0 18px;
+}
+
+.contact-grid{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.contact-item{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:12px 14px;
+  border-radius:10px;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(201,162,39,0.16);
+  transition:all 220ms ease;
+  cursor:pointer;
+  font-size:15px;
+  text-align:left;
+}
+
+.contact-item i{ color:#c9a227; width:28px; text-align:center; font-size:18px; }
+
+.contact-item:hover{
+  transform:translateY(-4px);
+  background:rgba(201,162,39,0.08);
+  box-shadow:0 6px 18px rgba(201,162,39,0.18);
+}
+
+.vcard-btn{
+  margin-top:14px;
+  width:100%;
+  padding:11px;
+  border-radius:9px;
+  background: linear-gradient(45deg,#c9a227,#ffd700);
+  color:#000;
+  font-weight:700;
+  cursor:pointer;
+  border:none;
+}
+
+@media (max-width:420px){
+  .logo{ font-size:52px; }
+  .logo-bg{ width:120px; }
+}
+</style>
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+
+<div class="card">
+
+  <div class="logo-container">
+    <img src="https://es.pinterest.com/pin/119415827618064238/" alt="logo fondo" class="logo-bg modify-up" id="logo-fondo" draggable="false">
+    <div class="logo" id="logo">AN</div>
+  </div>
+
+  <div class="name" id="nombre">ABOGADO NOMBRE APELLIDO</div>
+  <div class="tagline" id="frase">Defendiendo tus derechos con pasión y precisión</div>
+
+  <div class="divider"></div>
+
+  <div class="contact-grid">
+    <div class="contact-item" id="telefono"><i class="fa-solid fa-phone"></i><span id="telefono-texto">+00 000 000 0000</span></div>
+    <div class="contact-item" id="whatsapp"><i class="fa-brands fa-whatsapp"></i><span>WhatsApp</span></div>
+    <div class="contact-item" id="email"><i class="fa-solid fa-envelope"></i><span id="email-texto">correo@ejemplo.com</span></div>
+    <div class="contact-item" id="instagram"><i class="fa-brands fa-instagram"></i><span id="instagram-texto">@usuario</span></div>
+    <div class="contact-item" id="facebook"><i class="fa-brands fa-facebook-f"></i><span id="facebook-texto">Perfil Facebook</span></div>
+  </div>
+
+  <button class="vcard-btn" onclick="descargarVCard()">Guardar Contacto</button>
+</div>
+
+<script>
+telefono.onclick = () => window.location.href = "tel:+000000000";
+whatsapp.onclick = () => window.open("https://wa.me/0000000000");
+email.onclick = () => window.location.href = "mailto:correo@ejemplo.com";
+instagram.onclick = () => window.open("https://instagram.com/usuario");
+facebook.onclick = () => window.open("https://facebook.com/usuario");
+
+function descargarVCard(){
+  const vcard = `BEGIN:VCARD
+VERSION:3.0
+FN:Nombre Apellido
+TEL:+000000000
+EMAIL:correo@ejemplo.com
+END:VCARD`;
+  const blob = new Blob([vcard], { type: 'text/vcard' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'contacto.vcf';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+/* Partículas */
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+for(let i=0;i<80;i++){
+  particles.push({x: Math.random()*canvas.width,y: Math.random()*canvas.height,r: Math.random()*2,d: Math.random()*1});
+}
+
+function draw(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle="rgba(201,162,39,0.8)";
+  ctx.beginPath();
+  for(let p of particles){ ctx.moveTo(p.x,p.y); ctx.arc(p.x,p.y,p.r,0,Math.PI*2,true); }
+  ctx.fill();
+  update();
+}
+
+function update(){
+  for(let p of particles){
+    p.y+=p.d;
+    if(p.y>canvas.height){ p.y=0; p.x=Math.random()*canvas.width; }
+  }
+}
+setInterval(draw,33);
+</script>
+
+</body>
+</html>
