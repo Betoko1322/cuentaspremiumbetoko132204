@@ -9,16 +9,26 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-* { box-sizing: border-box; }
+* { 
+  box-sizing: border-box; 
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* Elimina barras de desplazamiento */
+}
+
 body{
-  margin:0;
   background:#000;
   font-family:'Montserrat',sans-serif;
   display:flex;
   align-items:center;
   justify-content:center;
   min-height:100vh;
-  overflow:hidden;
+  padding: 10px; /* Pequeño margen interno */
 }
 
 canvas#particles{
@@ -30,8 +40,9 @@ canvas#particles{
 .card{
   position:relative;
   z-index:1;
-  width:95%;
-  max-width:420px;
+  width:100%;
+  max-width:420px; /* Tamaño máximo fijo */
+  min-height: auto; /* Altura automática */
   padding:32px 24px;
   border-radius:20px;
   background:rgba(0,0,0,0.90);
@@ -39,6 +50,8 @@ canvas#particles{
   color:#fff;
   text-align:center;
   animation:cardFade 900ms ease;
+  /* Asegura que no crezca más allá de su tamaño */
+  flex-shrink: 0;
 }
 
 .card::before{
@@ -134,8 +147,19 @@ canvas#particles{
   to{ opacity:1; transform: translateY(0); }
 }
 
-.name { font-size:18px; margin-top:6px; font-weight:500; }
-.tagline { font-size:13px; color:#c9a227; margin:6px 0 14px; }
+.name { 
+  font-size:18px; 
+  margin-top:6px; 
+  font-weight:500;
+  word-wrap: break-word;
+}
+
+.tagline { 
+  font-size:13px; 
+  color:#c9a227; 
+  margin:6px 0 14px;
+  word-wrap: break-word;
+}
 
 .divider{
   height:2px;
@@ -161,9 +185,23 @@ canvas#particles{
   cursor:pointer;
   font-size:15px;
   text-align:left;
+  /* Evita que los elementos se salgan */
+  min-width: 0;
 }
 
-.contact-item i{ color:#c9a227; width:28px; text-align:center; font-size:18px; }
+.contact-item i{ 
+  color:#c9a227; 
+  width:28px; 
+  text-align:center; 
+  font-size:18px; 
+  flex-shrink: 0;
+}
+
+.contact-item span{
+  /* Permite que el texto se ajuste */
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
 
 .contact-item:hover{
   transform:translateY(-4px);
@@ -181,11 +219,76 @@ canvas#particles{
   font-weight:700;
   cursor:pointer;
   border:none;
+  /* Evita que el botón se salga */
+  flex-shrink: 0;
 }
 
 @media (max-width:420px){
   .logo{ font-size:52px; }
   .logo-svg{ width:120px; }
+  .card{
+    padding: 28px 20px;
+    max-width: 380px;
+  }
+}
+
+@media (max-height: 700px) {
+  .card{
+    max-width: 380px;
+    padding: 24px 18px;
+  }
+  
+  .logo-container{
+    width: 140px;
+    height: 110px;
+    margin: 0 auto 8px;
+  }
+  
+  .logo{
+    font-size: 56px;
+  }
+  
+  .logo-svg{
+    width: 120px;
+  }
+  
+  .contact-grid{
+    gap: 10px;
+  }
+  
+  .contact-item{
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+  
+  .name{
+    font-size: 16px;
+  }
+  
+  .tagline{
+    font-size: 12px;
+  }
+}
+
+/* Para pantallas muy pequeñas */
+@media (max-width: 350px) {
+  .card{
+    padding: 20px 16px;
+    max-width: 320px;
+  }
+  
+  .logo-container{
+    width: 120px;
+    height: 100px;
+  }
+  
+  .logo{
+    font-size: 48px;
+  }
+  
+  .logo-svg{
+    width: 100px;
+  }
 }
 </style>
 </head>
@@ -249,6 +352,42 @@ canvas#particles{
 </div>
 
 <script>
+// Ajustar canvas al tamaño exacto de la ventana
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+// Partículas
+let particles = [];
+for(let i=0;i<80;i++){
+  particles.push({x: Math.random()*canvas.width,y: Math.random()*canvas.height,r: Math.random()*2,d: Math.random()*1});
+}
+
+function draw(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle="rgba(201,162,39,0.8)";
+  ctx.beginPath();
+  for(let p of particles){ ctx.moveTo(p.x,p.y); ctx.arc(p.x,p.y,p.r,0,Math.PI*2,true); }
+  ctx.fill();
+  update();
+}
+
+function update(){
+  for(let p of particles){
+    p.y+=p.d;
+    if(p.y>canvas.height){ p.y=0; p.x=Math.random()*canvas.width; }
+  }
+}
+setInterval(draw,33);
+
+// Eventos de contacto
 telefono.onclick = () => window.location.href = "tel:+000000000";
 whatsapp.onclick = () => window.open("https://wa.me/0000000000");
 email.onclick = () => window.location.href = "mailto:correo@ejemplo.com";
@@ -271,33 +410,17 @@ END:VCARD`;
   URL.revokeObjectURL(url);
 }
 
-/* Partículas */
-const canvas = document.getElementById('particles');
-const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+// Prevenir zoom en dispositivos móviles
+document.addEventListener('gesturestart', function(e) {
+  e.preventDefault();
+});
 
-let particles = [];
-for(let i=0;i<80;i++){
-  particles.push({x: Math.random()*canvas.width,y: Math.random()*canvas.height,r: Math.random()*2,d: Math.random()*1});
-}
-
-function draw(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  ctx.fillStyle="rgba(201,162,39,0.8)";
-  ctx.beginPath();
-  for(let p of particles){ ctx.moveTo(p.x,p.y); ctx.arc(p.x,p.y,p.r,0,Math.PI*2,true); }
-  ctx.fill();
-  update();
-}
-
-function update(){
-  for(let p of particles){
-    p.y+=p.d;
-    if(p.y>canvas.height){ p.y=0; p.x=Math.random()*canvas.width; }
+// Prevenir desplazamiento en iOS
+document.addEventListener('touchmove', function(e) {
+  if(e.target.tagName === 'CANVAS') {
+    e.preventDefault();
   }
-}
-setInterval(draw,33);
+}, { passive: false });
 </script>
 
 </body>
