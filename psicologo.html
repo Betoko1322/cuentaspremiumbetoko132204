@@ -89,9 +89,10 @@ body{
     max-width:420px;
     text-align:center;
     z-index:1;
+    box-shadow:0 0 25px rgba(25,194,184,.15);
 }
 
-/* Borde neón */
+/* ✨ BORDE NEÓN ANIMADO */
 #cardContainer::before{
     content:"";
     position:absolute;
@@ -112,12 +113,32 @@ body{
     100%{background-position:200% 50%}
 }
 
+/* Detalles neón internos */
+.section h3{
+    position:relative;
+    color:var(--accent-light);
+    font-size:15px;
+    margin-bottom:8px;
+}
+
+.section h3::after{
+    content:"";
+    display:block;
+    width:40px;
+    height:2px;
+    margin:6px auto 0;
+    background:var(--accent-light);
+    box-shadow:0 0 8px var(--accent-light);
+    border-radius:2px;
+}
+
 /* FRASE */
 #fraseMotivacional{
     font-style:italic;
     font-size:14px;
     color:var(--accent-light);
     margin-bottom:16px;
+    text-shadow:0 0 6px rgba(55,224,214,.4);
 }
 
 /* ================= LOGO ================= */
@@ -127,7 +148,6 @@ body{
     display:inline-block;
 }
 
-/* Resplandor */
 #logoWrapper::before{
     content:"";
     position:absolute;
@@ -141,7 +161,7 @@ body{
     z-index:0;
 }
 
-/* ✨ Animación flotante */
+/* LOGO con mismo efecto que foto */
 #logoPsicologia{
     width:var(--size-foto);
     height:var(--size-foto);
@@ -151,6 +171,12 @@ body{
     position:relative;
     z-index:1;
     animation:flotar 4s ease-in-out infinite;
+    transition:transform .4s ease, box-shadow .4s ease;
+}
+
+#logoPsicologia:hover{
+    transform:scale(1.08);
+    box-shadow:0 12px 30px rgba(0,0,0,.35);
 }
 
 @keyframes flotar{
@@ -158,16 +184,7 @@ body{
     50%{transform:translateY(-6px)}
 }
 
-/* Separador */
-.separadorLogoFoto{
-    width:60%;
-    height:1px;
-    margin: 6px auto 18px auto;
-    background: linear-gradient(to right, transparent, var(--accent-light), transparent);
-    opacity:.35;
-}
-
-/* ================= FOTO ================= */
+/* FOTO */
 #fotoPsicologo{
     width:var(--size-foto);
     height:var(--size-foto);
@@ -179,21 +196,12 @@ body{
     transition:transform .4s ease, box-shadow .4s ease;
 }
 
-/* ✨ Zoom elegante */
 #fotoPsicologo:hover{
     transform:scale(1.08);
     box-shadow: 0 14px 35px rgba(0,0,0,.35);
 }
 
-/* TEXTOS */
-#nombrePsicologo{margin:6px 0 4px;font-weight:600;font-size:20px}
-#especialidadPsicologo{color:var(--soft);font-size:14px;margin-bottom:10px}
-
-/* SECCIONES */
-.section{margin-top:16px}
-.section h3{color:var(--accent-light);font-size:15px;margin-bottom:8px}
-
-/* BOTONES */
+/* BOTONES INTERACTIVOS */
 .btn{
     display:block;
     width:100%;
@@ -205,23 +213,29 @@ body{
     color:#062022;
     font-weight:600;
     cursor:pointer;
-    box-shadow:0 0 14px rgba(25,194,184,.25);
+    box-shadow:0 6px 14px rgba(0,0,0,.25);
+    transition:transform .1s ease, box-shadow .1s ease;
 }
 
-/* REDES */
-#redesSociales{display:flex;justify-content:center;gap:18px;font-size:20px}
-#redesSociales a{color:var(--text)}
-#redesSociales a:hover{color:var(--accent)}
+.btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 18px rgba(0,0,0,.35);
+}
 
-/* MAPA */
+.btn:active{
+    transform:translateY(2px) scale(.98);
+    box-shadow:0 4px 8px rgba(0,0,0,.25) inset;
+}
+
+/* RESTO */
+#redesSociales{display:flex;justify-content:center;gap:18px;font-size:20px}
+#redesSociales a{color:var(--text);transition:.3s}
+#redesSociales a:hover{color:var(--accent);text-shadow:0 0 8px var(--accent)}
+
 #mapaGoogle{width:100%;height:170px;border-radius:14px;border:none;margin-top:6px}
 
-/* RESPONSIVE */
 @media (max-width:480px){
     :root{ --size-foto:105px; }
-    #cardContainer{padding:24px 16px;border-radius:22px}
-    #nombrePsicologo{font-size:18px}
-    .btn{font-size:14px}
 }
 </style>
 </head>
@@ -237,8 +251,6 @@ body{
     <div id="logoWrapper">
         <img src="https://www.escritosdepsicologia.es/wp-content/uploads/2025/01/historia-y-significado-del-original-logo-de-psicologia.jpg" id="logoPsicologia">
     </div>
-
-    <div class="separadorLogoFoto"></div>
 
     <img src="https://img.freepik.com/fotos-premium/doctora-retrato-sobre-fondo-blanco_188913-1538.jpg" id="fotoPsicologo">
 
