@@ -20,7 +20,7 @@
     --neon:rgba(25,194,184,.7);
 }
 
-/* Modo claro */
+/* 🌞 MODO CLARO AUTO */
 @media (prefers-color-scheme: light) {
     :root {
         --bg1:#e6fbf9;
@@ -35,6 +35,19 @@
     }
 }
 
+/* 🌞 MODO CLARO MANUAL */
+body.light{
+    --bg1:#e6fbf9;
+    --bg2:#f4fffe;
+    --card:#ffffff;
+    --text:#0b1f29;
+    --soft:#406b70;
+    --logo-border:#0ea5a0;
+    --neon:rgba(14,165,160,.6);
+}
+
+*{box-sizing:border-box}
+
 body{
     margin:0;
     font-family:'Segoe UI',sans-serif;
@@ -45,26 +58,41 @@ body{
     align-items:center;
     min-height:100vh;
     padding:18px;
-    overflow:hidden;
+    overflow-x:hidden;
 }
 
-/* ✨ Partículas neón suaves */
+/* ✨ BOTÓN TEMA */
+#themeToggle{
+    position:fixed;
+    top:12px;
+    right:12px;
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    background:var(--card);
+    color:var(--accent-light);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    box-shadow:0 6px 18px rgba(0,0,0,.35);
+    cursor:pointer;
+    z-index:999;
+}
+
+/* 🌌 FONDO NEÓN SUTIL */
 body::before{
     content:"";
     position:fixed;
     inset:0;
     background:
       radial-gradient(circle at 20% 30%, rgba(25,194,184,.15) 0, transparent 40%),
-      radial-gradient(circle at 80% 70%, rgba(25,194,184,.12) 0, transparent 45%),
-      radial-gradient(circle at 60% 20%, rgba(25,194,184,.10) 0, transparent 40%);
+      radial-gradient(circle at 80% 70%, rgba(25,194,184,.12) 0, transparent 45%);
     animation:floatBg 12s ease-in-out infinite alternate;
     z-index:-2;
 }
-@keyframes floatBg{
-    to{transform:translateY(-20px)}
-}
+@keyframes floatBg{to{transform:translateY(-20px)}}
 
-/* Tarjeta */
+/* TARJETA */
 #cardContainer{
     position:relative;
     background:var(--card);
@@ -76,7 +104,7 @@ body::before{
     box-shadow:0 0 25px rgba(25,194,184,.15);
 }
 
-/* Borde neón */
+/* BORDE NEÓN */
 #cardContainer::before{
     content:"";
     position:absolute;
@@ -91,37 +119,19 @@ body::before{
             mask-composite:exclude;
     z-index:-1;
 }
-@keyframes neonMove{
-    to{background-position:200% 50%}
-}
+@keyframes neonMove{to{background-position:200% 50%}}
 
-/* Frase */
+/* FRASE */
 #fraseMotivacional{
     font-style:italic;
     font-size:14px;
     color:var(--accent-light);
     margin-bottom:18px;
     min-height:38px;
-    transition:opacity .5s ease;
+    transition:opacity .5s ease, transform .5s ease;
 }
 
-/* Logo */
-#logoWrapper{
-    display:flex;
-    justify-content:center;
-    margin-bottom:18px;
-}
-#logoWrapper::before{
-    content:"";
-    position:absolute;
-    width:calc(var(--size-foto) + 28px);
-    height:calc(var(--size-foto) + 28px);
-    border-radius:50%;
-    background:radial-gradient(circle, var(--neon), transparent 70%);
-    filter:blur(14px);
-    z-index:0;
-}
-
+/* LOGO Y FOTO MISMO TAMAÑO */
 #logoPsicologia, #fotoPsicologo{
     width:var(--size-foto);
     height:var(--size-foto);
@@ -132,29 +142,24 @@ body::before{
     transition:transform .4s ease, box-shadow .4s ease;
 }
 
-#logoPsicologia{
-    border:3px solid var(--logo-border);
-    animation:flotar 4s ease-in-out infinite;
-    margin-bottom:16px;
+/* Flotación en ambos */
+@keyframes flotar{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-6px)}
 }
-#fotoPsicologo{
-    border:4px solid var(--accent);
-    box-shadow:0 10px 25px rgba(0,0,0,.25);
-    margin-bottom:14px;
+#logoPsicologia, #fotoPsicologo{
+    animation:flotar 4s ease-in-out infinite;
 }
 
-/* Hover ambos */
+#logoPsicologia{border:3px solid var(--logo-border); margin-bottom:16px;}
+#fotoPsicologo{border:4px solid var(--accent); box-shadow:0 10px 25px rgba(0,0,0,.25); margin-bottom:14px;}
+
 #logoPsicologia:hover, #fotoPsicologo:hover{
     transform:scale(1.08);
     box-shadow:0 14px 35px rgba(0,0,0,.35);
 }
 
-@keyframes flotar{
-    0%,100%{transform:translateY(0)}
-    50%{transform:translateY(-6px)}
-}
-
-/* Botones */
+/* BOTONES */
 .btn{
     display:block;
     width:100%;
@@ -172,53 +177,75 @@ body::before{
 .btn:hover{transform:translateY(-2px)}
 .btn:active{transform:translateY(2px) scale(.98);box-shadow:inset 0 4px 8px rgba(0,0,0,.25)}
 
-/* Responsive */
+.section{margin-top:16px}
+.section h3{color:var(--accent-light);margin-bottom:8px}
+
+#mapaGoogle{width:100%;height:170px;border-radius:14px;border:none;margin-top:6px}
+
 @media (max-width:480px){
     :root{ --size-foto:105px; }
 }
 </style>
 </head>
 
-<body>
+<body id="body">
+
+<div id="themeToggle"><i class="fas fa-moon"></i></div>
 
 <div id="cardContainer">
+
     <div id="fraseMotivacional">Tu proceso importa 🌿</div>
 
-    <div id="logoWrapper">
-        <img src="https://www.escritosdepsicologia.es/wp-content/uploads/2025/01/historia-y-significado-del-original-logo-de-psicologia.jpg" id="logoPsicologia">
-    </div>
-
+    <img src="https://www.escritosdepsicologia.es/wp-content/uploads/2025/01/historia-y-significado-del-original-logo-de-psicologia.jpg" id="logoPsicologia">
     <img src="https://img.freepik.com/fotos-premium/doctora-retrato-sobre-fondo-blanco_188913-1538.jpg" id="fotoPsicologo">
 
     <h1>Nombre del Profesional</h1>
     <div>Psicología Clínica • Bienestar Emocional</div>
 
-    <button class="btn">Llamar</button>
-    <button class="btn">WhatsApp</button>
-    <button class="btn">Email</button>
+    <div class="section">
+        <h3>Contacto</h3>
+        <button class="btn">Llamar</button>
+        <button class="btn">WhatsApp</button>
+        <button class="btn">Email</button>
+    </div>
+
+    <div class="section">
+        <h3>Ubicación</h3>
+        <iframe id="mapaGoogle" src="https://www.google.com/maps?q=Ciudad+de+México&output=embed"></iframe>
+    </div>
+
 </div>
 
 <script>
-/* 🌿 FRASES ROTATIVAS */
-const frases = [
+/* 🌗 BOTÓN MODO CLARO/OSCURO */
+const body=document.getElementById("body");
+const toggle=document.getElementById("themeToggle");
+toggle.addEventListener("click",()=>{
+ body.classList.toggle("light");
+ toggle.innerHTML=body.classList.contains("light")?'<i class="fas fa-sun"></i>':'<i class="fas fa-moon"></i>';
+});
+
+/* 🌿 FRASES ROTATIVAS CON DESLIZ */
+const frases=[
 "Tu proceso importa 🌿",
 "Paso a paso también es avance 💚",
 "Pedir ayuda es un acto de valentía ✨",
 "No tienes que poder con todo 🧠",
 "Cuidar tu mente también es salud 🌸"
 ];
-
-const fraseEl = document.getElementById("fraseMotivacional");
-let i = 0;
+const fraseEl=document.getElementById("fraseMotivacional");
+let i=0;
 
 setInterval(()=>{
-  fraseEl.style.opacity = 0;
+  fraseEl.style.opacity=0;
+  fraseEl.style.transform="translateY(10px)";
   setTimeout(()=>{
-    i = (i+1) % frases.length;
-    fraseEl.textContent = frases[i];
-    fraseEl.style.opacity = 1;
+    i=(i+1)%frases.length;
+    fraseEl.textContent=frases[i];
+    fraseEl.style.opacity=1;
+    fraseEl.style.transform="translateY(0)";
   },500);
-},5000);
+},4000);
 </script>
 
 </body>
