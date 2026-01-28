@@ -18,6 +18,7 @@
     --soft:#9fd6d2;
     --accent:#19c2b8;
     --accent-light:#37e0d6;
+    --logo-border:#19c2b8; /* borde logo modo oscuro */
 }
 
 @media (prefers-color-scheme: light) {
@@ -29,6 +30,7 @@
         --soft:#406b70;
         --accent:#0ea5a0;
         --accent-light:#19c2b8;
+        --logo-border:#0ea5a0; /* borde logo modo claro automático */
     }
 }
 
@@ -38,6 +40,7 @@ body.light {
     --card:#ffffff;
     --text:#0b1f29;
     --soft:#406b70;
+    --logo-border:#0ea5a0; /* borde logo modo claro manual */
 }
 
 *{box-sizing:border-box}
@@ -89,7 +92,7 @@ body{
     animation:fadeUp 1s ease, breathe 7s ease-in-out infinite;
 }
 
-/* 🧩 LOGO DE FONDO (MARCA DE AGUA) */
+/* 🧩 LOGO DE FONDO */
 #cardContainer::before{
     content:"";
     position:absolute;
@@ -108,14 +111,12 @@ body{
     z-index:0;
 }
 
-/* Animación ultra sutil */
 @keyframes logoFloat{
     0%{transform:translate(-50%, -50%) rotate(0deg) scale(1)}
     50%{transform:translate(-50%, -52%) rotate(180deg) scale(1.05)}
     100%{transform:translate(-50%, -50%) rotate(360deg) scale(1)}
 }
 
-/* Asegura que el contenido esté encima del fondo */
 #cardContainer > *{
     position:relative;
     z-index:1;
@@ -130,7 +131,7 @@ body{
     50%{transform:scale(1.02)}
 }
 
-/* ✨ FRASE MOTIVACIONAL */
+/* ✨ FRASE */
 #fraseMotivacional{
     font-style:italic;
     font-size:14px;
@@ -139,11 +140,24 @@ body{
     margin-bottom:18px;
 }
 
-/* 🧠 LOGO SUPERIOR */
-#logoWrapper{margin: 12px 0 22px 0; position:relative; display:inline-block;}
-#logoPsicologia{width:85px}
+/* 🧠 LOGO SUPERIOR CIRCULAR */
+#logoWrapper{
+    margin: 12px 0 22px 0;
+    position:relative;
+    display:inline-block;
+}
 
-/* Separador visual */
+#logoPsicologia{
+    width:85px;
+    height:85px;
+    object-fit:cover;
+    border-radius:50%;
+    border:3px solid var(--logo-border); /* dinámico según tema */
+    box-shadow:0 6px 18px rgba(0,0,0,.25);
+    transition:.4s;
+}
+
+/* Separador */
 .separadorLogoFoto{
     width:65%;
     height:1px;
@@ -152,7 +166,7 @@ body{
     opacity:.35;
 }
 
-/* 👩‍⚕️ FOTO PROFESIONAL */
+/* 👩‍⚕️ FOTO */
 #fotoPsicologo{
     width:130px;
     height:130px;
@@ -196,7 +210,7 @@ body{
 /* 📱 RESPONSIVE */
 @media (max-width:480px){
     #cardContainer{padding:22px 18px;border-radius:22px}
-    #logoPsicologia{width:70px}
+    #logoPsicologia{width:65px;height:65px}
     #fotoPsicologo{width:110px;height:110px}
     #cardContainer::before{width:180px;height:180px;opacity:0.04}
 }
