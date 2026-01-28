@@ -16,37 +16,7 @@
     --soft:#9fd6d2;
     --accent:#19c2b8;
     --accent-light:#37e0d6;
-    --logo-border:#19c2b8;
-    --neon:rgba(25,194,184,.7);
 }
-
-/* 🌞 MODO CLARO AUTO */
-@media (prefers-color-scheme: light) {
-    :root {
-        --bg1:#e6fbf9;
-        --bg2:#f4fffe;
-        --card:#ffffff;
-        --text:#0b1f29;
-        --soft:#406b70;
-        --accent:#0ea5a0;
-        --accent-light:#19c2b8;
-        --logo-border:#0ea5a0;
-        --neon:rgba(14,165,160,.6);
-    }
-}
-
-/* 🌞 MODO CLARO MANUAL */
-body.light{
-    --bg1:#e6fbf9;
-    --bg2:#f4fffe;
-    --card:#ffffff;
-    --text:#0b1f29;
-    --soft:#406b70;
-    --logo-border:#0ea5a0;
-    --neon:rgba(14,165,160,.6);
-}
-
-*{box-sizing:border-box}
 
 body{
     margin:0;
@@ -58,43 +28,10 @@ body{
     align-items:center;
     min-height:100vh;
     padding:18px;
-    overflow-x:hidden;
 }
-
-/* ✨ BOTÓN TEMA */
-#themeToggle{
-    position:fixed;
-    top:12px;
-    right:12px;
-    width:44px;
-    height:44px;
-    border-radius:50%;
-    background:var(--card);
-    color:var(--accent-light);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    box-shadow:0 6px 18px rgba(0,0,0,.35);
-    cursor:pointer;
-    z-index:999;
-}
-
-/* 🌌 FONDO NEÓN SUTIL */
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    background:
-      radial-gradient(circle at 20% 30%, rgba(25,194,184,.15) 0, transparent 40%),
-      radial-gradient(circle at 80% 70%, rgba(25,194,184,.12) 0, transparent 45%);
-    animation:floatBg 12s ease-in-out infinite alternate;
-    z-index:-2;
-}
-@keyframes floatBg{to{transform:translateY(-20px)}}
 
 /* TARJETA */
 #cardContainer{
-    position:relative;
     background:var(--card);
     border-radius:26px;
     padding:30px 22px;
@@ -104,34 +41,15 @@ body::before{
     box-shadow:0 0 25px rgba(25,194,184,.15);
 }
 
-/* BORDE NEÓN */
-#cardContainer::before{
-    content:"";
-    position:absolute;
-    inset:-2px;
-    border-radius:28px;
-    padding:2px;
-    background:linear-gradient(120deg, transparent, var(--neon), transparent);
-    background-size:200% 200%;
-    animation:neonMove 6s linear infinite;
-    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
-    -webkit-mask-composite:xor;
-            mask-composite:exclude;
-    z-index:-1;
-}
-@keyframes neonMove{to{background-position:200% 50%}}
-
 /* FRASE */
 #fraseMotivacional{
-    font-style:italic;
     font-size:14px;
-    color:var(--accent-light);
     margin-bottom:18px;
     min-height:38px;
-    transition:opacity .5s ease, transform .5s ease;
+    transition:.5s;
 }
 
-/* LOGO Y FOTO MISMO TAMAÑO */
+/* LOGO Y FOTO */
 #logoPsicologia, #fotoPsicologo{
     width:var(--size-foto);
     height:var(--size-foto);
@@ -139,48 +57,71 @@ body::before{
     object-fit:cover;
     display:block;
     margin:auto;
-    transition:transform .4s ease, box-shadow .4s ease;
+    animation:flotar 4s ease-in-out infinite;
+    transition:.4s;
 }
 
-/* Flotación en ambos */
 @keyframes flotar{
     0%,100%{transform:translateY(0)}
     50%{transform:translateY(-6px)}
 }
-#logoPsicologia, #fotoPsicologo{
-    animation:flotar 4s ease-in-out infinite;
-}
 
-#logoPsicologia{border:3px solid var(--logo-border); margin-bottom:16px;}
-#fotoPsicologo{border:4px solid var(--accent); box-shadow:0 10px 25px rgba(0,0,0,.25); margin-bottom:14px;}
+#logoPsicologia{border:3px solid #19c2b8; margin-bottom:16px;}
+#fotoPsicologo{border:4px solid #37e0d6; margin-bottom:14px;}
 
-#logoPsicologia:hover, #fotoPsicologo:hover{
+#logoPsicologia:hover,#fotoPsicologo:hover{
     transform:scale(1.08);
-    box-shadow:0 14px 35px rgba(0,0,0,.35);
 }
 
-/* BOTONES */
+/* BOTONES BASE */
 .btn{
-    display:block;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
     width:100%;
-    padding:11px;
-    margin:6px 0;
+    padding:12px;
+    margin:8px 0;
     border-radius:14px;
     border:none;
-    background:linear-gradient(135deg,var(--accent),var(--accent-light));
-    color:#062022;
     font-weight:600;
     cursor:pointer;
+    text-decoration:none;
+    color:white;
     box-shadow:0 6px 14px rgba(0,0,0,.25);
     transition:.15s;
 }
+.btn img{width:18px;height:18px;}
 .btn:hover{transform:translateY(-2px)}
 .btn:active{transform:translateY(2px) scale(.98);box-shadow:inset 0 4px 8px rgba(0,0,0,.25)}
 
-.section{margin-top:16px}
-.section h3{color:var(--accent-light);margin-bottom:8px}
+/* COLORES OFICIALES */
+.btn-llamar{background:linear-gradient(135deg,#4CAF50,#2e7d32);}
+.btn-whatsapp{background:linear-gradient(135deg,#25D366,#128C7E);}
+.btn-email{background:linear-gradient(135deg,#EA4335,#c5221f);}
 
-#mapaGoogle{width:100%;height:170px;border-radius:14px;border:none;margin-top:6px}
+/* REDES */
+#redesSociales{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    margin-top:18px;
+    font-size:24px;
+}
+#redesSociales a{color:#ccc;transition:.3s}
+#redesSociales a:hover:nth-child(1){color:#E1306C} /* Instagram */
+#redesSociales a:hover:nth-child(2){color:#1877F2} /* Facebook */
+#redesSociales a:hover:nth-child(3){color:#0A66C2} /* LinkedIn */
+#redesSociales a:hover:nth-child(4){color:#000000} /* TikTok */
+
+/* MAPA */
+#mapaGoogle{
+    width:100%;
+    height:170px;
+    border-radius:14px;
+    border:none;
+    margin-top:10px;
+}
 
 @media (max-width:480px){
     :root{ --size-foto:105px; }
@@ -188,13 +129,11 @@ body::before{
 </style>
 </head>
 
-<body id="body">
-
-<div id="themeToggle"><i class="fas fa-moon"></i></div>
+<body>
 
 <div id="cardContainer">
 
-    <div id="fraseMotivacional">Tu proceso importa 🌿</div>
+    <div id="fraseMotivacional">Tu proceso importa</div>
 
     <img src="https://www.escritosdepsicologia.es/wp-content/uploads/2025/01/historia-y-significado-del-original-logo-de-psicologia.jpg" id="logoPsicologia">
     <img src="https://img.freepik.com/fotos-premium/doctora-retrato-sobre-fondo-blanco_188913-1538.jpg" id="fotoPsicologo">
@@ -202,40 +141,40 @@ body::before{
     <h1>Nombre del Profesional</h1>
     <div>Psicología Clínica • Bienestar Emocional</div>
 
-    <div class="section">
-        <h3>Contacto</h3>
-        <button class="btn">Llamar</button>
-        <button class="btn">WhatsApp</button>
-        <button class="btn">Email</button>
-    </div>
+    <a class="btn btn-llamar" href="tel:+5215555555555">
+        <img src="https://cdn-icons-png.flaticon.com/512/597/597177.png"> Llamar
+    </a>
 
-    <div class="section">
-        <h3>Ubicación</h3>
-        <iframe id="mapaGoogle" src="https://www.google.com/maps?q=Ciudad+de+México&output=embed"></iframe>
+    <a class="btn btn-whatsapp" href="https://wa.me/5215555555555" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"> WhatsApp
+    </a>
+
+    <a class="btn btn-email" href="mailto:correo@psicologia.com">
+        <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png"> Email
+    </a>
+
+    <h3>Ubicación</h3>
+    <iframe id="mapaGoogle" src="https://www.google.com/maps?q=Ciudad+de+México&output=embed"></iframe>
+
+    <div id="redesSociales">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+        <a href="#"><i class="fab fa-tiktok"></i></a>
     </div>
 
 </div>
 
 <script>
-/* 🌗 BOTÓN MODO CLARO/OSCURO */
-const body=document.getElementById("body");
-const toggle=document.getElementById("themeToggle");
-toggle.addEventListener("click",()=>{
- body.classList.toggle("light");
- toggle.innerHTML=body.classList.contains("light")?'<i class="fas fa-sun"></i>':'<i class="fas fa-moon"></i>';
-});
-
-/* 🌿 FRASES ROTATIVAS CON DESLIZ */
 const frases=[
-"Tu proceso importa 🌿",
-"Paso a paso también es avance 💚",
-"Pedir ayuda es un acto de valentía ✨",
-"No tienes que poder con todo 🧠",
-"Cuidar tu mente también es salud 🌸"
+"Tu proceso importa",
+"Paso a paso también es avance",
+"Pedir ayuda es un acto de valentía",
+"No tienes que poder con todo",
+"Cuidar tu mente también es salud"
 ];
 const fraseEl=document.getElementById("fraseMotivacional");
 let i=0;
-
 setInterval(()=>{
   fraseEl.style.opacity=0;
   fraseEl.style.transform="translateY(10px)";
@@ -244,7 +183,7 @@ setInterval(()=>{
     fraseEl.textContent=frases[i];
     fraseEl.style.opacity=1;
     fraseEl.style.transform="translateY(0)";
-  },500);
+  },400);
 },4000);
 </script>
 
