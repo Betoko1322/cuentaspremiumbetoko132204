@@ -92,27 +92,23 @@ body{
     background:var(--neon);
     border-radius:50%;
     box-shadow:0 0 20px var(--neon);
-    cursor:pointer;
     animation:pulse 2.5s infinite;
     z-index:2;
 }
 
+/* TEXTO FIJO DEL NODO */
 .nodo span{
     position:absolute;
-    top:-36px;
+    top:-42px;
     left:50%;
     transform:translateX(-50%);
-    background:rgba(0,0,0,.85);
-    padding:6px 10px;
-    font-size:.75rem;
-    border-radius:6px;
+    font-size:1.05rem;
+    font-weight:600;
+    color:var(--neon);
     white-space:nowrap;
-    opacity:0;
-    transition:.3s;
-}
-
-.nodo:hover span{
-    opacity:1;
+    text-shadow:
+        0 0 6px var(--neon),
+        0 0 12px rgba(0,246,255,.7);
 }
 
 /* =====================
@@ -198,6 +194,10 @@ line{
         height:820px;
     }
 
+    .nodo span{
+        font-size:.9rem;
+    }
+
     /* Reacomodo nodos móvil */
     #n-streaming{ top:25%; left:15%; }
     #n-web{ top:25%; right:15%; }
@@ -230,11 +230,25 @@ line{
         </svg>
 
         <!-- NODOS -->
-        <div class="nodo" id="n-streaming"><span>Plataformas Streaming</span></div>
-        <div class="nodo" id="n-web"><span>Páginas Web</span></div>
-        <div class="nodo" id="n-tarjetas"><span>Tarjetas Digitales</span></div>
-        <div class="nodo" id="n-invitaciones"><span>Invitaciones Digitales</span></div>
-        <div class="nodo" id="n-office"><span>Activación Office</span></div>
+        <div class="nodo" id="n-streaming">
+            <span>Plataformas Streaming</span>
+        </div>
+
+        <div class="nodo" id="n-web">
+            <span>Páginas Web</span>
+        </div>
+
+        <div class="nodo" id="n-tarjetas">
+            <span>Tarjetas Digitales</span>
+        </div>
+
+        <div class="nodo" id="n-invitaciones">
+            <span>Invitaciones Digitales</span>
+        </div>
+
+        <div class="nodo" id="n-office">
+            <span>Activación Office</span>
+        </div>
 
         <!-- BOTON -->
         <button id="btn-entrar" onclick="entrar()">Entrar</button>
@@ -244,11 +258,7 @@ line{
 </div>
 
 <script>
-/* =====================
-   NAVEGACION
-===================== */
 function entrar(){
-    // CAMBIA AQUÍ LA URL
     window.location.href = "https://betoko1322.github.io/cuentaspremiumbetoko132204/principal.html";
 }
 </script>
