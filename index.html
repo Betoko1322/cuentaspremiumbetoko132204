@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Página de Bienvenida</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --color-principal: #00e5ff;
+            --color-secundario: #ffffff;
+            --fondo-card: rgba(0, 0, 0, 0.55);
+            --blur: blur(6px);
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: url("https://img.freepik.com/vector-gratis/diseno-futurista-fondo_23-2148503793.jpg?semt=ais_hybrid&w=740&q=80") no-repeat center center fixed;
+            background-size: cover;
+            color: var(--color-secundario);
+        }
+
+        /* Capa oscura para mejor contraste */
+        #overlay {
+            background: rgba(0, 0, 0, 0.55);
+            min-height: 100vh;
+            padding: 60px 20px;
+        }
+
+        /* Texto bienvenida */
+        #bienvenida {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto 60px;
+            animation: fadeDown 1s ease;
+        }
+
+        #bienvenida h1 {
+            font-size: 2.6rem;
+            color: var(--color-principal);
+            margin-bottom: 15px;
+        }
+
+        #bienvenida p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Grid de servicios */
+        #servicios {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto 70px;
+        }
+
+        .card-servicio {
+            background: var(--fondo-card);
+            backdrop-filter: var(--blur);
+            border-radius: 18px;
+            padding: 18px;
+            text-align: center;
+            box-shadow: 0 0 25px rgba(0, 229, 255, 0.25);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            animation: fadeUp 1.2s ease;
+        }
+
+        .card-servicio:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 0 35px rgba(0, 229, 255, 0.6);
+        }
+
+        .card-servicio img {
+            width: 100%;
+            height: 170px;
+            object-fit: cover;
+            border-radius: 14px;
+            margin-bottom: 15px;
+        }
+
+        .card-servicio h3 {
+            color: var(--color-principal);
+            margin-bottom: 8px;
+            font-size: 1.2rem;
+        }
+
+        .card-servicio p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        /* Botón acceso */
+        #contenedor-boton {
+            text-align: center;
+        }
+
+        #btn-acceder {
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 40px;
+            background: linear-gradient(45deg, #00e5ff, #00bcd4);
+            color: #000;
+            cursor: pointer;
+            box-shadow: 0 0 25px rgba(0, 229, 255, 0.6);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        #btn-acceder:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 40px rgba(0, 229, 255, 0.9);
+        }
+
+        /* Animaciones */
+        @keyframes fadeDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 20px rgba(0,229,255,0.5); }
+            50% { box-shadow: 0 0 40px rgba(0,229,255,0.9); }
+            100% { box-shadow: 0 0 20px rgba(0,229,255,0.5); }
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="overlay">
+
+    <!-- Bienvenida -->
+    <section id="bienvenida">
+        <h1 id="titulo-bienvenida">Bienvenido</h1>
+        <p id="texto-bienvenida">
+            Aquí encontrarás soluciones digitales modernas diseñadas para impulsar tu presencia,
+            optimizar tu trabajo y llevar tus ideas al siguiente nivel.
+        </p>
+    </section>
+
+    <!-- Servicios -->
+    <section id="servicios">
+
+        <div class="card-servicio" id="servicio-streaming">
+            <img src="https://images.unsplash.com/photo-1605902711622-cfb43c44367f" alt="Plataformas Streaming">
+            <h3>Plataformas Streaming</h3>
+            <p>Acceso y configuración de servicios de streaming para entretenimiento sin límites.</p>
+        </div>
+
+        <div class="card-servicio" id="servicio-web">
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085" alt="Páginas Web">
+            <h3>Páginas Web</h3>
+            <p>Diseño y desarrollo de sitios web modernos, rápidos y adaptables a cualquier dispositivo.</p>
+        </div>
+
+        <div class="card-servicio" id="servicio-tarjetas">
+            <img src="https://images.unsplash.com/photo-1556745757-8d76bdb6984b" alt="Tarjetas Digitales">
+            <h3>Tarjetas Digitales</h3>
+            <p>Tarjetas de presentación digitales elegantes y fáciles de compartir.</p>
+        </div>
+
+        <div class="card-servicio" id="servicio-invitaciones">
+            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d" alt="Invitaciones Digitales">
+            <h3>Invitaciones Digitales</h3>
+            <p>Invitaciones personalizadas para eventos especiales con diseño interactivo.</p>
+        </div>
+
+        <div class="card-servicio" id="servicio-office">
+            <img src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04" alt="Office">
+            <h3>Activación de Office</h3>
+            <p>Instalación y activación de Microsoft Office para un trabajo productivo.</p>
+        </div>
+
+    </section>
+
+    <!-- Botón -->
+    <div id="contenedor-boton">
+        <button id="btn-acceder" onclick="irPagina()">Acceder</button>
+    </div>
+
+</div>
+
+<script>
+    function irPagina() {
+        // CAMBIA AQUÍ LA URL DESTINO
+        window.location.href = "https://tusitio.com";
+    }
+</script>
+
+</body>
+</html>
