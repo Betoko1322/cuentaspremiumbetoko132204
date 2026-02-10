@@ -2,162 +2,208 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Bienvenida</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bienvenida</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+<!-- Fuente futurista -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
+/* =====================
+   VARIABLES
+===================== */
 :root{
-    --color-neon:#00f6ff;
-    --color-texto:#ffffff;
-    --panel-bg:rgba(0,0,0,0.55);
-    --blur:blur(10px);
+    --neon:#00f6ff;
+    --overlay:rgba(0,0,0,.65);
 }
 
+/* =====================
+   RESET
+===================== */
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:'Montserrat', sans-serif;
+    font-family:'Orbitron', sans-serif;
 }
 
+/* =====================
+   BODY
+===================== */
 body{
-    background:url("https://img.freepik.com/vector-gratis/diseno-futurista-fondo_23-2148503793.jpg?semt=ais_hybrid&w=740&q=80") center/cover fixed;
-    color:var(--color-texto);
-}
-
-/* Overlay */
-#overlay{
-    background:rgba(0,0,0,0.6);
     min-height:100vh;
-    padding:60px 20px;
+    background:url("https://img.freepik.com/vector-gratis/diseno-futurista-fondo_23-2148503793.jpg?semt=ais_hybrid&w=740&q=80")
+        center/cover fixed;
+    color:#fff;
 }
 
-/* HERO */
-#hero{
-    max-width:1100px;
-    margin:auto;
-    text-align:center;
-    margin-bottom:80px;
-    animation:fadeDown 1s ease;
-}
-
-#hero h1{
-    font-size:3rem;
-    color:var(--color-neon);
-    margin-bottom:15px;
-}
-
-#hero p{
-    font-size:1.15rem;
-    opacity:.9;
-}
-
-/* SERVICIOS */
-#lista-servicios{
-    max-width:1200px;
-    margin:auto;
+/* =====================
+   OVERLAY
+===================== */
+#overlay{
+    min-height:100vh;
+    background:var(--overlay);
     display:flex;
-    flex-direction:column;
-    gap:45px;
-}
-
-/* BLOQUE SERVICIO */
-.servicio{
-    display:flex;
-    gap:30px;
-    background:var(--panel-bg);
-    backdrop-filter:var(--blur);
-    border-radius:22px;
-    padding:25px;
     align-items:center;
-    box-shadow:0 0 30px rgba(0,246,255,.25);
-    transform:translateY(40px);
-    opacity:0;
-    transition:.8s ease;
+    justify-content:center;
+    padding:30px;
 }
 
-.servicio.visible{
-    transform:translateY(0);
-    opacity:1;
+/* =====================
+   MAPA CONTENEDOR
+===================== */
+#mapa{
+    position:relative;
+    width:100%;
+    max-width:1100px;
+    height:600px;
 }
 
-.servicio img{
-    width:260px;
-    height:170px;
-    object-fit:cover;
-    border-radius:16px;
-    flex-shrink:0;
-}
-
-/* TEXTO */
-.servicio-info h3{
-    color:var(--color-neon);
-    font-size:1.5rem;
-    margin-bottom:8px;
-}
-
-.servicio-info p{
-    font-size:1rem;
-    line-height:1.5;
-    opacity:.9;
-}
-
-/* LINEA DECORATIVA */
-.linea{
-    width:80px;
-    height:3px;
-    background:linear-gradient(90deg,transparent,var(--color-neon),transparent);
-    margin:12px 0;
-    animation:brillo 2s infinite;
-}
-
-/* BOTON */
-#contenedor-boton{
+/* =====================
+   TEXTO CENTRAL
+===================== */
+#centro{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
     text-align:center;
-    margin-top:90px;
+    z-index:3;
 }
 
-#btn-entrar{
-    padding:16px 45px;
+#centro h1{
+    font-size:3rem;
+    color:var(--neon);
+    margin-bottom:10px;
+}
+
+#centro p{
     font-size:1.1rem;
-    border:none;
-    border-radius:50px;
-    background:linear-gradient(45deg,#00f6ff,#00bcd4);
-    color:#000;
+    opacity:.85;
+}
+
+/* =====================
+   NODOS
+===================== */
+.nodo{
+    position:absolute;
+    width:18px;
+    height:18px;
+    background:var(--neon);
+    border-radius:50%;
+    box-shadow:0 0 20px var(--neon);
     cursor:pointer;
-    box-shadow:0 0 35px rgba(0,246,255,.7);
+    animation:pulse 2.5s infinite;
+    z-index:2;
+}
+
+.nodo span{
+    position:absolute;
+    top:-36px;
+    left:50%;
+    transform:translateX(-50%);
+    background:rgba(0,0,0,.85);
+    padding:6px 10px;
+    font-size:.75rem;
+    border-radius:6px;
+    white-space:nowrap;
+    opacity:0;
     transition:.3s;
 }
 
+.nodo:hover span{
+    opacity:1;
+}
+
+/* =====================
+   POSICIONES DESKTOP
+===================== */
+#n-streaming{ top:18%; left:20%; }
+#n-web{ top:18%; right:20%; }
+#n-tarjetas{ bottom:18%; left:20%; }
+#n-invitaciones{ bottom:18%; right:20%; }
+#n-office{ top:50%; right:8%; }
+
+/* =====================
+   LINEAS SVG
+===================== */
+svg{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    z-index:1;
+}
+
+line{
+    stroke:var(--neon);
+    stroke-width:1.5;
+    stroke-dasharray:6;
+    opacity:.6;
+    animation:linea 4s linear infinite;
+}
+
+/* =====================
+   BOTON
+===================== */
+#btn-entrar{
+    position:absolute;
+    bottom:25px;
+    left:50%;
+    transform:translateX(-50%);
+    padding:14px 45px;
+    font-size:1rem;
+    border:none;
+    border-radius:40px;
+    background:linear-gradient(45deg,#00f6ff,#00bcd4);
+    color:#000;
+    cursor:pointer;
+    box-shadow:0 0 35px rgba(0,246,255,.9);
+    transition:.3s;
+    z-index:3;
+}
+
 #btn-entrar:hover{
-    transform:scale(1.1);
-    box-shadow:0 0 55px rgba(0,246,255,1);
+    transform:translateX(-50%) scale(1.1);
 }
 
-/* RESPONSIVE */
+/* =====================
+   ANIMACIONES
+===================== */
+@keyframes pulse{
+    0%{ box-shadow:0 0 10px var(--neon); }
+    50%{ box-shadow:0 0 30px var(--neon); }
+    100%{ box-shadow:0 0 10px var(--neon); }
+}
+
+@keyframes linea{
+    to{ stroke-dashoffset:-100; }
+}
+
+/* =====================
+   RESPONSIVE
+===================== */
 @media(max-width:900px){
-    .servicio{
-        flex-direction:column;
-        text-align:center;
+    #mapa{
+        height:720px;
     }
-    .servicio img{
-        width:100%;
-        height:200px;
+
+    #centro h1{
+        font-size:2.4rem;
     }
 }
 
-/* ANIMACIONES */
-@keyframes fadeDown{
-    from{opacity:0; transform:translateY(-30px);}
-    to{opacity:1; transform:translateY(0);}
-}
+@media(max-width:600px){
+    #mapa{
+        height:820px;
+    }
 
-@keyframes brillo{
-    0%{opacity:.3}
-    50%{opacity:1}
-    100%{opacity:.3}
+    /* Reacomodo nodos móvil */
+    #n-streaming{ top:25%; left:15%; }
+    #n-web{ top:25%; right:15%; }
+    #n-office{ top:50%; right:50%; transform:translateX(50%); }
+    #n-tarjetas{ bottom:25%; left:15%; }
+    #n-invitaciones{ bottom:25%; right:15%; }
 }
 </style>
 </head>
@@ -166,88 +212,44 @@ body{
 
 <div id="overlay">
 
-    <!-- HERO -->
-    <section id="hero">
-        <h1 id="titulo-bienvenida">Bienvenido</h1>
-        <p id="descripcion-bienvenida">
-            Explora nuestros servicios digitales diseñados para facilitar, impulsar y modernizar tu experiencia.
-        </p>
-    </section>
+    <div id="mapa">
 
-    <!-- SERVICIOS -->
-    <section id="lista-servicios">
-
-        <div class="servicio" id="servicio-streaming">
-            <img src="https://images.unsplash.com/photo-1605902711622-cfb43c44367f">
-            <div class="servicio-info">
-                <h3>Plataformas Streaming</h3>
-                <div class="linea"></div>
-                <p>Servicios de entretenimiento digital con acceso estable y configuración optimizada.</p>
-            </div>
+        <!-- TEXTO CENTRAL -->
+        <div id="centro">
+            <h1 id="titulo-bienvenida">Bienvenido</h1>
+            <p id="texto-bienvenida">Todo tu ecosistema digital, conectado</p>
         </div>
 
-        <div class="servicio" id="servicio-web">
-            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085">
-            <div class="servicio-info">
-                <h3>Páginas Web</h3>
-                <div class="linea"></div>
-                <p>Diseño web profesional, adaptable y enfocado en presencia digital moderna.</p>
-            </div>
-        </div>
+        <!-- LINEAS -->
+        <svg>
+            <line x1="50%" y1="50%" x2="20%" y2="20%"/>
+            <line x1="50%" y1="50%" x2="80%" y2="20%"/>
+            <line x1="50%" y1="50%" x2="20%" y2="80%"/>
+            <line x1="50%" y1="50%" x2="80%" y2="80%"/>
+            <line x1="50%" y1="50%" x2="92%" y2="50%"/>
+        </svg>
 
-        <div class="servicio" id="servicio-tarjetas">
-            <img src="https://images.unsplash.com/photo-1556745757-8d76bdb6984b">
-            <div class="servicio-info">
-                <h3>Tarjetas Digitales</h3>
-                <div class="linea"></div>
-                <p>Tarjetas de presentación digitales listas para compartir en segundos.</p>
-            </div>
-        </div>
+        <!-- NODOS -->
+        <div class="nodo" id="n-streaming"><span>Plataformas Streaming</span></div>
+        <div class="nodo" id="n-web"><span>Páginas Web</span></div>
+        <div class="nodo" id="n-tarjetas"><span>Tarjetas Digitales</span></div>
+        <div class="nodo" id="n-invitaciones"><span>Invitaciones Digitales</span></div>
+        <div class="nodo" id="n-office"><span>Activación Office</span></div>
 
-        <div class="servicio" id="servicio-invitaciones">
-            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d">
-            <div class="servicio-info">
-                <h3>Invitaciones Digitales</h3>
-                <div class="linea"></div>
-                <p>Invitaciones elegantes e interactivas para eventos personales o corporativos.</p>
-            </div>
-        </div>
-
-        <div class="servicio" id="servicio-office">
-            <img src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04">
-            <div class="servicio-info">
-                <h3>Activación de Office</h3>
-                <div class="linea"></div>
-                <p>Instalación y activación de Microsoft Office para productividad total.</p>
-            </div>
-        </div>
-
-    </section>
-
-    <!-- BOTON -->
-    <div id="contenedor-boton">
+        <!-- BOTON -->
         <button id="btn-entrar" onclick="entrar()">Entrar</button>
+
     </div>
 
 </div>
 
 <script>
-/* ANIMACION SCROLL */
-const servicios = document.querySelectorAll('.servicio');
-
-const observer = new IntersectionObserver(entries=>{
-    entries.forEach(entry=>{
-        if(entry.isIntersecting){
-            entry.target.classList.add('visible');
-        }
-    });
-},{threshold:0.2});
-
-servicios.forEach(s=>observer.observe(s));
-
+/* =====================
+   NAVEGACION
+===================== */
 function entrar(){
-    // CAMBIA AQUI LA URL
-    window.location.href="https://betoko1322.github.io/cuentaspremiumbetoko132204/principal.html";
+    // CAMBIA AQUÍ LA URL
+    window.location.href = "https://betoko1322.github.io/cuentaspremiumbetoko132204/principal.html";
 }
 </script>
 
