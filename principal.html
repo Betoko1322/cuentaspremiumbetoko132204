@@ -474,19 +474,19 @@ footer{
 </style>
 </head>
 
-<body id="body">
+<body id="body"> <!-- body principal -->
 
 <header>
-  <div id="logo">DigitalPro</div>
+  <div id="logo">DigitalPro</div> <!-- logo -->
 </header>
 
 <section class="hero">
-  <h1 id="mainTitle">Soluciones Digitales Profesionales</h1>
+  <h1 id="mainTitle">Soluciones Digitales Profesionales</h1> <!-- mainTitle -->
   <p>Impulsa tu presencia digital con servicios confiables, modernos y accesibles.</p>
 </section>
 
-<section class="services" id="servicesContainer">
-
+<section class="services" id="servicesContainer"> <!-- servicesContainer -->
+  <!-- cardStreaming -->
   <div class="card" id="cardStreaming">
     <img src="https://images.unsplash.com/photo-1581905764498-6a3f1f2a2b3e" class="card-img" alt="Streaming">
     <h3>Plataformas Streaming</h3>
@@ -495,7 +495,7 @@ footer{
       <button onclick="goToPage('streaming.html')">Ver Detalles</button>
     </div>
   </div>
-
+  <!-- cardOffice -->
   <div class="card" id="cardOffice">
     <img src="https://images.unsplash.com/photo-1517433456452-f9633a875f6f" class="card-img" alt="Office">
     <h3>Activación de Office</h3>
@@ -504,7 +504,7 @@ footer{
       <button onclick="goToPage('office.html')">Ver Detalles</button>
     </div>
   </div>
-
+  <!-- cardTarjetas -->
   <div class="card" id="cardTarjetas">
     <img src="https://images.unsplash.com/photo-1556742031-c6961e8560b0" class="card-img" alt="Tarjetas">
     <h3>Tarjetas Digitales</h3>
@@ -513,7 +513,7 @@ footer{
       <button onclick="goToPage('tarjetas.html')">Ver Detalles</button>
     </div>
   </div>
-
+  <!-- cardWeb -->
   <div class="card" id="cardWeb">
     <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085" class="card-img" alt="Web">
     <h3>Páginas Web</h3>
@@ -522,7 +522,7 @@ footer{
       <button onclick="goToPage('paginasweb.html')">Ver Detalles</button>
     </div>
   </div>
-
+  <!-- cardInvitaciones -->
   <div class="card" id="cardInvitaciones">
     <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc" class="card-img" alt="Invitaciones">
     <h3>Invitaciones Digitales</h3>
@@ -531,13 +531,14 @@ footer{
       <button onclick="goToPage('invitaciones.html')">Ver Detalles</button>
     </div>
   </div>
-
 </section>
 
-<!-- MODALES CON EFECTO NEÓN -->
+<!-- MODALES -->
+<!-- modalOffice -->
 <div class="modal" id="modalOffice">
   <div class="modal-container">
     <div class="modal-content">
+      <!-- galleryOffice -->
       <div class="gallery" id="galleryOffice">
         <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c" alt="Office 1">
         <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7" alt="Office 2">
@@ -545,12 +546,14 @@ footer{
       </div>
       <h2>Activación de Office</h2>
       <p>Ofrecemos instalación y activación permanente de Microsoft Office 365, 2021, 2019 y versiones anteriores. Compatible con Windows y macOS.</p>
+      <!-- btnWhatsOffice -->
       <a id="btnWhatsOffice" href="https://wa.me/1234567890" target="_blank" class="whatsapp-btn">💬 Contactar por WhatsApp</a>
       <button class="close-btn" onclick="closeModal('modalOffice')">Cerrar</button>
     </div>
   </div>
 </div>
 
+<!-- modalInvitaciones -->
 <div class="modal" id="modalInvitaciones">
   <div class="modal-container">
     <div class="modal-content">
@@ -561,6 +564,7 @@ footer{
       </div>
       <h2>Invitaciones Digitales</h2>
       <p>Diseños personalizados con animaciones interactivas para todo tipo de eventos. Incluye sistema de confirmación de asistencia y recordatorios automáticos.</p>
+      <!-- btnWhatsInvitaciones -->
       <a id="btnWhatsInvitaciones" href="https://wa.me/1234567890" target="_blank" class="whatsapp-btn">💬 Solicitar Cotización</a>
       <button class="close-btn" onclick="closeModal('modalInvitaciones')">Cerrar</button>
     </div>
