@@ -9,27 +9,18 @@
 
 <style>
 
-/* ========================
+/* =========================
    VARIABLES EDITABLES
-======================== */
+========================= */
 :root{
-  --color-neon-1:#00f2ff;
-  --color-neon-2:#ff00c8;
-  --color-neon-3:#00ff88;
+  --neon1:#00f2ff;
+  --neon2:#ff00c8;
+  --neon3:#00ff88;
 }
 
-/* ========================
-   RESET
-======================== */
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
-html,body{
-  height:100%;
-}
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;}
 
 body{
   font-family:'Segoe UI',sans-serif;
@@ -40,9 +31,7 @@ body{
   overflow:hidden;
 }
 
-/* ========================
-   WRAPPER FULLSCREEN
-======================== */
+/* WRAPPER */
 #wrapper{
   height:100dvh;
   width:100%;
@@ -52,72 +41,76 @@ body{
   padding:20px;
 }
 
-/* ========================
-   TARJETA PRINCIPAL
-======================== */
+/* TARJETA */
 #card{
   position:relative;
   width:100%;
   max-width:360px;
   height:100%;
   max-height:640px;
-  padding:26px 22px;
   border-radius:30px;
-  background:rgba(255,255,255,0.12);
-  backdrop-filter:blur(20px);
-  color:white;
-  text-align:center;
+  padding:26px 22px;
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(25px);
   display:flex;
   flex-direction:column;
   justify-content:space-between;
   overflow:hidden;
+  animation:fadeIn .7s ease;
 }
 
-/* ========================
-   BORDE NEÓN ANIMADO
-======================== */
+   /* NEON BORDE REAL */
 #card::before{
   content:"";
   position:absolute;
-  width:200%;
-  height:200%;
+  inset:-3px;
+  border-radius:32px;
   background:conic-gradient(
     from 0deg,
     transparent 0deg,
-    var(--color-neon-1) 40deg,
-    var(--color-neon-2) 80deg,
-    var(--color-neon-3) 120deg,
-    transparent 160deg
+    var(--neon1) 60deg,
+    var(--neon2) 120deg,
+    var(--neon3) 180deg,
+    transparent 240deg
   );
-  animation:rotateNeon 4s linear infinite;
+  animation:spin 4s linear infinite;
+  filter:blur(12px);
+  z-index:-2;
 }
 
+/* CAPA INTERNA */
 #card::after{
   content:"";
   position:absolute;
-  inset:4px;
-  border-radius:26px;
-  background:rgba(20,20,20,0.85);
+  inset:3px;
+  border-radius:27px;
+  background:rgba(15,15,15,0.85);
+  z-index:-1;
 }
 
-@keyframes rotateNeon{
-  0%{transform:rotate(0deg);}
-  100%{transform:rotate(360deg);}
+@keyframes spin{
+  from{transform:rotate(0deg);}
+  to{transform:rotate(360deg);}
 }
 
-/* ========================
-   CONTENIDO
-======================== */
+@keyframes fadeIn{
+  from{opacity:0;transform:scale(.95);}
+  to{opacity:1;transform:scale(1);}
+}
+
+/* CONTENIDO */
 #cardContent{
   position:relative;
   z-index:2;
+  height:100%;
   display:flex;
   flex-direction:column;
   justify-content:space-between;
-  height:100%;
+  text-align:center;
+  color:white;
 }
 
-/* FOTO */
+/* PERFIL */
 #profileImage{
   width:115px;
   height:115px;
@@ -127,18 +120,8 @@ body{
   margin-bottom:12px;
 }
 
-/* TEXTOS */
-#profileName{
-  font-size:22px;
-  margin-bottom:4px;
-}
-
-#profileRole{
-  font-size:14px;
-  opacity:.9;
-  margin-bottom:14px;
-}
-
+#profileName{font-size:22px;margin-bottom:4px;}
+#profileRole{font-size:14px;opacity:.9;margin-bottom:14px;}
 #profileDescription{
   font-size:13px;
   line-height:1.4;
@@ -146,9 +129,7 @@ body{
   padding:0 8px;
 }
 
-/* ========================
-   BOTONES CONTACTO
-======================== */
+/* BOTONES */
 #contactContainer{
   display:flex;
   flex-direction:column-reverse;
@@ -169,16 +150,33 @@ body{
   color:white;
   font-size:14px;
   font-weight:600;
-  transition:transform .15s ease, box-shadow .15s ease;
+  transition:.15s;
   box-shadow:0 8px 20px rgba(0,0,0,0.4);
 }
 
+/* PRESIÓN */
 .contactBtn:active{
   transform:scale(.93);
   box-shadow:0 4px 10px rgba(0,0,0,0.5);
 }
 
-/* Ripple */
+/* BRILLO DESLIZANTE */
+.contactBtn::after{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:100%;
+  height:100%;
+  background:linear-gradient(120deg,transparent,rgba(255,255,255,.6),transparent);
+  transition:.5s;
+}
+
+.contactBtn:active::after{
+  left:100%;
+}
+
+/* RIPPLE */
 .ripple{
   position:absolute;
   width:20px;
@@ -195,7 +193,7 @@ body{
   to{width:300px;height:300px;opacity:0;}
 }
 
-/* COLORES BOTONES */
+/* COLORES */
 #btnWhatsapp{background:linear-gradient(135deg,#25D366,#128C7E);}
 #btnCall{background:linear-gradient(135deg,#3b82f6,#1e40af);}
 #btnEmail{background:linear-gradient(135deg,#ff5f6d,#d90429);}
@@ -209,7 +207,7 @@ body{
   <div id="card">
     <div id="cardContent">
 
-      <div id="profileSection">
+      <div>
         <img id="profileImage" src="https://randomuser.me/api/portraits/men/75.jpg">
         <h2 id="profileName">Dr. Carlos Ramírez</h2>
         <p id="profileRole">Médico General</p>
@@ -219,8 +217,6 @@ body{
       </div>
 
       <div id="contactContainer">
-
-        <!-- EDITA LOS DATOS AQUÍ -->
 
         <a id="btnWhatsapp" class="contactBtn"
            href="https://wa.me/5218123456789"
@@ -251,10 +247,6 @@ body{
 </div>
 
 <script>
-
-/* ========================
-   RIPPLE EFECTO
-======================== */
 document.querySelectorAll('.contactBtn').forEach(button=>{
   button.addEventListener('click',function(e){
     const ripple = document.createElement("span");
@@ -268,7 +260,6 @@ document.querySelectorAll('.contactBtn').forEach(button=>{
     setTimeout(()=> ripple.remove(),600);
   });
 });
-
 </script>
 
 </body>
