@@ -1,0 +1,170 @@
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+
+// ====== IDS EDITABLES PARA CAMBIOS FUTUROS ======
+const BUSINESS_NAME_ID = "business-name";
+const BUSINESS_LOGO_ID = "business-logo";
+const CAROUSEL_ID = "platform-carousel";
+const DESCRIPTION_ID = "business-description";
+const BTN_WHATSAPP_ID = "btn-whatsapp";
+const BTN_FACEBOOK_ID = "btn-facebook";
+const BTN_BUY_ID = "btn-buy";
+const FOOTER_PROMO_ID = "footer-promo";
+const FOOTER_EMAIL_ID = "footer-email";
+
+// ====== IMAGENES DE PLATAFORMAS ======
+const platforms = [
+  "https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg",
+  "https://upload.wikimedia.org/wikipedia/commons/f/f1/Prime_Video.png",
+  "https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg",
+  "https://upload.wikimedia.org/wikipedia/commons/1/17/HBO_Max_Logo.svg",
+  "https://upload.wikimedia.org/wikipedia/commons/d/d3/Spotify_logo_without_text.svg",
+];
+
+export default function StreamingCard() {
+  const [index, setIndex] = useState(0);
+
+  // velocidad equilibrada (visible y elegante)
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % platforms.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div
+      id="app-container"
+      className="min-h-screen w-full bg-gradient-to-br from-[#0b132b] via-[#1c2541] to-[#0a0f1f] text-white flex items-center justify-center p-4 sm:p-6"
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
+        className="w-full max-w-md"
+      >
+        <Card className="rounded-3xl shadow-2xl bg-[#0f172a]/95 backdrop-blur-xl border border-indigo-500/20 shadow-[0_0_60px_rgba(99,102,241,0.15)]">
+          <CardContent className="p-5 sm:p-6 space-y-6">
+
+            {/* LOGO + NOMBRE */}
+            <div className="flex flex-col items-center text-center gap-3">
+              <div
+                id={BUSINESS_LOGO_ID}
+                className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-white/10 flex items-center justify-center overflow-hidden border border-white/10"
+              >
+                <img
+                  src="https://via.placeholder.com/200"
+                  alt="logo negocio"
+                  className="object-cover w-full h-full"
+                />
+              </div>
+
+              <h1
+                id={BUSINESS_NAME_ID}
+                className="text-xl sm:text-2xl font-semibold tracking-wide"
+              >
+                NOMBRE DEL NEGOCIO
+              </h1>
+            </div>
+
+            {/* ====== CARRUSEL PREMIUM CON CONTRASTE ====== */}
+            <div
+              id={CAROUSEL_ID}
+              className="relative w-full h-24 sm:h-28 overflow-hidden rounded-2xl
+              bg-gradient-to-r from-[#020617] via-[#030a1a] to-[#020617]
+              flex items-center justify-center
+              border border-indigo-500/30 shadow-inner"
+            >
+              {/* brillo lateral sutil */}
+              <div className="absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-black/40 to-transparent pointer-events-none" />
+              <div className="absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-black/40 to-transparent pointer-events-none" />
+
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={index}
+                  initial={{ x: 120, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  exit={{ x: -120, opacity: 0 }}
+                  transition={{ duration: 0.8 }}
+                  className="flex items-center justify-center"
+                >
+                  {/* tarjeta blanca para que SIEMPRE resalte el logo */}
+                  <div className="bg-white rounded-xl px-4 py-2 shadow-lg">
+                    <img
+                      src={platforms[index]}
+                      className="h-10 sm:h-12 object-contain"
+                    />
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* DESCRIPCION */}
+            <div
+              id={DESCRIPTION_ID}
+              className="text-sm sm:text-[15px] text-white/80 leading-relaxed text-center px-1"
+            >
+              <p>
+                Ofrecemos cuentas premium de plataformas de streaming con activación
+                rápida, precios accesibles y soporte confiable. Disfruta tus series,
+                películas y música favoritas sin interrupciones.
+              </p>
+            </div>
+
+            {/* BOTONES */}
+            <div className="flex flex-col gap-3">
+              <Button
+                id={BTN_WHATSAPP_ID}
+                className="rounded-xl text-base py-6 bg-green-600 hover:bg-green-500 transition-all"
+              >
+                Grupo WhatsApp (Referencias)
+              </Button>
+
+              <Button
+                id={BTN_FACEBOOK_ID}
+                className="rounded-xl text-base py-6 bg-blue-600 hover:bg-blue-500 transition-all"
+              >
+                Grupo Facebook (Referencias)
+              </Button>
+
+              <Button
+                id={BTN_BUY_ID}
+                className="rounded-xl text-base py-6 bg-white text-black hover:bg-gray-200 font-semibold transition-all"
+              >
+                Informes y Compras
+              </Button>
+            </div>
+
+            {/* PROPAGANDA SUTIL */}
+            <div
+              id={FOOTER_PROMO_ID}
+              className="pt-4 border-t border-white/10 text-center text-xs text-white/40"
+            >
+              <p>¿Quieres una tarjeta digital premium como esta para tu negocio?</p>
+              <p className="mt-1">Contáctame para diseño profesional</p>
+            </div>
+
+            {/* EMAIL CONTACTO TARJETA */}
+            <div
+              id={FOOTER_EMAIL_ID}
+              className="text-center text-[11px] sm:text-xs text-white/30 -mt-2"
+            >
+              <p>
+                Informes sobre esta tarjeta digital:
+                <a
+                  href="mailto:tucorreo@ejemplo.com"
+                  className="ml-1 underline hover:text-white/60 transition-colors"
+                >
+                  tucorreo@ejemplo.com
+                </a>
+              </p>
+            </div>
+
+          </CardContent>
+        </Card>
+      </motion.div>
+    </div>
+  );
+}
