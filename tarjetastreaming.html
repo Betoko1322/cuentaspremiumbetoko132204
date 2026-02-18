@@ -104,5 +104,32 @@ Informes sobre esta tarjeta digital:
 
 </div>
 
+<script>
+// FIX: evitar que el carrusel se detenga al tocar pantalla (móvil/tablet)
+(function(){
+  const carousel = document.querySelector('#carousel, .carousel, [data-carousel]');
+  if(!carousel) return;
+
+  // evitar pausa por eventos táctiles o mouse
+  ['touchstart','touchend','mouseenter','mouseleave','pointerdown','pointerup']
+    .forEach(evt => {
+      carousel.addEventListener(evt, e => {
+        e.stopPropagation();
+      }, {passive:true});
+    });
+
+  // si existe animación por CSS, forzar que siga corriendo
+  carousel.style.animationPlayState = 'running';
+
+  // si hay elementos internos animados
+  carousel.querySelectorAll('*').forEach(el=>{
+    const style = window.getComputedStyle(el);
+    if(style.animationName && style.animationPlayState === 'paused'){
+      el.style.animationPlayState='running';
+    }
+  });
+})();
+</script>
+
 </body>
 </html>
