@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tarjeta Digital Repostera</title>
+
+<style>
+:root {
+    --text-color: #ffffff;
+    --accent-color: #E9C46A;
+    --button-bg: rgba(255,255,255,0.15);
+    --button-hover: #E9C46A;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-image: url("https://static.vecteezy.com/system/resources/thumbnails/046/883/833/small/a-cascade-of-colorful-mini-donuts-falling-against-a-neon-lit-background-dynamic-and-full-of-motion-perfect-for-energetic-themes-free-photo.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: var(--text-color);
+}
+
+.overlay {
+    background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.65) 0%,
+        rgba(0,0,0,0.55) 30%,
+        rgba(0,0,0,0.35) 60%,
+        rgba(0,0,0,0.15) 80%,
+        rgba(0,0,0,0) 100%
+    );
+    min-height: 100vh;
+    padding: 60px 20px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+}
+
+.section {
+    margin-bottom: 70px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--accent-color);
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+/* ===== GALERÍA ===== */
+.gallery-container {
+    overflow-x: auto;
+    display: flex;
+    gap: 15px;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 10px;
+}
+
+.gallery-container::-webkit-scrollbar {
+    height: 6px;
+}
+
+.gallery-container::-webkit-scrollbar-thumb {
+    background: var(--accent-color);
+    border-radius: 10px;
+}
+
+.gallery-item {
+    flex: 0 0 auto;
+    scroll-snap-align: center;
+}
+
+.gallery-item img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 15px;
+    transition: 0.3s ease;
+}
+
+.gallery-item img:hover {
+    transform: scale(1.05);
+}
+
+/* Productos */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.product-card {
+    background: rgba(255,255,255,0.08);
+    padding: 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(6px);
+    transition: 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255,255,255,0.18);
+}
+
+/* Botones */
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.button {
+    width: 260px;
+    text-align: center;
+    padding: 14px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    color: white;
+    background: var(--button-bg);
+    border: 1px solid rgba(255,255,255,0.4);
+    transition: 0.3s ease;
+    font-weight: 500;
+}
+
+.button:hover {
+    background: var(--button-hover);
+    border-color: var(--button-hover);
+    color: black;
+}
+
+/* Línea final */
+.footer-note {
+    text-align: center;
+    margin-top: 80px;
+    font-size: 0.85rem;
+    opacity: 0.6;
+    letter-spacing: 0.5px;
+}
+
+@media(max-width:768px){
+    h1 { font-size: 2.2rem; }
+    h2 { font-size: 1.6rem; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="overlay">
+<div class="container" id="card-container">
+
+    <!-- ENCABEZADO -->
+    <div class="section" id="header-section">
+        <h1 id="business-name">Nombre del Negocio</h1>
+        <p id="business-slogan">Minidonitas artesanales premium</p>
+    </div>
+
+    <!-- GALERÍA -->
+    <div class="section" id="gallery-section">
+        <h2>Galería</h2>
+        <div class="gallery-container" id="gallery-container">
+            <div class="gallery-item"><img src="https://via.placeholder.com/300" id="gallery-img-1"></div>
+            <div class="gallery-item"><img src="https://via.placeholder.com/300" id="gallery-img-2"></div>
+            <div class="gallery-item"><img src="https://via.placeholder.com/300" id="gallery-img-3"></div>
+            <div class="gallery-item"><img src="https://via.placeholder.com/300" id="gallery-img-4"></div>
+            <div class="gallery-item"><img src="https://via.placeholder.com/300" id="gallery-img-5"></div>
+        </div>
+    </div>
+
+    <!-- PRODUCTOS -->
+    <div class="section" id="products-section">
+        <h2>Productos</h2>
+        <div class="products-grid" id="products-list">
+            <div class="product-card" id="product-1">
+                <h3>Minidonitas Clásicas</h3>
+                <p>Descripción editable del producto.</p>
+            </div>
+            <div class="product-card" id="product-2">
+                <h3>Minidonitas Rellenas</h3>
+                <p>Descripción editable del producto.</p>
+            </div>
+            <div class="product-card" id="product-3">
+                <h3>Minidonitas Decoradas</h3>
+                <p>Descripción editable del producto.</p>
+            </div>
+            <div class="product-card" id="product-4">
+                <h3>Cajas Personalizadas</h3>
+                <p>Descripción editable del producto.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- GRUPOS -->
+    <div class="section" id="groups-section">
+        <h2>Grupos</h2>
+        <div class="buttons-container">
+            <a href="#" class="button" id="sales-group-link">Grupo de Ventas</a>
+            <a href="#" class="button" id="ref-wapp-link">Referencias WhatsApp</a>
+            <a href="#" class="button" id="ref-fb-link">Referencias Facebook</a>
+        </div>
+    </div>
+
+    <!-- CONTACTO -->
+    <div class="section" id="contact-section">
+        <h2>Contacto</h2>
+        <div class="buttons-container">
+            <a href="mailto:correo@ejemplo.com" class="button" id="email-contact">Correo Electrónico</a>
+            <a href="#" class="button" id="whatsapp-contact">WhatsApp Directo</a>
+        </div>
+    </div>
+
+    <!-- Línea discreta -->
+    <div class="footer-note" id="footer-note">
+        Tarjetas digitales profesionales disponibles
+    </div>
+
+</div>
+</div>
+
+</body>
+</html>
