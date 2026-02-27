@@ -23,12 +23,6 @@ body {
     color: var(--text-color);
 }
 
-/* JUSTIFICACIÓN */
-.product-card p,
-#about-section p {
-    text-align: justify;
-}
-
 .overlay {
     background: linear-gradient(
         to bottom,
@@ -65,7 +59,7 @@ h2 {
     padding-bottom: 5px;
 }
 
-/* GALERÍA */
+/* ===== GALERÍA ===== */
 .gallery-wrapper {
     position: relative;
     display: flex;
@@ -79,6 +73,15 @@ h2 {
     scroll-snap-type: x mandatory;
     padding-bottom: 10px;
     scroll-behavior: smooth;
+}
+
+.gallery-container::-webkit-scrollbar {
+    height: 6px;
+}
+
+.gallery-container::-webkit-scrollbar-thumb {
+    background: var(--accent-color);
+    border-radius: 10px;
 }
 
 .gallery-item {
@@ -98,6 +101,7 @@ h2 {
     transform: scale(1.05);
 }
 
+/* Botones carrusel */
 .gallery-btn {
     position: absolute;
     background: rgba(0,0,0,0.5);
@@ -117,10 +121,15 @@ h2 {
     color: black;
 }
 
-.gallery-btn.left { left: -10px; }
-.gallery-btn.right { right: -10px; }
+.gallery-btn.left {
+    left: -10px;
+}
 
-/* PRODUCTOS */
+.gallery-btn.right {
+    right: -10px;
+}
+
+/* Productos */
 .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -140,7 +149,34 @@ h2 {
     background: rgba(255,255,255,0.18);
 }
 
-/* FIRMA */
+/* Botones */
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.button {
+    width: 260px;
+    text-align: center;
+    padding: 14px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    color: white;
+    background: var(--button-bg);
+    border: 1px solid rgba(255,255,255,0.4);
+    transition: 0.3s ease;
+    font-weight: 500;
+}
+
+.button:hover {
+    background: var(--button-hover);
+    border-color: var(--button-hover);
+    color: black;
+}
+
+/* ===== Firma minimalista mejorada ===== */
 .designer-signature {
     text-align: center;
     margin-top: 100px;
@@ -154,7 +190,11 @@ h2 {
 .designer-signature a {
     color: var(--accent-color);
     text-decoration: none;
-    transition: 0.3s ease;
+    transition: opacity 0.3s ease;
+}
+
+.designer-signature:hover {
+    opacity: 1;
 }
 
 .designer-signature a:hover {
@@ -178,66 +218,85 @@ h2 {
 <div class="overlay">
 <div class="container" id="card-container">
 
-<!-- ENCABEZADO -->
-<div class="section" id="header-section">
-    <h1 id="business-name">Nombre del Negocio</h1>
-    <p id="business-slogan">Minidonitas artesanales premium</p>
-</div>
-
-<!-- GALERÍA -->
-<div class="section" id="gallery-section">
-    <h2>Galería</h2>
-    <div class="gallery-wrapper">
-        <button class="gallery-btn left" onclick="scrollGallery(-1)">❮</button>
-        <div class="gallery-container" id="gallery-container">
-            <div class="gallery-item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxZSs-bNkHi5R0PnDwvkt7L-Atad2vjqAehQ&s"></div>
-            <div class="gallery-item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7G69ec_XyKHCAqJNmDVO7adVA22auAJMJpw&s"></div>
-            <div class="gallery-item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQno9RMwR_xj0jU62GVUTrMzwy0cWBRPt872w&s"></div>
-            <div class="gallery-item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuXB0nmPOaJ0grPIUiBa4xWm89Fg7pXFFKQg&s"></div>
-        </div>
-        <button class="gallery-btn right" onclick="scrollGallery(1)">❯</button>
+    <!-- ENCABEZADO -->
+    <div class="section" id="header-section">
+        <h1 id="business-name">Nombre del Negocio</h1>
+        <p id="business-slogan">Minidonitas artesanales premium</p>
     </div>
-</div>
 
-<!-- PRODUCTOS -->
-<div class="section" id="products-section">
-    <h2>Productos</h2>
-    <div class="products-grid">
-        <div class="product-card">
-            <h3>Minidonitas Clásicas</h3>
-            <p>Descripción editable del producto.</p>
-        </div>
-        <div class="product-card">
-            <h3>Minidonitas Rellenas</h3>
-            <p>Descripción editable del producto.</p>
+    <!-- GALERÍA -->
+    <div class="section" id="gallery-section">
+        <h2>Galería</h2>
+
+        <div class="gallery-wrapper">
+            <button class="gallery-btn left" onclick="scrollGallery(-1)">❮</button>
+
+            <div class="gallery-container" id="gallery-container">
+                <div class="gallery-item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxZSs-bNkHi5R0PnDwvkt7L-Atad2vjqAehQ&s"></div>
+                <div class="gallery-item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7G69ec_XyKHCAqJNmDVO7adVA22auAJMJpw&s"></div>
+                <div class="gallery-item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQno9RMwR_xj0jU62GVUTrMzwy0cWBRPt872w&s"></div>
+                <div class="gallery-item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuXB0nmPOaJ0grPIUiBa4xWm89Fg7pXFFKQg&s"></div>
+                <div class="gallery-item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhe7MnoCkWIzhcTyOhZyJP_Y7Qro1yx5b2fg&s"></div>
+                <div class="gallery-item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkkaFcVQGoOBXsPSFGpApCnSflXE3aam5Wtw&s"></div>
+                <div class="gallery-item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCD-5AEDndrZ6VhbRNWljgu9t2Ui2tldp3uw&s"></div>
+                <div class="gallery-item"><img src="https://cdn.shopify.com/s/files/1/0173/8181/8422/files/20250703203116-screenshot-202025-07-03-20at-204.png?v=1751574679&width=1600&height=900"></div>
+            </div>
+
+            <button class="gallery-btn right" onclick="scrollGallery(1)">❯</button>
         </div>
     </div>
-</div>
 
-<!-- SOBRE NOSOTROS -->
-<div class="section" id="about-section">
-    <h2>Sobre Nosotros</h2>
-    <div class="product-card" style="max-width:800px; margin:auto;">
-
-        <p>
-        En <strong>Nombre del Negocio</strong> nos especializamos en crear minidonitas artesanales elaboradas con ingredientes de la más alta calidad. Utilizamos recetas cuidadosamente seleccionadas para garantizar sabor, frescura y una experiencia única en cada bocado.
-        </p>
-
-        <p>
-        Trabajamos con dedicación, pasión y mucha felicidad, porque amamos lo que hacemos. Cada pedido es preparado con atención al detalle para que tus momentos especiales sean aún más dulces.
-        </p>
-
-        <p>
-        Nuestros productos son ideales para eventos, fiestas, reuniones, cumpleaños, celebraciones corporativas y cualquier ocasión que merezca un toque especial. Queremos ser parte de tus recuerdos más importantes.
-        </p>
-
+    <!-- PRODUCTOS -->
+    <div class="section" id="products-section">
+        <h2>Productos</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <h3>Minidonitas Clásicas</h3>
+                <p>Descripción editable del producto.</p>
+            </div>
+            <div class="product-card">
+                <h3>Minidonitas Rellenas</h3>
+                <p>Descripción editable del producto.</p>
+            </div>
+            <div class="product-card">
+                <h3>Minidonitas Decoradas</h3>
+                <p>Descripción editable del producto.</p>
+            </div>
+            <div class="product-card">
+                <h3>Cajas Personalizadas</h3>
+                <p>Descripción editable del producto.</p>
+            </div>
+        </div>
     </div>
-</div>
 
-<!-- FIRMA RESTAURADA -->
+    <!-- DESCRIPCIÓN DEL COMERCIO -->
+    <div class="section" id="about-section">
+        <h2>Sobre Nosotros</h2>
+        <div class="product-card" style="max-width:800px; margin:auto;">
+            <p>
+                En <strong>Nombre del Negocio</strong> nos especializamos en crear minidonitas artesanales 
+                elaboradas con ingredientes de la más alta calidad. Utilizamos recetas cuidadosamente 
+                seleccionadas para garantizar sabor, frescura y una experiencia única en cada bocado.
+            </p>
+
+            <p>
+                Trabajamos con dedicación, pasión y mucha felicidad, porque amamos lo que hacemos. 
+                Cada pedido es preparado con atención al detalle para que tus momentos especiales 
+                sean aún más dulces.
+            </p>
+
+            <p>
+                Nuestros productos son ideales para eventos, fiestas, reuniones, cumpleaños, 
+                celebraciones corporativas y cualquier ocasión que merezca un toque especial.
+                Queremos ser parte de tus recuerdos más importantes.
+            </p>
+        </div>
+    </div>
+
+<!-- Firma profesional -->
 <div class="designer-signature">
     <div>
-        Diseñamos tu tarjeta digital
+        Diseñamos tu tarjeta digital 
         <span class="signature-separator">·</span>
         <a href="mailto:cuentaspremiumbetoko132204@gmail.com">
             cuentaspremiumbetoko132204@gmail.com
@@ -254,13 +313,13 @@ h2 {
 </div>
 
 </div>
-</div>
 
 <script>
 function scrollGallery(direction) {
     const container = document.getElementById('gallery-container');
+    const scrollAmount = 200;
     container.scrollBy({
-        left: direction * 200,
+        left: direction * scrollAmount,
         behavior: 'smooth'
     });
 }
@@ -268,3 +327,5 @@ function scrollGallery(direction) {
 
 </body>
 </html>
+
+justificame el texto de todo este codigo para que se vea mas alineado solo ese cambio lo demas se queda igual y deja los ids para identificacion y futuros cambios
