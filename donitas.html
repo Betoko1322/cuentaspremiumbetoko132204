@@ -16,7 +16,7 @@
 body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
-    background-image: url("https://static.vecteezy.com/system/resources/thumbnails/046/883/833/small/a-cascade-of-colorful-mini-donuts-falling-against-a-neon-lit-background-dynamic-and-full-of-motion-perfect-for-energetic-themes-free-photo.jpg");
+    background-image: url("https://static.vecteezy.com/system/resources/thumbnails/063/210/449/small/assorted-donuts-with-chocolate-fruit-glaze-and-sprinkles-toppings-arranged-in-grid-on-light-background-sweet-dessert-food-concept-photo.jpeg");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -176,13 +176,34 @@ h2 {
     color: black;
 }
 
-/* Línea final */
-.footer-note {
+/* ===== Firma minimalista mejorada ===== */
+.designer-signature {
     text-align: center;
-    margin-top: 80px;
-    font-size: 0.85rem;
-    opacity: 0.6;
-    letter-spacing: 0.5px;
+    margin-top: 100px;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.85);
+    text-shadow: 0 0 6px rgba(0,0,0,0.6);
+}
+
+.designer-signature a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.designer-signature:hover {
+    opacity: 1;
+}
+
+.designer-signature a:hover {
+    text-decoration: underline;
+}
+
+.signature-separator {
+    margin: 0 6px;
+    color: rgba(255,255,255,0.6);
 }
 
 @media(max-width:768px){
@@ -211,11 +232,14 @@ h2 {
             <button class="gallery-btn left" onclick="scrollGallery(-1)">❮</button>
 
             <div class="gallery-container" id="gallery-container">
-                <div class="gallery-item"><img src="https://via.placeholder.com/300"></div>
-                <div class="gallery-item"><img src="https://via.placeholder.com/300"></div>
-                <div class="gallery-item"><img src="https://via.placeholder.com/300"></div>
-                <div class="gallery-item"><img src="https://via.placeholder.com/300"></div>
-                <div class="gallery-item"><img src="https://via.placeholder.com/300"></div>
+                <div class="gallery-item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxZSs-bNkHi5R0PnDwvkt7L-Atad2vjqAehQ&s"></div>
+                <div class="gallery-item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7G69ec_XyKHCAqJNmDVO7adVA22auAJMJpw&s"></div>
+                <div class="gallery-item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQno9RMwR_xj0jU62GVUTrMzwy0cWBRPt872w&s"></div>
+                <div class="gallery-item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuXB0nmPOaJ0grPIUiBa4xWm89Fg7pXFFKQg&s"></div>
+                <div class="gallery-item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhe7MnoCkWIzhcTyOhZyJP_Y7Qro1yx5b2fg&s"></div>
+                <div class="gallery-item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkkaFcVQGoOBXsPSFGpApCnSflXE3aam5Wtw&s"></div>
+                <div class="gallery-item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCD-5AEDndrZ6VhbRNWljgu9t2Ui2tldp3uw&s"></div>
+                <div class="gallery-item"><img src="https://cdn.shopify.com/s/files/1/0173/8181/8422/files/20250703203116-screenshot-202025-07-03-20at-204.png?v=1751574679&width=1600&height=900"></div>
             </div>
 
             <button class="gallery-btn right" onclick="scrollGallery(1)">❯</button>
@@ -245,27 +269,11 @@ h2 {
         </div>
     </div>
 
-    <!-- GRUPOS -->
-    <div class="section" id="groups-section">
-        <h2>Grupos</h2>
-        <div class="buttons-container">
-            <a href="#" class="button">Grupo de Ventas</a>
-            <a href="#" class="button">Referencias WhatsApp</a>
-            <a href="#" class="button">Referencias Facebook</a>
-        </div>
-    </div>
-
-    <!-- CONTACTO -->
-    <div class="section" id="contact-section">
-        <h2>Contacto</h2>
-        <div class="buttons-container">
-            <a href="mailto:correo@ejemplo.com" class="button">Correo Electrónico</a>
-            <a href="#" class="button">WhatsApp Directo</a>
-        </div>
-    </div>
-
-    <div class="footer-note">
-        Tarjetas digitales profesionales disponibles
+    <!-- Firma ultra minimalista -->
+    <div class="designer-signature">
+        Cuentas Premium Betoko_132204
+        <span class="signature-separator">·</span>
+        <a href="mailto:cuentaspremiumbetoko132204@gmail.com">contacto</a>
     </div>
 
 </div>
