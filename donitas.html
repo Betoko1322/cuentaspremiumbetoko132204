@@ -60,12 +60,19 @@ h2 {
 }
 
 /* ===== GALERÍA ===== */
+.gallery-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
 .gallery-container {
     overflow-x: auto;
     display: flex;
     gap: 15px;
     scroll-snap-type: x mandatory;
     padding-bottom: 10px;
+    scroll-behavior: smooth;
 }
 
 .gallery-container::-webkit-scrollbar {
@@ -92,6 +99,34 @@ h2 {
 
 .gallery-item img:hover {
     transform: scale(1.05);
+}
+
+/* Botones carrusel */
+.gallery-btn {
+    position: absolute;
+    background: rgba(0,0,0,0.5);
+    border: none;
+    color: white;
+    font-size: 24px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 2;
+    transition: 0.3s ease;
+}
+
+.gallery-btn:hover {
+    background: var(--accent-color);
+    color: black;
+}
+
+.gallery-btn.left {
+    left: -10px;
+}
+
+.gallery-btn.right {
+    right: -10px;
 }
 
 /* Productos */
@@ -171,32 +206,39 @@ h2 {
     <!-- GALERÍA -->
     <div class="section" id="gallery-section">
         <h2>Galería</h2>
-        <div class="gallery-container" id="gallery-container">
-            <div class="gallery-item"><img src="https://via.placeholder.com/300" id="gallery-img-1"></div>
-            <div class="gallery-item"><img src="https://via.placeholder.com/300" id="gallery-img-2"></div>
-            <div class="gallery-item"><img src="https://via.placeholder.com/300" id="gallery-img-3"></div>
-            <div class="gallery-item"><img src="https://via.placeholder.com/300" id="gallery-img-4"></div>
-            <div class="gallery-item"><img src="https://via.placeholder.com/300" id="gallery-img-5"></div>
+
+        <div class="gallery-wrapper">
+            <button class="gallery-btn left" onclick="scrollGallery(-1)">❮</button>
+
+            <div class="gallery-container" id="gallery-container">
+                <div class="gallery-item"><img src="https://via.placeholder.com/300"></div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/300"></div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/300"></div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/300"></div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/300"></div>
+            </div>
+
+            <button class="gallery-btn right" onclick="scrollGallery(1)">❯</button>
         </div>
     </div>
 
     <!-- PRODUCTOS -->
     <div class="section" id="products-section">
         <h2>Productos</h2>
-        <div class="products-grid" id="products-list">
-            <div class="product-card" id="product-1">
+        <div class="products-grid">
+            <div class="product-card">
                 <h3>Minidonitas Clásicas</h3>
                 <p>Descripción editable del producto.</p>
             </div>
-            <div class="product-card" id="product-2">
+            <div class="product-card">
                 <h3>Minidonitas Rellenas</h3>
                 <p>Descripción editable del producto.</p>
             </div>
-            <div class="product-card" id="product-3">
+            <div class="product-card">
                 <h3>Minidonitas Decoradas</h3>
                 <p>Descripción editable del producto.</p>
             </div>
-            <div class="product-card" id="product-4">
+            <div class="product-card">
                 <h3>Cajas Personalizadas</h3>
                 <p>Descripción editable del producto.</p>
             </div>
@@ -207,9 +249,9 @@ h2 {
     <div class="section" id="groups-section">
         <h2>Grupos</h2>
         <div class="buttons-container">
-            <a href="#" class="button" id="sales-group-link">Grupo de Ventas</a>
-            <a href="#" class="button" id="ref-wapp-link">Referencias WhatsApp</a>
-            <a href="#" class="button" id="ref-fb-link">Referencias Facebook</a>
+            <a href="#" class="button">Grupo de Ventas</a>
+            <a href="#" class="button">Referencias WhatsApp</a>
+            <a href="#" class="button">Referencias Facebook</a>
         </div>
     </div>
 
@@ -217,18 +259,28 @@ h2 {
     <div class="section" id="contact-section">
         <h2>Contacto</h2>
         <div class="buttons-container">
-            <a href="mailto:correo@ejemplo.com" class="button" id="email-contact">Correo Electrónico</a>
-            <a href="#" class="button" id="whatsapp-contact">WhatsApp Directo</a>
+            <a href="mailto:correo@ejemplo.com" class="button">Correo Electrónico</a>
+            <a href="#" class="button">WhatsApp Directo</a>
         </div>
     </div>
 
-    <!-- Línea discreta -->
-    <div class="footer-note" id="footer-note">
+    <div class="footer-note">
         Tarjetas digitales profesionales disponibles
     </div>
 
 </div>
 </div>
+
+<script>
+function scrollGallery(direction) {
+    const container = document.getElementById('gallery-container');
+    const scrollAmount = 200;
+    container.scrollBy({
+        left: direction * scrollAmount,
+        behavior: 'smooth'
+    });
+}
+</script>
 
 </body>
 </html>
