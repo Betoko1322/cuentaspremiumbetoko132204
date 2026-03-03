@@ -3,295 +3,256 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Plataformas Streaming | DigitalPro</title>
+<title>Plataformas Streaming Premium</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-
 :root{
-  --text:#f1f5f9;
-  --neon-blue:#00f3ff;
-  --neon-green:#00ff9d;
-  --gold:#facc15;
-  --warning:#ef4444;
-  --accent:#ff6584;
+--neon-blue:#00f7ff;
+--neon-green:#00ffb3;
+--dark-bg:#0f172a;
 }
 
-*{margin:0;padding:0;box-sizing:border-box;}
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
 
 body{
-  font-family:'Poppins',sans-serif;
-  background:
-    linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
-    url("https://img.freepik.com/vector-gratis/diseno-futurista-fondo_23-2148503793.jpg?semt=ais_hybrid&w=740&q=80")
-    no-repeat center center fixed;
-  background-size:cover;
-  color:var(--text);
+background:linear-gradient(135deg,#0f172a,#0b1120);
+color:#fff;
+padding:50px 20px;
 }
 
-#backButton{
-  position:fixed;
-  top:20px;
-  left:20px;
-  background:var(--accent);
-  color:white;
-  padding:8px 18px;
-  border-radius:25px;
-  text-decoration:none;
-  font-size:.85rem;
-  font-weight:600;
-  z-index:1000;
+/* TITULO */
+.headerSection{
+text-align:center;
+margin-bottom:40px;
 }
 
-#heroSection{
-  margin:80px auto 40px;
-  padding:60px 30px;
-  width:90%;
-  max-width:1100px;
-  text-align:center;
-  background: rgba(255,255,255,0.08);
-  backdrop-filter: blur(15px);
-  border-radius:25px;
-  border:1px solid rgba(255,255,255,0.2);
-  box-shadow:0 8px 40px rgba(0,0,0,0.4);
+.headerSection h1{
+font-size:2.2rem;
+background:linear-gradient(90deg,var(--neon-blue),var(--neon-green));
+-webkit-background-clip:text;
+color:transparent;
 }
 
-#heroTitle{
-  font-size:3rem;
-  background:linear-gradient(90deg,var(--neon-blue),var(--neon-green));
-  -webkit-background-clip:text;
-  color:transparent;
-  margin-bottom:15px;
+.headerSection p{
+opacity:.8;
+margin-top:10px;
 }
 
-#heroSubtitle{opacity:.9;}
-
+/* GRID */
 #streamingSection{
-  display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
-  gap:25px;
-  padding:40px 8%;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:25px;
+max-width:1200px;
+margin:auto;
 }
+
+/* 🔥 EFECTO CRISTAL PREMIUM CARDS */
 
 .streamingCard{
-  background:rgba(30,41,59,0.9);
-  padding:20px;
-  border-radius:18px;
-  text-align:center;
-  position:relative;
-  cursor:pointer;
-  transition:.3s;
+position:relative;
+padding:18px;
+border-radius:22px;
+cursor:pointer;
+text-align:center;
+overflow:hidden;
+transition:.4s ease;
+
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(18px);
+-webkit-backdrop-filter:blur(18px);
+
+background:
+linear-gradient(rgba(15,23,42,.6), rgba(15,23,42,.6)) padding-box,
+linear-gradient(135deg,var(--neon-blue),var(--neon-green)) border-box;
+
+border:2px solid transparent;
+
+box-shadow:0 0 20px rgba(0,255,200,.15);
 }
 
 .streamingCard:hover{
-  transform:translateY(-6px);
-  box-shadow:0 0 25px var(--neon-blue);
+transform:translateY(-8px) scale(1.03);
+box-shadow:0 0 35px rgba(0,255,200,.4);
 }
 
 .streamingCard img{
-  width:100%;
-  height:160px;
-  object-fit:cover;
-  border-radius:12px;
-  margin-bottom:15px;
+width:100%;
+height:160px;
+border-radius:14px;
+object-fit:cover;
 }
 
-.badge{
-  position:absolute;
-  top:10px;
-  padding:6px 12px;
-  font-size:.7rem;
-  font-weight:600;
-  border-radius:20px;
+.streamingCard h3{
+margin-top:12px;
+font-size:1.1rem;
 }
 
-.masVendido{
-  left:10px;
-  background:var(--gold);
-  color:#000;
+.infoBtn{
+margin-top:12px;
+padding:8px 16px;
+border:none;
+border-radius:20px;
+font-size:.85rem;
+font-weight:600;
+cursor:pointer;
+background:linear-gradient(90deg,var(--neon-blue),var(--neon-green));
+color:#000;
+transition:.3s;
 }
 
-.pocaDisponibilidad{
-  right:10px;
-  background:var(--warning);
-  color:#fff;
-  animation:pulse 1.5s infinite;
+.infoBtn:hover{
+transform:scale(1.07);
 }
 
-@keyframes pulse{
-  0%{box-shadow:0 0 0 0 rgba(239,68,68,.7);}
-  70%{box-shadow:0 0 0 12px rgba(239,68,68,0);}
-  100%{box-shadow:0 0 0 0 rgba(239,68,68,0);}
-}
+/* MODAL CRISTAL */
 
 #mainModal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.85);
-  backdrop-filter:blur(12px);
-  justify-content:center;
-  align-items:center;
-  z-index:999;
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.85);
+backdrop-filter:blur(12px);
+justify-content:center;
+align-items:center;
+z-index:999;
+opacity:0;
+transition:opacity .3s ease;
+}
+
+#mainModal.active{
+display:flex;
+opacity:1;
 }
 
 .modalContent{
-  width:340px;
-  max-width:90%;
-  padding:30px;
-  border-radius:22px;
-  text-align:center;
-  background:
-    linear-gradient(#0f172a,#0f172a) padding-box,
-    linear-gradient(135deg,var(--neon-blue),var(--neon-green)) border-box;
-  border:3px solid transparent;
-  box-shadow:0 0 35px rgba(0,255,200,.4);
+width:360px;
+max-width:90%;
+padding:30px;
+border-radius:25px;
+text-align:center;
+
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(20px);
+
+background:
+linear-gradient(rgba(15,23,42,.7), rgba(15,23,42,.7)) padding-box,
+linear-gradient(135deg,var(--neon-blue),var(--neon-green)) border-box;
+
+border:2px solid transparent;
+
+box-shadow:0 0 40px rgba(0,255,200,.4);
+
+transform:scale(.8);
+opacity:0;
+transition:all .3s ease;
+}
+
+#mainModal.active .modalContent{
+transform:scale(1);
+opacity:1;
 }
 
 .modalContent img{
-  width:100%;
-  height:200px;
-  object-fit:cover;
-  border-radius:12px;
+width:100%;
+height:200px;
+border-radius:15px;
+object-fit:cover;
+margin-bottom:15px;
 }
 
-.price{
-  font-size:1.3rem;
-  font-weight:600;
-  margin:10px 0;
-  color:var(--neon-green);
+.whatsappBtn{
+display:inline-block;
+margin-top:12px;
+padding:10px 20px;
+border-radius:25px;
+background:#25D366;
+color:#fff;
+text-decoration:none;
+font-weight:600;
 }
 
-.modalButtons{
-  display:flex;
-  gap:10px;
-  margin-top:15px;
+.closeBtn{
+margin-top:15px;
+padding:8px 15px;
+border:none;
+border-radius:20px;
+cursor:pointer;
+background:#ff4d4d;
+color:#fff;
 }
-
-.modalButtons a,
-.modalButtons button{
-  flex:1;
-  padding:10px;
-  border:none;
-  border-radius:25px;
-  font-weight:600;
-  cursor:pointer;
-  text-decoration:none;
-}
-
-.whatsappBtn{background:#25D366;color:white;}
-.closeBtn{background:var(--accent);color:white;}
-
-@media(max-width:600px){
-  .modalButtons{flex-direction:column;}
-}
-
 </style>
 </head>
+
 <body>
 
-<a href="index.html" id="backButton">⬅ Regresar</a>
-
-<section id="heroSection">
-<h1 id="heroTitle">Plataformas Streaming Premium</h1>
-<p id="heroSubtitle">Elige tu plataforma favorita y contrata al mejor precio.</p>
-</section>
+<div class="headerSection">
+<h1>Plataformas Streaming Premium</h1>
+<p>Elige tu plataforma favorita y contrata al mejor precio.</p>
+</div>
 
 <section id="streamingSection">
 
-<!-- 🔝 4 ARRIBA -->
+<!-- CARDS EJEMPLO (puedes duplicar y cambiar datos) -->
 
-<div class="streamingCard" id="card-apple" onclick="openModal(this)"
-data-name="Apple TV+" data-price="$95 MXN" data-duration="1 Mes"
-data-img="https://picsum.photos/400/300?random=11">
-<div class="badge masVendido">Nuevo</div>
-<img src="https://picsum.photos/400/300?random=11">
-<h3>Apple TV+</h3>
-</div>
-
-<div class="streamingCard" id="card-star" onclick="openModal(this)"
-data-name="Star+" data-price="$105 MXN" data-duration="1 Mes"
-data-img="https://picsum.photos/400/300?random=12">
-<img src="https://picsum.photos/400/300?random=12">
-<h3>Star+</h3>
-</div>
-
-<div class="streamingCard" id="card-claro" onclick="openModal(this)"
-data-name="Claro Video" data-price="$80 MXN" data-duration="1 Mes"
-data-img="https://picsum.photos/400/300?random=13">
-<img src="https://picsum.photos/400/300?random=13">
-<h3>Claro Video</h3>
-</div>
-
-<div class="streamingCard" id="card-mubi" onclick="openModal(this)"
-data-name="Mubi" data-price="$90 MXN" data-duration="1 Mes"
-data-img="https://picsum.photos/400/300?random=14">
-<div class="badge pocaDisponibilidad">Oferta</div>
-<img src="https://picsum.photos/400/300?random=14">
-<h3>Mubi</h3>
-</div>
-
-<!-- 🔥 ORIGINALES -->
-
-<div class="streamingCard" id="card-netflix" onclick="openModal(this)"
+<div class="streamingCard" onclick="openModal(this)"
 data-name="Netflix" data-price="$120 MXN" data-duration="1 Mes"
-data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1VE3o-gDG0shPEhOqm4HQ3wb69bV0hZCkDQ&s">
-<div class="badge masVendido">Más Vendido</div>
-<div class="badge pocaDisponibilidad">Poca Disponibilidad</div>
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1VE3o-gDG0shPEhOqm4HQ3wb69bV0hZCkDQ&s">
+data-img="https://picsum.photos/400/300?1">
+<img src="https://picsum.photos/400/300?1">
 <h3>Netflix</h3>
+<button class="infoBtn" onclick="openModal(this.parentElement)">Más información</button>
 </div>
 
-<!-- 🔻 4 ABAJO -->
-
-<div class="streamingCard" id="card-vudu" onclick="openModal(this)"
-data-name="Vudu" data-price="$85 MXN" data-duration="1 Mes"
-data-img="https://picsum.photos/400/300?random=21">
-<img src="https://picsum.photos/400/300?random=21">
-<h3>Vudu</h3>
+<div class="streamingCard" onclick="openModal(this)"
+data-name="Disney+" data-price="$110 MXN" data-duration="1 Mes"
+data-img="https://picsum.photos/400/300?2">
+<img src="https://picsum.photos/400/300?2">
+<h3>Disney+</h3>
+<button class="infoBtn" onclick="openModal(this.parentElement)">Más información</button>
 </div>
 
-<div class="streamingCard" id="card-peacock" onclick="openModal(this)"
-data-name="Peacock" data-price="$88 MXN" data-duration="1 Mes"
-data-img="https://picsum.photos/400/300?random=22">
-<div class="badge masVendido">Recomendado</div>
-<img src="https://picsum.photos/400/300?random=22">
-<h3>Peacock</h3>
+<div class="streamingCard" onclick="openModal(this)"
+data-name="HBO Max" data-price="$100 MXN" data-duration="1 Mes"
+data-img="https://picsum.photos/400/300?3">
+<img src="https://picsum.photos/400/300?3">
+<h3>HBO Max</h3>
+<button class="infoBtn" onclick="openModal(this.parentElement)">Más información</button>
 </div>
 
-<div class="streamingCard" id="card-tidal" onclick="openModal(this)"
-data-name="Tidal" data-price="$100 MXN" data-duration="1 Mes"
-data-img="https://picsum.photos/400/300?random=23">
-<img src="https://picsum.photos/400/300?random=23">
-<h3>Tidal</h3>
-</div>
-
-<div class="streamingCard" id="card-deezer" onclick="openModal(this)"
-data-name="Deezer" data-price="$95 MXN" data-duration="1 Mes"
-data-img="https://picsum.photos/400/300?random=24">
-<div class="badge pocaDisponibilidad">Últimos</div>
-<img src="https://picsum.photos/400/300?random=24">
-<h3>Deezer</h3>
+<div class="streamingCard" onclick="openModal(this)"
+data-name="Prime Video" data-price="$95 MXN" data-duration="1 Mes"
+data-img="https://picsum.photos/400/300?4">
+<img src="https://picsum.photos/400/300?4">
+<h3>Prime Video</h3>
+<button class="infoBtn" onclick="openModal(this.parentElement)">Más información</button>
 </div>
 
 </section>
 
+<!-- MODAL -->
 <div id="mainModal">
-  <div class="modalContent">
-    <img id="modalImage">
-    <h2 id="modalTitle"></h2>
-    <div class="price" id="modalPrice"></div>
-    <div id="modalDuration"></div>
-    <div class="modalButtons">
-      <a id="whatsappLink" target="_blank" class="whatsappBtn">Contratar</a>
-      <button class="closeBtn" onclick="closeModal()">Cerrar</button>
-    </div>
-  </div>
+<div class="modalContent">
+<img id="modalImage">
+<h2 id="modalTitle"></h2>
+<p id="modalPrice"></p>
+<p id="modalDuration"></p>
+<a id="whatsappLink" target="_blank" class="whatsappBtn">Contratar por WhatsApp</a>
+<br>
+<button class="closeBtn" onclick="closeModal()">Cerrar</button>
+</div>
 </div>
 
 <script>
 function openModal(card){
+event.stopPropagation();
+
 document.getElementById("modalTitle").innerText=card.dataset.name;
 document.getElementById("modalPrice").innerText=card.dataset.price;
 document.getElementById("modalDuration").innerText="Duración: "+card.dataset.duration;
@@ -301,17 +262,11 @@ const msg=`Hola, quiero contratar ${card.dataset.name}`;
 document.getElementById("whatsappLink").href=
 `https://wa.me/5536509109?text=${encodeURIComponent(msg)}`;
 
-document.getElementById("mainModal").style.display="flex";
+document.getElementById("mainModal").classList.add("active");
 }
 
 function closeModal(){
-document.getElementById("mainModal").style.display="none";
-}
-
-window.onclick=function(e){
-if(e.target==document.getElementById("mainModal")){
-closeModal();
-}
+document.getElementById("mainModal").classList.remove("active");
 }
 </script>
 
