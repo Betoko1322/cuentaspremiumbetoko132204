@@ -30,18 +30,33 @@ background:rgba(0,0,0,.55);
 z-index:-1;
 }
 
+/* ===== BOTÓN REGRESAR ===== */
+.backBtn{
+position:fixed;
+top:20px;
+left:20px;
+padding:10px 18px;
+border-radius:25px;
+text-decoration:none;
+font-weight:600;
+background:linear-gradient(90deg,var(--neon-blue),var(--neon-green));
+color:#000;
+z-index:10;
+transition:.3s;
+}
+.backBtn:hover{
+transform:scale(1.1);
+}
+
 /* ===== HEADER CRISTAL ===== */
 .headerSection{
 text-align:center;
-margin:50px auto;
+margin:80px auto 40px auto;
 padding:35px;
 max-width:1000px;
 border-radius:25px;
-
 background:rgba(255,255,255,0.08);
 backdrop-filter:blur(20px);
--webkit-backdrop-filter:blur(20px);
-
 border:1px solid rgba(255,255,255,0.3);
 }
 
@@ -67,7 +82,6 @@ margin:auto;
 padding:20px;
 }
 
-/* Responsive */
 @media(max-width:900px){
 #streamingSection{
 grid-template-columns:repeat(2,1fr);
@@ -85,20 +99,14 @@ grid-template-columns:1fr;
 padding:20px;
 border-radius:22px;
 text-align:center;
-cursor:pointer;
 transition:.4s ease;
-
 background:rgba(255,255,255,0.08);
 backdrop-filter:blur(20px);
--webkit-backdrop-filter:blur(20px);
-
 border:1px solid rgba(255,255,255,0.25);
-
 display:flex;
 flex-direction:column;
 justify-content:space-between;
-
-min-height:320px; /* 🔥 misma altura exacta */
+min-height:320px;
 }
 
 .streamingCard:hover{
@@ -108,12 +116,11 @@ box-shadow:0 0 40px rgba(0,255,200,.5);
 
 .streamingCard img{
 width:100%;
-height:180px; /* 🔥 todas mismo tamaño */
+height:180px;
 border-radius:15px;
 object-fit:cover;
 }
 
-/* Título alineado */
 .streamingCard h3{
 margin-top:15px;
 font-size:1.1rem;
@@ -123,7 +130,7 @@ align-items:center;
 justify-content:center;
 }
 
-/* Botón */
+/* BOTÓN INFO */
 .infoBtn{
 margin-top:auto;
 padding:10px 16px;
@@ -135,7 +142,6 @@ background:linear-gradient(90deg,var(--neon-blue),var(--neon-green));
 color:#000;
 transition:.3s;
 }
-
 .infoBtn:hover{
 transform:scale(1.08);
 }
@@ -164,15 +170,12 @@ max-width:90%;
 padding:30px;
 border-radius:25px;
 text-align:center;
-
 background:rgba(255,255,255,0.1);
 backdrop-filter:blur(25px);
-
 border:1px solid rgba(255,255,255,.3);
-
 transform:scale(.8);
 opacity:0;
-transition:.3s;
+transition:.3s ease;
 }
 
 #mainModal.active .modalContent{
@@ -213,6 +216,8 @@ color:#fff;
 
 <body>
 
+<a href="index.html" class="backBtn">← Regresar</a>
+
 <div class="headerSection">
 <h1>Plataformas Streaming Premium</h1>
 <p>Elige tu plataforma favorita y contrata al mejor precio.</p>
@@ -221,69 +226,53 @@ color:#fff;
 <section id="streamingSection">
 
 <!-- FILA 1 -->
-<div class="streamingCard" onclick="openModal(this)"
-data-name="Netflix" data-price="$120 MXN" data-duration="1 Mes"
-data-img="https://picsum.photos/400/300?1">
+<div class="streamingCard" data-name="Netflix" data-price="$120 MXN" data-duration="1 Mes" data-img="https://picsum.photos/400/300?1">
 <img src="https://picsum.photos/400/300?1">
 <h3>Netflix</h3>
-<button class="infoBtn" onclick="openModal(this.parentElement)">Más información</button>
+<button class="infoBtn" onclick="openModal(this)">Más información</button>
 </div>
 
-<div class="streamingCard" onclick="openModal(this)"
-data-name="HBO Max" data-price="$110 MXN" data-duration="1 Mes"
-data-img="https://picsum.photos/400/300?2">
+<div class="streamingCard" data-name="HBO Max" data-price="$110 MXN" data-duration="1 Mes" data-img="https://picsum.photos/400/300?2">
 <img src="https://picsum.photos/400/300?2">
 <h3>HBO Max</h3>
-<button class="infoBtn" onclick="openModal(this.parentElement)">Más información</button>
+<button class="infoBtn" onclick="openModal(this)">Más información</button>
 </div>
 
-<div class="streamingCard" onclick="openModal(this)"
-data-name="ViX+" data-price="$95 MXN" data-duration="1 Mes"
-data-img="https://picsum.photos/400/300?3">
+<div class="streamingCard" data-name="ViX+" data-price="$95 MXN" data-duration="1 Mes" data-img="https://picsum.photos/400/300?3">
 <img src="https://picsum.photos/400/300?3">
 <h3>ViX+</h3>
-<button class="infoBtn" onclick="openModal(this.parentElement)">Más información</button>
+<button class="infoBtn" onclick="openModal(this)">Más información</button>
 </div>
 
-<div class="streamingCard" onclick="openModal(this)"
-data-name="Paramount+" data-price="$100 MXN" data-duration="1 Mes"
-data-img="https://picsum.photos/400/300?4">
+<div class="streamingCard" data-name="Paramount+" data-price="$100 MXN" data-duration="1 Mes" data-img="https://picsum.photos/400/300?4">
 <img src="https://picsum.photos/400/300?4">
 <h3>Paramount+</h3>
-<button class="infoBtn" onclick="openModal(this.parentElement)">Más información</button>
+<button class="infoBtn" onclick="openModal(this)">Más información</button>
 </div>
 
 <!-- FILA 2 -->
-<div class="streamingCard" onclick="openModal(this)"
-data-name="Disney+" data-price="$115 MXN" data-duration="1 Mes"
-data-img="https://picsum.photos/400/300?5">
+<div class="streamingCard" data-name="Disney+" data-price="$115 MXN" data-duration="1 Mes" data-img="https://picsum.photos/400/300?5">
 <img src="https://picsum.photos/400/300?5">
 <h3>Disney+</h3>
-<button class="infoBtn" onclick="openModal(this.parentElement)">Más información</button>
+<button class="infoBtn" onclick="openModal(this)">Más información</button>
 </div>
 
-<div class="streamingCard" onclick="openModal(this)"
-data-name="Spotify" data-price="$90 MXN" data-duration="1 Mes"
-data-img="https://picsum.photos/400/300?6">
+<div class="streamingCard" data-name="Spotify" data-price="$90 MXN" data-duration="1 Mes" data-img="https://picsum.photos/400/300?6">
 <img src="https://picsum.photos/400/300?6">
 <h3>Spotify</h3>
-<button class="infoBtn" onclick="openModal(this.parentElement)">Más información</button>
+<button class="infoBtn" onclick="openModal(this)">Más información</button>
 </div>
 
-<div class="streamingCard" onclick="openModal(this)"
-data-name="Crunchyroll" data-price="$95 MXN" data-duration="1 Mes"
-data-img="https://picsum.photos/400/300?7">
+<div class="streamingCard" data-name="Crunchyroll" data-price="$95 MXN" data-duration="1 Mes" data-img="https://picsum.photos/400/300?7">
 <img src="https://picsum.photos/400/300?7">
 <h3>Crunchyroll</h3>
-<button class="infoBtn" onclick="openModal(this.parentElement)">Más información</button>
+<button class="infoBtn" onclick="openModal(this)">Más información</button>
 </div>
 
-<div class="streamingCard" onclick="openModal(this)"
-data-name="YouTube Premium" data-price="$110 MXN" data-duration="1 Mes"
-data-img="https://picsum.photos/400/300?8">
+<div class="streamingCard" data-name="YouTube Premium" data-price="$110 MXN" data-duration="1 Mes" data-img="https://picsum.photos/400/300?8">
 <img src="https://picsum.photos/400/300?8">
 <h3>YouTube Premium</h3>
-<button class="infoBtn" onclick="openModal(this.parentElement)">Más información</button>
+<button class="infoBtn" onclick="openModal(this)">Más información</button>
 </div>
 
 </section>
@@ -302,8 +291,8 @@ data-img="https://picsum.photos/400/300?8">
 </div>
 
 <script>
-function openModal(card){
-event.stopPropagation();
+function openModal(button){
+const card = button.closest(".streamingCard");
 
 document.getElementById("modalTitle").innerText=card.dataset.name;
 document.getElementById("modalPrice").innerText=card.dataset.price;
@@ -320,6 +309,12 @@ document.getElementById("mainModal").classList.add("active");
 function closeModal(){
 document.getElementById("mainModal").classList.remove("active");
 }
+
+document.getElementById("mainModal").addEventListener("click",function(e){
+if(e.target===this){
+closeModal();
+}
+});
 </script>
 
 </body>
