@@ -9,38 +9,36 @@
 
 <style>
 
-/* ================= VARIABLES ================= */
+/* ================= BASE ================= */
+
 :root{
-  --text:#f1f5f9;
-  --card:#1e293b;
   --bg:#0b1120;
-  --accent:#ff6584;
+  --card:#1e293b;
+  --text:#f1f5f9;
   --neon-blue:#00f3ff;
   --neon-green:#00ff9d;
   --gold:#facc15;
   --warning:#ef4444;
 }
 
-*{box-sizing:border-box;margin:0;padding:0}
+*{margin:0;padding:0;box-sizing:border-box;}
 
 body{
   font-family:'Poppins',sans-serif;
   background:var(--bg);
   color:var(--text);
-  overflow-x:hidden;
 }
 
 /* ================= HERO ================= */
 
 #heroSection{
-  padding:100px 20px 60px;
+  padding:90px 20px 50px;
   text-align:center;
   background:linear-gradient(180deg,#0b1120,#0f172a);
 }
 
 #heroTitle{
   font-size:3rem;
-  font-weight:600;
   background:linear-gradient(90deg,var(--neon-blue),var(--neon-green));
   -webkit-background-clip:text;
   color:transparent;
@@ -48,11 +46,9 @@ body{
 }
 
 #heroSubtitle{
-  font-size:1.15rem;
-  opacity:.85;
-  line-height:1.7;
   max-width:650px;
   margin:auto;
+  opacity:.85;
 }
 
 /* ================= GRID ================= */
@@ -67,7 +63,6 @@ body{
 @media(max-width:1000px){
   #streamingSection{grid-template-columns:repeat(2,1fr);}
 }
-
 @media(max-width:600px){
   #streamingSection{grid-template-columns:1fr;}
 }
@@ -79,22 +74,22 @@ body{
   padding:20px;
   border-radius:18px;
   text-align:center;
+  position:relative;
   cursor:pointer;
   transition:.3s;
-  position:relative;
 }
 
 .streamingCard:hover{
   transform:translateY(-6px);
-  box-shadow:0 0 20px var(--neon-blue);
+  box-shadow:0 0 25px var(--neon-blue);
 }
 
 .streamingCard img{
   width:100%;
-  height:140px;
+  height:130px;
   object-fit:contain;
   background:#111827;
-  padding:15px;
+  padding:10px;
   border-radius:12px;
   margin-bottom:15px;
 }
@@ -103,22 +98,22 @@ body{
 
 .badge{
   position:absolute;
-  top:12px;
-  padding:6px 10px;
+  top:10px;
+  padding:6px 12px;
   font-size:.7rem;
   font-weight:600;
   border-radius:20px;
 }
 
 .masVendido{
-  left:12px;
+  left:10px;
   background:var(--gold);
   color:#000;
-  box-shadow:0 0 10px var(--gold);
+  box-shadow:0 0 12px var(--gold);
 }
 
 .pocaDisponibilidad{
-  right:12px;
+  right:10px;
   background:var(--warning);
   color:#fff;
   animation:pulse 1.5s infinite;
@@ -126,7 +121,7 @@ body{
 
 @keyframes pulse{
   0%{box-shadow:0 0 0 0 rgba(239,68,68,.7);}
-  70%{box-shadow:0 0 0 10px rgba(239,68,68,0);}
+  70%{box-shadow:0 0 0 12px rgba(239,68,68,0);}
   100%{box-shadow:0 0 0 0 rgba(239,68,68,0);}
 }
 
@@ -136,49 +131,38 @@ body{
   display:none;
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.6);
-  backdrop-filter:blur(8px);
+  background:rgba(0,0,0,.85);
+  backdrop-filter:blur(18px);
   justify-content:center;
   align-items:center;
   z-index:999;
-  animation:fadeIn .3s ease;
-}
-
-@keyframes fadeIn{
-  from{opacity:0}
-  to{opacity:1}
 }
 
 .modalContainer{
-  display:inline-block;
-  padding:2px;
-  border-radius:22px;
+  padding:3px;
+  border-radius:25px;
   background:linear-gradient(135deg,var(--neon-blue),var(--neon-green));
-  animation:scaleIn .3s ease;
+  box-shadow:0 0 35px var(--neon-blue);
+  animation:scaleIn .4s ease;
 }
 
 @keyframes scaleIn{
-  from{transform:scale(.9);opacity:0}
+  from{transform:scale(.7);opacity:0}
   to{transform:scale(1);opacity:1}
 }
 
 .modalContent{
-  background:rgba(15,23,42,.85);
-  backdrop-filter:blur(15px);
-  padding:28px;
-  border-radius:20px;
+  background:#0f172a;
+  padding:30px;
+  border-radius:22px;
+  width:320px;
   text-align:center;
-  width:340px;
-  max-width:90vw;
 }
 
 .modalContent img{
   width:100%;
-  height:150px;
+  height:140px;
   object-fit:contain;
-  background:#111827;
-  padding:12px;
-  border-radius:12px;
   margin-bottom:15px;
 }
 
@@ -191,14 +175,10 @@ body{
 
 .duration{
   font-size:.9rem;
-  margin-bottom:8px;
+  margin-bottom:15px;
 }
 
-.moreMonths{
-  font-size:.8rem;
-  opacity:.7;
-  margin-bottom:18px;
-}
+/* BOTONES */
 
 .modalButtons{
   display:flex;
@@ -209,12 +189,10 @@ body{
 .modalButtons button{
   flex:1;
   padding:10px;
-  border-radius:25px;
-  font-size:.9rem;
-  font-weight:600;
   border:none;
+  border-radius:25px;
+  font-weight:600;
   cursor:pointer;
-  text-align:center;
   text-decoration:none;
 }
 
@@ -224,7 +202,7 @@ body{
 }
 
 .closeBtn{
-  background:var(--accent);
+  background:#ff6584;
   color:white;
 }
 
@@ -241,6 +219,8 @@ body{
 </section>
 
 <section id="streamingSection">
+
+<!-- EJEMPLO CARDS -->
 
 <div class="streamingCard" onclick="openModal(this)"
 data-name="Netflix" data-price="$120 MXN" data-duration="1 Mes"
@@ -259,48 +239,7 @@ data-img="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg
 <h3>Disney+</h3>
 </div>
 
-<div class="streamingCard" onclick="openModal(this)"
-data-name="HBO Max" data-price="$115 MXN" data-duration="1 Mes"
-data-img="https://upload.wikimedia.org/wikipedia/commons/1/17/HBO_Max_Logo.svg">
-<img src="https://upload.wikimedia.org/wikipedia/commons/1/17/HBO_Max_Logo.svg">
-<h3>HBO Max</h3>
-</div>
-
-<div class="streamingCard" onclick="openModal(this)"
-data-name="Prime Video" data-price="$100 MXN" data-duration="1 Mes"
-data-img="https://upload.wikimedia.org/wikipedia/commons/f/f1/Prime_Video.png">
-<div class="badge pocaDisponibilidad">Poca Disponibilidad</div>
-<img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Prime_Video.png">
-<h3>Prime Video</h3>
-</div>
-
-<div class="streamingCard" onclick="openModal(this)"
-data-name="Spotify Premium" data-price="$90 MXN" data-duration="1 Mes"
-data-img="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg">
-<img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg">
-<h3>Spotify</h3>
-</div>
-
-<div class="streamingCard" onclick="openModal(this)"
-data-name="Paramount+" data-price="$95 MXN" data-duration="1 Mes"
-data-img="https://upload.wikimedia.org/wikipedia/commons/7/75/Paramount%2B_logo.svg">
-<img src="https://upload.wikimedia.org/wikipedia/commons/7/75/Paramount%2B_logo.svg">
-<h3>Paramount+</h3>
-</div>
-
-<div class="streamingCard" onclick="openModal(this)"
-data-name="Apple TV+" data-price="$105 MXN" data-duration="1 Mes"
-data-img="https://upload.wikimedia.org/wikipedia/commons/2/28/Apple_TV_Plus_Logo.svg">
-<img src="https://upload.wikimedia.org/wikipedia/commons/2/28/Apple_TV_Plus_Logo.svg">
-<h3>Apple TV+</h3>
-</div>
-
-<div class="streamingCard" onclick="openModal(this)"
-data-name="Crunchyroll" data-price="$85 MXN" data-duration="1 Mes"
-data-img="https://upload.wikimedia.org/wikipedia/commons/0/08/Crunchyroll_Logo.svg">
-<img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Crunchyroll_Logo.svg">
-<h3>Crunchyroll</h3>
-</div>
+<!-- DUPLICA MÁS CARDS AQUÍ -->
 
 </section>
 
@@ -311,7 +250,6 @@ data-img="https://upload.wikimedia.org/wikipedia/commons/0/08/Crunchyroll_Logo.s
       <h2 id="modalTitle"></h2>
       <div class="price" id="modalPrice"></div>
       <div class="duration" id="modalDuration"></div>
-      <div class="moreMonths">Más meses consultar disponibilidad</div>
       <div class="modalButtons">
         <a id="whatsappLink" target="_blank" class="whatsappBtn">Contratar</a>
         <button class="closeBtn" onclick="closeModal()">Cerrar</button>
@@ -326,14 +264,16 @@ function openModal(card){
   document.getElementById("modalPrice").innerText=card.dataset.price;
   document.getElementById("modalDuration").innerText="Duración: "+card.dataset.duration;
   document.getElementById("modalImage").src=card.dataset.img;
-  const msg=`Hola, quiero contratar ${card.dataset.name} (${card.dataset.price})`;
+  const msg=`Hola, quiero contratar ${card.dataset.name}`;
   document.getElementById("whatsappLink").href=
-  `https://wa.me/5536509109?text=${encodeURIComponent(msg)}`;
+  `https://wa.me/5210000000000?text=${encodeURIComponent(msg)}`;
   document.getElementById("mainModal").style.display="flex";
 }
+
 function closeModal(){
   document.getElementById("mainModal").style.display="none";
 }
+
 window.onclick=e=>{
   if(e.target===document.getElementById("mainModal")){
     closeModal();
