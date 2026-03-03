@@ -10,8 +10,6 @@
 <style>
 
 :root{
-  --bg:#0b1120;
-  --card:#1e293b;
   --text:#f1f5f9;
   --neon-blue:#00f3ff;
   --neon-green:#00ff9d;
@@ -22,13 +20,14 @@
 
 *{margin:0;padding:0;box-sizing:border-box;}
 
-body {
-  font-family: 'Poppins', sans-serif;
+body{
+  font-family:'Poppins',sans-serif;
   background:
     linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
-    url("https://img.freepik.com/vector-gratis/diseno-futurista-fondo_23-2148503793.jpg?semt=ais_hybrid&w=740&q=80") no-repeat center center fixed;
-  background-size: cover;
-  color: var(--text);
+    url("https://img.freepik.com/vector-gratis/diseno-futurista-fondo_23-2148503793.jpg?semt=ais_hybrid&w=740&q=80")
+    no-repeat center center fixed;
+  background-size:cover;
+  color:var(--text);
 }
 
 /* BOTÓN REGRESAR */
@@ -47,12 +46,22 @@ body {
   z-index:1000;
 }
 
-/* HERO */
+/* HERO EFECTO VIDRIO */
 
 #heroSection{
-  padding:100px 20px 60px;
+  margin:80px auto 40px;
+  padding:60px 30px;
+  width:90%;
+  max-width:1100px;
   text-align:center;
-  background:linear-gradient(180deg,#0b1120,#0f172a);
+
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+
+  border-radius:25px;
+  border:1px solid rgba(255,255,255,0.2);
+  box-shadow:0 8px 40px rgba(0,0,0,0.4);
 }
 
 #heroTitle{
@@ -60,6 +69,11 @@ body {
   background:linear-gradient(90deg,var(--neon-blue),var(--neon-green));
   -webkit-background-clip:text;
   color:transparent;
+  margin-bottom:15px;
+}
+
+#heroSubtitle{
+  opacity:.9;
 }
 
 /* GRID */
@@ -68,7 +82,7 @@ body {
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:25px;
-  padding:50px 8%;
+  padding:40px 8%;
 }
 
 @media(max-width:1000px){
@@ -77,13 +91,13 @@ body {
 
 @media(max-width:600px){
   #streamingSection{grid-template-columns:1fr;}
-  #heroTitle{font-size:1.9rem;}
+  #heroTitle{font-size:1.8rem;}
 }
 
 /* CARD */
 
 .streamingCard{
-  background:var(--card);
+  background:rgba(30,41,59,0.9);
   padding:20px;
   border-radius:18px;
   text-align:center;
@@ -137,7 +151,7 @@ body {
   100%{box-shadow:0 0 0 0 rgba(239,68,68,0);}
 }
 
-/* MODAL CORREGIDO */
+/* MODAL */
 
 #mainModal{
   display:none;
@@ -216,6 +230,7 @@ body {
 
 <section id="heroSection">
 <h1 id="heroTitle">Plataformas Streaming Premium</h1>
+<p id="heroSubtitle">Elige tu plataforma favorita y contrata al mejor precio.</p>
 </section>
 
 <section id="streamingSection">
@@ -224,32 +239,32 @@ body {
 
 <div class="streamingCard" onclick="openModal(this)"
 data-name="Netflix" data-price="$120 MXN" data-duration="1 Mes"
-data-img="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg">
+data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1VE3o-gDG0shPEhOqm4HQ3wb69bV0hZCkDQ&s">
 <div class="badge masVendido">Más Vendido</div>
 <div class="badge pocaDisponibilidad">Poca Disponibilidad</div>
-<img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1VE3o-gDG0shPEhOqm4HQ3wb69bV0hZCkDQ&s">
 <h3>Netflix</h3>
 </div>
 
 <div class="streamingCard" onclick="openModal(this)"
 data-name="Disney+" data-price="$110 MXN" data-duration="1 Mes"
-data-img="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg">
+data-img="https://depor.com/resizer/v2/UN25KQFF4ZHR5MCODVWFT2DXLQ.jpg?auth=ca4511a106a0afc1e4a211672191268272a43da0d2b347eb05e7c367f26093f8&width=1200&height=720&quality=75&smart=true">
 <div class="badge masVendido">Más Vendido</div>
-<img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg">
+<img src="https://depor.com/resizer/v2/UN25KQFF4ZHR5MCODVWFT2DXLQ.jpg?auth=ca4511a106a0afc1e4a211672191268272a43da0d2b347eb05e7c367f26093f8&width=1200&height=720&quality=75&smart=true">
 <h3>Disney+</h3>
 </div>
 
 <div class="streamingCard" onclick="openModal(this)"
 data-name="HBO Max" data-price="$115 MXN" data-duration="1 Mes"
-data-img="https://upload.wikimedia.org/wikipedia/commons/1/17/HBO_Max_Logo.svg">
-<img src="https://upload.wikimedia.org/wikipedia/commons/1/17/HBO_Max_Logo.svg">
+data-img="https://i.blogs.es/19be90/1366_2000-42-/450_1000.jpeg">
+<img src="https://i.blogs.es/19be90/1366_2000-42-/450_1000.jpeg">
 <h3>HBO Max</h3>
 </div>
 
 <div class="streamingCard" onclick="openModal(this)"
 data-name="Prime Video" data-price="$100 MXN" data-duration="1 Mes"
-data-img="https://upload.wikimedia.org/wikipedia/commons/f/f1/Prime_Video.png">
-<img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Prime_Video.png">
+data-img="https://m.media-amazon.com/images/G/01/primevideo/seo/primevideo-seo-logo.png">
+<img src="https://m.media-amazon.com/images/G/01/primevideo/seo/primevideo-seo-logo.png">
 <h3>Prime Video</h3>
 </div>
 
@@ -257,35 +272,40 @@ data-img="https://upload.wikimedia.org/wikipedia/commons/f/f1/Prime_Video.png">
 
 <div class="streamingCard" onclick="openModal(this)"
 data-name="Paramount+" data-price="$90 MXN" data-duration="1 Mes"
-data-img="https://upload.wikimedia.org/wikipedia/commons/8/8a/Paramount%2B_logo.svg">
-<img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Paramount%2B_logo.svg">
+data-img="https://i.blogs.es/46801b/paramount/1200_900.jpeg">
+<img src="https://i.blogs.es/46801b/paramount/1200_900.jpeg">
 <h3>Paramount+</h3>
 </div>
 
 <div class="streamingCard" onclick="openModal(this)"
-data-name="Star+" data-price="$95 MXN" data-duration="1 Mes"
-data-img="https://upload.wikimedia.org/wikipedia/commons/8/89/Star%2B_logo.svg">
-<img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Star%2B_logo.svg">
-<h3>Star+</h3>
-</div>
-
-<div class="streamingCard" onclick="openModal(this)"
 data-name="Crunchyroll" data-price="$85 MXN" data-duration="1 Mes"
-data-img="https://upload.wikimedia.org/wikipedia/commons/0/08/Crunchyroll_Logo.png">
-<img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Crunchyroll_Logo.png">
+data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQv5tFr0kAXBS6Q1ZxRB_3_J8UVnCEJrWHwog&s">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQv5tFr0kAXBS6Q1ZxRB_3_J8UVnCEJrWHwog&s">
 <h3>Crunchyroll</h3>
 </div>
 
 <div class="streamingCard" onclick="openModal(this)"
 data-name="Vix+" data-price="$80 MXN" data-duration="1 Mes"
-data-img="https://upload.wikimedia.org/wikipedia/commons/5/5f/Vix_logo.svg">
-<img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Vix_logo.svg">
+data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFn28MNEI8_7eQCz9_XVzEHUmN111IGb8DaA&s">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFn28MNEI8_7eQCz9_XVzEHUmN111IGb8DaA&s">
 <h3>Vix+</h3>
 </div>
 
-</section>
+<div class="streamingCard" onclick="openModal(this)"
+data-name="Spotify" data-price="$100 MXN" data-duration="1 Mes"
+data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4zJxWiZAQAWP3NkRZwkT7M2ZChzvfZWsT0A&s">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4zJxWiZAQAWP3NkRZwkT7M2ZChzvfZWsT0A&s">
+<h3>Spotify</h3>
+</div>
 
-<!-- MODAL -->
+<div class="streamingCard" onclick="openModal(this)"
+data-name="YouTube Premiun" data-price="$100 MXN" data-duration="1 Mes"
+data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1CyHf497kypwepByNe8acNAo_PqwEwWftDQ&s">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1CyHf497kypwepByNe8acNAo_PqwEwWftDQ&s">
+<h3>YouTube Premium</h3>
+</div>
+
+</section>
 
 <div id="mainModal">
   <div class="modalContent">
