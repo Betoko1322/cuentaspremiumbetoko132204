@@ -9,8 +9,6 @@
 
 <style>
 
-/* ========= VARIABLES ========= */
-
 :root{
   --bg:#0b1120;
   --card:#1e293b;
@@ -30,7 +28,7 @@ body{
   color:var(--text);
 }
 
-/* ========= BOTON REGRESAR ========= */
+/* BOTÓN REGRESAR */
 
 #backButton{
   position:fixed;
@@ -44,15 +42,9 @@ body{
   font-size:.85rem;
   font-weight:600;
   z-index:1000;
-  transition:.3s;
 }
 
-#backButton:hover{
-  box-shadow:0 0 15px var(--accent);
-  transform:translateY(-2px);
-}
-
-/* ========= HERO ========= */
+/* HERO */
 
 #heroSection{
   padding:100px 20px 60px;
@@ -65,16 +57,9 @@ body{
   background:linear-gradient(90deg,var(--neon-blue),var(--neon-green));
   -webkit-background-clip:text;
   color:transparent;
-  margin-bottom:20px;
 }
 
-#heroSubtitle{
-  max-width:650px;
-  margin:auto;
-  opacity:.85;
-}
-
-/* ========= GRID ========= */
+/* GRID */
 
 #streamingSection{
   display:grid;
@@ -88,15 +73,11 @@ body{
 }
 
 @media(max-width:600px){
-  #streamingSection{
-    grid-template-columns:1fr;
-    padding:30px 5%;
-    gap:15px;
-  }
+  #streamingSection{grid-template-columns:1fr;}
   #heroTitle{font-size:1.9rem;}
 }
 
-/* ========= CARD ========= */
+/* CARD */
 
 .streamingCard{
   background:var(--card);
@@ -123,7 +104,7 @@ body{
   margin-bottom:15px;
 }
 
-/* ========= BADGES ========= */
+/* BADGES */
 
 .badge{
   position:absolute;
@@ -153,32 +134,30 @@ body{
   100%{box-shadow:0 0 0 0 rgba(239,68,68,0);}
 }
 
-/* ========= MODAL ========= */
+/* MODAL CORREGIDO */
 
 #mainModal{
   display:none;
   position:fixed;
   inset:0;
   background:rgba(0,0,0,.85);
-  backdrop-filter:blur(15px);
+  backdrop-filter:blur(12px);
   justify-content:center;
   align-items:center;
   z-index:999;
 }
 
-.modalContainer{
-  padding:3px;
-  border-radius:25px;
-  background:linear-gradient(135deg,var(--neon-blue),var(--neon-green));
-}
-
 .modalContent{
-  background:#0f172a;
-  padding:30px;
-  border-radius:22px;
   width:340px;
   max-width:90%;
+  padding:30px;
+  border-radius:22px;
   text-align:center;
+  background:
+    linear-gradient(#0f172a,#0f172a) padding-box,
+    linear-gradient(135deg,var(--neon-blue),var(--neon-green)) border-box;
+  border:3px solid transparent;
+  box-shadow:0 0 35px rgba(0,255,200,.4);
 }
 
 .modalContent img{
@@ -234,16 +213,13 @@ body{
 
 <section id="heroSection">
 <h1 id="heroTitle">Plataformas Streaming Premium</h1>
-<p id="heroSubtitle">
-Elige tu plataforma favorita y contrata al mejor precio.
-</p>
 </section>
 
 <section id="streamingSection">
 
-<!-- ===== FILA 1 ===== -->
+<!-- FILA 1 -->
 
-<div id="card1" class="streamingCard" onclick="openModal(this)"
+<div class="streamingCard" onclick="openModal(this)"
 data-name="Netflix" data-price="$120 MXN" data-duration="1 Mes"
 data-img="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg">
 <div class="badge masVendido">Más Vendido</div>
@@ -252,7 +228,7 @@ data-img="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.
 <h3>Netflix</h3>
 </div>
 
-<div id="card2" class="streamingCard" onclick="openModal(this)"
+<div class="streamingCard" onclick="openModal(this)"
 data-name="Disney+" data-price="$110 MXN" data-duration="1 Mes"
 data-img="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg">
 <div class="badge masVendido">Más Vendido</div>
@@ -260,44 +236,44 @@ data-img="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg
 <h3>Disney+</h3>
 </div>
 
-<div id="card3" class="streamingCard" onclick="openModal(this)"
+<div class="streamingCard" onclick="openModal(this)"
 data-name="HBO Max" data-price="$115 MXN" data-duration="1 Mes"
 data-img="https://upload.wikimedia.org/wikipedia/commons/1/17/HBO_Max_Logo.svg">
 <img src="https://upload.wikimedia.org/wikipedia/commons/1/17/HBO_Max_Logo.svg">
 <h3>HBO Max</h3>
 </div>
 
-<div id="card4" class="streamingCard" onclick="openModal(this)"
+<div class="streamingCard" onclick="openModal(this)"
 data-name="Prime Video" data-price="$100 MXN" data-duration="1 Mes"
 data-img="https://upload.wikimedia.org/wikipedia/commons/f/f1/Prime_Video.png">
 <img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Prime_Video.png">
 <h3>Prime Video</h3>
 </div>
 
-<!-- ===== FILA 2 ===== -->
+<!-- FILA 2 -->
 
-<div id="card5" class="streamingCard" onclick="openModal(this)"
+<div class="streamingCard" onclick="openModal(this)"
 data-name="Paramount+" data-price="$90 MXN" data-duration="1 Mes"
 data-img="https://upload.wikimedia.org/wikipedia/commons/8/8a/Paramount%2B_logo.svg">
 <img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Paramount%2B_logo.svg">
 <h3>Paramount+</h3>
 </div>
 
-<div id="card6" class="streamingCard" onclick="openModal(this)"
+<div class="streamingCard" onclick="openModal(this)"
 data-name="Star+" data-price="$95 MXN" data-duration="1 Mes"
 data-img="https://upload.wikimedia.org/wikipedia/commons/8/89/Star%2B_logo.svg">
 <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Star%2B_logo.svg">
 <h3>Star+</h3>
 </div>
 
-<div id="card7" class="streamingCard" onclick="openModal(this)"
+<div class="streamingCard" onclick="openModal(this)"
 data-name="Crunchyroll" data-price="$85 MXN" data-duration="1 Mes"
 data-img="https://upload.wikimedia.org/wikipedia/commons/0/08/Crunchyroll_Logo.png">
 <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Crunchyroll_Logo.png">
 <h3>Crunchyroll</h3>
 </div>
 
-<div id="card8" class="streamingCard" onclick="openModal(this)"
+<div class="streamingCard" onclick="openModal(this)"
 data-name="Vix+" data-price="$80 MXN" data-duration="1 Mes"
 data-img="https://upload.wikimedia.org/wikipedia/commons/5/5f/Vix_logo.svg">
 <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Vix_logo.svg">
@@ -306,21 +282,19 @@ data-img="https://upload.wikimedia.org/wikipedia/commons/5/5f/Vix_logo.svg">
 
 </section>
 
-<!-- ========= MODAL ========= -->
+<!-- MODAL -->
 
 <div id="mainModal">
-<div class="modalContainer">
-<div class="modalContent">
-<img id="modalImage">
-<h2 id="modalTitle"></h2>
-<div class="price" id="modalPrice"></div>
-<div id="modalDuration"></div>
-<div class="modalButtons">
-<a id="whatsappLink" target="_blank" class="whatsappBtn">Contratar</a>
-<button class="closeBtn" onclick="closeModal()">Cerrar</button>
-</div>
-</div>
-</div>
+  <div class="modalContent">
+    <img id="modalImage">
+    <h2 id="modalTitle"></h2>
+    <div class="price" id="modalPrice"></div>
+    <div id="modalDuration"></div>
+    <div class="modalButtons">
+      <a id="whatsappLink" target="_blank" class="whatsappBtn">Contratar</a>
+      <button class="closeBtn" onclick="closeModal()">Cerrar</button>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -332,7 +306,7 @@ document.getElementById("modalImage").src=card.dataset.img;
 
 const msg=`Hola, quiero contratar ${card.dataset.name}`;
 document.getElementById("whatsappLink").href=
-`https://wa.me/5210000000000?text=${encodeURIComponent(msg)}`;
+`https://wa.me/5536509109?text=${encodeURIComponent(msg)}`;
 
 document.getElementById("mainModal").style.display="flex";
 }
