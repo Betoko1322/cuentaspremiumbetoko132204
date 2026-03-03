@@ -13,104 +13,121 @@
 :root{
   --text:#f1f5f9;
   --card:#1e293b;
-  --primary:#6c63ff;
-  --secondary:#00c9a7;
+  --bg:#0b1120;
   --accent:#ff6584;
   --neon-blue:#00f3ff;
-  --neon-pink:#ff00ff;
   --neon-green:#00ff9d;
+  --gold:#facc15;
+  --warning:#ef4444;
 }
 
-/* ================= GLOBAL ================= */
 *{box-sizing:border-box;margin:0;padding:0}
 
 body{
   font-family:'Poppins',sans-serif;
-  background:linear-gradient(rgba(0,0,0,.85),rgba(0,0,0,.6)),
-  url('https://img.freepik.com/vector-gratis/diseno-futurista-fondo_23-2148503793.jpg');
-  background-size:cover;
-  background-attachment:fixed;
+  background:var(--bg);
   color:var(--text);
+  overflow-x:hidden;
 }
 
-/* ================= BANNER ================= */
+/* ================= HERO ================= */
 
-#bannerSection{
-  padding:100px 8% 60px;
+#heroSection{
+  padding:100px 20px 60px;
+  text-align:center;
+  background:linear-gradient(180deg,#0b1120,#0f172a);
 }
 
-#bannerContent{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:60px;
-  flex-wrap:wrap;
-}
-
-#bannerText{
-  flex:1;
-  min-width:300px;
-}
-
-#bannerTitle{
+#heroTitle{
   font-size:3rem;
   font-weight:600;
-  background:linear-gradient(90deg,var(--neon-blue),var(--neon-pink));
+  background:linear-gradient(90deg,var(--neon-blue),var(--neon-green));
   -webkit-background-clip:text;
   color:transparent;
   margin-bottom:20px;
 }
 
-#bannerSubtitle{
-  font-size:1.2rem;
-  opacity:.9;
-  max-width:500px;
-  line-height:1.6;
-}
-
-#bannerImageContainer{
-  flex:1;
-  text-align:center;
-}
-
-#bannerImage{
-  width:100%;
-  max-width:420px;
-  border-radius:20px;
-  box-shadow:0 0 30px rgba(0,243,255,.5);
+#heroSubtitle{
+  font-size:1.15rem;
+  opacity:.85;
+  line-height:1.7;
+  max-width:650px;
+  margin:auto;
 }
 
 /* ================= GRID ================= */
 
 #streamingSection{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:30px;
+  grid-template-columns:repeat(4,1fr);
+  gap:25px;
   padding:50px 8%;
 }
+
+@media(max-width:1000px){
+  #streamingSection{grid-template-columns:repeat(2,1fr);}
+}
+
+@media(max-width:600px){
+  #streamingSection{grid-template-columns:1fr;}
+}
+
+/* ================= CARD ================= */
 
 .streamingCard{
   background:var(--card);
   padding:20px;
-  border-radius:20px;
+  border-radius:18px;
   text-align:center;
   cursor:pointer;
-  transition:.4s;
+  transition:.3s;
+  position:relative;
 }
 
 .streamingCard:hover{
-  transform:translateY(-8px);
-  box-shadow:0 0 20px var(--neon-pink);
+  transform:translateY(-6px);
+  box-shadow:0 0 20px var(--neon-blue);
 }
 
 .streamingCard img{
   width:100%;
-  height:150px;
+  height:140px;
   object-fit:contain;
   background:#111827;
   padding:15px;
-  border-radius:15px;
+  border-radius:12px;
   margin-bottom:15px;
+}
+
+/* ================= BADGES ================= */
+
+.badge{
+  position:absolute;
+  top:12px;
+  padding:6px 10px;
+  font-size:.7rem;
+  font-weight:600;
+  border-radius:20px;
+}
+
+.masVendido{
+  left:12px;
+  background:var(--gold);
+  color:#000;
+  box-shadow:0 0 10px var(--gold);
+}
+
+.pocaDisponibilidad{
+  right:12px;
+  background:var(--warning);
+  color:#fff;
+  animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(239,68,68,.7);}
+  70%{box-shadow:0 0 0 10px rgba(239,68,68,0);}
+  100%{box-shadow:0 0 0 0 rgba(239,68,68,0);}
 }
 
 /* ================= MODAL ================= */
@@ -119,247 +136,209 @@ body{
   display:none;
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.85);
+  background:rgba(0,0,0,.6);
+  backdrop-filter:blur(8px);
   justify-content:center;
   align-items:center;
   z-index:999;
+  animation:fadeIn .3s ease;
+}
+
+@keyframes fadeIn{
+  from{opacity:0}
+  to{opacity:1}
 }
 
 .modalContainer{
-  padding:4px;
-  border-radius:25px;
-  background:linear-gradient(45deg,var(--neon-blue),var(--neon-pink),var(--neon-green));
-  background-size:400% 400%;
-  animation:neonMove 6s linear infinite;
+  display:inline-block;
+  padding:2px;
+  border-radius:22px;
+  background:linear-gradient(135deg,var(--neon-blue),var(--neon-green));
+  animation:scaleIn .3s ease;
 }
 
-@keyframes neonMove{
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
+@keyframes scaleIn{
+  from{transform:scale(.9);opacity:0}
+  to{transform:scale(1);opacity:1}
 }
 
 .modalContent{
-  background:#0f172a;
-  padding:30px;
+  background:rgba(15,23,42,.85);
+  backdrop-filter:blur(15px);
+  padding:28px;
   border-radius:20px;
   text-align:center;
-  width:320px;
-  max-width:90%;
+  width:340px;
+  max-width:90vw;
 }
 
 .modalContent img{
   width:100%;
-  height:160px;
+  height:150px;
   object-fit:contain;
   background:#111827;
-  padding:15px;
-  border-radius:15px;
+  padding:12px;
+  border-radius:12px;
   margin-bottom:15px;
 }
 
-.modalContent h2{
-  margin-bottom:10px;
-  font-size:1.4rem;
-}
-
-.modalDescription{
-  font-size:.95rem;
-  opacity:.85;
-  line-height:1.5;
-  margin-bottom:12px;
-  min-height:50px;
-}
-
 .price{
-  font-size:1.4rem;
+  font-size:1.3rem;
   font-weight:600;
   margin:10px 0;
   color:var(--neon-green);
 }
 
 .duration{
-  font-size:.95rem;
+  font-size:.9rem;
   margin-bottom:8px;
 }
 
 .moreMonths{
-  font-size:.85rem;
-  opacity:.75;
-  margin-bottom:15px;
+  font-size:.8rem;
+  opacity:.7;
+  margin-bottom:18px;
+}
+
+.modalButtons{
+  display:flex;
+  gap:10px;
+}
+
+.modalButtons a,
+.modalButtons button{
+  flex:1;
+  padding:10px;
+  border-radius:25px;
+  font-size:.9rem;
+  font-weight:600;
+  border:none;
+  cursor:pointer;
+  text-align:center;
+  text-decoration:none;
 }
 
 .whatsappBtn{
-  display:inline-block;
-  padding:12px 20px;
-  border-radius:30px;
   background:#25D366;
   color:white;
-  text-decoration:none;
-  font-weight:600;
-  transition:.3s;
-  margin-top:5px;
-}
-
-.whatsappBtn:hover{
-  box-shadow:0 0 20px #25D366;
-  transform:scale(1.05);
 }
 
 .closeBtn{
-  margin-top:12px;
-  padding:8px 20px;
-  border:none;
-  border-radius:20px;
   background:var(--accent);
   color:white;
-  cursor:pointer;
 }
 
 </style>
 </head>
 <body>
 
-<!-- ================= BANNER ================= -->
-
-<section id="bannerSection">
-  <div id="bannerContent">
-
-    <div id="bannerText">
-      <h1 id="bannerTitle">Plataformas Streaming Premium</h1>
-      <p id="bannerSubtitle">
-        Disfruta tus series y películas favoritas al mejor precio.
-        Acceso rápido, seguro y confiable.
-      </p>
-    </div>
-
-    <div id="bannerImageContainer">
-      <img id="bannerImage"
-      src="https://images.unsplash.com/photo-1581905764498-6a3f1f2a2b3e"
-      alt="Streaming">
-    </div>
-
-  </div>
+<section id="heroSection">
+  <h1 id="heroTitle">Plataformas Streaming Premium</h1>
+  <p id="heroSubtitle">
+    Disfruta tus series y películas favoritas al mejor precio.
+    Acceso rápido, seguro y confiable.
+  </p>
 </section>
-
-<!-- ================= STREAMING GRID ================= -->
 
 <section id="streamingSection">
 
-  <!-- SOLO CAMBIA data-name Y data-price PARA AGREGAR MÁS -->
-  <div class="streamingCard"
-       onclick="openModal(this)"
-       data-name="Netflix"
-       data-price="$120 MXN"
-       data-duration="1 Mes"
-       data-img="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
-       id="cardNetflix">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg">
-    <h3>Netflix</h3>
-  </div>
+<div class="streamingCard" onclick="openModal(this)"
+data-name="Netflix" data-price="$120 MXN" data-duration="1 Mes"
+data-img="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg">
+<div class="badge masVendido">Más Vendido</div>
+<div class="badge pocaDisponibilidad">Poca Disponibilidad</div>
+<img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg">
+<h3>Netflix</h3>
+</div>
 
-  <div class="streamingCard"
-       onclick="openModal(this)"
-       data-name="Disney+"
-       data-price="$110 MXN"
-       data-duration="1 Mes"
-       data-img="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg"
-       id="cardDisney">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg">
-    <h3>Disney+</h3>
-  </div>
+<div class="streamingCard" onclick="openModal(this)"
+data-name="Disney+" data-price="$110 MXN" data-duration="1 Mes"
+data-img="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg">
+<div class="badge masVendido">Más Vendido</div>
+<img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg">
+<h3>Disney+</h3>
+</div>
 
-  <div class="streamingCard"
-       onclick="openModal(this)"
-       data-name="HBO Max"
-       data-price="$130 MXN"
-       data-duration="1 Mes"
-       data-img="https://upload.wikimedia.org/wikipedia/commons/1/17/HBO_Max_Logo.svg"
-       id="cardHBO">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/1/17/HBO_Max_Logo.svg">
-    <h3>HBO Max</h3>
-  </div>
+<div class="streamingCard" onclick="openModal(this)"
+data-name="HBO Max" data-price="$115 MXN" data-duration="1 Mes"
+data-img="https://upload.wikimedia.org/wikipedia/commons/1/17/HBO_Max_Logo.svg">
+<img src="https://upload.wikimedia.org/wikipedia/commons/1/17/HBO_Max_Logo.svg">
+<h3>HBO Max</h3>
+</div>
 
-  <div class="streamingCard"
-       onclick="openModal(this)"
-       data-name="Prime Video"
-       data-price="$115 MXN"
-       data-duration="1 Mes"
-       data-img="https://upload.wikimedia.org/wikipedia/commons/f/f1/Prime_Video.png"
-       id="cardPrime">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Prime_Video.png">
-    <h3>Prime Video</h3>
-  </div>
+<div class="streamingCard" onclick="openModal(this)"
+data-name="Prime Video" data-price="$100 MXN" data-duration="1 Mes"
+data-img="https://upload.wikimedia.org/wikipedia/commons/f/f1/Prime_Video.png">
+<div class="badge pocaDisponibilidad">Poca Disponibilidad</div>
+<img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Prime_Video.png">
+<h3>Prime Video</h3>
+</div>
+
+<div class="streamingCard" onclick="openModal(this)"
+data-name="Spotify Premium" data-price="$90 MXN" data-duration="1 Mes"
+data-img="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg">
+<img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg">
+<h3>Spotify</h3>
+</div>
+
+<div class="streamingCard" onclick="openModal(this)"
+data-name="Paramount+" data-price="$95 MXN" data-duration="1 Mes"
+data-img="https://upload.wikimedia.org/wikipedia/commons/7/75/Paramount%2B_logo.svg">
+<img src="https://upload.wikimedia.org/wikipedia/commons/7/75/Paramount%2B_logo.svg">
+<h3>Paramount+</h3>
+</div>
+
+<div class="streamingCard" onclick="openModal(this)"
+data-name="Apple TV+" data-price="$105 MXN" data-duration="1 Mes"
+data-img="https://upload.wikimedia.org/wikipedia/commons/2/28/Apple_TV_Plus_Logo.svg">
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/28/Apple_TV_Plus_Logo.svg">
+<h3>Apple TV+</h3>
+</div>
+
+<div class="streamingCard" onclick="openModal(this)"
+data-name="Crunchyroll" data-price="$85 MXN" data-duration="1 Mes"
+data-img="https://upload.wikimedia.org/wikipedia/commons/0/08/Crunchyroll_Logo.svg">
+<img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Crunchyroll_Logo.svg">
+<h3>Crunchyroll</h3>
+</div>
 
 </section>
-
-<!-- ================= MODAL DINÁMICO ================= -->
 
 <div class="modal" id="mainModal">
   <div class="modalContainer">
     <div class="modalContent">
-
       <img id="modalImage">
       <h2 id="modalTitle"></h2>
-
-      <p class="modalDescription">
-        Disfruta contenido exclusivo en alta calidad.
-        Acceso seguro y confiable.
-      </p>
-
       <div class="price" id="modalPrice"></div>
       <div class="duration" id="modalDuration"></div>
-      <div class="moreMonths">
-        Más meses consultar disponibilidad
+      <div class="moreMonths">Más meses consultar disponibilidad</div>
+      <div class="modalButtons">
+        <a id="whatsappLink" target="_blank" class="whatsappBtn">Contratar</a>
+        <button class="closeBtn" onclick="closeModal()">Cerrar</button>
       </div>
-
-      <a id="whatsappLink"
-         target="_blank"
-         class="whatsappBtn">
-         Contratar
-      </a>
-
-      <button class="closeBtn" onclick="closeModal()">
-        Cerrar
-      </button>
-
     </div>
   </div>
 </div>
 
 <script>
-
-/* ================= WHATSAPP DINÁMICO ================= */
-
 function openModal(card){
-
-  const name = card.dataset.name;
-  const price = card.dataset.price;
-  const duration = card.dataset.duration;
-  const img = card.dataset.img;
-
-  document.getElementById("modalTitle").innerText = name;
-  document.getElementById("modalPrice").innerText = price;
-  document.getElementById("modalDuration").innerText = "Duración: " + duration;
-  document.getElementById("modalImage").src = img;
-
-  const message = `Hola, quiero contratar ${name} (${price} - ${duration})`;
-  const whatsappURL = `https://wa.me/5210000000000?text=${encodeURIComponent(message)}`;
-
-  document.getElementById("whatsappLink").href = whatsappURL;
-
-  document.getElementById("mainModal").style.display = "flex";
+  document.getElementById("modalTitle").innerText=card.dataset.name;
+  document.getElementById("modalPrice").innerText=card.dataset.price;
+  document.getElementById("modalDuration").innerText="Duración: "+card.dataset.duration;
+  document.getElementById("modalImage").src=card.dataset.img;
+  const msg=`Hola, quiero contratar ${card.dataset.name} (${card.dataset.price})`;
+  document.getElementById("whatsappLink").href=
+  `https://wa.me/5536509109?text=${encodeURIComponent(msg)}`;
+  document.getElementById("mainModal").style.display="flex";
 }
-
 function closeModal(){
-  document.getElementById("mainModal").style.display = "none";
+  document.getElementById("mainModal").style.display="none";
 }
-
 window.onclick=e=>{
-  const modal=document.getElementById("mainModal");
-  if(e.target===modal){modal.style.display="none";}
+  if(e.target===document.getElementById("mainModal")){
+    closeModal();
+  }
 }
-
 </script>
 
 </body>
