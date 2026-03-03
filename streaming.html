@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plataformas Streaming | DigitalPro</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+/* ================= VARIABLES ================= */
+:root{
+  --text:#f1f5f9;
+  --card:#1e293b;
+  --primary:#6c63ff;
+  --secondary:#00c9a7;
+  --accent:#ff6584;
+  --neon-blue:#00f3ff;
+  --neon-pink:#ff00ff;
+  --neon-green:#00ff9d;
+}
+
+/* ================= GLOBAL ================= */
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:linear-gradient(rgba(0,0,0,.85),rgba(0,0,0,.6)),
+  url('https://img.freepik.com/vector-gratis/diseno-futurista-fondo_23-2148503793.jpg');
+  background-size:cover;
+  background-attachment:fixed;
+  color:var(--text);
+}
+
+/* ================= BANNER ================= */
+
+#bannerSection{
+  padding:100px 8% 60px;
+}
+
+#bannerContent{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:60px;
+  flex-wrap:wrap;
+}
+
+#bannerText{
+  flex:1;
+  min-width:300px;
+}
+
+#bannerTitle{
+  font-size:3rem;
+  font-weight:600;
+  background:linear-gradient(90deg,var(--neon-blue),var(--neon-pink));
+  -webkit-background-clip:text;
+  color:transparent;
+  margin-bottom:20px;
+}
+
+#bannerSubtitle{
+  font-size:1.2rem;
+  opacity:.9;
+  max-width:500px;
+  line-height:1.6;
+}
+
+#bannerImageContainer{
+  flex:1;
+  text-align:center;
+}
+
+#bannerImage{
+  width:100%;
+  max-width:420px;
+  border-radius:20px;
+  box-shadow:0 0 30px rgba(0,243,255,.5);
+}
+
+/* ================= GRID ================= */
+
+#streamingSection{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:30px;
+  padding:50px 8%;
+}
+
+.streamingCard{
+  background:var(--card);
+  padding:20px;
+  border-radius:20px;
+  text-align:center;
+  cursor:pointer;
+  transition:.4s;
+}
+
+.streamingCard:hover{
+  transform:translateY(-8px);
+  box-shadow:0 0 20px var(--neon-pink);
+}
+
+.streamingCard img{
+  width:100%;
+  height:150px;
+  object-fit:contain;
+  background:#111827;
+  padding:15px;
+  border-radius:15px;
+  margin-bottom:15px;
+}
+
+/* ================= MODAL ================= */
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.85);
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+}
+
+.modalContainer{
+  padding:4px;
+  border-radius:25px;
+  background:linear-gradient(45deg,var(--neon-blue),var(--neon-pink),var(--neon-green));
+  background-size:400% 400%;
+  animation:neonMove 6s linear infinite;
+}
+
+@keyframes neonMove{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+.modalContent{
+  background:#0f172a;
+  padding:30px;
+  border-radius:20px;
+  text-align:center;
+  width:320px;
+  max-width:90%;
+}
+
+.modalContent img{
+  width:100%;
+  height:160px;
+  object-fit:contain;
+  background:#111827;
+  padding:15px;
+  border-radius:15px;
+  margin-bottom:15px;
+}
+
+.modalContent h2{
+  margin-bottom:10px;
+  font-size:1.4rem;
+}
+
+.modalDescription{
+  font-size:.95rem;
+  opacity:.85;
+  line-height:1.5;
+  margin-bottom:12px;
+  min-height:50px;
+}
+
+.price{
+  font-size:1.4rem;
+  font-weight:600;
+  margin:10px 0;
+  color:var(--neon-green);
+}
+
+.duration{
+  font-size:.95rem;
+  margin-bottom:8px;
+}
+
+.moreMonths{
+  font-size:.85rem;
+  opacity:.75;
+  margin-bottom:15px;
+}
+
+.whatsappBtn{
+  display:inline-block;
+  padding:12px 20px;
+  border-radius:30px;
+  background:#25D366;
+  color:white;
+  text-decoration:none;
+  font-weight:600;
+  transition:.3s;
+  margin-top:5px;
+}
+
+.whatsappBtn:hover{
+  box-shadow:0 0 20px #25D366;
+  transform:scale(1.05);
+}
+
+.closeBtn{
+  margin-top:12px;
+  padding:8px 20px;
+  border:none;
+  border-radius:20px;
+  background:var(--accent);
+  color:white;
+  cursor:pointer;
+}
+
+</style>
+</head>
+<body>
+
+<!-- ================= BANNER ================= -->
+
+<section id="bannerSection">
+  <div id="bannerContent">
+
+    <div id="bannerText">
+      <h1 id="bannerTitle">Plataformas Streaming Premium</h1>
+      <p id="bannerSubtitle">
+        Disfruta tus series y películas favoritas al mejor precio.
+        Acceso rápido, seguro y confiable.
+      </p>
+    </div>
+
+    <div id="bannerImageContainer">
+      <img id="bannerImage"
+      src="https://images.unsplash.com/photo-1581905764498-6a3f1f2a2b3e"
+      alt="Streaming">
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= STREAMING GRID ================= -->
+
+<section id="streamingSection">
+
+  <!-- SOLO CAMBIA data-name Y data-price PARA AGREGAR MÁS -->
+  <div class="streamingCard"
+       onclick="openModal(this)"
+       data-name="Netflix"
+       data-price="$120 MXN"
+       data-duration="1 Mes"
+       data-img="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
+       id="cardNetflix">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg">
+    <h3>Netflix</h3>
+  </div>
+
+  <div class="streamingCard"
+       onclick="openModal(this)"
+       data-name="Disney+"
+       data-price="$110 MXN"
+       data-duration="1 Mes"
+       data-img="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg"
+       id="cardDisney">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg">
+    <h3>Disney+</h3>
+  </div>
+
+  <div class="streamingCard"
+       onclick="openModal(this)"
+       data-name="HBO Max"
+       data-price="$130 MXN"
+       data-duration="1 Mes"
+       data-img="https://upload.wikimedia.org/wikipedia/commons/1/17/HBO_Max_Logo.svg"
+       id="cardHBO">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/1/17/HBO_Max_Logo.svg">
+    <h3>HBO Max</h3>
+  </div>
+
+  <div class="streamingCard"
+       onclick="openModal(this)"
+       data-name="Prime Video"
+       data-price="$115 MXN"
+       data-duration="1 Mes"
+       data-img="https://upload.wikimedia.org/wikipedia/commons/f/f1/Prime_Video.png"
+       id="cardPrime">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Prime_Video.png">
+    <h3>Prime Video</h3>
+  </div>
+
+</section>
+
+<!-- ================= MODAL DINÁMICO ================= -->
+
+<div class="modal" id="mainModal">
+  <div class="modalContainer">
+    <div class="modalContent">
+
+      <img id="modalImage">
+      <h2 id="modalTitle"></h2>
+
+      <p class="modalDescription">
+        Disfruta contenido exclusivo en alta calidad.
+        Acceso seguro y confiable.
+      </p>
+
+      <div class="price" id="modalPrice"></div>
+      <div class="duration" id="modalDuration"></div>
+      <div class="moreMonths">
+        Más meses consultar disponibilidad
+      </div>
+
+      <a id="whatsappLink"
+         target="_blank"
+         class="whatsappBtn">
+         Contratar
+      </a>
+
+      <button class="closeBtn" onclick="closeModal()">
+        Cerrar
+      </button>
+
+    </div>
+  </div>
+</div>
+
+<script>
+
+/* ================= WHATSAPP DINÁMICO ================= */
+
+function openModal(card){
+
+  const name = card.dataset.name;
+  const price = card.dataset.price;
+  const duration = card.dataset.duration;
+  const img = card.dataset.img;
+
+  document.getElementById("modalTitle").innerText = name;
+  document.getElementById("modalPrice").innerText = price;
+  document.getElementById("modalDuration").innerText = "Duración: " + duration;
+  document.getElementById("modalImage").src = img;
+
+  const message = `Hola, quiero contratar ${name} (${price} - ${duration})`;
+  const whatsappURL = `https://wa.me/5210000000000?text=${encodeURIComponent(message)}`;
+
+  document.getElementById("whatsappLink").href = whatsappURL;
+
+  document.getElementById("mainModal").style.display = "flex";
+}
+
+function closeModal(){
+  document.getElementById("mainModal").style.display = "none";
+}
+
+window.onclick=e=>{
+  const modal=document.getElementById("mainModal");
+  if(e.target===modal){modal.style.display="none";}
+}
+
+</script>
+
+</body>
+</html>
