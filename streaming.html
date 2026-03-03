@@ -30,8 +30,6 @@ body{
   color:var(--text);
 }
 
-/* BOTÓN REGRESAR */
-
 #backButton{
   position:fixed;
   top:20px;
@@ -45,8 +43,6 @@ body{
   font-weight:600;
   z-index:1000;
 }
-
-/* HERO */
 
 #heroSection{
   margin:80px auto 40px;
@@ -69,29 +65,14 @@ body{
   margin-bottom:15px;
 }
 
-#heroSubtitle{
-  opacity:.9;
-}
-
-/* GRID */
+#heroSubtitle{opacity:.9;}
 
 #streamingSection{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+  grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
   gap:25px;
   padding:40px 8%;
 }
-
-@media(max-width:1000px){
-  #streamingSection{grid-template-columns:repeat(2,1fr);}
-}
-
-@media(max-width:600px){
-  #streamingSection{grid-template-columns:1fr;}
-  #heroTitle{font-size:1.8rem;}
-}
-
-/* CARD */
 
 .streamingCard{
   background:rgba(30,41,59,0.9);
@@ -108,7 +89,6 @@ body{
   box-shadow:0 0 25px var(--neon-blue);
 }
 
-/* 🔥 IMÁGENES CORREGIDAS */
 .streamingCard img{
   width:100%;
   height:160px;
@@ -116,8 +96,6 @@ body{
   border-radius:12px;
   margin-bottom:15px;
 }
-
-/* BADGES */
 
 .badge{
   position:absolute;
@@ -147,8 +125,6 @@ body{
   100%{box-shadow:0 0 0 0 rgba(239,68,68,0);}
 }
 
-/* MODAL */
-
 #mainModal{
   display:none;
   position:fixed;
@@ -173,13 +149,11 @@ body{
   box-shadow:0 0 35px rgba(0,255,200,.4);
 }
 
-/* 🔥 IMAGEN MODAL CORREGIDA */
 .modalContent img{
   width:100%;
   height:200px;
   object-fit:cover;
   border-radius:12px;
-  display:block;
 }
 
 .price{
@@ -206,15 +180,8 @@ body{
   text-decoration:none;
 }
 
-.whatsappBtn{
-  background:#25D366;
-  color:white;
-}
-
-.closeBtn{
-  background:var(--accent);
-  color:white;
-}
+.whatsappBtn{background:#25D366;color:white;}
+.closeBtn{background:var(--accent);color:white;}
 
 @media(max-width:600px){
   .modalButtons{flex-direction:column;}
@@ -233,9 +200,41 @@ body{
 
 <section id="streamingSection">
 
-<!-- 🔥 TODAS TUS CARDS ORIGINALES -->
+<!-- 🔝 4 ARRIBA -->
 
-<div class="streamingCard" onclick="openModal(this)"
+<div class="streamingCard" id="card-apple" onclick="openModal(this)"
+data-name="Apple TV+" data-price="$95 MXN" data-duration="1 Mes"
+data-img="https://picsum.photos/400/300?random=11">
+<div class="badge masVendido">Nuevo</div>
+<img src="https://picsum.photos/400/300?random=11">
+<h3>Apple TV+</h3>
+</div>
+
+<div class="streamingCard" id="card-star" onclick="openModal(this)"
+data-name="Star+" data-price="$105 MXN" data-duration="1 Mes"
+data-img="https://picsum.photos/400/300?random=12">
+<img src="https://picsum.photos/400/300?random=12">
+<h3>Star+</h3>
+</div>
+
+<div class="streamingCard" id="card-claro" onclick="openModal(this)"
+data-name="Claro Video" data-price="$80 MXN" data-duration="1 Mes"
+data-img="https://picsum.photos/400/300?random=13">
+<img src="https://picsum.photos/400/300?random=13">
+<h3>Claro Video</h3>
+</div>
+
+<div class="streamingCard" id="card-mubi" onclick="openModal(this)"
+data-name="Mubi" data-price="$90 MXN" data-duration="1 Mes"
+data-img="https://picsum.photos/400/300?random=14">
+<div class="badge pocaDisponibilidad">Oferta</div>
+<img src="https://picsum.photos/400/300?random=14">
+<h3>Mubi</h3>
+</div>
+
+<!-- 🔥 ORIGINALES -->
+
+<div class="streamingCard" id="card-netflix" onclick="openModal(this)"
 data-name="Netflix" data-price="$120 MXN" data-duration="1 Mes"
 data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1VE3o-gDG0shPEhOqm4HQ3wb69bV0hZCkDQ&s">
 <div class="badge masVendido">Más Vendido</div>
@@ -244,7 +243,37 @@ data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1VE3o-gDG0shPEh
 <h3>Netflix</h3>
 </div>
 
-<!-- (El resto de tus cards siguen exactamente igual que las enviaste) -->
+<!-- 🔻 4 ABAJO -->
+
+<div class="streamingCard" id="card-vudu" onclick="openModal(this)"
+data-name="Vudu" data-price="$85 MXN" data-duration="1 Mes"
+data-img="https://picsum.photos/400/300?random=21">
+<img src="https://picsum.photos/400/300?random=21">
+<h3>Vudu</h3>
+</div>
+
+<div class="streamingCard" id="card-peacock" onclick="openModal(this)"
+data-name="Peacock" data-price="$88 MXN" data-duration="1 Mes"
+data-img="https://picsum.photos/400/300?random=22">
+<div class="badge masVendido">Recomendado</div>
+<img src="https://picsum.photos/400/300?random=22">
+<h3>Peacock</h3>
+</div>
+
+<div class="streamingCard" id="card-tidal" onclick="openModal(this)"
+data-name="Tidal" data-price="$100 MXN" data-duration="1 Mes"
+data-img="https://picsum.photos/400/300?random=23">
+<img src="https://picsum.photos/400/300?random=23">
+<h3>Tidal</h3>
+</div>
+
+<div class="streamingCard" id="card-deezer" onclick="openModal(this)"
+data-name="Deezer" data-price="$95 MXN" data-duration="1 Mes"
+data-img="https://picsum.photos/400/300?random=24">
+<div class="badge pocaDisponibilidad">Últimos</div>
+<img src="https://picsum.photos/400/300?random=24">
+<h3>Deezer</h3>
+</div>
 
 </section>
 
