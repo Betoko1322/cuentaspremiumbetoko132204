@@ -11,120 +11,146 @@
 :root{
 --neon-blue:#00f7ff;
 --neon-green:#00ffb3;
---dark-bg:#0f172a;
 }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-}
-
+/* ===== FONDO ===== */
 body{
-background:linear-gradient(135deg,#0f172a,#0b1120);
+margin:0;
+font-family:'Poppins',sans-serif;
 color:#fff;
-padding:50px 20px;
+background:url("fondo.jpg") no-repeat center center fixed;
+background-size:cover;
 }
 
-/* TITULO */
+body::before{
+content:"";
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.55);
+z-index:-1;
+}
+
+/* ===== HEADER CRISTAL ===== */
 .headerSection{
 text-align:center;
-margin-bottom:40px;
+margin:50px auto;
+padding:35px;
+max-width:1000px;
+border-radius:25px;
+
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(20px);
+-webkit-backdrop-filter:blur(20px);
+
+border:1px solid rgba(255,255,255,0.3);
 }
 
 .headerSection h1{
-font-size:2.2rem;
+font-size:2.3rem;
 background:linear-gradient(90deg,var(--neon-blue),var(--neon-green));
 -webkit-background-clip:text;
 color:transparent;
 }
 
 .headerSection p{
-opacity:.8;
+opacity:.9;
 margin-top:10px;
 }
 
-/* GRID */
+/* ===== GRID 4 POR FILA ===== */
 #streamingSection{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:25px;
+grid-template-columns:repeat(4,1fr);
+gap:30px;
 max-width:1200px;
 margin:auto;
+padding:20px;
 }
 
-/* 🔥 EFECTO CRISTAL PREMIUM CARDS */
+/* Responsive */
+@media(max-width:900px){
+#streamingSection{
+grid-template-columns:repeat(2,1fr);
+}
+}
 
+@media(max-width:500px){
+#streamingSection{
+grid-template-columns:1fr;
+}
+}
+
+/* ===== CARDS CRISTAL ===== */
 .streamingCard{
-position:relative;
-padding:18px;
+padding:20px;
 border-radius:22px;
-cursor:pointer;
 text-align:center;
-overflow:hidden;
+cursor:pointer;
 transition:.4s ease;
 
-background:rgba(255,255,255,0.05);
-backdrop-filter:blur(18px);
--webkit-backdrop-filter:blur(18px);
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(20px);
+-webkit-backdrop-filter:blur(20px);
 
-background:
-linear-gradient(rgba(15,23,42,.6), rgba(15,23,42,.6)) padding-box,
-linear-gradient(135deg,var(--neon-blue),var(--neon-green)) border-box;
+border:1px solid rgba(255,255,255,0.25);
 
-border:2px solid transparent;
+display:flex;
+flex-direction:column;
+justify-content:space-between;
 
-box-shadow:0 0 20px rgba(0,255,200,.15);
+min-height:320px; /* 🔥 misma altura exacta */
 }
 
 .streamingCard:hover{
-transform:translateY(-8px) scale(1.03);
-box-shadow:0 0 35px rgba(0,255,200,.4);
+transform:translateY(-10px) scale(1.03);
+box-shadow:0 0 40px rgba(0,255,200,.5);
 }
 
 .streamingCard img{
 width:100%;
-height:160px;
-border-radius:14px;
+height:180px; /* 🔥 todas mismo tamaño */
+border-radius:15px;
 object-fit:cover;
 }
 
+/* Título alineado */
 .streamingCard h3{
-margin-top:12px;
+margin-top:15px;
 font-size:1.1rem;
+min-height:30px;
+display:flex;
+align-items:center;
+justify-content:center;
 }
 
+/* Botón */
 .infoBtn{
-margin-top:12px;
-padding:8px 16px;
+margin-top:auto;
+padding:10px 16px;
 border:none;
-border-radius:20px;
-font-size:.85rem;
-font-weight:600;
+border-radius:25px;
 cursor:pointer;
+font-weight:600;
 background:linear-gradient(90deg,var(--neon-blue),var(--neon-green));
 color:#000;
 transition:.3s;
 }
 
 .infoBtn:hover{
-transform:scale(1.07);
+transform:scale(1.08);
 }
 
-/* MODAL CRISTAL */
-
+/* ===== MODAL ===== */
 #mainModal{
 display:none;
 position:fixed;
 inset:0;
-background:rgba(0,0,0,.85);
-backdrop-filter:blur(12px);
+background:rgba(0,0,0,.75);
+backdrop-filter:blur(10px);
 justify-content:center;
 align-items:center;
-z-index:999;
 opacity:0;
-transition:opacity .3s ease;
+transition:.3s;
 }
 
 #mainModal.active{
@@ -133,26 +159,20 @@ opacity:1;
 }
 
 .modalContent{
-width:360px;
+width:380px;
 max-width:90%;
 padding:30px;
 border-radius:25px;
 text-align:center;
 
-background:rgba(255,255,255,0.05);
-backdrop-filter:blur(20px);
+background:rgba(255,255,255,0.1);
+backdrop-filter:blur(25px);
 
-background:
-linear-gradient(rgba(15,23,42,.7), rgba(15,23,42,.7)) padding-box,
-linear-gradient(135deg,var(--neon-blue),var(--neon-green)) border-box;
-
-border:2px solid transparent;
-
-box-shadow:0 0 40px rgba(0,255,200,.4);
+border:1px solid rgba(255,255,255,.3);
 
 transform:scale(.8);
 opacity:0;
-transition:all .3s ease;
+transition:.3s;
 }
 
 #mainModal.active .modalContent{
@@ -170,9 +190,9 @@ margin-bottom:15px;
 
 .whatsappBtn{
 display:inline-block;
-margin-top:12px;
-padding:10px 20px;
-border-radius:25px;
+margin-top:15px;
+padding:12px 22px;
+border-radius:30px;
 background:#25D366;
 color:#fff;
 text-decoration:none;
@@ -200,8 +220,7 @@ color:#fff;
 
 <section id="streamingSection">
 
-<!-- CARDS EJEMPLO (puedes duplicar y cambiar datos) -->
-
+<!-- FILA 1 -->
 <div class="streamingCard" onclick="openModal(this)"
 data-name="Netflix" data-price="$120 MXN" data-duration="1 Mes"
 data-img="https://picsum.photos/400/300?1">
@@ -211,26 +230,59 @@ data-img="https://picsum.photos/400/300?1">
 </div>
 
 <div class="streamingCard" onclick="openModal(this)"
-data-name="Disney+" data-price="$110 MXN" data-duration="1 Mes"
+data-name="HBO Max" data-price="$110 MXN" data-duration="1 Mes"
 data-img="https://picsum.photos/400/300?2">
 <img src="https://picsum.photos/400/300?2">
-<h3>Disney+</h3>
-<button class="infoBtn" onclick="openModal(this.parentElement)">Más información</button>
-</div>
-
-<div class="streamingCard" onclick="openModal(this)"
-data-name="HBO Max" data-price="$100 MXN" data-duration="1 Mes"
-data-img="https://picsum.photos/400/300?3">
-<img src="https://picsum.photos/400/300?3">
 <h3>HBO Max</h3>
 <button class="infoBtn" onclick="openModal(this.parentElement)">Más información</button>
 </div>
 
 <div class="streamingCard" onclick="openModal(this)"
-data-name="Prime Video" data-price="$95 MXN" data-duration="1 Mes"
+data-name="ViX+" data-price="$95 MXN" data-duration="1 Mes"
+data-img="https://picsum.photos/400/300?3">
+<img src="https://picsum.photos/400/300?3">
+<h3>ViX+</h3>
+<button class="infoBtn" onclick="openModal(this.parentElement)">Más información</button>
+</div>
+
+<div class="streamingCard" onclick="openModal(this)"
+data-name="Paramount+" data-price="$100 MXN" data-duration="1 Mes"
 data-img="https://picsum.photos/400/300?4">
 <img src="https://picsum.photos/400/300?4">
-<h3>Prime Video</h3>
+<h3>Paramount+</h3>
+<button class="infoBtn" onclick="openModal(this.parentElement)">Más información</button>
+</div>
+
+<!-- FILA 2 -->
+<div class="streamingCard" onclick="openModal(this)"
+data-name="Disney+" data-price="$115 MXN" data-duration="1 Mes"
+data-img="https://picsum.photos/400/300?5">
+<img src="https://picsum.photos/400/300?5">
+<h3>Disney+</h3>
+<button class="infoBtn" onclick="openModal(this.parentElement)">Más información</button>
+</div>
+
+<div class="streamingCard" onclick="openModal(this)"
+data-name="Spotify" data-price="$90 MXN" data-duration="1 Mes"
+data-img="https://picsum.photos/400/300?6">
+<img src="https://picsum.photos/400/300?6">
+<h3>Spotify</h3>
+<button class="infoBtn" onclick="openModal(this.parentElement)">Más información</button>
+</div>
+
+<div class="streamingCard" onclick="openModal(this)"
+data-name="Crunchyroll" data-price="$95 MXN" data-duration="1 Mes"
+data-img="https://picsum.photos/400/300?7">
+<img src="https://picsum.photos/400/300?7">
+<h3>Crunchyroll</h3>
+<button class="infoBtn" onclick="openModal(this.parentElement)">Más información</button>
+</div>
+
+<div class="streamingCard" onclick="openModal(this)"
+data-name="YouTube Premium" data-price="$110 MXN" data-duration="1 Mes"
+data-img="https://picsum.photos/400/300?8">
+<img src="https://picsum.photos/400/300?8">
+<h3>YouTube Premium</h3>
 <button class="infoBtn" onclick="openModal(this.parentElement)">Más información</button>
 </div>
 
