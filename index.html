@@ -4,11 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Servicios Digitales</title>
+<title>Servicios Premium</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
+
+/* RESET */
 
 *{
 margin:0;
@@ -17,28 +19,43 @@ box-sizing:border-box;
 font-family:'Poppins',sans-serif;
 }
 
+/* FONDO */
+
 body{
+
+background:#111;
+
+color:white;
 
 min-height:100vh;
 
-background:url("https://img.freepik.com/vector-gratis/diseno-futurista-fondo_23-2148503793.jpg?semt=ais_hybrid&w=740&q=80")
-center/cover no-repeat fixed;
+}
+
+/* PANTALLA DE BIENVENIDA */
+
+#intro{
+
+position:fixed;
+inset:0;
+
+background:#000;
 
 display:flex;
 align-items:center;
 justify-content:center;
 
-color:white;
+z-index:100;
+
+animation:fadeOut 1s ease 3s forwards;
 
 }
 
-/* CAPA OSCURA SUAVE */
+#intro h1{
 
-.overlay{
+font-size:3rem;
+letter-spacing:3px;
 
-position:fixed;
-inset:0;
-background:rgba(0,0,0,0.45);
+animation:zoom 2s ease;
 
 }
 
@@ -46,29 +63,18 @@ background:rgba(0,0,0,0.45);
 
 .container{
 
-position:relative;
-z-index:2;
+padding:60px 8%;
 
-width:90%;
-max-width:1100px;
-
-text-align:center;
+animation:fadeIn 1.5s ease;
 
 }
 
 /* TITULO */
 
-h1{
+h2{
 
-font-size:2.8rem;
-margin-bottom:10px;
-
-}
-
-.subtitle{
-
-opacity:.85;
-margin-bottom:50px;
+margin-bottom:30px;
+font-size:1.8rem;
 
 }
 
@@ -77,7 +83,7 @@ margin-bottom:50px;
 .grid{
 
 display:grid;
-grid-template-columns:repeat(3,1fr);
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
 gap:25px;
 
 }
@@ -86,27 +92,35 @@ gap:25px;
 
 .card{
 
-background:rgba(255,255,255,0.08);
+background:#1b1b1b;
 
-border-radius:18px;
+border-radius:12px;
 
 padding:35px 20px;
 
-backdrop-filter:blur(8px);
-
-border:1px solid rgba(255,255,255,0.15);
-
-transition:.35s;
+text-align:center;
 
 cursor:pointer;
 
+transition:.35s;
+
+border:3px solid transparent;
+
 }
+
+/* BORDES DE COLORES */
+
+.streaming{border-color:#e50914;}
+.web{border-color:#1e90ff;}
+.tarjetas{border-color:#00c853;}
+.invitaciones{border-color:#ff9800;}
+.office{border-color:#9c27b0;}
 
 .card:hover{
 
-transform:translateY(-10px) scale(1.04);
+transform:scale(1.08);
 
-background:rgba(255,255,255,0.18);
+box-shadow:0 10px 40px rgba(0,0,0,0.8);
 
 }
 
@@ -114,16 +128,16 @@ background:rgba(255,255,255,0.18);
 
 .icon{
 
-font-size:40px;
-margin-bottom:15px;
+font-size:38px;
+margin-bottom:12px;
 
 }
 
-/* TITULO TARJETA */
+/* TEXTO */
 
 .card h3{
 
-margin-bottom:8px;
+font-size:1.1rem;
 
 }
 
@@ -131,17 +145,18 @@ margin-bottom:8px;
 
 .btn{
 
-margin-top:50px;
+margin-top:60px;
 
-padding:14px 40px;
+padding:14px 45px;
+
+background:#e50914;
 
 border:none;
-border-radius:30px;
+border-radius:25px;
 
-background:white;
-color:black;
+color:white;
 
-font-weight:bold;
+font-size:1rem;
 
 cursor:pointer;
 
@@ -155,27 +170,62 @@ transform:scale(1.08);
 
 }
 
+/* ANIMACIONES */
+
+@keyframes fadeOut{
+
+to{
+
+opacity:0;
+visibility:hidden;
+
+}
+
+}
+
+@keyframes zoom{
+
+from{
+
+transform:scale(.5);
+opacity:0;
+
+}
+
+to{
+
+transform:scale(1);
+opacity:1;
+
+}
+
+}
+
+@keyframes fadeIn{
+
+from{
+
+opacity:0;
+transform:translateY(20px);
+
+}
+
+to{
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+}
+
 /* RESPONSIVE */
-
-@media(max-width:900px){
-
-.grid{
-
-grid-template-columns:repeat(2,1fr);
-
-}
-
-}
 
 @media(max-width:600px){
 
-h1{
-font-size:2rem;
-}
+.container{
 
-.grid{
-
-grid-template-columns:1fr;
+padding:40px 6%;
 
 }
 
@@ -186,36 +236,41 @@ grid-template-columns:1fr;
 
 <body>
 
-<div class="overlay"></div>
+<!-- INTRO -->
+
+<div id="intro">
+
+<h1>BETOKO DIGITAL</h1>
+
+</div>
 
 <div class="container">
 
-<h1>Bienvenido</h1>
-<p class="subtitle">Selecciona uno de nuestros servicios</p>
+<h2>Selecciona tu servicio</h2>
 
 <div class="grid">
 
-<div class="card">
+<div class="card streaming">
 <div class="icon">🎬</div>
 <h3>Plataformas Streaming</h3>
 </div>
 
-<div class="card">
+<div class="card web">
 <div class="icon">🌐</div>
 <h3>Páginas Web</h3>
 </div>
 
-<div class="card">
+<div class="card tarjetas">
 <div class="icon">💳</div>
 <h3>Tarjetas Digitales</h3>
 </div>
 
-<div class="card">
+<div class="card invitaciones">
 <div class="icon">🎉</div>
 <h3>Invitaciones Digitales</h3>
 </div>
 
-<div class="card">
+<div class="card office">
 <div class="icon">📊</div>
 <h3>Activación Office</h3>
 </div>
