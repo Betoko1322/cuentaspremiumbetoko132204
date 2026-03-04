@@ -106,7 +106,7 @@ border:1px solid rgba(255,255,255,0.25);
 display:flex;
 flex-direction:column;
 justify-content:space-between;
-min-height:320px;
+min-height:280px;
 position:relative;
 }
 
@@ -117,15 +117,15 @@ box-shadow:0 0 40px rgba(0,255,200,.5);
 
 .streamingCard img{
 width:100%;
-height:180px;
+height:160px;
 border-radius:15px;
 object-fit:cover;
 }
 
 .streamingCard h3{
-margin-top:15px;
-font-size:1.1rem;
-min-height:30px;
+margin-top:8px;
+margin-bottom:6px;
+font-size:1.05rem;
 display:flex;
 align-items:center;
 justify-content:center;
@@ -150,7 +150,7 @@ color:#fff;
 
 /* BOTÓN */
 .infoBtn{
-margin-top:auto;
+margin-top:8px;
 padding:10px 16px;
 border:none;
 border-radius:25px;
@@ -244,7 +244,7 @@ color:#fff;
 <section id="streamingSection">
 
 <!-- FILA 1 -->
-  
+
 <div class="streamingCard" data-status="poca" data-name="Netflix" data-price="$150 MXN" data-duration="1 Mes" data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNMU2VI-2LG8thKFWx2VG8L5QT7uDTiZnoJQ&s">
 <span class="statusBadge"></span>
 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNMU2VI-2LG8thKFWx2VG8L5QT7uDTiZnoJQ&s">
@@ -256,69 +256,23 @@ color:#fff;
 <span class="statusBadge"></span>
 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAtd_npASz3Cp90pcd5GXu4mdzhotFUlp5sQ&s">
 <h3>HBO Max</h3>
-<button class="infoBtn">Más información</button>
+<button class="infoBtn" onclick="openModal(this)">Más información</button>
 </div>
 
 <div class="streamingCard" data-status="pedido" data-name="ViX+" data-price="$80 MXN" data-duration="1 Mes" data-img="https://corporate.televisaunivision.com/wp-content/uploads/sites/5/2022/06/ViX_logo.jpg?w=1024">
 <span class="statusBadge"></span>
 <img src="https://corporate.televisaunivision.com/wp-content/uploads/sites/5/2022/06/ViX_logo.jpg?w=1024">
 <h3>ViX+</h3>
-<button class="infoBtn">Más información</button>
+<button class="infoBtn" onclick="openModal(this)">Más información</button>
 </div>
 
 <div class="streamingCard" data-status="agotado" data-name="Paramount+" data-price="$80 MXN" data-duration="1 Mes" data-img="https://zoomf7.net/wp-content/uploads/2021/05/paramount-plus-estrenos.jpg">
 <span class="statusBadge"></span>
 <img src="https://zoomf7.net/wp-content/uploads/2021/05/paramount-plus-estrenos.jpg">
 <h3>Paramount+</h3>
-<button class="infoBtn">Más información</button>
-</div>
-
-<!-- FILA 2 -->
-
-<div class="streamingCard" data-status="disponible" data-name="Disney+" data-price="$150 MXN" data-duration="1 Mes" data-img="https://i.blogs.es/b80cc9/disney/840_560.jpeg">
-<span class="statusBadge"></span>
-<img src="https://i.blogs.es/b80cc9/disney/840_560.jpeg">
-<h3>Disney+</h3>
 <button class="infoBtn" onclick="openModal(this)">Más información</button>
 </div>
 
-<div class="streamingCard" data-status="disponible" data-name="Spotify" data-price="$90 MXN" data-duration="1 Mes" data-img="https://imagenes.20minutos.es/files/image_1920_1080/files/fp/uploads/imagenes/2021/08/04/spotify-plus.r_d.600-300.jpeg">
-<span class="statusBadge"></span>
-<img src="https://imagenes.20minutos.es/files/image_1920_1080/files/fp/uploads/imagenes/2021/08/04/spotify-plus.r_d.600-300.jpeg">
-<h3>Spotify</h3>
-<button class="infoBtn" onclick="openModal(this)">Más información</button>
-</div>
-
-<div class="streamingCard" data-status="poca" data-name="Crunchyroll" data-price="$80 MXN" data-duration="1 Mes" data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNpAXwyU9etmrcGzx1UiXXNuWX0_hswSXDyQ&s">
-<span class="statusBadge"></span>
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNpAXwyU9etmrcGzx1UiXXNuWX0_hswSXDyQ&s">
-<h3>Crunchyroll</h3>
-<button class="infoBtn" onclick="openModal(this)">Más información</button>
-</div>
-
-<div class="streamingCard" data-status="disponible" data-name="YouTube Premium" data-price="$90 MXN" data-duration="1 Mes" data-img="https://st5.depositphotos.com/3930295/67677/i/450/depositphotos_676772690-stock-photo-youtube-premium-social-media-images.jpg">
-<span class="statusBadge"></span>
-<img src="https://st5.depositphotos.com/3930295/67677/i/450/depositphotos_676772690-stock-photo-youtube-premium-social-media-images.jpg">
-<h3>YouTube Premium</h3>
-<button class="infoBtn" onclick="openModal(this)">Más información</button>
-</div>
-
-<!-- FILA 3 -->
-
-<div class="streamingCard" data-status="disponible" data-name="Prime Video Con Anuncios" data-price="$80 MXN" data-duration="1 Mes" data-img="https://m.media-amazon.com/images/G/01/primevideo/seo/primevideo-seo-logo.png">
-<span class="statusBadge"></span>
-<img src="https://m.media-amazon.com/images/G/01/primevideo/seo/primevideo-seo-logo.png">
-<h3>Prime Video Con Anuncios</h3>
-<button class="infoBtn" onclick="openModal(this)">Más información</button>
-</div>
-
-<div class="streamingCard" data-status="disponible" data-name="Prime Video Sin Anuncios" data-price="$110 MXN" data-duration="1 Mes" data-img="https://m.media-amazon.com/images/G/01/primevideo/seo/primevideo-seo-logo.png">
-<span class="statusBadge"></span>
-<img src="https://m.media-amazon.com/images/G/01/primevideo/seo/primevideo-seo-logo.png">
-<h3>Prime Video Sin Anuncios</h3>
-<button class="infoBtn" onclick="openModal(this)">Más información</button>
-</div>
-  
 </section>
 
 <!-- MODAL -->
@@ -359,8 +313,6 @@ if(e.target===this){
 closeModal();
 }
 });
-
-/* BADGE ESTADOS */
 
 document.querySelectorAll(".streamingCard").forEach(card=>{
 
