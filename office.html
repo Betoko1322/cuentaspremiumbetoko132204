@@ -34,6 +34,31 @@ opacity:0.9;
 margin-bottom:40px;
 }
 
+/* STATUS */
+
+.status-container{
+display:flex;
+justify-content:center;
+gap:30px;
+margin-top:20px;
+flex-wrap:wrap;
+}
+
+.status-box{
+background:rgba(255,255,255,0.08);
+border:1px solid rgba(255,255,255,0.2);
+border-radius:12px;
+padding:15px 25px;
+backdrop-filter:blur(6px);
+}
+
+.online{
+color:#00ff88;
+font-weight:bold;
+}
+
+/* GRID */
+
 .grid{
 display:grid;
 grid-template-columns:repeat(4,1fr);
@@ -66,50 +91,32 @@ color:#00eaff;
 color:#00eaff;
 }
 
+/* PRECIO */
+
 .price-node{
-grid-column: span 4;
 background:rgba(255,255,255,0.08);
 border:1px solid rgba(255,255,255,0.2);
 border-radius:12px;
-padding:35px;
+padding:25px;
 text-align:center;
 backdrop-filter:blur(6px);
 }
 
 .price-title{
-font-size:26px;
+font-size:20px;
 color:#00eaff;
 }
 
 .price-amount{
-font-size:48px;
+font-size:36px;
 font-weight:bold;
 color:#00ff88;
 }
 
-.status-container{
-display:flex;
-justify-content:center;
-gap:30px;
-margin-top:40px;
-flex-wrap:wrap;
-}
-
-.status-box{
-background:rgba(255,255,255,0.08);
-border:1px solid rgba(255,255,255,0.2);
-border-radius:12px;
-padding:20px 30px;
-backdrop-filter:blur(6px);
-}
-
-.online{
-color:#00ff88;
-font-weight:bold;
-}
+/* CONTADOR */
 
 .counter-box{
-margin-top:50px;
+margin-top:60px;
 text-align:center;
 }
 
@@ -118,6 +125,8 @@ font-size:60px;
 font-weight:bold;
 color:#00ff88;
 }
+
+/* BOTON */
 
 .whatsapp-container{
 text-align:center;
@@ -139,13 +148,15 @@ font-weight:bold;
 background:#1ebe5d;
 }
 
+/* FOOTER */
+
 .footer{
 text-align:center;
 margin-top:40px;
 opacity:0.8;
 }
 
-/* NOTIFICACIÓN EMERGENTE */
+/* POPUP */
 
 .popup{
 position:fixed;
@@ -155,7 +166,6 @@ background:rgba(0,0,0,0.85);
 padding:15px 20px;
 border-radius:10px;
 border:1px solid rgba(255,255,255,0.2);
-color:white;
 display:none;
 backdrop-filter:blur(6px);
 }
@@ -198,20 +208,20 @@ Tiempo promedio de activación: <b>5 minutos</b>
 
 </div>
 
-<h2 style="text-align:center;margin-top:40px;">Beneficios de Microsoft Office</h2>
+<h2 style="text-align:center;margin-top:40px;">Beneficios</h2>
 
 <div class="grid">
 
 <div class="node">
 <i class="fa-solid fa-file-word"></i>
-<h3>Microsoft Word</h3>
-<p>Creación de documentos profesionales.</p>
+<h3>Word</h3>
+<p>Documentos profesionales.</p>
 </div>
 
 <div class="node">
 <i class="fa-solid fa-file-excel"></i>
-<h3>Microsoft Excel</h3>
-<p>Análisis de datos y hojas de cálculo.</p>
+<h3>Excel</h3>
+<p>Análisis de datos y cálculos.</p>
 </div>
 
 <div class="node">
@@ -234,57 +244,57 @@ Tiempo promedio de activación: <b>5 minutos</b>
 
 <div class="node">
 <i class="fa-solid fa-download"></i>
-<h3>1. Descargar TeamViewer</h3>
-<p>Descarga el programa desde su web oficial.</p>
+<h3>1. Descargar</h3>
+<p>Descarga TeamViewer.</p>
 </div>
 
 <div class="node">
 <i class="fa-solid fa-computer"></i>
 <h3>2. Instalar</h3>
-<p>Instala TeamViewer.</p>
+<p>Instala el programa.</p>
 </div>
 
 <div class="node">
 <i class="fa-solid fa-key"></i>
 <h3>3. Enviar acceso</h3>
-<p>Comparte tu ID y contraseña.</p>
+<p>Comparte ID y contraseña.</p>
 </div>
 
 <div class="node">
 <i class="fa-solid fa-network-wired"></i>
-<h3>4. Conexión remota</h3>
-<p>Nos conectamos a tu equipo.</p>
+<h3>4. Conexión</h3>
+<p>Nos conectamos remotamente.</p>
 </div>
 
 <div class="node">
 <i class="fa-solid fa-bolt"></i>
 <h3>5. Activación</h3>
-<p>Realizamos la activación.</p>
+<p>Activamos Office.</p>
 </div>
 
 <div class="node">
 <i class="fa-solid fa-circle-check"></i>
 <h3>6. Verificación</h3>
-<p>Comprobamos que funcione.</p>
+<p>Comprobamos funcionamiento.</p>
 </div>
 
 <div class="node">
 <i class="fa-solid fa-star"></i>
 <h3>7. Finalización</h3>
-<p>Office queda activado permanentemente.</p>
+<p>Office queda permanente.</p>
 </div>
 
 <div class="price-node">
 
 <div class="price-title">
-Activación Permanente de Microsoft Office
+Activación Permanente
 </div>
 
 <div class="price-amount">
 $300 MXN
 </div>
 
-<p>Precio por equipo</p>
+<p>Por equipo</p>
 
 </div>
 
@@ -295,10 +305,8 @@ $300 MXN
 <h2>Equipos Activados</h2>
 
 <div class="counter" id="contador">
-0
+1287
 </div>
-
-<p>Equipos activados exitosamente</p>
 
 </div>
 
@@ -321,27 +329,21 @@ Servicio técnico remoto especializado
 
 <script>
 
-/* CONTADOR */
+/* CONTADOR DINÁMICO */
 
 let contador = document.getElementById("contador");
-let numeroFinal = 1287;
-let numero = 0;
+let numero = 1287;
 
-let intervalo = setInterval(function(){
+setInterval(function(){
 
-numero += 5;
-
-if(numero >= numeroFinal){
-numero = numeroFinal;
-clearInterval(intervalo);
-}
+numero += Math.floor(Math.random()*2);
 
 contador.innerText = numero;
 
-},10);
+},15000);
 
 
-/* NOTIFICACIÓN CLIENTES */
+/* POPUP CLIENTES */
 
 const nombres = [
 "Juan","Carlos","María","Luis","Ana","Pedro","Miguel","Sofía","José","Fernando"
