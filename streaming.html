@@ -48,7 +48,7 @@ transition:.3s;
 transform:scale(1.1);
 }
 
-/* ===== HEADER CRISTAL ===== */
+/* ===== HEADER ===== */
 .headerSection{
 text-align:center;
 margin:80px auto 40px auto;
@@ -72,7 +72,7 @@ opacity:.9;
 margin-top:10px;
 }
 
-/* ===== GRID 4 POR FILA ===== */
+/* ===== GRID ===== */
 #streamingSection{
 display:grid;
 grid-template-columns:repeat(4,1fr);
@@ -94,7 +94,7 @@ grid-template-columns:1fr;
 }
 }
 
-/* ===== CARDS CRISTAL ===== */
+/* ===== CARDS ===== */
 .streamingCard{
 padding:20px;
 border-radius:22px;
@@ -107,6 +107,7 @@ display:flex;
 flex-direction:column;
 justify-content:space-between;
 min-height:320px;
+position:relative;
 }
 
 .streamingCard:hover{
@@ -130,7 +131,24 @@ align-items:center;
 justify-content:center;
 }
 
-/* BOTÓN INFO */
+/* ===== BADGE ESTADO ===== */
+.statusBadge{
+position:absolute;
+top:12px;
+right:12px;
+padding:5px 12px;
+border-radius:20px;
+font-size:.75rem;
+font-weight:600;
+color:#fff;
+}
+
+.disponible{background:#00c853;}
+.poca{background:#ff9800;}
+.pedido{background:#00bcd4;}
+.agotado{background:#ff3d3d;}
+
+/* BOTÓN */
 .infoBtn{
 margin-top:auto;
 padding:10px 16px;
@@ -225,54 +243,32 @@ color:#fff;
 
 <section id="streamingSection">
 
-<!-- FILA 1 -->
-<div class="streamingCard" data-name="Netflix" data-price="$150 MXN" data-duration="1 Mes" data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNMU2VI-2LG8thKFWx2VG8L5QT7uDTiZnoJQ&s">
+<div class="streamingCard" data-status="poca" data-name="Netflix" data-price="$150 MXN" data-duration="1 Mes" data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNMU2VI-2LG8thKFWx2VG8L5QT7uDTiZnoJQ&s">
+<span class="statusBadge"></span>
 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNMU2VI-2LG8thKFWx2VG8L5QT7uDTiZnoJQ&s">
 <h3>Netflix</h3>
 <button class="infoBtn" onclick="openModal(this)">Más información</button>
 </div>
 
-<div class="streamingCard" data-name="HBO Max" data-price="$80 MXN" data-duration="1 Mes" data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAtd_npASz3Cp90pcd5GXu4mdzhotFUlp5sQ&s">
+<div class="streamingCard" data-status="disponible" data-name="HBO Max" data-price="$80 MXN" data-duration="1 Mes" data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAtd_npASz3Cp90pcd5GXu4mdzhotFUlp5sQ&s">
+<span class="statusBadge"></span>
 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAtd_npASz3Cp90pcd5GXu4mdzhotFUlp5sQ&s">
 <h3>HBO Max</h3>
-<button class="infoBtn" onclick="openModal(this)">Más información</button>
+<button class="infoBtn">Más información</button>
 </div>
 
-<div class="streamingCard" data-name="ViX+" data-price="$80 MXN" data-duration="1 Mes" data-img="https://corporate.televisaunivision.com/wp-content/uploads/sites/5/2022/06/ViX_logo.jpg?w=1024">
+<div class="streamingCard" data-status="pedido" data-name="ViX+" data-price="$80 MXN" data-duration="1 Mes" data-img="https://corporate.televisaunivision.com/wp-content/uploads/sites/5/2022/06/ViX_logo.jpg?w=1024">
+<span class="statusBadge"></span>
 <img src="https://corporate.televisaunivision.com/wp-content/uploads/sites/5/2022/06/ViX_logo.jpg?w=1024">
 <h3>ViX+</h3>
-<button class="infoBtn" onclick="openModal(this)">Más información</button>
+<button class="infoBtn">Más información</button>
 </div>
 
-<div class="streamingCard" data-name="Paramount+" data-price="$80 MXN" data-duration="1 Mes" data-img="https://zoomf7.net/wp-content/uploads/2021/05/paramount-plus-estrenos.jpg">
+<div class="streamingCard" data-status="agotado" data-name="Paramount+" data-price="$80 MXN" data-duration="1 Mes" data-img="https://zoomf7.net/wp-content/uploads/2021/05/paramount-plus-estrenos.jpg">
+<span class="statusBadge"></span>
 <img src="https://zoomf7.net/wp-content/uploads/2021/05/paramount-plus-estrenos.jpg">
 <h3>Paramount+</h3>
-<button class="infoBtn" onclick="openModal(this)">Más información</button>
-</div>
-
-<!-- FILA 2 -->
-<div class="streamingCard" data-name="Disney+" data-price="$150 MXN" data-duration="1 Mes" data-img="https://i.blogs.es/b80cc9/disney/840_560.jpeg">
-<img src="https://i.blogs.es/b80cc9/disney/840_560.jpeg">
-<h3>Disney+</h3>
-<button class="infoBtn" onclick="openModal(this)">Más información</button>
-</div>
-
-<div class="streamingCard" data-name="Spotify" data-price="$90 MXN" data-duration="1 Mes" data-img="https://imagenes.20minutos.es/files/image_1920_1080/files/fp/uploads/imagenes/2021/08/04/spotify-plus.r_d.600-300.jpeg">
-<img src="https://imagenes.20minutos.es/files/image_1920_1080/files/fp/uploads/imagenes/2021/08/04/spotify-plus.r_d.600-300.jpeg">
-<h3>Spotify</h3>
-<button class="infoBtn" onclick="openModal(this)">Más información</button>
-</div>
-
-<div class="streamingCard" data-name="Crunchyroll" data-price="$80 MXN" data-duration="1 Mes" data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNpAXwyU9etmrcGzx1UiXXNuWX0_hswSXDyQ&s">
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNpAXwyU9etmrcGzx1UiXXNuWX0_hswSXDyQ&s">
-<h3>Crunchyroll</h3>
-<button class="infoBtn" onclick="openModal(this)">Más información</button>
-</div>
-
-<div class="streamingCard" data-name="YouTube Premium" data-price="$90 MXN" data-duration="1 Mes" data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1CyHf497kypwepByNe8acNAo_PqwEwWftDQ&s">
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1CyHf497kypwepByNe8acNAo_PqwEwWftDQ&s">
-<h3>YouTube Premium</h3>
-<button class="infoBtn" onclick="openModal(this)">Más información</button>
+<button class="infoBtn">Más información</button>
 </div>
 
 </section>
@@ -291,6 +287,7 @@ color:#fff;
 </div>
 
 <script>
+
 function openModal(button){
 const card = button.closest(".streamingCard");
 
@@ -300,8 +297,7 @@ document.getElementById("modalDuration").innerText="Duración: "+card.dataset.du
 document.getElementById("modalImage").src=card.dataset.img;
 
 const msg=`Hola, quiero contratar ${card.dataset.name}`;
-document.getElementById("whatsappLink").href=
-`https://wa.me/5536509109?text=${encodeURIComponent(msg)}`;
+document.getElementById("whatsappLink").href=`https://wa.me/5536509109?text=${encodeURIComponent(msg)}`;
 
 document.getElementById("mainModal").classList.add("active");
 }
@@ -315,6 +311,36 @@ if(e.target===this){
 closeModal();
 }
 });
+
+/* BADGE ESTADOS */
+
+document.querySelectorAll(".streamingCard").forEach(card=>{
+
+const status = card.dataset.status;
+const badge = card.querySelector(".statusBadge");
+
+if(status==="disponible"){
+badge.innerText="Disponible";
+badge.classList.add("disponible");
+}
+
+if(status==="poca"){
+badge.innerText="Poca disponibilidad";
+badge.classList.add("poca");
+}
+
+if(status==="pedido"){
+badge.innerText="Sobre pedido";
+badge.classList.add("pedido");
+}
+
+if(status==="agotado"){
+badge.innerText="Agotado";
+badge.classList.add("agotado");
+}
+
+});
+
 </script>
 
 </body>
