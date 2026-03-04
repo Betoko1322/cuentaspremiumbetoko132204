@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Servicios Premium</title>
+<title>Cuentas Premium Betoko</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
@@ -19,32 +18,35 @@ box-sizing:border-box;
 font-family:'Poppins',sans-serif;
 }
 
-/* FONDO */
-
 body{
 
-background:#111;
-
+background:#0f0f0f;
 color:white;
 
 min-height:100vh;
 
+display:flex;
+align-items:center;
+justify-content:center;
+
+overflow:hidden;
+
 }
 
-/* PANTALLA DE BIENVENIDA */
+/* INTRO */
 
 #intro{
 
 position:fixed;
 inset:0;
 
-background:#000;
+background:black;
 
 display:flex;
 align-items:center;
 justify-content:center;
 
-z-index:100;
+z-index:10;
 
 animation:fadeOut 1s ease 3s forwards;
 
@@ -52,63 +54,85 @@ animation:fadeOut 1s ease 3s forwards;
 
 #intro h1{
 
-font-size:3rem;
+font-size:2.8rem;
 letter-spacing:3px;
+text-align:center;
 
 animation:zoom 2s ease;
 
 }
 
-/* CONTENEDOR */
+/* CONTENIDO */
 
 .container{
 
-padding:60px 8%;
+text-align:center;
 
-animation:fadeIn 1.5s ease;
+opacity:0;
+
+animation:showContent 1s ease 3.2s forwards;
 
 }
 
-/* TITULO */
+/* CENTRO */
 
-h2{
+.center{
 
-margin-bottom:30px;
+position:relative;
+
+width:420px;
+height:420px;
+
+margin:auto;
+
+}
+
+/* TEXTO CENTRAL */
+
+.center-text{
+
+position:absolute;
+
+top:50%;
+left:50%;
+
+transform:translate(-50%,-50%);
+
 font-size:1.8rem;
 
-}
-
-/* GRID */
-
-.grid{
-
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:25px;
+font-weight:600;
 
 }
 
-/* TARJETAS */
+/* NODOS */
 
-.card{
+.node{
+
+position:absolute;
+
+width:120px;
+
+padding:12px;
 
 background:#1b1b1b;
 
-border-radius:12px;
+border-radius:10px;
 
-padding:35px 20px;
-
-text-align:center;
+border:2px solid;
 
 cursor:pointer;
 
-transition:.35s;
-
-border:3px solid transparent;
+transition:.3s;
 
 }
 
-/* BORDES DE COLORES */
+.node:hover{
+
+transform:scale(1.1);
+
+}
+
+/* COLORES */
 
 .streaming{border-color:#e50914;}
 .web{border-color:#1e90ff;}
@@ -116,43 +140,27 @@ border:3px solid transparent;
 .invitaciones{border-color:#ff9800;}
 .office{border-color:#9c27b0;}
 
-.card:hover{
+/* POSICIONES CIRCULO */
 
-transform:scale(1.08);
-
-box-shadow:0 10px 40px rgba(0,0,0,0.8);
-
-}
-
-/* ICONO */
-
-.icon{
-
-font-size:38px;
-margin-bottom:12px;
-
-}
-
-/* TEXTO */
-
-.card h3{
-
-font-size:1.1rem;
-
-}
+.n1{top:0;left:50%;transform:translateX(-50%);}
+.n2{top:25%;right:0;}
+.n3{bottom:25%;right:0;}
+.n4{bottom:0;left:50%;transform:translateX(-50%);}
+.n5{top:25%;left:0;}
 
 /* BOTON */
 
-.btn{
+button{
 
-margin-top:60px;
+margin-top:40px;
 
 padding:14px 45px;
 
-background:#e50914;
-
 border:none;
+
 border-radius:25px;
+
+background:#e50914;
 
 color:white;
 
@@ -164,7 +172,7 @@ transition:.3s;
 
 }
 
-.btn:hover{
+button:hover{
 
 transform:scale(1.08);
 
@@ -175,10 +183,8 @@ transform:scale(1.08);
 @keyframes fadeOut{
 
 to{
-
 opacity:0;
 visibility:hidden;
-
 }
 
 }
@@ -186,35 +192,21 @@ visibility:hidden;
 @keyframes zoom{
 
 from{
-
 transform:scale(.5);
 opacity:0;
-
 }
 
 to{
-
 transform:scale(1);
 opacity:1;
-
 }
 
 }
 
-@keyframes fadeIn{
-
-from{
-
-opacity:0;
-transform:translateY(20px);
-
-}
+@keyframes showContent{
 
 to{
-
 opacity:1;
-transform:translateY(0);
-
 }
 
 }
@@ -223,9 +215,23 @@ transform:translateY(0);
 
 @media(max-width:600px){
 
-.container{
+.center{
 
-padding:40px 6%;
+width:300px;
+height:300px;
+
+}
+
+.node{
+
+width:95px;
+font-size:.8rem;
+
+}
+
+.center-text{
+
+font-size:1.4rem;
 
 }
 
@@ -240,44 +246,31 @@ padding:40px 6%;
 
 <div id="intro">
 
-<h1>BETOKO DIGITAL</h1>
+<h1>Cuentas Premium<br>Betoko_132204</h1>
 
 </div>
+
+<!-- CONTENIDO -->
 
 <div class="container">
 
-<h2>Selecciona tu servicio</h2>
+<div class="center">
 
-<div class="grid">
+<div class="center-text">Bienvenido</div>
 
-<div class="card streaming">
-<div class="icon">🎬</div>
-<h3>Plataformas Streaming</h3>
-</div>
+<div class="node streaming n1">Streaming</div>
 
-<div class="card web">
-<div class="icon">🌐</div>
-<h3>Páginas Web</h3>
-</div>
+<div class="node web n2">Páginas Web</div>
 
-<div class="card tarjetas">
-<div class="icon">💳</div>
-<h3>Tarjetas Digitales</h3>
-</div>
+<div class="node tarjetas n3">Tarjetas</div>
 
-<div class="card invitaciones">
-<div class="icon">🎉</div>
-<h3>Invitaciones Digitales</h3>
-</div>
+<div class="node invitaciones n4">Invitaciones</div>
 
-<div class="card office">
-<div class="icon">📊</div>
-<h3>Activación Office</h3>
-</div>
+<div class="node office n5">Office</div>
 
 </div>
 
-<button class="btn" onclick="entrar()">Entrar</button>
+<button onclick="entrar()">Entrar</button>
 
 </div>
 
