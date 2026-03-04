@@ -9,8 +9,6 @@
 
 <style>
 
-/* RESET */
-
 *{
 margin:0;
 padding:0;
@@ -20,14 +18,16 @@ font-family:'Poppins',sans-serif;
 
 body{
 
-background:#0f0f0f;
-color:white;
-
 min-height:100vh;
+
+background:url("https://img.freepik.com/vector-gratis/diseno-futurista-fondo_23-2148503793.jpg?semt=ais_hybrid&w=740&q=80")
+center/cover no-repeat fixed;
 
 display:flex;
 align-items:center;
 justify-content:center;
+
+color:white;
 
 overflow:hidden;
 
@@ -54,9 +54,9 @@ animation:fadeOut 1s ease 3s forwards;
 
 #intro h1{
 
-font-size:2.8rem;
-letter-spacing:3px;
+font-size:2.5rem;
 text-align:center;
+letter-spacing:3px;
 
 animation:zoom 2s ease;
 
@@ -74,9 +74,9 @@ animation:showContent 1s ease 3.2s forwards;
 
 }
 
-/* CENTRO */
+/* CIRCULO */
 
-.center{
+.circle{
 
 position:relative;
 
@@ -84,6 +84,8 @@ width:420px;
 height:420px;
 
 margin:auto;
+
+animation:rotate 25s linear infinite;
 
 }
 
@@ -99,28 +101,46 @@ left:50%;
 transform:translate(-50%,-50%);
 
 font-size:1.8rem;
-
 font-weight:600;
+
+text-shadow:0 0 10px rgba(255,255,255,.6);
 
 }
 
-/* NODOS */
+/* LINEAS */
+
+svg{
+
+position:absolute;
+width:100%;
+height:100%;
+
+}
+
+/* BURBUJAS */
 
 .node{
 
 position:absolute;
 
-width:120px;
+width:110px;
 
 padding:12px;
 
-background:#1b1b1b;
+text-align:center;
 
-border-radius:10px;
+background:rgba(255,255,255,0.15);
 
-border:2px solid;
+border-radius:50px;
 
-cursor:pointer;
+backdrop-filter:blur(8px);
+
+border:1px solid rgba(255,255,255,0.4);
+
+box-shadow:
+
+0 0 15px rgba(255,255,255,0.4),
+inset 0 0 8px rgba(255,255,255,0.5);
 
 transition:.3s;
 
@@ -130,17 +150,11 @@ transition:.3s;
 
 transform:scale(1.1);
 
+background:rgba(255,255,255,0.3);
+
 }
 
-/* COLORES */
-
-.streaming{border-color:#e50914;}
-.web{border-color:#1e90ff;}
-.tarjetas{border-color:#00c853;}
-.invitaciones{border-color:#ff9800;}
-.office{border-color:#9c27b0;}
-
-/* POSICIONES CIRCULO */
+/* POSICIONES */
 
 .n1{top:0;left:50%;transform:translateX(-50%);}
 .n2{top:25%;right:0;}
@@ -160,11 +174,11 @@ border:none;
 
 border-radius:25px;
 
-background:#e50914;
+background:#ffffff;
 
-color:white;
+color:black;
 
-font-size:1rem;
+font-weight:bold;
 
 cursor:pointer;
 
@@ -174,11 +188,18 @@ transition:.3s;
 
 button:hover{
 
-transform:scale(1.08);
+transform:scale(1.1);
 
 }
 
 /* ANIMACIONES */
+
+@keyframes rotate{
+
+from{transform:rotate(0deg);}
+to{transform:rotate(360deg);}
+
+}
 
 @keyframes fadeOut{
 
@@ -215,7 +236,7 @@ opacity:1;
 
 @media(max-width:600px){
 
-.center{
+.circle{
 
 width:300px;
 height:300px;
@@ -224,7 +245,7 @@ height:300px;
 
 .node{
 
-width:95px;
+width:90px;
 font-size:.8rem;
 
 }
@@ -242,31 +263,41 @@ font-size:1.4rem;
 
 <body>
 
-<!-- INTRO -->
-
 <div id="intro">
 
 <h1>Cuentas Premium<br>Betoko_132204</h1>
 
 </div>
 
-<!-- CONTENIDO -->
-
 <div class="container">
 
-<div class="center">
+<div class="circle">
 
 <div class="center-text">Bienvenido</div>
 
-<div class="node streaming n1">Streaming</div>
+<svg>
 
-<div class="node web n2">Páginas Web</div>
+<line x1="50%" y1="50%" x2="50%" y2="0%" stroke="white" opacity=".4"/>
 
-<div class="node tarjetas n3">Tarjetas</div>
+<line x1="50%" y1="50%" x2="100%" y2="25%" stroke="white" opacity=".4"/>
 
-<div class="node invitaciones n4">Invitaciones</div>
+<line x1="50%" y1="50%" x2="100%" y2="75%" stroke="white" opacity=".4"/>
 
-<div class="node office n5">Office</div>
+<line x1="50%" y1="50%" x2="50%" y2="100%" stroke="white" opacity=".4"/>
+
+<line x1="50%" y1="50%" x2="0%" y2="25%" stroke="white" opacity=".4"/>
+
+</svg>
+
+<div class="node n1">Streaming</div>
+
+<div class="node n2">Páginas Web</div>
+
+<div class="node n3">Tarjetas</div>
+
+<div class="node n4">Invitaciones</div>
+
+<div class="node n5">Office</div>
 
 </div>
 
