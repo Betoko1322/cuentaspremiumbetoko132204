@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tarjeta Digital Repostera</title>
 
+<a href="tarjetas.html" class="back-button">Regresar</a>
+    
 <style>
 :root {
     --text-color: #ffffff;
@@ -13,6 +15,28 @@
     --button-hover: #E9C46A;
 }
 
+.back-button{
+position:fixed;
+top:20px;
+left:20px;
+padding:10px 18px;
+border-radius:25px;
+text-decoration:none;
+color:white;
+background:rgba(255,255,255,0.15);
+border:1px solid rgba(255,255,255,0.4);
+backdrop-filter:blur(6px);
+font-weight:500;
+transition:0.3s ease;
+z-index:999;
+}
+
+.back-button:hover{
+background:#E9C46A;
+color:black;
+border-color:#E9C46A;
+}
+    
 body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
