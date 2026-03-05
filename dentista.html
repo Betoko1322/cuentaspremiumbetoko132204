@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tarjeta Digital Dentista</title>
+
+<style>
+
+:root{
+--text-color:#ffffff;
+--accent-color:#00b4d8;
+}
+
+body{
+margin:0;
+font-family:'Segoe UI',sans-serif;
+background-image:url("https://img.freepik.com/vector-gratis/diseno-futurista-fondo_23-2148503793.jpg?semt=ais_hybrid&w=740&q=80");
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+color:var(--text-color);
+}
+
+.overlay{
+background:linear-gradient(
+to bottom,
+rgba(0,0,0,0.7),
+rgba(0,0,0,0.25)
+);
+min-height:100vh;
+padding:60px 20px;
+}
+
+.container{max-width:1000px;margin:auto;}
+
+.section{margin-bottom:70px;text-align:center;}
+
+h1{font-size:3rem;}
+
+h2{
+font-size:2rem;
+border-bottom:2px solid var(--accent-color);
+display:inline-block;
+padding-bottom:5px;
+}
+
+/* GALERIA */
+
+.gallery-wrapper{position:relative;display:flex;align-items:center;}
+
+.gallery-container{
+overflow-x:auto;
+display:flex;
+gap:15px;
+scroll-behavior:smooth;
+scrollbar-width:none;
+}
+
+.gallery-container::-webkit-scrollbar{display:none;}
+
+.gallery-item img{
+width:180px;
+height:180px;
+object-fit:cover;
+border-radius:15px;
+}
+
+.gallery-btn{
+position:absolute;
+background:rgba(0,0,0,0.5);
+border:none;
+color:white;
+font-size:24px;
+width:40px;
+height:40px;
+border-radius:50%;
+cursor:pointer;
+}
+
+.gallery-btn.left{left:-10px;}
+.gallery-btn.right{right:-10px;}
+
+.services-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+}
+
+.service-card{
+background:rgba(255,255,255,0.08);
+padding:20px;
+border-radius:15px;
+backdrop-filter:blur(6px);
+text-align:left;
+}
+
+.contact-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+max-width:800px;
+margin:auto;
+}
+
+.contact-card{
+background:rgba(255,255,255,0.08);
+padding:18px;
+border-radius:15px;
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.contact-card img{width:34px;}
+
+.contact-card a{
+display:flex;
+align-items:center;
+gap:15px;
+text-decoration:none;
+color:white;
+}
+
+.back-button{
+position:fixed;
+top:20px;
+left:20px;
+padding:10px 18px;
+border-radius:25px;
+text-decoration:none;
+color:white;
+background:rgba(255,255,255,0.15);
+border:1px solid rgba(255,255,255,0.4);
+backdrop-filter:blur(6px);
+}
+
+</style>
+</head>
+
+<body>
+
+<a href="tarjetas.html" class="back-button">← Regresar</a>
+
+<div class="overlay">
+<div class="container">
+
+<div class="section">
+<h1>Dra. Laura Hernández</h1>
+<p>Odontóloga | Salud y estética dental</p>
+</div>
+
+<div class="section">
+
+<h2>Consultorio</h2>
+
+<div class="gallery-wrapper">
+
+<button class="gallery-btn left" onclick="scrollGallery(-1)">❮</button>
+
+<div class="gallery-container" id="gallery">
+
+<img src="https://img.freepik.com/foto-gratis/dentista-trabajando-consultorio_23-2148900414.jpg">
+<img src="https://img.freepik.com/foto-gratis/dentista-examinando-dientes_23-2148900415.jpg">
+<img src="https://img.freepik.com/foto-gratis/dentista-paciente_23-2148900416.jpg">
+
+</div>
+
+<button class="gallery-btn right" onclick="scrollGallery(1)">❯</button>
+
+</div>
+</div>
+
+<div class="section">
+
+<h2>Servicios</h2>
+
+<div class="services-grid">
+
+<div class="service-card">
+<h3>Limpieza Dental</h3>
+<p>Profilaxis y prevención.</p>
+</div>
+
+<div class="service-card">
+<h3>Blanqueamiento</h3>
+<p>Tratamiento estético dental.</p>
+</div>
+
+<div class="service-card">
+<h3>Ortodoncia</h3>
+<p>Corrección de posición dental.</p>
+</div>
+
+<div class="service-card">
+<h3>Implantes</h3>
+<p>Reemplazo de piezas dentales.</p>
+</div>
+
+</div>
+</div>
+
+<div class="section">
+
+<h2>Formación Profesional</h2>
+
+<div class="services-grid">
+
+<div class="service-card">
+Licenciatura en Odontología
+</div>
+
+<div class="service-card">
+Especialidad en Ortodoncia
+</div>
+
+<div class="service-card">
+Cédula Profesional: 45678912
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+
+<h2>Contacto</h2>
+
+<div class="contact-grid">
+
+<div class="contact-card">
+<a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">WhatsApp</a>
+</div>
+
+<div class="contact-card">
+<a href="#"><img src="https://cdn-icons-png.flaticon.com/512/732/732200.png">Correo electrónico</a>
+</div>
+
+<div class="contact-card">
+<a href="#"><img src="https://cdn-icons-png.flaticon.com/512/684/684908.png">Ver ubicación</a>
+</div>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+<script>
+function scrollGallery(direction){
+const container=document.getElementById("gallery");
+container.scrollBy({left:direction*200,behavior:"smooth"});
+}
+</script>
+
+</body>
+</html>
