@@ -6,27 +6,29 @@
 <title>Tarjeta Digital Psicólogo</title>
 
 <style>
+
 :root {
-    --text-color: #ffffff;
-    --accent-color: #6C9BD2;
-    --button-bg: rgba(255,255,255,0.15);
+--text-color:#ffffff;
+--accent-color:#6C9BD2;
 }
 
-body {
-    margin:0;
-    font-family:'Segoe UI',sans-serif;
-    background-image:url("https://img.freepik.com/foto-gratis/consulta-psicologica-terapia_23-2149172683.jpg?w=1380");
-    background-size:cover;
-    background-position:center;
-    background-attachment:fixed;
-    color:var(--text-color);
+/* FONDO */
+
+body{
+margin:0;
+font-family:'Segoe UI',sans-serif;
+background-image:url("https://img.freepik.com/vector-gratis/diseno-futurista-fondo_23-2148503793.jpg?semt=ais_hybrid&w=740&q=80");
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+color:var(--text-color);
 }
 
 .overlay{
 background:linear-gradient(
 to bottom,
 rgba(0,0,0,0.65),
-rgba(0,0,0,0.3)
+rgba(0,0,0,0.2)
 );
 min-height:100vh;
 padding:60px 20px;
@@ -122,12 +124,18 @@ margin:auto;
 
 .contact-card{
 background:rgba(255,255,255,0.08);
-padding:18px;
+padding:18px 20px;
 border-radius:15px;
+backdrop-filter:blur(6px);
 display:flex;
 align-items:center;
 gap:15px;
-backdrop-filter:blur(6px);
+transition:0.3s ease;
+}
+
+.contact-card:hover{
+transform:translateY(-4px);
+background:rgba(255,255,255,0.18);
 }
 
 .contact-card img{
@@ -135,11 +143,11 @@ width:34px;
 }
 
 .contact-card a{
-text-decoration:none;
-color:white;
 display:flex;
 align-items:center;
 gap:15px;
+text-decoration:none;
+color:white;
 }
 
 /* BOTON REGRESAR */
@@ -179,7 +187,7 @@ color:black;
 
 <h1>Dr. Carlos Ruiz</h1>
 
-<p>Psicólogo Clínico | Terapia emocional y bienestar mental</p>
+<p>Psicólogo Clínico | Bienestar emocional</p>
 
 </div>
 
@@ -225,45 +233,23 @@ color:black;
 
 <div class="service-card">
 <h3>Terapia Individual</h3>
-<p>Atención personalizada para manejo emocional.</p>
+<p>Apoyo emocional y crecimiento personal.</p>
 </div>
 
 <div class="service-card">
 <h3>Terapia de Pareja</h3>
-<p>Mejora la comunicación y relación de pareja.</p>
+<p>Mejora la comunicación y relación.</p>
 </div>
 
 <div class="service-card">
 <h3>Ansiedad y Estrés</h3>
-<p>Tratamiento para ansiedad, estrés y depresión.</p>
+<p>Manejo de ansiedad, estrés y depresión.</p>
 </div>
 
 <div class="service-card">
 <h3>Terapia Online</h3>
-<p>Sesiones por videollamada desde cualquier lugar.</p>
+<p>Sesiones por videollamada.</p>
 </div>
-
-</div>
-
-</div>
-
-<!-- SOBRE -->
-
-<div class="section">
-
-<h2>Sobre el Psicólogo</h2>
-
-<div class="service-card" style="max-width:800px;margin:auto">
-
-<p>
-
-El Dr. Carlos Ruiz es psicólogo clínico especializado en terapia emocional,
-manejo de ansiedad y desarrollo personal.
-
-Cuenta con años de experiencia ayudando a personas a mejorar su bienestar
-emocional, autoestima y calidad de vida mediante técnicas terapéuticas modernas.
-
-</p>
 
 </div>
 
@@ -292,9 +278,30 @@ emocional, autoestima y calidad de vida mediante técnicas terapéuticas moderna
 </div>
 
 <div class="contact-card">
+<a href="#">
+<img src="https://cdn-icons-png.flaticon.com/512/733/733547.png">
+<span>Grupo de Facebook</span>
+</a>
+</div>
+
+<div class="contact-card">
+<a href="#">
+<img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
+<span>Grupo de WhatsApp</span>
+</a>
+</div>
+
+<div class="contact-card">
+<a href="https://wa.me/5215512345678?text=Hola%20quiero%20agendar%20una%20consulta">
+<img src="https://cdn-icons-png.flaticon.com/512/263/263142.png">
+<span>Agendar cita</span>
+</a>
+</div>
+
+<div class="contact-card">
 <a href="https://maps.google.com">
 <img src="https://cdn-icons-png.flaticon.com/512/684/684908.png">
-<span>Ubicación del consultorio</span>
+<span>Ver ubicación</span>
 </a>
 </div>
 
@@ -308,11 +315,14 @@ emocional, autoestima y calidad de vida mediante técnicas terapéuticas moderna
 <script>
 
 function scrollGallery(direction){
+
 const container=document.getElementById("gallery");
+
 container.scrollBy({
 left:direction*200,
 behavior:"smooth"
 });
+
 }
 
 </script>
