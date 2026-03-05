@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Tarjetas Digitales</title>
+<title>Tarjetas Digitales de Presentación</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
@@ -25,57 +25,96 @@ padding:40px;
 
 h1{
 text-align:center;
+font-size:45px;
+}
+
+.subtitle{
+text-align:center;
+opacity:0.9;
+margin-bottom:40px;
+}
+
+/* GRID */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:30px;
+max-width:1100px;
+margin:auto;
+margin-top:40px;
 }
 
 /* NODALES GLASS */
 
-.panel{
+.node{
 background:rgba(255,255,255,0.08);
 border:1px solid rgba(255,255,255,0.2);
 border-radius:12px;
 padding:25px;
-backdrop-filter:blur(6px);
-}
-
-.simulator{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:30px;
-margin-top:40px;
-}
-
-input{
-width:100%;
-padding:10px;
-margin-top:8px;
-border:none;
-border-radius:6px;
-}
-
-/* TARJETA */
-
-.card{
-margin-top:20px;
-padding:30px;
-border-radius:15px;
-background:#00eaff;
-color:black;
 text-align:center;
+backdrop-filter:blur(6px);
+transition:0.3s;
 }
 
-.card img{
-width:90px;
-height:90px;
+.node:hover{
+transform:scale(1.05);
+background:rgba(255,255,255,0.15);
+}
+
+.node img{
+width:100px;
+height:100px;
 border-radius:50%;
 object-fit:cover;
 margin-bottom:10px;
+}
+
+button{
+margin-top:15px;
+padding:10px 20px;
+border:none;
+border-radius:6px;
+background:#00ff88;
+font-weight:bold;
+cursor:pointer;
+}
+
+/* MODAL */
+
+.modal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.8);
+justify-content:center;
+align-items:center;
+}
+
+.modal-content{
+background:rgba(255,255,255,0.08);
+border:1px solid rgba(255,255,255,0.2);
+border-radius:15px;
+padding:30px;
+backdrop-filter:blur(6px);
+text-align:center;
+width:320px;
+}
+
+.modal img{
+width:90px;
+height:90px;
+border-radius:50%;
 }
 
 .actions{
 margin-top:20px;
 display:flex;
 justify-content:center;
-gap:15px;
+gap:10px;
 flex-wrap:wrap;
 }
 
@@ -84,7 +123,6 @@ padding:10px 14px;
 border-radius:8px;
 color:white;
 text-decoration:none;
-font-size:18px;
 }
 
 .call{background:#007bff}
@@ -93,21 +131,14 @@ font-size:18px;
 .map{background:#ff8800}
 .web{background:#444}
 
-/* BOTON */
-
-button{
+.close{
 margin-top:20px;
-padding:12px 20px;
-border:none;
-border-radius:6px;
-background:#00ff88;
-font-weight:bold;
-cursor:pointer;
+background:#ff4444;
 }
 
 @media(max-width:900px){
 
-.simulator{
+.grid{
 grid-template-columns:1fr;
 }
 
@@ -120,66 +151,53 @@ grid-template-columns:1fr;
 
 <div class="overlay">
 
-<h1><i class="fa-solid fa-id-card"></i> Tarjeta Digital Interactiva</h1>
+<h1><i class="fa-solid fa-id-card"></i> Tarjetas Digitales de Presentación</h1>
 
-<div class="simulator">
+<p class="subtitle">
+Ejemplos de tarjetas digitales interactivas
+</p>
 
-<div class="panel">
+<div class="grid">
 
-<label>Foto / Logo</label>
-<input type="file" id="foto">
+<!-- DEMO 1 -->
 
-<label>Nombre</label>
-<input id="nombre">
+<div class="node">
 
-<label>Profesión / Empresa</label>
-<input id="cargo">
+<img src="https://randomuser.me/api/portraits/men/32.jpg">
 
-<label>Teléfono</label>
-<input id="telefono">
+<h3>Juan Pérez</h3>
 
-<label>Correo</label>
-<input id="correo">
+<p>Asesor Inmobiliario</p>
 
-<label>WhatsApp</label>
-<input id="whatsapp">
-
-<label>Ubicación Google Maps (link)</label>
-<input id="mapa">
-
-<label>Sitio web</label>
-<input id="web">
-
-<label>Color tarjeta</label>
-<input type="color" id="color">
-
-<button onclick="generar()">Actualizar tarjeta</button>
+<button onclick="abrir('demo1')">Ver demo</button>
 
 </div>
 
-<div class="panel">
+<!-- DEMO 2 -->
 
-<h3>Vista previa</h3>
+<div class="node">
 
-<div class="card" id="card">
+<img src="https://randomuser.me/api/portraits/women/44.jpg">
 
-<img id="fotoPreview" src="https://via.placeholder.com/90">
+<h3>María López</h3>
 
-<h3 id="pNombre">Nombre</h3>
+<p>Diseñadora Gráfica</p>
 
-<p id="pCargo">Profesión</p>
+<button onclick="abrir('demo2')">Ver demo</button>
 
-<div class="actions">
+</div>
 
-<a id="btnCall" class="call"><i class="fa-solid fa-phone"></i></a>
+<!-- DEMO 3 -->
 
-<a id="btnWhatsapp" class="whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
+<div class="node">
 
-<a id="btnMail" class="mail"><i class="fa-solid fa-envelope"></i></a>
+<img src="https://randomuser.me/api/portraits/men/52.jpg">
 
-<a id="btnMap" class="map"><i class="fa-solid fa-location-dot"></i></a>
+<h3>Carlos Ramírez</h3>
 
-<a id="btnWeb" class="web"><i class="fa-solid fa-globe"></i></a>
+<p>Consultor de Negocios</p>
+
+<button onclick="abrir('demo3')">Ver demo</button>
 
 </div>
 
@@ -187,51 +205,119 @@ grid-template-columns:1fr;
 
 </div>
 
-</div>
+<!-- MODAL DEMO -->
+
+<div class="modal" id="modal">
+
+<div class="modal-content" id="contenido"></div>
 
 </div>
 
 <script>
 
-function generar(){
+function abrir(demo){
 
-let nombre=document.getElementById("nombre").value
-let cargo=document.getElementById("cargo").value
-let tel=document.getElementById("telefono").value
-let correo=document.getElementById("correo").value
-let whatsapp=document.getElementById("whatsapp").value
-let mapa=document.getElementById("mapa").value
-let web=document.getElementById("web").value
-let color=document.getElementById("color").value
+let contenido=document.getElementById("contenido")
 
-document.getElementById("pNombre").innerText=nombre
-document.getElementById("pCargo").innerText=cargo
+if(demo=="demo1"){
 
-document.getElementById("card").style.background=color
+contenido.innerHTML=`
 
-document.getElementById("btnCall").href="tel:"+tel
-document.getElementById("btnWhatsapp").href="https://wa.me/"+whatsapp
-document.getElementById("btnMail").href="mailto:"+correo
-document.getElementById("btnMap").href=mapa
-document.getElementById("btnWeb").href=web
+<img src="https://randomuser.me/api/portraits/men/32.jpg">
 
-}
+<h3>Juan Pérez</h3>
 
-/* FOTO */
+<p>Asesor Inmobiliario</p>
 
-document.getElementById("foto").addEventListener("change",function(){
+<div class="actions">
 
-let reader=new FileReader()
+<a class="call" href="tel:5512345678"><i class="fa-solid fa-phone"></i></a>
 
-reader.onload=function(e){
+<a class="whatsapp" href="https://wa.me/5215512345678"><i class="fa-brands fa-whatsapp"></i></a>
 
-document.getElementById("fotoPreview").src=e.target.result
+<a class="mail" href="mailto:juan@email.com"><i class="fa-solid fa-envelope"></i></a>
+
+<a class="map" href="https://maps.google.com"><i class="fa-solid fa-location-dot"></i></a>
+
+<a class="web" href="#"><i class="fa-solid fa-globe"></i></a>
+
+</div>
+
+<button class="close" onclick="cerrar()">Cerrar</button>
+
+`
 
 }
 
-reader.readAsDataURL(this.files[0])
+if(demo=="demo2"){
 
-})
+contenido.innerHTML=`
+
+<img src="https://randomuser.me/api/portraits/women/44.jpg">
+
+<h3>María López</h3>
+
+<p>Diseñadora Gráfica</p>
+
+<div class="actions">
+
+<a class="call" href="#"><i class="fa-solid fa-phone"></i></a>
+
+<a class="whatsapp" href="#"><i class="fa-brands fa-whatsapp"></i></a>
+
+<a class="mail" href="#"><i class="fa-solid fa-envelope"></i></a>
+
+<a class="map" href="#"><i class="fa-solid fa-location-dot"></i></a>
+
+<a class="web" href="#"><i class="fa-solid fa-globe"></i></a>
+
+</div>
+
+<button class="close" onclick="cerrar()">Cerrar</button>
+
+`
+
+}
+
+if(demo=="demo3"){
+
+contenido.innerHTML=`
+
+<img src="https://randomuser.me/api/portraits/men/52.jpg">
+
+<h3>Carlos Ramírez</h3>
+
+<p>Consultor de Negocios</p>
+
+<div class="actions">
+
+<a class="call" href="#"><i class="fa-solid fa-phone"></i></a>
+
+<a class="whatsapp" href="#"><i class="fa-brands fa-whatsapp"></i></a>
+
+<a class="mail" href="#"><i class="fa-solid fa-envelope"></i></a>
+
+<a class="map" href="#"><i class="fa-solid fa-location-dot"></i></a>
+
+<a class="web" href="#"><i class="fa-solid fa-globe"></i></a>
+
+</div>
+
+<button class="close" onclick="cerrar()">Cerrar</button>
+
+`
+
+}
+
+document.getElementById("modal").style.display="flex"
+
+}
+
+function cerrar(){
+
+document.getElementById("modal").style.display="none"
+
+}
 
 </script>
 
