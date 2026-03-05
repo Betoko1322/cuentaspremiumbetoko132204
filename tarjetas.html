@@ -2,319 +2,344 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Tarjetas Digitales de Presentación</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plataformas Streaming Premium</title>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-<a href="principal.html" class="back-button">← Regresar</a>
-  
 <style>
+:root{
+--neon-blue:#00f7ff;
+--neon-green:#00ffb3;
+}
 
-.back-button{
+/* FONDO */
+
+body{
+margin:0;
+font-family:'Poppins',sans-serif;
+color:#fff;
+background:url("https://img.freepik.com/vector-gratis/diseno-futurista-fondo_23-2148503793.jpg?semt=ais_hybrid&w=740&q=80") no-repeat center center fixed;
+background-size:cover;
+}
+
+body::before{
+content:"";
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.55);
+z-index:-1;
+}
+
+/* BOTÓN REGRESAR */
+
+.backBtn{
 position:fixed;
 top:20px;
 left:20px;
 padding:10px 18px;
 border-radius:25px;
 text-decoration:none;
-color:white;
-background:rgba(255,255,255,0.15);
-border:1px solid rgba(255,255,255,0.4);
-backdrop-filter:blur(6px);
-font-weight:500;
-transition:0.3s ease;
-z-index:999;
+font-weight:600;
+background:linear-gradient(90deg,var(--neon-blue),var(--neon-green));
+color:#000;
+z-index:10;
+transition:.3s;
 }
 
-.back-button:hover{
-background:#E9C46A;
-color:black;
-border-color:#E9C46A;
-}
-  
-body{
-margin:0;
-font-family:Arial;
-background-image:url('https://img.freepik.com/vector-gratis/diseno-futurista-fondo_23-2148503793.jpg?semt=ais_hybrid&w=740&q=80');
-background-size:cover;
-background-attachment:fixed;
-color:white;
+.backBtn:hover{
+transform:scale(1.1);
 }
 
-.overlay{
-background:rgba(0,0,0,0.75);
-min-height:100vh;
-padding:40px;
-}
+/* HEADER */
 
-h1{
+.headerSection{
 text-align:center;
-font-size:45px;
+margin:80px auto 40px auto;
+padding:35px;
+max-width:1000px;
+border-radius:25px;
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,0.3);
 }
 
-.subtitle{
-text-align:center;
-opacity:0.9;
-margin-bottom:40px;
+.headerSection h1{
+font-size:2.3rem;
+background:linear-gradient(90deg,var(--neon-blue),var(--neon-green));
+-webkit-background-clip:text;
+color:transparent;
+}
+
+.headerSection p{
+opacity:.9;
+margin-top:10px;
 }
 
 /* GRID */
 
-.grid{
+#streamingSection{
 display:grid;
 grid-template-columns:repeat(4,1fr);
-gap:25px;
+gap:30px;
 max-width:1200px;
 margin:auto;
-margin-top:40px;
+padding:20px;
 }
 
-/* NODALES GLASS */
+@media(max-width:900px){
+#streamingSection{
+grid-template-columns:repeat(2,1fr);
+}
+}
 
-.node{
-background:rgba(255,255,255,0.08);
-border:1px solid rgba(255,255,255,0.2);
-border-radius:12px;
-padding:25px;
+@media(max-width:500px){
+#streamingSection{
+grid-template-columns:1fr;
+}
+}
+
+/* CARDS */
+
+.streamingCard{
+padding:20px;
+border-radius:22px;
 text-align:center;
-backdrop-filter:blur(6px);
-transition:0.3s;
+transition:.4s ease;
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,0.25);
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+min-height:240px;
+position:relative;
 }
 
-.node:hover{
-transform:scale(1.05);
-background:rgba(255,255,255,0.15);
+.streamingCard:hover{
+transform:translateY(-10px) scale(1.03);
+box-shadow:0 0 40px rgba(0,255,200,.5);
 }
 
-.node img{
-width:90px;
-height:90px;
-border-radius:50%;
+.streamingCard img{
+width:100%;
+height:140px;
+border-radius:15px;
 object-fit:cover;
-margin-bottom:10px;
 }
 
-button{
-margin-top:15px;
-padding:10px 20px;
+.streamingCard h3{
+margin-top:8px;
+margin-bottom:6px;
+font-size:1.05rem;
+}
+
+/* BADGE */
+
+.statusBadge{
+position:absolute;
+top:12px;
+right:12px;
+padding:5px 12px;
+border-radius:20px;
+font-size:.75rem;
+font-weight:600;
+color:#fff;
+}
+
+.disponible{background:#00c853;}
+.poca{background:#ff9800;}
+.pedido{background:#00bcd4;}
+.agotado{background:#ff3d3d;}
+
+/* BOTÓN */
+
+.infoBtn{
+margin-top:8px;
+padding:7px 14px;
 border:none;
-border-radius:6px;
-background:#00ff88;
-font-weight:bold;
+border-radius:25px;
 cursor:pointer;
+font-weight:500;
+background:linear-gradient(90deg,var(--neon-blue),var(--neon-green));
+color:#000;
+transition:.3s;
+}
+
+.infoBtn:hover{
+transform:scale(1.08);
 }
 
 /* MODAL */
 
-.modal{
+#mainModal{
 display:none;
 position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.8);
+inset:0;
+background:rgba(0,0,0,.75);
+backdrop-filter:blur(10px);
 justify-content:center;
 align-items:center;
+opacity:0;
+transition:.3s;
 }
 
-.modal-content{
-background:rgba(255,255,255,0.08);
-border:1px solid rgba(255,255,255,0.2);
-border-radius:15px;
-padding:30px;
-backdrop-filter:blur(6px);
-text-align:center;
-width:320px;
-}
-
-.modal img{
-width:90px;
-height:90px;
-border-radius:50%;
-}
-
-.actions{
-margin-top:20px;
+#mainModal.active{
 display:flex;
-justify-content:center;
-gap:10px;
-flex-wrap:wrap;
+opacity:1;
 }
 
-.actions a{
-padding:10px 14px;
-border-radius:8px;
-color:white;
+.modalContent{
+width:380px;
+max-width:90%;
+padding:30px;
+border-radius:25px;
+text-align:center;
+background:rgba(255,255,255,0.1);
+backdrop-filter:blur(25px);
+border:1px solid rgba(255,255,255,.3);
+transform:scale(.8);
+opacity:0;
+transition:.3s ease;
+}
+
+#mainModal.active .modalContent{
+transform:scale(1);
+opacity:1;
+}
+
+.modalContent img{
+width:100%;
+height:200px;
+border-radius:15px;
+object-fit:cover;
+margin-bottom:15px;
+}
+
+.whatsappBtn{
+display:inline-block;
+margin-top:15px;
+padding:12px 22px;
+border-radius:30px;
+background:#25D366;
+color:#fff;
 text-decoration:none;
+font-weight:600;
 }
 
-.call{background:#007bff}
-.whatsapp{background:#25D366}
-.mail{background:#ff4444}
-.map{background:#ff8800}
-.web{background:#444}
-
-.close{
-margin-top:20px;
-background:#ff4444;
+.closeBtn{
+margin-top:15px;
+padding:8px 15px;
+border:none;
+border-radius:20px;
+cursor:pointer;
+background:#ff4d4d;
+color:#fff;
 }
-
-@media(max-width:900px){
-
-.grid{
-grid-template-columns:repeat(2,1fr);
-}
-
-}
-
 </style>
 </head>
 
 <body>
 
-<div class="overlay">
+<a href="index.html" class="backBtn">← Regresar</a>
 
-<h1><i class="fa-solid fa-id-card"></i> Tarjetas Digitales de Presentación</h1>
-
-<p class="subtitle">
-Ejemplos de tarjetas digitales interactivas
-</p>
-
-<div class="grid">
-
-<!-- MINI DONITAS -->
-
-<div class="node">
-<img src="https://images.unsplash.com/photo-1509440159596-0249088772ff">
-<h3>Mini Donitas</h3>
-<p>Repostería artesanal</p>
-<button onclick="window.open('https://betoko1322.github.io/cuentaspremiumbetoko132204/donitas','_blank')">Ver demo</button>
+<div class="headerSection">
+<h1>Plataformas Streaming Premium</h1>
+<p>Elige tu plataforma favorita y contrata al mejor precio.</p>
 </div>
 
-<!-- PSICOLOGO -->
+<section id="streamingSection">
 
-<div class="node">
-<img src="https://randomuser.me/api/portraits/men/45.jpg">
-<h3>Psicólogo</h3>
-<p>Terapia emocional</p>
-<button onclick="window.open('https://betoko1322.github.io/cuentaspremiumbetoko132204/psicologo','_blank')">Ver demo</button>
+<div class="streamingCard" data-status="poca" data-name="Netflix" data-price="$150 MXN" data-duration="1 Mes" data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNMU2VI-2LG8thKFWx2VG8L5QT7uDTiZnoJQ&s">
+<span class="statusBadge"></span>
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNMU2VI-2LG8thKFWx2VG8L5QT7uDTiZnoJQ&s">
+<h3>Netflix</h3>
+<button class="infoBtn" onclick="openModal(this)">Más información</button>
 </div>
 
-<!-- ABOGADO -->
-
-<div class="node">
-<img src="https://randomuser.me/api/portraits/men/32.jpg">
-<h3>Abogado</h3>
-<p>Consultoría legal</p>
-<button onclick="window.open('https://betoko1322.github.io/cuentaspremiumbetoko132204/abogado','_blank')">Ver demo</button>
+<div class="streamingCard" data-status="disponible" data-name="HBO Max" data-price="$80 MXN" data-duration="1 Mes" data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAtd_npASz3Cp90pcd5GXu4mdzhotFUlp5sQ&s">
+<span class="statusBadge"></span>
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAtd_npASz3Cp90pcd5GXu4mdzhotFUlp5sQ&s">
+<h3>HBO Max</h3>
+<button class="infoBtn" onclick="openModal(this)">Más información</button>
 </div>
 
-<!-- DENTISTA -->
+</section>
 
-<div class="node">
-<img src="https://randomuser.me/api/portraits/women/65.jpg">
-<h3>Dentista</h3>
-<p>Salud dental</p>
-<button onclick="window.open('https://betoko1322.github.io/cuentaspremiumbetoko132204/dentista','_blank')">Ver demo</button>
+<div id="mainModal">
+<div class="modalContent">
+<img id="modalImage">
+<h2 id="modalTitle"></h2>
+<p id="modalPrice"></p>
+<p id="modalDuration"></p>
+
+<a id="whatsappLink" class="whatsappBtn">Contratar por WhatsApp</a>
+
+<br>
+
+<button class="closeBtn" onclick="closeModal()">Cerrar</button>
 </div>
-
-<!-- GINECOLOGA -->
-
-<div class="node">
-<img src="https://randomuser.me/api/portraits/women/44.jpg">
-<h3>Doctora Ginecóloga</h3>
-<p>Salud femenina</p>
-<button onclick="window.open('demo-donitas.html','_blank')">Ver demo</button>
-</div>
-
-</div>
-
-</div>
-
-<!-- MODAL -->
-
-<div class="modal" id="modal">
-<div class="modal-content" id="contenido"></div>
 </div>
 
 <script>
 
-function abrir(tipo){
+function openModal(button){
 
-let contenido=document.getElementById("contenido")
+const card = button.closest(".streamingCard");
 
-let datos={
+document.getElementById("modalTitle").innerText=card.dataset.name;
+document.getElementById("modalPrice").innerText=card.dataset.price;
+document.getElementById("modalDuration").innerText="Duración: "+card.dataset.duration;
+document.getElementById("modalImage").src=card.dataset.img;
 
-donitas:{
-img:"https://images.unsplash.com/photo-1509440159596-0249088772ff",
-nombre:"Mini Donitas",
-cargo:"Repostería artesanal"
-},
+const msg=`Hola, quiero contratar ${card.dataset.name}`;
 
-psicologo:{
-img:"https://randomuser.me/api/portraits/men/45.jpg",
-nombre:"Dr. Carlos Ruiz",
-cargo:"Psicólogo clínico"
-},
+document.getElementById("whatsappLink").href=`https://wa.me/5536509109?text=${encodeURIComponent(msg)}`;
 
-abogado:{
-img:"https://randomuser.me/api/portraits/men/32.jpg",
-nombre:"Lic. Juan Pérez",
-cargo:"Abogado"
-},
-
-dentista:{
-img:"https://randomuser.me/api/portraits/women/65.jpg",
-nombre:"Dra. Laura Gómez",
-cargo:"Dentista"
-},
-
-ginecologa:{
-img:"https://randomuser.me/api/portraits/women/44.jpg",
-nombre:"Dra. María López",
-cargo:"Ginecóloga"
-}
+document.getElementById("mainModal").classList.add("active");
 
 }
 
-let d=datos[tipo]
+function closeModal(){
 
-contenido.innerHTML=`
-
-<img src="${d.img}">
-
-<h3>${d.nombre}</h3>
-
-<p>${d.cargo}</p>
-
-<div class="actions">
-
-<a class="call" href="#"><i class="fa-solid fa-phone"></i></a>
-
-<a class="whatsapp" href="#"><i class="fa-brands fa-whatsapp"></i></a>
-
-<a class="mail" href="#"><i class="fa-solid fa-envelope"></i></a>
-
-<a class="map" href="#"><i class="fa-solid fa-location-dot"></i></a>
-
-<a class="web" href="#"><i class="fa-solid fa-globe"></i></a>
-
-</div>
-
-<button class="close" onclick="cerrar()">Cerrar</button>
-
-`
-
-document.getElementById("modal").style.display="flex"
+document.getElementById("mainModal").classList.remove("active");
 
 }
 
-function cerrar(){
+document.getElementById("mainModal").addEventListener("click",function(e){
 
-document.getElementById("modal").style.display="none"
-
+if(e.target===this){
+closeModal();
 }
+
+});
+
+document.querySelectorAll(".streamingCard").forEach(card=>{
+
+const status = card.dataset.status;
+const badge = card.querySelector(".statusBadge");
+
+if(status==="disponible"){
+badge.innerText="Disponible";
+badge.classList.add("disponible");
+}
+
+if(status==="poca"){
+badge.innerText="Poca disponibilidad";
+badge.classList.add("poca");
+}
+
+if(status==="pedido"){
+badge.innerText="Sobre pedido";
+badge.classList.add("pedido");
+}
+
+if(status==="agotado"){
+badge.innerText="Agotado";
+badge.classList.add("agotado");
+}
+
+});
 
 </script>
 
