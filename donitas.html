@@ -73,6 +73,13 @@ h2 {
     scroll-snap-type: x mandatory;
     padding-bottom: 10px;
     scroll-behavior: smooth;
+
+    /* ocultar barra de scroll */
+    scrollbar-width: none; /* Firefox */
+}
+
+.gallery-container::-webkit-scrollbar {
+    display: none; /* Chrome, Edge, Safari */
 }
 
 .gallery-item img {
