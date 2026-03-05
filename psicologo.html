@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tarjeta Digital Psicólogo</title>
+
+<style>
+:root {
+    --text-color: #ffffff;
+    --accent-color: #6C9BD2;
+    --button-bg: rgba(255,255,255,0.15);
+}
+
+body {
+    margin:0;
+    font-family:'Segoe UI',sans-serif;
+    background-image:url("https://img.freepik.com/foto-gratis/consulta-psicologica-terapia_23-2149172683.jpg?w=1380");
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+    color:var(--text-color);
+}
+
+.overlay{
+background:linear-gradient(
+to bottom,
+rgba(0,0,0,0.65),
+rgba(0,0,0,0.3)
+);
+min-height:100vh;
+padding:60px 20px;
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+}
+
+.section{
+margin-bottom:70px;
+text-align:center;
+}
+
+h1{
+font-size:3rem;
+}
+
+h2{
+font-size:2rem;
+border-bottom:2px solid var(--accent-color);
+display:inline-block;
+padding-bottom:5px;
+}
+
+/* GALERIA */
+
+.gallery-wrapper{
+position:relative;
+display:flex;
+align-items:center;
+}
+
+.gallery-container{
+overflow-x:auto;
+display:flex;
+gap:15px;
+scroll-behavior:smooth;
+scrollbar-width:none;
+}
+
+.gallery-container::-webkit-scrollbar{
+display:none;
+}
+
+.gallery-item img{
+width:180px;
+height:180px;
+object-fit:cover;
+border-radius:15px;
+}
+
+.gallery-btn{
+position:absolute;
+background:rgba(0,0,0,0.5);
+border:none;
+color:white;
+font-size:24px;
+width:40px;
+height:40px;
+border-radius:50%;
+cursor:pointer;
+}
+
+.gallery-btn.left{left:-10px;}
+.gallery-btn.right{right:-10px;}
+
+/* SERVICIOS */
+
+.services-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+}
+
+.service-card{
+background:rgba(255,255,255,0.08);
+padding:20px;
+border-radius:15px;
+backdrop-filter:blur(6px);
+}
+
+/* CONTACTO */
+
+.contact-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+max-width:800px;
+margin:auto;
+}
+
+.contact-card{
+background:rgba(255,255,255,0.08);
+padding:18px;
+border-radius:15px;
+display:flex;
+align-items:center;
+gap:15px;
+backdrop-filter:blur(6px);
+}
+
+.contact-card img{
+width:34px;
+}
+
+.contact-card a{
+text-decoration:none;
+color:white;
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+/* BOTON REGRESAR */
+
+.back-button{
+position:fixed;
+top:20px;
+left:20px;
+padding:10px 18px;
+border-radius:25px;
+text-decoration:none;
+color:white;
+background:rgba(255,255,255,0.15);
+border:1px solid rgba(255,255,255,0.4);
+backdrop-filter:blur(6px);
+font-weight:500;
+}
+
+.back-button:hover{
+background:var(--accent-color);
+color:black;
+}
+
+</style>
+</head>
+
+<body>
+
+<a href="tarjetas.html" class="back-button">← Regresar</a>
+
+<div class="overlay">
+<div class="container">
+
+<!-- ENCABEZADO -->
+
+<div class="section">
+
+<h1>Dr. Carlos Ruiz</h1>
+
+<p>Psicólogo Clínico | Terapia emocional y bienestar mental</p>
+
+</div>
+
+<!-- GALERIA -->
+
+<div class="section">
+
+<h2>Consultorio</h2>
+
+<div class="gallery-wrapper">
+
+<button class="gallery-btn left" onclick="scrollGallery(-1)">❮</button>
+
+<div class="gallery-container" id="gallery">
+
+<div class="gallery-item">
+<img src="https://img.freepik.com/foto-gratis/psicologo-hablando-paciente_23-2148751966.jpg">
+</div>
+
+<div class="gallery-item">
+<img src="https://img.freepik.com/foto-gratis/hombre-hablando-psicologo_23-2148751963.jpg">
+</div>
+
+<div class="gallery-item">
+<img src="https://img.freepik.com/foto-gratis/consulta-terapia_23-2148751965.jpg">
+</div>
+
+</div>
+
+<button class="gallery-btn right" onclick="scrollGallery(1)">❯</button>
+
+</div>
+
+</div>
+
+<!-- SERVICIOS -->
+
+<div class="section">
+
+<h2>Servicios</h2>
+
+<div class="services-grid">
+
+<div class="service-card">
+<h3>Terapia Individual</h3>
+<p>Atención personalizada para manejo emocional.</p>
+</div>
+
+<div class="service-card">
+<h3>Terapia de Pareja</h3>
+<p>Mejora la comunicación y relación de pareja.</p>
+</div>
+
+<div class="service-card">
+<h3>Ansiedad y Estrés</h3>
+<p>Tratamiento para ansiedad, estrés y depresión.</p>
+</div>
+
+<div class="service-card">
+<h3>Terapia Online</h3>
+<p>Sesiones por videollamada desde cualquier lugar.</p>
+</div>
+
+</div>
+
+</div>
+
+<!-- SOBRE -->
+
+<div class="section">
+
+<h2>Sobre el Psicólogo</h2>
+
+<div class="service-card" style="max-width:800px;margin:auto">
+
+<p>
+
+El Dr. Carlos Ruiz es psicólogo clínico especializado en terapia emocional,
+manejo de ansiedad y desarrollo personal.
+
+Cuenta con años de experiencia ayudando a personas a mejorar su bienestar
+emocional, autoestima y calidad de vida mediante técnicas terapéuticas modernas.
+
+</p>
+
+</div>
+
+</div>
+
+<!-- CONTACTO -->
+
+<div class="section">
+
+<h2>Contacto</h2>
+
+<div class="contact-grid">
+
+<div class="contact-card">
+<a href="https://wa.me/5215512345678">
+<img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
+<span>WhatsApp</span>
+</a>
+</div>
+
+<div class="contact-card">
+<a href="mailto:psicologo@email.com">
+<img src="https://cdn-icons-png.flaticon.com/512/732/732200.png">
+<span>Correo electrónico</span>
+</a>
+</div>
+
+<div class="contact-card">
+<a href="https://maps.google.com">
+<img src="https://cdn-icons-png.flaticon.com/512/684/684908.png">
+<span>Ubicación del consultorio</span>
+</a>
+</div>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+<script>
+
+function scrollGallery(direction){
+const container=document.getElementById("gallery");
+container.scrollBy({
+left:direction*200,
+behavior:"smooth"
+});
+}
+
+</script>
+
+</body>
+</html>
