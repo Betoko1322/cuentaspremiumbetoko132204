@@ -214,55 +214,66 @@ Precio sugerido: $ <span id="precio"></span>
 
 function calcular(){
 
-let harinaPrecio=Number(harinaPrecio.value)||0
-let harinaUso=Number(harinaUso.value)||0
+let harinaPrecio = Number(document.getElementById("harinaPrecio").value) || 0;
+let harinaUso = Number(document.getElementById("harinaUso").value) || 0;
 
-let huevoPrecio=Number(huevoPrecio.value)||0
-let huevoUso=Number(huevoUso.value)||0
+let huevoPrecio = Number(document.getElementById("huevoPrecio").value) || 0;
+let huevoUso = Number(document.getElementById("huevoUso").value) || 0;
 
-let aceitePrecio=Number(aceitePrecio.value)||0
-let aceiteUso=Number(aceiteUso.value)||0
+let aceitePrecio = Number(document.getElementById("aceitePrecio").value) || 0;
+let aceiteUso = Number(document.getElementById("aceiteUso").value) || 0;
 
-let mano=Number(mano.value)||0
-let gas=Number(gas.value)||0
-let electricidad=Number(electricidad.value)||0
+let mano = Number(document.getElementById("mano").value) || 0;
+let gas = Number(document.getElementById("gas").value) || 0;
+let electricidad = Number(document.getElementById("electricidad").value) || 0;
 
-let cantidad=Number(cantidad.value)||1
-let ganancia=Number(ganancia.value)||0
+let cantidad = Number(document.getElementById("cantidad").value) || 1;
+let ganancia = Number(document.getElementById("ganancia").value) || 0;
 
-let costoHarina=(harinaPrecio/1000)*harinaUso
-let costoHuevo=(huevoPrecio/12)*huevoUso
-let costoAceite=(aceitePrecio/1000)*aceiteUso
+/* COSTO DE INGREDIENTES */
 
-let costoIngredientes=costoHarina+costoHuevo+costoAceite
+let costoHarina = (harinaPrecio / 1000) * harinaUso;
+let costoHuevo = (huevoPrecio / 12) * huevoUso;
+let costoAceite = (aceitePrecio / 1000) * aceiteUso;
 
-let costoTotal=costoIngredientes+mano+gas+electricidad
+let costoIngredientes = costoHarina + costoHuevo + costoAceite;
 
-let costoDonita=costoTotal/cantidad
+/* COSTO TOTAL */
 
-let precio=costoDonita*(1+ganancia/100)
+let costoTotal = costoIngredientes + mano + gas + electricidad;
 
-total.innerText=costoTotal.toFixed(2)
-costo.innerText=costoDonita.toFixed(2)
-precio.innerText=precio.toFixed(2)
+/* COSTO POR DONITA */
+
+let costoDonita = costoTotal / cantidad;
+
+/* PRECIO CON GANANCIA */
+
+let precio = costoDonita * (1 + ganancia / 100);
+
+/* MOSTRAR RESULTADOS */
+
+document.getElementById("total").innerText = costoTotal.toFixed(2);
+document.getElementById("costo").innerText = costoDonita.toFixed(2);
+document.getElementById("precio").innerText = precio.toFixed(2);
+
+/* GRAFICA */
 
 new Chart(document.getElementById("grafica"),{
-
 type:"pie",
-
 data:{
 labels:["Costo","Ganancia"],
 datasets:[{
-data:[costoDonita,precio-costoDonita]
+data:[costoDonita, precio - costoDonita]
 }]
 }
-
-})
+});
 
 }
 
+/* PWA */
+
 if('serviceWorker' in navigator){
-navigator.serviceWorker.register('service-worker.js')
+navigator.serviceWorker.register('service-worker.js');
 }
 
 </script>
