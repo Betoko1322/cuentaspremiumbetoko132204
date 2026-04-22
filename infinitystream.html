@@ -87,19 +87,27 @@ body{
   height:100%;
   align-items:center;
   padding:0 18px;
-  animation:scroll 18s linear infinite;
+  animation:scroll 25s linear infinite;
+}
+
+.logoItem{
+  min-width:150px;
+  height:100px;
+  border-radius:16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,.1);
+  backdrop-filter:blur(6px);
+  overflow:hidden;
 }
 
 .logoItem img{
-  max-width:80%;
-  max-height:60%;
+  width:100%;
+  height:100%;
   object-fit:contain;
-}
-
-.logoItem img{
-  max-width:80%;
-  max-height:60%;
-  object-fit:contain;
+  padding:6px;
 }
 
 @keyframes scroll{
@@ -136,7 +144,6 @@ body{
   text-decoration:none;
 }
 
-/* colores estilo logo */
 #btn-whatsapp{
   background:linear-gradient(45deg,#ff3b3b,#ff7a00);
   color:white;
@@ -152,7 +159,6 @@ body{
   color:black;
 }
 
-/* iconos */
 .btn img{
   width:22px;
 }
@@ -191,90 +197,86 @@ body{
 
 <div id="card-container">
 
-  <!-- HEADER -->
-  <div id="header">
-    <div id="logo-container">
-      <img id="logo-img" src="infinitylogo.jpg">
-    </div>
-    <h1 id="business-name">INFINITY STREAM</h1>
+<!-- HEADER -->
+<div id="header">
+  <div id="logo-container">
+    <img id="logo-img" src="infinitylogo.jpg">
   </div>
+  <h1 id="business-name">INFINITY STREAM</h1>
+</div>
 
-  <!-- CARRUSEL -->
-  <div id="carousel">
-    <div id="carousel-track">
+<!-- CARRUSEL -->
+<div id="carousel">
+  <div id="carousel-track">
 
-      <!-- ORIGINAL -->
-      <div id="logo-netflix" class="logoItem"><img src="https://www.liderlogo.es/wp-content/uploads/2022/12/pasted-image-0-6-1024x576.png"></div>
-      <div id="logo-prime" class="logoItem"><img src="https://www.adslzone.net/app/uploads-adslzone.net/2025/10/prime-video-logo.png"></div>
-      <div id="logo-hbo" class="logoItem"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBvu-RiDGG72SjXzEg5FQR308P96JKy_mlbw&s"></div>
-      <div id="logo-spotify" class="logoItem"><img src="https://uvn-brightspot.s3.amazonaws.com/assets/vixes/btg/tech.batanga.com/files/Que-es-Spotify-1.jpg"></div>
-      <div id="logo-vix" class="logoItem"><img src="https://cdn-3.expansion.mx/dims4/default/e8e070a/2147483647/resize/1280x/quality/90/?url=https%3A%2F%2Fcdn-3.expansion.mx%2F9a%2F34%2Ff532ccab4a49ad3885468e1576e0%2Fimage.png"></div>
-      <div id="logo-youtube" class="logoItem"><img src="https://tierragamer.com/wp-content/uploads/2025/09/YouTube-Premium-logo-2025.webp"></div>
-      <div id="logo-disney" class="logoItem"><img src="https://www.elaltavoz.mx/wp-content/uploads/2021/03/960729.jpeg"></div>
-      <div id="logo-iptv" class="logoItem"><img src="https://i.blogs.es/e71885/destacada-iptv/1200_630.jpg"></div>
-      <div id="logo-crunchyroll" class="logoItem"><img src="https://cdn.beahero.gg/2025/12/Crunchyroll-servicio-gratuito-2025.jpg"></div>
+    <!-- ORIGINAL -->
+    <div class="logoItem"><img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"></div>
+    <div class="logoItem"><img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Prime_Video.png"></div>
+    <div class="logoItem"><img src="https://upload.wikimedia.org/wikipedia/commons/1/17/HBO_Max_Logo.svg"></div>
+    <div class="logoItem"><img src="https://upload.wikimedia.org/wikipedia/commons/8/84/Spotify_icon.svg"></div>
+    <div class="logoItem"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg"></div>
+    <div class="logoItem"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg"></div>
+    <div class="logoItem"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Crunchyroll_Logo.svg"></div>
 
-      <!-- DUPLICADO -->
-      <div class="logoItem"><img src="https://www.liderlogo.es/wp-content/uploads/2022/12/pasted-image-0-6-1024x576.png"></div>
-      <div class="logoItem"><img src="https://www.adslzone.net/app/uploads-adslzone.net/2025/10/prime-video-logo.png"></div>
-      <div class="logoItem"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBvu-RiDGG72SjXzEg5FQR308P96JKy_mlbw&s"></div>
-      <div class="logoItem"><img src="https://uvn-brightspot.s3.amazonaws.com/assets/vixes/btg/tech.batanga.com/files/Que-es-Spotify-1.jpg"></div>
-      <div class="logoItem"><img src="https://cdn-3.expansion.mx/dims4/default/e8e070a/2147483647/resize/1280x/quality/90/?url=https%3A%2F%2Fcdn-3.expansion.mx%2F9a%2F34%2Ff532ccab4a49ad3885468e1576e0%2Fimage.png"></div>
-      <div class="logoItem"><img src="https://tierragamer.com/wp-content/uploads/2025/09/YouTube-Premium-logo-2025.webp"></div>
-      <div class="logoItem"><img src="https://www.elaltavoz.mx/wp-content/uploads/2021/03/960729.jpeg"></div>
-      <div class="logoItem"><img src="https://i.blogs.es/e71885/destacada-iptv/1200_630.jpg"></div>
-      <div class="logoItem"><img src="https://cdn.beahero.gg/2025/12/Crunchyroll-servicio-gratuito-2025.jpg"></div>
-
-    </div>
-  </div>
-
-  <!-- DESCRIPCIÓN -->
-  <div id="description">
-    <p>Tu momento de relax merece ser premium. 🙌</p>
-    <p>Consigue acceso a las mejores pelis, series y música sin complicaciones.</p>
-    <p>Te ofrecemos activación rápida, precios amigos y ayuda siempre que la necesites.</p>
-    <p><b>¡Pide la tuya y dale play a lo que más te gusta hoy mismo! 🎶📺</b></p>
-  </div>
-
-  <!-- BOTONES -->
-  <div id="buttons">
-
-    <a id="btn-whatsapp" class="btn"
-       href="https://wa.me/528112277297?text=Hola,%20quiero%20información"
-       target="_blank">
-       <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
-       WhatsApp
-    </a>
-
-    <a id="btn-facebook" class="btn"
-       href="https://www.facebook.com/jjllaa123456"
-       target="_blank">
-       <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png">
-       Facebook
-    </a>
-
-    <a id="btn-buy" class="btn"
-       href="https://wa.me/528112277297?text=Hola,%20quiero%20comprar"
-       target="_blank">
-       💳 Comprar
-    </a>
+    <!-- DUPLICADO -->
+    <div class="logoItem"><img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"></div>
+    <div class="logoItem"><img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Prime_Video.png"></div>
+    <div class="logoItem"><img src="https://upload.wikimedia.org/wikipedia/commons/1/17/HBO_Max_Logo.svg"></div>
+    <div class="logoItem"><img src="https://upload.wikimedia.org/wikipedia/commons/8/84/Spotify_icon.svg"></div>
+    <div class="logoItem"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg"></div>
+    <div class="logoItem"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg"></div>
+    <div class="logoItem"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Crunchyroll_Logo.svg"></div>
 
   </div>
+</div>
 
-  <!-- FOOTER -->
-  <div id="footer">
-    ¿Quieres una tarjeta digital premium como esta para tu negocio?<br>
-    <b>Diseño por Infinity Stream</b>
-  </div>
+<!-- DESCRIPCIÓN -->
+<div id="description">
+  <p>Tu momento de relax merece ser premium. 🙌</p>
+  <p>Consigue acceso a las mejores pelis, series y música sin complicaciones.</p>
+  <p>Te ofrecemos activación rápida, precios amigos y ayuda siempre que la necesites.</p>
+  <p><b>¡Pide la tuya y dale play a lo que más te gusta hoy mismo! 🎶📺</b></p>
+</div>
 
-  <!-- EMAIL -->
-  <div id="email">
-    📩 Informes:
-    <br>
-    <a href="mailto:cuentaspremiumbetoko132204@gmail.com">
-      cuentaspremiumbetoko132204@gmail.com
-    </a>
-  </div>
+<!-- BOTONES -->
+<div id="buttons">
+
+  <a id="btn-whatsapp" class="btn"
+     href="https://wa.me/528112277297?text=Hola,%20quiero%20información"
+     target="_blank">
+     <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
+     WhatsApp
+  </a>
+
+  <a id="btn-facebook" class="btn"
+     href="https://www.facebook.com/jjllaa123456"
+     target="_blank">
+     <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png">
+     Facebook
+  </a>
+
+  <a id="btn-buy" class="btn"
+     href="https://wa.me/528112277297?text=Hola,%20quiero%20comprar"
+     target="_blank">
+     💳 Comprar
+  </a>
+
+</div>
+
+<!-- FOOTER -->
+<div id="footer">
+  ¿Quieres una tarjeta digital premium como esta para tu negocio?<br>
+  <b>Diseño por Infinity Stream</b>
+</div>
+
+<!-- EMAIL -->
+<div id="email">
+  📩 Informes:
+  <br>
+  <a href="mailto:cuentaspremiumbetoko132204@gmail.com">
+    cuentaspremiumbetoko132204@gmail.com
+  </a>
+</div>
 
 </div>
 
