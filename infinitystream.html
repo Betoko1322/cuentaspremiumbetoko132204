@@ -43,16 +43,17 @@ body{
 #header{text-align:center}
 
 #logo-container{
-  width:110px;
-  height:110px;
+  width:160px;
+  height:160px;
   margin:auto;
-  border-radius:22px;
+  border-radius:24px;
   overflow:hidden;
   background:rgba(255,255,255,.08);
   border:1px solid rgba(255,255,255,.15);
   display:flex;
   align-items:center;
   justify-content:center;
+  box-shadow:0 0 25px rgba(99,102,241,.4);
 }
 
 #logo-img{
@@ -62,15 +63,15 @@ body{
 }
 
 #business-name{
-  margin-top:12px;
+  margin-top:16px;
   font-size:24px;
   font-weight:600;
 }
 
-/* ===== CARRUSEL GRANDE ===== */
+/* ===== CARRUSEL ===== */
 #carousel{
   margin-top:22px;
-  height:170px; /* 🔥 MÁS GRANDE */
+  height:170px;
   border-radius:20px;
   display:flex;
   align-items:center;
@@ -94,7 +95,7 @@ body{
 }
 
 .logoItem{
-  min-width:150px; /* 🔥 MÁS GRANDE */
+  min-width:150px;
   height:90px;
   border-radius:16px;
   display:flex;
@@ -105,7 +106,7 @@ body{
 }
 
 .logoItem img{
-  max-height:60px; /* 🔥 MÁS GRANDE */
+  max-height:60px;
   max-width:120px;
   object-fit:contain;
 }
@@ -122,10 +123,9 @@ body{
   line-height:1.6;
   opacity:.85;
   text-align:justify;
-  text-justify:inter-word;
 }
 
-/* ===== BOTONES CENTRADOS ===== */
+/* ===== BOTONES ===== */
 #buttons{
   margin-top:22px;
   display:flex;
@@ -144,7 +144,12 @@ body{
   display:flex;
   justify-content:center;
   align-items:center;
-  text-align:center;
+  gap:10px; /* 👈 espacio entre icono y texto */
+}
+
+.btn img{
+  width:22px;
+  height:22px;
 }
 
 .btn:hover{
@@ -171,12 +176,6 @@ body{
   font-size:11px;
   opacity:.35;
   text-align:center;
-}
-
-/* ===== RESPONSIVE ===== */
-@media(max-width:480px){
-  #card-container{padding:22px 18px}
-  #business-name{font-size:21px}
 }
 
 </style>
@@ -206,8 +205,6 @@ body{
       <!-- duplicado -->
       <div class="logoItem"><img src="https://www.liderlogo.es/wp-content/uploads/2022/12/pasted-image-0-6-1024x576.png"></div>
       <div class="logoItem"><img src="https://www.adslzone.net/app/uploads-adslzone.net/2025/10/prime-video-logo.png"></div>
-      <div class="logoItem"><img src="https://i.blogs.es/19be90/1366_2000-42-/650_1200.jpeg"></div>
-      <div class="logoItem"><img src="https://uvn-brightspot.s3.amazonaws.com/assets/vixes/btg/tech.batanga.com/files/Que-es-Spotify-1.jpg"></div>
 
     </div>
   </div>
@@ -226,21 +223,22 @@ body{
     <a id="btn-whatsapp" class="btn"
        href="https://wa.me/528112277297?text=Hola,%20quiero%20información%20sobre%20cuentas%20premium"
        target="_blank">
+       <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
        WhatsApp
     </a>
 
     <a id="btn-facebook" class="btn"
        href="https://www.facebook.com/jjllaa123456?locale=es_LA"
        target="_blank">
+       <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png">
        Facebook
     </a>
 
-    <a id="btn-whatsapp" class="btn"
-       href="https://wa.me/528112277297?text=Hola,%20quiero%20información%20sobre%20tus%20servicios"
+    <a id="btn-buy" class="btn"
+       href="https://wa.me/528112277297?text=Hola,%20quiero%20comprar%20una%20cuenta"
        target="_blank">
-       Información
+       💳 Comprar
     </a>
-
 
   </div>
 
@@ -251,7 +249,7 @@ body{
   </div>
 
   <div id="email">
-    Informes: <a href="cuentaspremiumbetoko132204@gmail.com">tucorreo@ejemplo.com</a>
+    Informes: <a href="cuentaspremiumbetoko132204@gmail.com">cuentaspremiumbetoko132204@gmail.com</a>
   </div>
 
 </div>
