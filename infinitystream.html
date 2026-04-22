@@ -27,7 +27,7 @@ body{
   background:linear-gradient(135deg,#0b132b,#1c2541,#0a0f1f);
 }
 
-/* ===== CARD PRINCIPAL ===== */
+/* ===== CARD ===== */
 #card-container{
   width:100%;
   max-width:420px;
@@ -40,9 +40,7 @@ body{
 }
 
 /* ===== HEADER ===== */
-#header{
-  text-align:center;
-}
+#header{text-align:center}
 
 #logo-container{
   width:110px;
@@ -69,10 +67,10 @@ body{
   font-weight:600;
 }
 
-/* ===== CARRUSEL ===== */
+/* ===== CARRUSEL GRANDE ===== */
 #carousel{
   margin-top:22px;
-  height:120px;
+  height:170px; /* 🔥 MÁS GRANDE */
   border-radius:20px;
   display:flex;
   align-items:center;
@@ -96,8 +94,8 @@ body{
 }
 
 .logoItem{
-  min-width:120px;
-  height:70px;
+  min-width:150px; /* 🔥 MÁS GRANDE */
+  height:90px;
   border-radius:16px;
   display:flex;
   align-items:center;
@@ -107,8 +105,8 @@ body{
 }
 
 .logoItem img{
-  max-height:46px;
-  max-width:95px;
+  max-height:60px; /* 🔥 MÁS GRANDE */
+  max-width:120px;
   object-fit:contain;
 }
 
@@ -127,7 +125,7 @@ body{
   text-justify:inter-word;
 }
 
-/* ===== BOTONES ===== */
+/* ===== BOTONES CENTRADOS ===== */
 #buttons{
   margin-top:22px;
   display:flex;
@@ -143,6 +141,10 @@ body{
   cursor:pointer;
   font-weight:600;
   transition:.25s;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
 }
 
 .btn:hover{
@@ -171,14 +173,10 @@ body{
   text-align:center;
 }
 
-#email a{color:inherit}
-#email a:hover{opacity:.7}
-
 /* ===== RESPONSIVE ===== */
 @media(max-width:480px){
   #card-container{padding:22px 18px}
   #business-name{font-size:21px}
-  .logoItem{min-width:100px;height:64px}
 }
 
 </style>
@@ -191,7 +189,7 @@ body{
   <!-- HEADER -->
   <div id="header">
     <div id="logo-container">
-      <img id="logo-img" src="tarjetastreaming.html">
+      <img id="logo-img" src="https://github.com/Betoko1322/cuentaspremiumbetoko132204/blob/c2972baff4b017234017fa38032d2334382b9ec5/infinitylogo.jpg">
     </div>
     <h1 id="business-name">INFINITY STREAM</h1>
   </div>
@@ -200,21 +198,16 @@ body{
   <div id="carousel">
     <div id="carousel-track">
 
-      <!-- logos -->
       <div class="logoItem"><img src="https://www.liderlogo.es/wp-content/uploads/2022/12/pasted-image-0-6-1024x576.png"></div>
       <div class="logoItem"><img src="https://www.adslzone.net/app/uploads-adslzone.net/2025/10/prime-video-logo.png"></div>
-      <div class="logoItem"><img src="https://www.infobae.com/resizer/v2/5EGT4P4UKRGAZPDR52FKJJW4YU.png"></div>
       <div class="logoItem"><img src="https://i.blogs.es/19be90/1366_2000-42-/650_1200.jpeg"></div>
       <div class="logoItem"><img src="https://uvn-brightspot.s3.amazonaws.com/assets/vixes/btg/tech.batanga.com/files/Que-es-Spotify-1.jpg"></div>
-       <div class="logoItem"><img src="https://imagenes.computerhoy.20minutos.es/files/image_1920_1080/uploads/imagenes/2024/04/19/68e769123baa7.jpeg"></div>
 
       <!-- duplicado -->
       <div class="logoItem"><img src="https://www.liderlogo.es/wp-content/uploads/2022/12/pasted-image-0-6-1024x576.png"></div>
       <div class="logoItem"><img src="https://www.adslzone.net/app/uploads-adslzone.net/2025/10/prime-video-logo.png"></div>
-      <div class="logoItem"><img src="https://www.infobae.com/resizer/v2/5EGT4P4UKRGAZPDR52FKJJW4YU.png"></div>
       <div class="logoItem"><img src="https://i.blogs.es/19be90/1366_2000-42-/650_1200.jpeg"></div>
       <div class="logoItem"><img src="https://uvn-brightspot.s3.amazonaws.com/assets/vixes/btg/tech.batanga.com/files/Que-es-Spotify-1.jpg"></div>
-      <div class="logoItem"><img src="https://imagenes.computerhoy.20minutos.es/files/image_1920_1080/uploads/imagenes/2024/04/19/68e769123baa7.jpeg"></div>
 
     </div>
   </div>
@@ -227,29 +220,29 @@ body{
     <p><b>¡Pide la tuya y dale play a lo que más te gusta hoy mismo! 🎶📺</b></p>
   </div>
 
-<!-- BOTONES -->
-<div id="buttons">
+  <!-- BOTONES -->
+  <div id="buttons">
 
-  <!-- WhatsApp -->
-  <a id="btn-whatsapp" class="btn whatsapp"
-     href="https://wa.me/528112277297?text=Hola,%20quiero%20información%20sobre%20cuentas%20premium"
-     target="_blank">
-     Grupo WhatsApp (Referencias)
-  </a>
+    <a id="btn-whatsapp" class="btn"
+       href="https://wa.me/528112277297?text=Hola,%20quiero%20información%20sobre%20cuentas%20premium"
+       target="_blank">
+       WhatsApp
+    </a>
 
-  <!-- Facebook -->
-  <a id="btn-facebook" class="btn facebook"
-     href="https://www.facebook.com/jjllaa123456?locale=es_LA"
-     target="_blank">
-     Grupo Facebook (Referencias)
-  </a>
+    <a id="btn-facebook" class="btn"
+       href="https://www.facebook.com/jjllaa123456?locale=es_LA"
+       target="_blank">
+       Facebook
+    </a>
 
-  <!-- Compra -->
-  <button id="btn-buy" class="btn buy">
-    Informes y Compras
-  </button>
+    <a id="btn-whatsapp" class="btn"
+       href="https://wa.me/528112277297?text=Hola,%20quiero%20información%20sobre%20tus%20servicios"
+       target="_blank">
+       WhatsApp
+    </a>
 
-</div>
+
+  </div>
 
   <!-- FOOTER -->
   <div id="footer">
@@ -258,8 +251,7 @@ body{
   </div>
 
   <div id="email">
-    Informes sobre esta tarjeta digital:
-    <a href="cuentaspremiumbetoko132204@gmail.com">tucorreo@ejemplo.com</a>
+    Informes: <a href="cuentaspremiumbetoko132204@gmail.com">tucorreo@ejemplo.com</a>
   </div>
 
 </div>
