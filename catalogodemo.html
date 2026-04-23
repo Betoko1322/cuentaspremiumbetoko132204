@@ -15,14 +15,14 @@
     font-family: 'Segoe UI', sans-serif;
 }
 
-/* ===== FONDO ANIMADO ===== */
+/* ===== FONDO ===== */
 body {
     background: #02010a;
     color: white;
     overflow-x: hidden;
 }
 
-/* capa animada */
+/* ===== FONDO ANIMADO ===== */
 #fondo-animado {
     position: fixed;
     width: 100%;
@@ -35,7 +35,7 @@ body {
 
 @keyframes moverFondo {
     0% { transform: translate(0,0); }
-    100% { transform: translate(-50px, -50px); }
+    100% { transform: translate(-40px, -40px); }
 }
 
 /* ===== HEADER ===== */
@@ -56,7 +56,6 @@ body {
     text-align: center;
     margin: 10px 0 30px;
     font-size: 2rem;
-    letter-spacing: 2px;
     text-shadow:
         0 0 10px #00d4ff,
         0 0 20px #ff3c3c;
@@ -88,7 +87,7 @@ body {
     transition: 0.4s;
 }
 
-/* borde animado */
+/* BORDE ENERGÍA */
 .card::before {
     content: "";
     position: absolute;
@@ -97,7 +96,6 @@ body {
     background: linear-gradient(270deg, #00d4ff, #ff3c3c, #00d4ff);
     background-size: 400% 400%;
     animation: energiaBorde 6s linear infinite;
-    z-index: 0;
 }
 
 .card::after {
@@ -106,52 +104,79 @@ body {
     inset: 2px;
     background: rgba(10,10,20,0.95);
     border-radius: 13px;
-    z-index: 1;
 }
 
-/* contenido encima */
 .card * {
     position: relative;
     z-index: 2;
 }
 
 @keyframes energiaBorde {
-    0% { background-position: 0% 50%; }
-    100% { background-position: 100% 50%; }
+    0% { background-position: 0% }
+    100% { background-position: 100% }
 }
 
-/* hover */
 .card:hover {
     transform: translateY(-10px) scale(1.03);
-    box-shadow:
-        0 0 20px #00d4ff,
-        0 0 30px #ff3c3c;
+    box-shadow: 0 0 25px #00d4ff, 0 0 40px #ff3c3c;
+}
+
+/* ===== LOGO + AURA ===== */
+.logo-container {
+    position: relative;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* aura */
+.logo-container::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120px;
+    height: 60px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(0,212,255,0.5), transparent 70%);
+    filter: blur(15px);
+    z-index: 0;
+}
+
+/* imagen */
+.logo-plataforma {
+    position: relative;
+    max-width: 120px;
+    height: 50px;
+    object-fit: contain;
+    z-index: 1;
+    transition: 0.3s;
+}
+
+/* hover logo */
+.logo-plataforma:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 15px #00d4ff);
 }
 
 /* ===== TEXTOS ===== */
-.card h3 {
-    margin-bottom: 10px;
-    color: #00d4ff;
-    text-shadow: 0 0 10px #00d4ff;
-}
-
 .descripcion {
     font-size: 0.95rem;
     margin-bottom: 15px;
     color: #ccc;
+    text-align: center;
 }
 
 .precio {
     font-size: 1.3rem;
     color: #ff3c3c;
-    text-shadow: 0 0 10px #ff3c3c;
+    text-align: center;
     margin-bottom: 5px;
 }
 
 .duracion {
     font-size: 0.9rem;
     margin-bottom: 20px;
-    color: #aaa;
+    text-align: center;
 }
 
 /* ===== BOTON ===== */
@@ -179,82 +204,103 @@ body {
 
 <body>
 
-<!-- FONDO -->
 <div id="fondo-animado"></div>
 
-<!-- HEADER -->
 <header id="header">
     <img src="logocatalogo.jpg" id="logo">
 </header>
 
 <h1 id="titulo">Catálogo de Streaming</h1>
 
-<!-- CATALOGO -->
 <section id="catalogo">
 
-    <div class="card" id="netflix">
-        <h3 id="netflix-titulo">Netflix</h3>
-        <p class="descripcion" id="netflix-desc">Series y películas ilimitadas.</p>
-        <p class="precio" id="netflix-precio">$5 USD / perfil</p>
-        <p class="duracion" id="netflix-duracion">Duración: 30 días</p>
-        <a class="btn-whatsapp" id="netflix-btn" href="#">Comprar</a>
+<!-- NETFLIX -->
+<div class="card" id="netflix">
+    <div class="logo-container" id="netflix-logo-box">
+        <img src="img/netflix.png" id="netflix-logo" class="logo-plataforma">
     </div>
+    <p class="descripcion" id="netflix-desc">Series y películas ilimitadas.</p>
+    <p class="precio" id="netflix-precio">$5 USD / perfil</p>
+    <p class="duracion" id="netflix-duracion">Duración: 30 días</p>
+    <a class="btn-whatsapp" id="netflix-btn" href="#">Comprar</a>
+</div>
 
-    <div class="card" id="disney">
-        <h3 id="disney-titulo">Disney+</h3>
-        <p class="descripcion" id="disney-desc">Marvel, Star Wars y más.</p>
-        <p class="precio" id="disney-precio">$4 USD / perfil</p>
-        <p class="duracion" id="disney-duracion">Duración: 30 días</p>
-        <a class="btn-whatsapp" id="disney-btn" href="#">Comprar</a>
+<!-- DISNEY -->
+<div class="card" id="disney">
+    <div class="logo-container" id="disney-logo-box">
+        <img src="img/disney.png" id="disney-logo" class="logo-plataforma">
     </div>
+    <p class="descripcion" id="disney-desc">Marvel, Star Wars y más.</p>
+    <p class="precio" id="disney-precio">$4 USD / perfil</p>
+    <p class="duracion" id="disney-duracion">Duración: 30 días</p>
+    <a class="btn-whatsapp" id="disney-btn" href="#">Comprar</a>
+</div>
 
-    <div class="card" id="hbo">
-        <h3 id="hbo-titulo">HBO Max</h3>
-        <p class="descripcion" id="hbo-desc">Series exclusivas.</p>
-        <p class="precio" id="hbo-precio">$4 USD / perfil</p>
-        <p class="duracion" id="hbo-duracion">Duración: 30 días</p>
-        <a class="btn-whatsapp" id="hbo-btn" href="#">Comprar</a>
+<!-- HBO -->
+<div class="card" id="hbo">
+    <div class="logo-container" id="hbo-logo-box">
+        <img src="img/hbo.png" id="hbo-logo" class="logo-plataforma">
     </div>
+    <p class="descripcion" id="hbo-desc">Series exclusivas.</p>
+    <p class="precio" id="hbo-precio">$4 USD / perfil</p>
+    <p class="duracion" id="hbo-duracion">Duración: 30 días</p>
+    <a class="btn-whatsapp" id="hbo-btn" href="#">Comprar</a>
+</div>
 
-    <div class="card" id="prime">
-        <h3 id="prime-titulo">Prime Video</h3>
-        <p class="descripcion" id="prime-desc">Contenido exclusivo.</p>
-        <p class="precio" id="prime-precio">$3 USD / perfil</p>
-        <p class="duracion" id="prime-duracion">Duración: 30 días</p>
-        <a class="btn-whatsapp" id="prime-btn" href="#">Comprar</a>
+<!-- PRIME -->
+<div class="card" id="prime">
+    <div class="logo-container" id="prime-logo-box">
+        <img src="img/prime.png" id="prime-logo" class="logo-plataforma">
     </div>
+    <p class="descripcion" id="prime-desc">Contenido exclusivo.</p>
+    <p class="precio" id="prime-precio">$3 USD / perfil</p>
+    <p class="duracion" id="prime-duracion">Duración: 30 días</p>
+    <a class="btn-whatsapp" id="prime-btn" href="#">Comprar</a>
+</div>
 
-    <div class="card" id="spotify">
-        <h3 id="spotify-titulo">Spotify</h3>
-        <p class="descripcion" id="spotify-desc">Música sin anuncios.</p>
-        <p class="precio" id="spotify-precio">$2 USD / perfil</p>
-        <p class="duracion" id="spotify-duracion">Duración: 30 días</p>
-        <a class="btn-whatsapp" id="spotify-btn" href="#">Comprar</a>
+<!-- SPOTIFY -->
+<div class="card" id="spotify">
+    <div class="logo-container" id="spotify-logo-box">
+        <img src="img/spotify.png" id="spotify-logo" class="logo-plataforma">
     </div>
+    <p class="descripcion" id="spotify-desc">Música sin anuncios.</p>
+    <p class="precio" id="spotify-precio">$2 USD / perfil</p>
+    <p class="duracion" id="spotify-duracion">Duración: 30 días</p>
+    <a class="btn-whatsapp" id="spotify-btn" href="#">Comprar</a>
+</div>
 
-    <div class="card" id="youtube">
-        <h3 id="youtube-titulo">YouTube Premium</h3>
-        <p class="descripcion" id="youtube-desc">Sin anuncios.</p>
-        <p class="precio" id="youtube-precio">$3 USD / perfil</p>
-        <p class="duracion" id="youtube-duracion">Duración: 30 días</p>
-        <a class="btn-whatsapp" id="youtube-btn" href="#">Comprar</a>
+<!-- YOUTUBE -->
+<div class="card" id="youtube">
+    <div class="logo-container" id="youtube-logo-box">
+        <img src="img/youtube.png" id="youtube-logo" class="logo-plataforma">
     </div>
+    <p class="descripcion" id="youtube-desc">Sin anuncios.</p>
+    <p class="precio" id="youtube-precio">$3 USD / perfil</p>
+    <p class="duracion" id="youtube-duracion">Duración: 30 días</p>
+    <a class="btn-whatsapp" id="youtube-btn" href="#">Comprar</a>
+</div>
 
-    <div class="card" id="vix">
-        <h3 id="vix-titulo">Vix+</h3>
-        <p class="descripcion" id="vix-desc">Contenido latino.</p>
-        <p class="precio" id="vix-precio">$2 USD / perfil</p>
-        <p class="duracion" id="vix-duracion">Duración: 30 días</p>
-        <a class="btn-whatsapp" id="vix-btn" href="#">Comprar</a>
+<!-- VIX -->
+<div class="card" id="vix">
+    <div class="logo-container" id="vix-logo-box">
+        <img src="img/vix.png" id="vix-logo" class="logo-plataforma">
     </div>
+    <p class="descripcion" id="vix-desc">Contenido latino.</p>
+    <p class="precio" id="vix-precio">$2 USD / perfil</p>
+    <p class="duracion" id="vix-duracion">Duración: 30 días</p>
+    <a class="btn-whatsapp" id="vix-btn" href="#">Comprar</a>
+</div>
 
-    <div class="card" id="apple">
-        <h3 id="apple-titulo">Apple TV+</h3>
-        <p class="descripcion" id="apple-desc">Series premium.</p>
-        <p class="precio" id="apple-precio">$3 USD / perfil</p>
-        <p class="duracion" id="apple-duracion">Duración: 30 días</p>
-        <a class="btn-whatsapp" id="apple-btn" href="#">Comprar</a>
+<!-- APPLE -->
+<div class="card" id="apple">
+    <div class="logo-container" id="apple-logo-box">
+        <img src="img/apple.png" id="apple-logo" class="logo-plataforma">
     </div>
+    <p class="descripcion" id="apple-desc">Series premium.</p>
+    <p class="precio" id="apple-precio">$3 USD / perfil</p>
+    <p class="duracion" id="apple-duracion">Duración: 30 días</p>
+    <a class="btn-whatsapp" id="apple-btn" href="#">Comprar</a>
+</div>
 
 </section>
 
