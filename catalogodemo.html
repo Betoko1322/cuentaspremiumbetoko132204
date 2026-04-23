@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catálogo Streaming</title>
+
+<style>
+
+/* ===== RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* ===== BODY ===== */
+body {
+    background: linear-gradient(135deg, #0a0f2c, #1a0033);
+    color: white;
+}
+
+/* ===== HEADER ===== */
+#header {
+    text-align: center;
+    padding: 20px;
+}
+
+#logo {
+    max-width: 220px;
+    width: 100%;
+    display: block;
+    margin: auto;
+}
+
+/* ===== TITULO ===== */
+#titulo {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 2rem;
+    background: linear-gradient(90deg, #00d4ff, #ff3c3c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* ===== GRID ===== */
+#catalogo {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 por fila */
+    gap: 20px;
+    padding: 20px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+    #catalogo {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    #catalogo {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ===== CARD ===== */
+.card {
+    background: #111;
+    border-radius: 15px;
+    padding: 20px;
+    transition: 0.3s;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0,212,255,0.5);
+}
+
+/* ===== TEXTOS ===== */
+.card h3 {
+    margin-bottom: 10px;
+    color: #00d4ff;
+}
+
+.descripcion {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.precio {
+    font-size: 1.2rem;
+    color: #ff3c3c;
+    margin-bottom: 5px;
+}
+
+.duracion {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+/* ===== BOTON ===== */
+.btn-whatsapp {
+    display: block;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #25D366, #128C7E);
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-whatsapp:hover {
+    background: linear-gradient(90deg, #128C7E, #25D366);
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header id="header">
+    <img src="logo.jpg" id="logo" alt="Logo">
+</header>
+
+<h1 id="titulo">Catálogo de Streaming</h1>
+
+<!-- CATALOGO -->
+<section id="catalogo">
+
+    <!-- 1 -->
+    <div class="card" id="netflix">
+        <h3 id="netflix-titulo">Netflix</h3>
+        <p class="descripcion" id="netflix-desc">Series y películas ilimitadas.</p>
+        <p class="precio" id="netflix-precio">$5 USD / perfil</p>
+        <p class="duracion" id="netflix-duracion">Duración: 30 días</p>
+        <a class="btn-whatsapp" id="netflix-btn"
+        href="https://wa.me/5210000000000?text=Quiero%20Netflix"
+        target="_blank">Comprar</a>
+    </div>
+
+    <!-- 2 -->
+    <div class="card" id="disney">
+        <h3 id="disney-titulo">Disney+</h3>
+        <p class="descripcion" id="disney-desc">Marvel, Star Wars y más.</p>
+        <p class="precio" id="disney-precio">$4 USD / perfil</p>
+        <p class="duracion" id="disney-duracion">Duración: 30 días</p>
+        <a class="btn-whatsapp" id="disney-btn"
+        href="https://wa.me/5210000000000?text=Quiero%20Disney+"
+        target="_blank">Comprar</a>
+    </div>
+
+    <!-- 3 -->
+    <div class="card" id="hbo">
+        <h3 id="hbo-titulo">HBO Max</h3>
+        <p class="descripcion" id="hbo-desc">Series exclusivas y estrenos.</p>
+        <p class="precio" id="hbo-precio">$4 USD / perfil</p>
+        <p class="duracion" id="hbo-duracion">Duración: 30 días</p>
+        <a class="btn-whatsapp" id="hbo-btn"
+        href="https://wa.me/5210000000000?text=Quiero%20HBO%20Max"
+        target="_blank">Comprar</a>
+    </div>
+
+    <!-- 4 -->
+    <div class="card" id="prime">
+        <h3 id="prime-titulo">Prime Video</h3>
+        <p class="descripcion" id="prime-desc">Contenido exclusivo Amazon.</p>
+        <p class="precio" id="prime-precio">$3 USD / perfil</p>
+        <p class="duracion" id="prime-duracion">Duración: 30 días</p>
+        <a class="btn-whatsapp" id="prime-btn"
+        href="https://wa.me/5210000000000?text=Quiero%20Prime%20Video"
+        target="_blank">Comprar</a>
+    </div>
+
+    <!-- 5 -->
+    <div class="card" id="spotify">
+        <h3 id="spotify-titulo">Spotify</h3>
+        <p class="descripcion" id="spotify-desc">Música sin anuncios.</p>
+        <p class="precio" id="spotify-precio">$2 USD / perfil</p>
+        <p class="duracion" id="spotify-duracion">Duración: 30 días</p>
+        <a class="btn-whatsapp" id="spotify-btn"
+        href="https://wa.me/5210000000000?text=Quiero%20Spotify"
+        target="_blank">Comprar</a>
+    </div>
+
+    <!-- 6 -->
+    <div class="card" id="youtube">
+        <h3 id="youtube-titulo">YouTube Premium</h3>
+        <p class="descripcion" id="youtube-desc">Sin anuncios + música.</p>
+        <p class="precio" id="youtube-precio">$3 USD / perfil</p>
+        <p class="duracion" id="youtube-duracion">Duración: 30 días</p>
+        <a class="btn-whatsapp" id="youtube-btn"
+        href="https://wa.me/5210000000000?text=Quiero%20YouTube%20Premium"
+        target="_blank">Comprar</a>
+    </div>
+
+    <!-- 7 -->
+    <div class="card" id="vix">
+        <h3 id="vix-titulo">Vix+</h3>
+        <p class="descripcion" id="vix-desc">Contenido latino.</p>
+        <p class="precio" id="vix-precio">$2 USD / perfil</p>
+        <p class="duracion" id="vix-duracion">Duración: 30 días</p>
+        <a class="btn-whatsapp" id="vix-btn"
+        href="https://wa.me/5210000000000?text=Quiero%20Vix+"
+        target="_blank">Comprar</a>
+    </div>
+
+    <!-- 8 -->
+    <div class="card" id="apple">
+        <h3 id="apple-titulo">Apple TV+</h3>
+        <p class="descripcion" id="apple-desc">Series originales premium.</p>
+        <p class="precio" id="apple-precio">$3 USD / perfil</p>
+        <p class="duracion" id="apple-duracion">Duración: 30 días</p>
+        <a class="btn-whatsapp" id="apple-btn"
+        href="https://wa.me/5210000000000?text=Quiero%20Apple%20TV+"
+        target="_blank">Comprar</a>
+    </div>
+
+</section>
+
+</body>
+</html>
