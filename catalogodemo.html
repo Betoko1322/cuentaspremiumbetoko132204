@@ -12,110 +12,166 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', sans-serif;
 }
 
-/* ===== BODY ===== */
+/* ===== FONDO ANIMADO ===== */
 body {
-    background: linear-gradient(135deg, #0a0f2c, #1a0033);
+    background: #02010a;
     color: white;
+    overflow-x: hidden;
+}
+
+/* capa animada */
+#fondo-animado {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: radial-gradient(circle at 30% 30%, rgba(0,212,255,0.15), transparent),
+                radial-gradient(circle at 70% 70%, rgba(255,60,60,0.15), transparent);
+    animation: moverFondo 10s infinite alternate;
+}
+
+@keyframes moverFondo {
+    0% { transform: translate(0,0); }
+    100% { transform: translate(-50px, -50px); }
 }
 
 /* ===== HEADER ===== */
 #header {
     text-align: center;
-    padding: 20px;
+    padding: 30px 20px 10px;
 }
 
 #logo {
-    max-width: 220px;
-    width: 100%;
+    max-width: 200px;
     display: block;
     margin: auto;
+    filter: drop-shadow(0 0 20px rgba(0,212,255,0.7));
 }
 
 /* ===== TITULO ===== */
 #titulo {
     text-align: center;
-    margin: 20px 0;
+    margin: 10px 0 30px;
     font-size: 2rem;
-    background: linear-gradient(90deg, #00d4ff, #ff3c3c);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    letter-spacing: 2px;
+    text-shadow:
+        0 0 10px #00d4ff,
+        0 0 20px #ff3c3c;
 }
 
 /* ===== GRID ===== */
 #catalogo {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 por fila */
-    gap: 20px;
-    padding: 20px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    padding: 30px;
 }
 
-/* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {
-    #catalogo {
-        grid-template-columns: repeat(2, 1fr);
-    }
+    #catalogo { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 600px) {
-    #catalogo {
-        grid-template-columns: 1fr;
-    }
+    #catalogo { grid-template-columns: 1fr; }
 }
 
 /* ===== CARD ===== */
 .card {
-    background: #111;
+    position: relative;
+    background: rgba(10,10,20,0.9);
     border-radius: 15px;
-    padding: 20px;
-    transition: 0.3s;
-    border: 1px solid rgba(255,255,255,0.1);
+    padding: 25px;
+    overflow: hidden;
+    transition: 0.4s;
 }
 
+/* borde animado */
+.card::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: 15px;
+    background: linear-gradient(270deg, #00d4ff, #ff3c3c, #00d4ff);
+    background-size: 400% 400%;
+    animation: energiaBorde 6s linear infinite;
+    z-index: 0;
+}
+
+.card::after {
+    content: "";
+    position: absolute;
+    inset: 2px;
+    background: rgba(10,10,20,0.95);
+    border-radius: 13px;
+    z-index: 1;
+}
+
+/* contenido encima */
+.card * {
+    position: relative;
+    z-index: 2;
+}
+
+@keyframes energiaBorde {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+/* hover */
 .card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 20px rgba(0,212,255,0.5);
+    transform: translateY(-10px) scale(1.03);
+    box-shadow:
+        0 0 20px #00d4ff,
+        0 0 30px #ff3c3c;
 }
 
 /* ===== TEXTOS ===== */
 .card h3 {
     margin-bottom: 10px;
     color: #00d4ff;
+    text-shadow: 0 0 10px #00d4ff;
 }
 
 .descripcion {
-    font-size: 0.9rem;
-    margin-bottom: 10px;
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+    color: #ccc;
 }
 
 .precio {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     color: #ff3c3c;
+    text-shadow: 0 0 10px #ff3c3c;
     margin-bottom: 5px;
 }
 
 .duracion {
     font-size: 0.9rem;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    color: #aaa;
 }
 
 /* ===== BOTON ===== */
 .btn-whatsapp {
     display: block;
     text-align: center;
-    padding: 10px;
+    padding: 12px;
     border-radius: 10px;
-    background: linear-gradient(90deg, #25D366, #128C7E);
-    color: white;
+    background: #111;
+    border: 1px solid #25D366;
+    color: #25D366;
     text-decoration: none;
     font-weight: bold;
     transition: 0.3s;
 }
 
 .btn-whatsapp:hover {
-    background: linear-gradient(90deg, #128C7E, #25D366);
+    background: #25D366;
+    color: black;
+    box-shadow: 0 0 10px #25D366;
 }
 
 </style>
@@ -123,9 +179,12 @@ body {
 
 <body>
 
+<!-- FONDO -->
+<div id="fondo-animado"></div>
+
 <!-- HEADER -->
 <header id="header">
-    <img src="logocatalogo.jpg" id="logo" alt="Logo">
+    <img src="logocatalogo.jpg" id="logo">
 </header>
 
 <h1 id="titulo">Catálogo de Streaming</h1>
@@ -133,92 +192,68 @@ body {
 <!-- CATALOGO -->
 <section id="catalogo">
 
-    <!-- 1 -->
     <div class="card" id="netflix">
         <h3 id="netflix-titulo">Netflix</h3>
         <p class="descripcion" id="netflix-desc">Series y películas ilimitadas.</p>
         <p class="precio" id="netflix-precio">$5 USD / perfil</p>
         <p class="duracion" id="netflix-duracion">Duración: 30 días</p>
-        <a class="btn-whatsapp" id="netflix-btn"
-        href="https://wa.me/5210000000000?text=Quiero%20Netflix"
-        target="_blank">Comprar</a>
+        <a class="btn-whatsapp" id="netflix-btn" href="#">Comprar</a>
     </div>
 
-    <!-- 2 -->
     <div class="card" id="disney">
         <h3 id="disney-titulo">Disney+</h3>
         <p class="descripcion" id="disney-desc">Marvel, Star Wars y más.</p>
         <p class="precio" id="disney-precio">$4 USD / perfil</p>
         <p class="duracion" id="disney-duracion">Duración: 30 días</p>
-        <a class="btn-whatsapp" id="disney-btn"
-        href="https://wa.me/5210000000000?text=Quiero%20Disney+"
-        target="_blank">Comprar</a>
+        <a class="btn-whatsapp" id="disney-btn" href="#">Comprar</a>
     </div>
 
-    <!-- 3 -->
     <div class="card" id="hbo">
         <h3 id="hbo-titulo">HBO Max</h3>
-        <p class="descripcion" id="hbo-desc">Series exclusivas y estrenos.</p>
+        <p class="descripcion" id="hbo-desc">Series exclusivas.</p>
         <p class="precio" id="hbo-precio">$4 USD / perfil</p>
         <p class="duracion" id="hbo-duracion">Duración: 30 días</p>
-        <a class="btn-whatsapp" id="hbo-btn"
-        href="https://wa.me/5210000000000?text=Quiero%20HBO%20Max"
-        target="_blank">Comprar</a>
+        <a class="btn-whatsapp" id="hbo-btn" href="#">Comprar</a>
     </div>
 
-    <!-- 4 -->
     <div class="card" id="prime">
         <h3 id="prime-titulo">Prime Video</h3>
-        <p class="descripcion" id="prime-desc">Contenido exclusivo Amazon.</p>
+        <p class="descripcion" id="prime-desc">Contenido exclusivo.</p>
         <p class="precio" id="prime-precio">$3 USD / perfil</p>
         <p class="duracion" id="prime-duracion">Duración: 30 días</p>
-        <a class="btn-whatsapp" id="prime-btn"
-        href="https://wa.me/5210000000000?text=Quiero%20Prime%20Video"
-        target="_blank">Comprar</a>
+        <a class="btn-whatsapp" id="prime-btn" href="#">Comprar</a>
     </div>
 
-    <!-- 5 -->
     <div class="card" id="spotify">
         <h3 id="spotify-titulo">Spotify</h3>
         <p class="descripcion" id="spotify-desc">Música sin anuncios.</p>
         <p class="precio" id="spotify-precio">$2 USD / perfil</p>
         <p class="duracion" id="spotify-duracion">Duración: 30 días</p>
-        <a class="btn-whatsapp" id="spotify-btn"
-        href="https://wa.me/5210000000000?text=Quiero%20Spotify"
-        target="_blank">Comprar</a>
+        <a class="btn-whatsapp" id="spotify-btn" href="#">Comprar</a>
     </div>
 
-    <!-- 6 -->
     <div class="card" id="youtube">
         <h3 id="youtube-titulo">YouTube Premium</h3>
-        <p class="descripcion" id="youtube-desc">Sin anuncios + música.</p>
+        <p class="descripcion" id="youtube-desc">Sin anuncios.</p>
         <p class="precio" id="youtube-precio">$3 USD / perfil</p>
         <p class="duracion" id="youtube-duracion">Duración: 30 días</p>
-        <a class="btn-whatsapp" id="youtube-btn"
-        href="https://wa.me/5210000000000?text=Quiero%20YouTube%20Premium"
-        target="_blank">Comprar</a>
+        <a class="btn-whatsapp" id="youtube-btn" href="#">Comprar</a>
     </div>
 
-    <!-- 7 -->
     <div class="card" id="vix">
         <h3 id="vix-titulo">Vix+</h3>
         <p class="descripcion" id="vix-desc">Contenido latino.</p>
         <p class="precio" id="vix-precio">$2 USD / perfil</p>
         <p class="duracion" id="vix-duracion">Duración: 30 días</p>
-        <a class="btn-whatsapp" id="vix-btn"
-        href="https://wa.me/5210000000000?text=Quiero%20Vix+"
-        target="_blank">Comprar</a>
+        <a class="btn-whatsapp" id="vix-btn" href="#">Comprar</a>
     </div>
 
-    <!-- 8 -->
     <div class="card" id="apple">
         <h3 id="apple-titulo">Apple TV+</h3>
-        <p class="descripcion" id="apple-desc">Series originales premium.</p>
+        <p class="descripcion" id="apple-desc">Series premium.</p>
         <p class="precio" id="apple-precio">$3 USD / perfil</p>
         <p class="duracion" id="apple-duracion">Duración: 30 días</p>
-        <a class="btn-whatsapp" id="apple-btn"
-        href="https://wa.me/5210000000000?text=Quiero%20Apple%20TV+"
-        target="_blank">Comprar</a>
+        <a class="btn-whatsapp" id="apple-btn" href="#">Comprar</a>
     </div>
 
 </section>
