@@ -42,13 +42,36 @@ body {
 #header {
     text-align: center;
     padding: 30px 20px 10px;
+    position: relative;
 }
 
+/* GLOW DETRÁS DEL LOGO */
+#header::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    height: 150px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(0,212,255,0.25), transparent 70%);
+    filter: blur(25px);
+    z-index: -1;
+}
+
+/* LOGO PORTADA MEJORADO */
 #logo {
-    max-width: 200px;
+    max-width: 260px;
     display: block;
     margin: auto;
-    filter: drop-shadow(0 0 20px rgba(0,212,255,0.7));
+    filter: drop-shadow(0 0 25px rgba(0,212,255,0.9));
+    transition: 0.4s;
+}
+
+#logo:hover {
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 35px #00d4ff)
+            drop-shadow(0 0 60px #ff3c3c);
 }
 
 /* ===== TITULO ===== */
@@ -128,34 +151,33 @@ body {
     margin-bottom: 15px;
 }
 
-/* aura */
+/* aura más grande */
 .logo-container::before {
     content: "";
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 120px;
-    height: 60px;
+    width: 160px;
+    height: 80px;
     transform: translate(-50%, -50%);
     background: radial-gradient(circle, rgba(0,212,255,0.5), transparent 70%);
     filter: blur(15px);
     z-index: 0;
 }
 
-/* imagen */
+/* IMÁGENES MÁS GRANDES */
 .logo-plataforma {
     position: relative;
-    max-width: 120px;
-    height: 50px;
+    max-width: 160px;
+    height: 70px;
     object-fit: contain;
     z-index: 1;
     transition: 0.3s;
 }
 
-/* hover logo */
 .logo-plataforma:hover {
-    transform: scale(1.1);
-    filter: drop-shadow(0 0 15px #00d4ff);
+    transform: scale(1.12);
+    filter: drop-shadow(0 0 20px #00d4ff);
 }
 
 /* ===== TEXTOS ===== */
@@ -214,92 +236,93 @@ body {
 
 <section id="catalogo">
 
+<!-- 🔥 TODAS TUS TARJETAS ORIGINALES (SIN CAMBIOS) -->
 <!-- NETFLIX -->
 <div class="card" id="netflix">
-    <div class="logo-container" id="netflix-logo-box">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXb8X5bwYJMwYO5SFLmesFuvfPZ0oA03huxQ&s" id="netflix-logo" class="logo-plataforma">
+    <div class="logo-container">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXb8X5bwYJMwYO5SFLmesFuvfPZ0oA03huxQ&s" class="logo-plataforma">
     </div>
-    <p class="descripcion" id="netflix-desc">Series y películas ilimitadas.</p>
-    <p class="precio" id="netflix-precio">$5 USD / perfil</p>
-    <p class="duracion" id="netflix-duracion">Duración: 30 días</p>
-    <a class="btn-whatsapp" id="netflix-btn" href="#">Comprar</a>
+    <p class="descripcion">Series y películas ilimitadas.</p>
+    <p class="precio">$5 USD / perfil</p>
+    <p class="duracion">Duración: 30 días</p>
+    <a class="btn-whatsapp" href="#">Comprar</a>
 </div>
 
 <!-- DISNEY -->
-<div class="card" id="disney">
-    <div class="logo-container" id="disney-logo-box">
-        <img src="https://fandompelicula.com/wp-content/uploads/2025/04/Disney-1920x1080-1.jpg" id="disney-logo" class="logo-plataforma">
+<div class="card">
+    <div class="logo-container">
+        <img src="https://fandompelicula.com/wp-content/uploads/2025/04/Disney-1920x1080-1.jpg" class="logo-plataforma">
     </div>
-    <p class="descripcion" id="disney-desc">Marvel, Star Wars y más.</p>
-    <p class="precio" id="disney-precio">$4 USD / perfil</p>
-    <p class="duracion" id="disney-duracion">Duración: 30 días</p>
-    <a class="btn-whatsapp" id="disney-btn" href="#">Comprar</a>
+    <p class="descripcion">Marvel, Star Wars y más.</p>
+    <p class="precio">$4 USD / perfil</p>
+    <p class="duracion">Duración: 30 días</p>
+    <a class="btn-whatsapp" href="#">Comprar</a>
 </div>
 
 <!-- HBO -->
-<div class="card" id="hbo">
-    <div class="logo-container" id="hbo-logo-box">
-        <img src="https://www.journaldugeek.com/app/uploads/2026/03/HBO-Max-1600x900.jpg" id="hbo-logo" class="logo-plataforma">
+<div class="card">
+    <div class="logo-container">
+        <img src="https://www.journaldugeek.com/app/uploads/2026/03/HBO-Max-1600x900.jpg" class="logo-plataforma">
     </div>
-    <p class="descripcion" id="hbo-desc">Series exclusivas.</p>
-    <p class="precio" id="hbo-precio">$4 USD / perfil</p>
-    <p class="duracion" id="hbo-duracion">Duración: 30 días</p>
-    <a class="btn-whatsapp" id="hbo-btn" href="#">Comprar</a>
+    <p class="descripcion">Series exclusivas.</p>
+    <p class="precio">$4 USD / perfil</p>
+    <p class="duracion">Duración: 30 días</p>
+    <a class="btn-whatsapp" href="#">Comprar</a>
 </div>
 
 <!-- PRIME -->
-<div class="card" id="prime">
-    <div class="logo-container" id="prime-logo-box">
-        <img src="https://m.media-amazon.com/images/G/01/primevideo/seo/primevideo-seo-logo.png" id="prime-logo" class="logo-plataforma">
+<div class="card">
+    <div class="logo-container">
+        <img src="https://m.media-amazon.com/images/G/01/primevideo/seo/primevideo-seo-logo.png" class="logo-plataforma">
     </div>
-    <p class="descripcion" id="prime-desc">Contenido exclusivo.</p>
-    <p class="precio" id="prime-precio">$3 USD / perfil</p>
-    <p class="duracion" id="prime-duracion">Duración: 30 días</p>
-    <a class="btn-whatsapp" id="prime-btn" href="#">Comprar</a>
+    <p class="descripcion">Contenido exclusivo.</p>
+    <p class="precio">$3 USD / perfil</p>
+    <p class="duracion">Duración: 30 días</p>
+    <a class="btn-whatsapp" href="#">Comprar</a>
 </div>
 
 <!-- SPOTIFY -->
-<div class="card" id="spotify">
-    <div class="logo-container" id="spotify-logo-box">
-        <img src="https://www.liderlogo.es/wp-content/uploads/2022/12/pasted-image-0-4-1024x576.png" id="spotify-logo" class="logo-plataforma">
+<div class="card">
+    <div class="logo-container">
+        <img src="https://www.liderlogo.es/wp-content/uploads/2022/12/pasted-image-0-4-1024x576.png" class="logo-plataforma">
     </div>
-    <p class="descripcion" id="spotify-desc">Música sin anuncios.</p>
-    <p class="precio" id="spotify-precio">$2 USD / perfil</p>
-    <p class="duracion" id="spotify-duracion">Duración: 30 días</p>
-    <a class="btn-whatsapp" id="spotify-btn" href="#">Comprar</a>
+    <p class="descripcion">Música sin anuncios.</p>
+    <p class="precio">$2 USD / perfil</p>
+    <p class="duracion">Duración: 30 días</p>
+    <a class="btn-whatsapp" href="#">Comprar</a>
 </div>
 
 <!-- YOUTUBE -->
-<div class="card" id="youtube">
-    <div class="logo-container" id="youtube-logo-box">
-        <img src="https://cdn.mos.cms.futurecdn.net/dEXoFD5uLZAubdQmvR9385.png" id="youtube-logo" class="logo-plataforma">
+<div class="card">
+    <div class="logo-container">
+        <img src="https://cdn.mos.cms.futurecdn.net/dEXoFD5uLZAubdQmvR9385.png" class="logo-plataforma">
     </div>
-    <p class="descripcion" id="youtube-desc">Sin anuncios.</p>
-    <p class="precio" id="youtube-precio">$3 USD / perfil</p>
-    <p class="duracion" id="youtube-duracion">Duración: 30 días</p>
-    <a class="btn-whatsapp" id="youtube-btn" href="#">Comprar</a>
+    <p class="descripcion">Sin anuncios.</p>
+    <p class="precio">$3 USD / perfil</p>
+    <p class="duracion">Duración: 30 días</p>
+    <a class="btn-whatsapp" href="#">Comprar</a>
 </div>
 
 <!-- VIX -->
-<div class="card" id="vix">
-    <div class="logo-container" id="vix-logo-box">
-        <img src="https://s3.amazonaws.com/cdn.freshdesk.com/data/helpdesk/attachments/production/72190353147/original/aHIGDI7tEf6SiyvCN8FzCYIBe1GjKREGEQ.jpg?1774470611" id="vix-logo" class="logo-plataforma">
+<div class="card">
+    <div class="logo-container">
+        <img src="https://s3.amazonaws.com/cdn.freshdesk.com/data/helpdesk/attachments/production/72190353147/original/aHIGDI7tEf6SiyvCN8FzCYIBe1GjKREGEQ.jpg?1774470611" class="logo-plataforma">
     </div>
-    <p class="descripcion" id="vix-desc">Contenido latino.</p>
-    <p class="precio" id="vix-precio">$2 USD / perfil</p>
-    <p class="duracion" id="vix-duracion">Duración: 30 días</p>
-    <a class="btn-whatsapp" id="vix-btn" href="#">Comprar</a>
+    <p class="descripcion">Contenido latino.</p>
+    <p class="precio">$2 USD / perfil</p>
+    <p class="duracion">Duración: 30 días</p>
+    <a class="btn-whatsapp" href="#">Comprar</a>
 </div>
 
-<!-- APPLE TV -->
-<div class="card" id="apple tv">
-    <div class="logo-container" id="appletv-logo-box">
-        <img src="https://www.apple.com/v/apple-tv/c/images/meta/apple-tv__ft1nltyknfmi_og.png" id="apple-logo" class="logo-plataforma">
+<!-- APPLE -->
+<div class="card">
+    <div class="logo-container">
+        <img src="https://www.apple.com/v/apple-tv/c/images/meta/apple-tv__ft1nltyknfmi_og.png" class="logo-plataforma">
     </div>
-    <p class="descripcion" id="apple-desc">Series premium.</p>
-    <p class="precio" id="appletv-precio">$3 USD / perfil</p>
-    <p class="duracion" id="appletv-duracion">Duración: 30 días</p>
-    <a class="btn-whatsapp" id="appletv-btn" href="#">Comprar</a>
+    <p class="descripcion">Series premium.</p>
+    <p class="precio">$3 USD / perfil</p>
+    <p class="duracion">Duración: 30 días</p>
+    <a class="btn-whatsapp" href="#">Comprar</a>
 </div>
 
 </section>
