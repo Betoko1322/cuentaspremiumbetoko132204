@@ -59,7 +59,7 @@ body {
     z-index: -1;
 }
 
-/* LOGO PORTADA MEJORADO */
+/* LOGO PORTADA */
 #logo {
     max-width: 260px;
     display: block;
@@ -151,7 +151,7 @@ body {
     margin-bottom: 15px;
 }
 
-/* aura más grande */
+/* aura */
 .logo-container::before {
     content: "";
     position: absolute;
@@ -221,6 +221,72 @@ body {
     box-shadow: 0 0 10px #25D366;
 }
 
+/* ===== COLORES POR PLATAFORMA ===== */
+
+/* NETFLIX */
+#netflix:hover {
+    box-shadow: 0 0 25px #e50914, 0 0 50px #e50914;
+}
+#netflix .logo-plataforma:hover {
+    filter: drop-shadow(0 0 20px #e50914);
+}
+
+/* DISNEY */
+#disney:hover {
+    box-shadow: 0 0 25px #00a8ff, 0 0 50px #00a8ff;
+}
+#disney .logo-plataforma:hover {
+    filter: drop-shadow(0 0 20px #00a8ff);
+}
+
+/* HBO */
+#hbo:hover {
+    box-shadow: 0 0 25px #a020f0, 0 0 50px #a020f0;
+}
+#hbo .logo-plataforma:hover {
+    filter: drop-shadow(0 0 20px #a020f0);
+}
+
+/* PRIME */
+#prime:hover {
+    box-shadow: 0 0 25px #00d4ff, 0 0 50px #00d4ff;
+}
+#prime .logo-plataforma:hover {
+    filter: drop-shadow(0 0 20px #00d4ff);
+}
+
+/* SPOTIFY */
+#spotify:hover {
+    box-shadow: 0 0 25px #1db954, 0 0 50px #1db954;
+}
+#spotify .logo-plataforma:hover {
+    filter: drop-shadow(0 0 20px #1db954);
+}
+
+/* YOUTUBE */
+#youtube:hover {
+    box-shadow: 0 0 25px #ff0000, 0 0 50px #ff0000;
+}
+#youtube .logo-plataforma:hover {
+    filter: drop-shadow(0 0 20px #ff0000);
+}
+
+/* VIX */
+#vix:hover {
+    box-shadow: 0 0 25px #8a2be2, 0 0 50px #8a2be2;
+}
+#vix .logo-plataforma:hover {
+    filter: drop-shadow(0 0 20px #8a2be2);
+}
+
+/* APPLE */
+#apple:hover {
+    box-shadow: 0 0 25px #ffffff, 0 0 50px #ffffff;
+}
+#apple .logo-plataforma:hover {
+    filter: drop-shadow(0 0 20px #ffffff);
+}
+
 </style>
 </head>
 
@@ -236,7 +302,6 @@ body {
 
 <section id="catalogo">
 
-<!-- 🔥 TODAS TUS TARJETAS ORIGINALES (SIN CAMBIOS) -->
 <!-- NETFLIX -->
 <div class="card" id="netflix">
     <div class="logo-container">
@@ -249,7 +314,7 @@ body {
 </div>
 
 <!-- DISNEY -->
-<div class="card">
+<div class="card" id="disney">
     <div class="logo-container">
         <img src="https://fandompelicula.com/wp-content/uploads/2025/04/Disney-1920x1080-1.jpg" class="logo-plataforma">
     </div>
@@ -260,7 +325,7 @@ body {
 </div>
 
 <!-- HBO -->
-<div class="card">
+<div class="card" id="hbo">
     <div class="logo-container">
         <img src="https://www.journaldugeek.com/app/uploads/2026/03/HBO-Max-1600x900.jpg" class="logo-plataforma">
     </div>
@@ -271,7 +336,7 @@ body {
 </div>
 
 <!-- PRIME -->
-<div class="card">
+<div class="card" id="prime">
     <div class="logo-container">
         <img src="https://m.media-amazon.com/images/G/01/primevideo/seo/primevideo-seo-logo.png" class="logo-plataforma">
     </div>
@@ -282,7 +347,7 @@ body {
 </div>
 
 <!-- SPOTIFY -->
-<div class="card">
+<div class="card" id="spotify">
     <div class="logo-container">
         <img src="https://www.liderlogo.es/wp-content/uploads/2022/12/pasted-image-0-4-1024x576.png" class="logo-plataforma">
     </div>
@@ -293,7 +358,7 @@ body {
 </div>
 
 <!-- YOUTUBE -->
-<div class="card">
+<div class="card" id="youtube">
     <div class="logo-container">
         <img src="https://cdn.mos.cms.futurecdn.net/dEXoFD5uLZAubdQmvR9385.png" class="logo-plataforma">
     </div>
@@ -304,7 +369,7 @@ body {
 </div>
 
 <!-- VIX -->
-<div class="card">
+<div class="card" id="vix">
     <div class="logo-container">
         <img src="https://s3.amazonaws.com/cdn.freshdesk.com/data/helpdesk/attachments/production/72190353147/original/aHIGDI7tEf6SiyvCN8FzCYIBe1GjKREGEQ.jpg?1774470611" class="logo-plataforma">
     </div>
@@ -315,7 +380,7 @@ body {
 </div>
 
 <!-- APPLE -->
-<div class="card">
+<div class="card" id="apple">
     <div class="logo-container">
         <img src="https://www.apple.com/v/apple-tv/c/images/meta/apple-tv__ft1nltyknfmi_og.png" class="logo-plataforma">
     </div>
