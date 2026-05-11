@@ -298,8 +298,6 @@ body{
 
     background:#111827;
 
-    color:#e2e8f0;
-
     border:1px solid rgba(255,255,255,0.06);
 
     display:flex;
@@ -317,8 +315,6 @@ body{
     box-shadow:
     0 10px 20px rgba(0,0,0,0.35);
 }
-
-/* EFECTO */
 
 .social-btn::before{
     content:"";
@@ -416,25 +412,24 @@ body{
 
     border-radius:16px;
 
-    background:
-    linear-gradient(
-        135deg,
-        #6366f1,
-        #8b5cf6
-    );
-
-    color:white;
+    background:#ffffff;
 
     display:flex;
     justify-content:center;
     align-items:center;
 
-    font-size:18px;
-
     flex-shrink:0;
 
     box-shadow:
-    0 10px 20px rgba(99,102,241,0.28);
+    0 10px 20px rgba(0,0,0,0.25);
+}
+
+/* IMAGEN REAL CONTACTO */
+
+.contact-real-image{
+    width:24px;
+    height:24px;
+    object-fit:contain;
 }
 
 /* TEXTOS */
@@ -478,8 +473,6 @@ body{
 
     transition:0.35s;
 }
-
-/* SAVE */
 
 #save-btn{
     width:100%;
@@ -639,7 +632,11 @@ body{
         width:44px;
         height:44px;
         border-radius:14px;
-        font-size:16px;
+    }
+
+    .contact-real-image{
+        width:20px;
+        height:20px;
     }
 
     .contact-title{
@@ -655,35 +652,6 @@ body{
         font-size:14px;
     }
 
-}
-
-@media(max-width:360px){
-
-    #name{
-        font-size:22px;
-    }
-
-    .social-btn{
-        height:48px;
-    }
-
-    .social-image{
-        width:20px;
-        height:20px;
-    }
-
-    .contact-item{
-        gap:12px;
-    }
-
-}
-
-/* =========================
-   SCROLL SUAVE
-========================= */
-
-html{
-    scroll-behavior:smooth;
 }
 
 </style>
@@ -798,7 +766,12 @@ html{
             <div id="phone-item" class="contact-item">
 
                 <div class="contact-icon">
-                    <i class="fa-solid fa-phone"></i>
+
+                    <img
+                    class="contact-real-image"
+                    src="https://cdn-icons-png.flaticon.com/512/724/724664.png"
+                    alt="Teléfono">
+
                 </div>
 
                 <div>
@@ -819,7 +792,12 @@ html{
             <div id="email-item" class="contact-item">
 
                 <div class="contact-icon">
-                    <i class="fa-solid fa-envelope"></i>
+
+                    <img
+                    class="contact-real-image"
+                    src="https://cdn-icons-png.flaticon.com/512/281/281769.png"
+                    alt="Correo">
+
                 </div>
 
                 <div>
@@ -840,7 +818,12 @@ html{
             <div id="location-item" class="contact-item">
 
                 <div class="contact-icon">
-                    <i class="fa-solid fa-location-dot"></i>
+
+                    <img
+                    class="contact-real-image"
+                    src="https://cdn-icons-png.flaticon.com/512/684/684908.png"
+                    alt="Ubicación">
+
                 </div>
 
                 <div>
@@ -861,7 +844,12 @@ html{
             <div id="website-item" class="contact-item">
 
                 <div class="contact-icon">
-                    <i class="fa-solid fa-globe"></i>
+
+                    <img
+                    class="contact-real-image"
+                    src="https://cdn-icons-png.flaticon.com/512/1006/1006771.png"
+                    alt="Sitio Web">
+
                 </div>
 
                 <div>
@@ -882,7 +870,12 @@ html{
             <div id="linkedin-item" class="contact-item">
 
                 <div class="contact-icon">
-                    <i class="fa-brands fa-linkedin-in"></i>
+
+                    <img
+                    class="contact-real-image"
+                    src="https://cdn-icons-png.flaticon.com/512/174/174857.png"
+                    alt="LinkedIn">
+
                 </div>
 
                 <div>
