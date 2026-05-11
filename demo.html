@@ -308,8 +308,6 @@ body{
 
     text-decoration:none;
 
-    font-size:26px;
-
     transition:0.35s;
 
     position:relative;
@@ -345,24 +343,29 @@ body{
     z-index:0;
 }
 
-.social-btn i{
-    position:relative;
-    z-index:2;
-}
-
 .social-btn:hover::before{
     top:0;
 }
 
 .social-btn:hover{
-    color:white;
-
     transform:
     translateY(-6px)
     scale(1.05);
 
     box-shadow:
     0 15px 25px rgba(99,102,241,0.35);
+}
+
+/* IMAGENES REDES */
+
+.social-image{
+    width:28px;
+    height:28px;
+
+    object-fit:contain;
+
+    position:relative;
+    z-index:2;
 }
 
 /* =========================
@@ -620,8 +623,12 @@ body{
 
     .social-btn{
         height:54px;
-        font-size:22px;
         border-radius:16px;
+    }
+
+    .social-image{
+        width:24px;
+        height:24px;
     }
 
     #contact-box{
@@ -658,7 +665,11 @@ body{
 
     .social-btn{
         height:48px;
-        font-size:20px;
+    }
+
+    .social-image{
+        width:20px;
+        height:20px;
     }
 
     .contact-item{
@@ -726,39 +737,55 @@ html{
         <!-- REDES -->
         <div id="social-links">
 
+            <!-- FACEBOOK -->
             <a
             id="facebook-link"
             class="social-btn"
             href="#">
 
-                <i class="fa-brands fa-facebook-f"></i>
+                <img
+                class="social-image"
+                src="https://cdn-icons-png.flaticon.com/512/733/733547.png"
+                alt="Facebook">
 
             </a>
 
+            <!-- WHATSAPP -->
             <a
             id="whatsapp-link"
             class="social-btn"
             href="#">
 
-                <i class="fa-brands fa-whatsapp"></i>
+                <img
+                class="social-image"
+                src="https://cdn-icons-png.flaticon.com/512/733/733585.png"
+                alt="WhatsApp">
 
             </a>
 
+            <!-- GMAIL -->
             <a
             id="gmail-link"
             class="social-btn"
             href="#">
 
-                <i class="fa-solid fa-envelope"></i>
+                <img
+                class="social-image"
+                src="https://cdn-icons-png.flaticon.com/512/281/281769.png"
+                alt="Gmail">
 
             </a>
 
+            <!-- INSTAGRAM -->
             <a
             id="instagram-link"
             class="social-btn"
             href="#">
 
-                <i class="fa-brands fa-instagram"></i>
+                <img
+                class="social-image"
+                src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png"
+                alt="Instagram">
 
             </a>
 
