@@ -390,7 +390,88 @@ body {
     <a class="btn-whatsapp" href="#">Comprar</a>
 </div>
 
-</section>
+<!-- ================= INSTALAR APP ================= -->
+
+<div id="instalarApp" style="
+position: fixed;
+bottom: 20px;
+left: 50%;
+transform: translateX(-50%);
+background: rgba(0,0,0,0.92);
+padding: 18px 22px;
+border-radius: 18px;
+box-shadow: 0 0 25px #00d4ff;
+z-index: 9999;
+display: none;
+text-align: center;
+backdrop-filter: blur(10px);
+border: 1px solid rgba(0,212,255,0.4);
+">
+
+<p style="
+margin-bottom:12px;
+color:white;
+font-weight:bold;
+font-size:1rem;
+text-shadow:0 0 10px #00d4ff;
+">
+¿Deseas descargar la aplicación?
+</p>
+
+<button id="btnInstalar" style="
+padding: 12px 22px;
+border: none;
+border-radius: 12px;
+background: linear-gradient(90deg,#00d4ff,#ff3c3c);
+color: white;
+font-weight: bold;
+cursor: pointer;
+font-size: 1rem;
+box-shadow: 0 0 15px rgba(0,212,255,0.5);
+transition: 0.3s;
+">
+Descargar App
+</button>
+
+</div>
+
+<script>
+
+let deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+
+    e.preventDefault();
+
+    deferredPrompt = e;
+
+    document.getElementById('instalarApp').style.display = 'block';
+
+});
+
+document.getElementById('btnInstalar').addEventListener('click', async () => {
+
+    document.getElementById('instalarApp').style.display = 'none';
+
+    if (deferredPrompt) {
+
+        deferredPrompt.prompt();
+
+        const { outcome } = await deferredPrompt.userChoice;
+
+        if (outcome === 'accepted') {
+
+            console.log('Aplicación instalada');
+
+        }
+
+        deferredPrompt = null;
+
+    }
+
+});
+
+</script>
 
 </body>
 </html>
