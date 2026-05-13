@@ -1,7 +1,7 @@
 {
   "name": "Catálogo Streaming",
   "short_name": "Streaming",
-  "start_url": "./catalogodemo.html",
+  "start_url": "./catalogoweb.html",
   "display": "standalone",
   "background_color": "#02010a",
   "theme_color": "#00d4ff",
