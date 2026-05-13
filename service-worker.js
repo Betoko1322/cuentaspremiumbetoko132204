@@ -2,7 +2,7 @@ const CACHE_NAME = "catalogo-streaming-v1";
 
 const urlsToCache = [
   "./",
-  "./catalogodemo.html",
+  "./catalogoweb.html",
   "./manifest.json",
   "./logocatalogo.jpg"
 ];
