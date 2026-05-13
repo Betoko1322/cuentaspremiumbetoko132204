@@ -7,7 +7,7 @@
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#00d4ff">
 
-<title>Catálogo Streaming</title>
+<title>Servicios Digitales</title>
 
 <style>
 
@@ -91,7 +91,7 @@ body {
 /* ===== GRID ===== */
 #catalogo {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 30px;
     padding: 30px;
 }
@@ -145,7 +145,6 @@ body {
 
 .card:hover {
     transform: translateY(-10px) scale(1.03);
-    box-shadow: 0 0 25px #00d4ff, 0 0 40px #ff3c3c;
 }
 
 /* ===== LOGO + AURA ===== */
@@ -181,7 +180,6 @@ body {
 
 .logo-plataforma:hover {
     transform: scale(1.12);
-    filter: drop-shadow(0 0 20px #00d4ff);
 }
 
 /* ===== TEXTOS ===== */
@@ -225,70 +223,30 @@ body {
     box-shadow: 0 0 10px #25D366;
 }
 
-/* ===== COLORES POR PLATAFORMA ===== */
+/* ===== COLORES PERSONALIZADOS ===== */
 
-/* NETFLIX */
-#netflix:hover {
-    box-shadow: 0 0 25px #e50914, 0 0 50px #e50914;
-}
-#netflix .logo-plataforma:hover {
-    filter: drop-shadow(0 0 20px #e50914);
-}
-
-/* DISNEY */
-#disney:hover {
-    box-shadow: 0 0 25px #00a8ff, 0 0 50px #00a8ff;
-}
-#disney .logo-plataforma:hover {
-    filter: drop-shadow(0 0 20px #00a8ff);
-}
-
-/* HBO */
-#hbo:hover {
-    box-shadow: 0 0 25px #a020f0, 0 0 50px #a020f0;
-}
-#hbo .logo-plataforma:hover {
-    filter: drop-shadow(0 0 20px #a020f0);
-}
-
-/* PRIME */
-#prime:hover {
+/* STREAMING */
+#streaming:hover {
     box-shadow: 0 0 25px #00d4ff, 0 0 50px #00d4ff;
 }
-#prime .logo-plataforma:hover {
+#streaming .logo-plataforma:hover {
     filter: drop-shadow(0 0 20px #00d4ff);
 }
 
-/* SPOTIFY */
-#spotify:hover {
-    box-shadow: 0 0 25px #1db954, 0 0 50px #1db954;
+/* OFFICE */
+#office:hover {
+    box-shadow: 0 0 25px #00ff88, 0 0 50px #00ff88;
 }
-#spotify .logo-plataforma:hover {
-    filter: drop-shadow(0 0 20px #1db954);
-}
-
-/* YOUTUBE */
-#youtube:hover {
-    box-shadow: 0 0 25px #ff0000, 0 0 50px #ff0000;
-}
-#youtube .logo-plataforma:hover {
-    filter: drop-shadow(0 0 20px #ff0000);
+#office .logo-plataforma:hover {
+    filter: drop-shadow(0 0 20px #00ff88);
 }
 
-/* VIX */
-#vix:hover {
-    box-shadow: 0 0 25px #8a2be2, 0 0 50px #8a2be2;
+/* WEB APPS */
+#webapps:hover {
+    box-shadow: 0 0 25px #ff3c3c, 0 0 50px #ff3c3c;
 }
-#vix .logo-plataforma:hover {
-    filter: drop-shadow(0 0 20px #8a2be2);
-}
-
-/* APPLE */
-#apple:hover {
-    box-shadow: 0 0 25px #ffffff, 0 0 50px #ffffff;
-}
-#apple .logo-plataforma:hover {
-    filter: drop-shadow(0 0 20px #ffffff);
+#webapps .logo-plataforma:hover {
+    filter: drop-shadow(0 0 20px #ff3c3c);
 }
 
 </style>
@@ -302,97 +260,50 @@ body {
     <img src="logocatalogo.jpg" id="logo">
 </header>
 
-<h1 id="titulo">Catálogo de Streaming</h1>
+<h1 id="titulo">Servicios Digitales</h1>
 
 <section id="catalogo">
 
-<!-- NETFLIX -->
-<div class="card" id="netflix">
+<!-- SERVICIO STREAMING -->
+<div class="card" id="streaming">
     <div class="logo-container">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXb8X5bwYJMwYO5SFLmesFuvfPZ0oA03huxQ&s" class="logo-plataforma">
+        <img src="https://cdn-icons-png.flaticon.com/512/2504/2504927.png" class="logo-plataforma">
     </div>
-    <p class="descripcion">Series y películas ilimitadas.</p>
-    <p class="precio">$5 USD / perfil</p>
-    <p class="duracion">Duración: 30 días</p>
-    <a class="btn-whatsapp" href="#">Comprar</a>
+    <p class="descripcion">
+        Netflix, Disney, HBO, Prime Video, Spotify y más plataformas premium.
+    </p>
+    <p class="precio">Planes disponibles</p>
+    <p class="duracion">Consulta disponibilidad</p>
+    <a class="btn-whatsapp" href="#">Solicitar</a>
 </div>
 
-<!-- DISNEY -->
-<div class="card" id="disney">
+<!-- OFFICE Y MAS -->
+<div class="card" id="office">
     <div class="logo-container">
-        <img src="https://fandompelicula.com/wp-content/uploads/2025/04/Disney-1920x1080-1.jpg" class="logo-plataforma">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" class="logo-plataforma">
     </div>
-    <p class="descripcion">Marvel, Star Wars y más.</p>
-    <p class="precio">$4 USD / perfil</p>
-    <p class="duracion">Duración: 30 días</p>
-    <a class="btn-whatsapp" href="#">Comprar</a>
+    <p class="descripcion">
+        Office 365, Windows, antivirus y herramientas digitales.
+    </p>
+    <p class="precio">Licencias disponibles</p>
+    <p class="duracion">Activación rápida</p>
+    <a class="btn-whatsapp" href="#">Solicitar</a>
 </div>
 
-<!-- HBO -->
-<div class="card" id="hbo">
+<!-- PAGINAS WEB Y APLICACIONES -->
+<div class="card" id="webapps">
     <div class="logo-container">
-        <img src="https://www.journaldugeek.com/app/uploads/2026/03/HBO-Max-1600x900.jpg" class="logo-plataforma">
+        <img src="https://cdn-icons-png.flaticon.com/512/1006/1006363.png" class="logo-plataforma">
     </div>
-    <p class="descripcion">Series exclusivas.</p>
-    <p class="precio">$4 USD / perfil</p>
-    <p class="duracion">Duración: 30 días</p>
-    <a class="btn-whatsapp" href="#">Comprar</a>
+    <p class="descripcion">
+        Diseño de páginas web, aplicaciones móviles y sistemas personalizados.
+    </p>
+    <p class="precio">Cotización personalizada</p>
+    <p class="duracion">Desarrollo profesional</p>
+    <a class="btn-whatsapp" href="#">Solicitar</a>
 </div>
 
-<!-- PRIME -->
-<div class="card" id="prime">
-    <div class="logo-container">
-        <img src="https://m.media-amazon.com/images/G/01/primevideo/seo/primevideo-seo-logo.png" class="logo-plataforma">
-    </div>
-    <p class="descripcion">Contenido exclusivo.</p>
-    <p class="precio">$3 USD / perfil</p>
-    <p class="duracion">Duración: 30 días</p>
-    <a class="btn-whatsapp" href="#">Comprar</a>
-</div>
-
-<!-- SPOTIFY -->
-<div class="card" id="spotify">
-    <div class="logo-container">
-        <img src="https://www.liderlogo.es/wp-content/uploads/2022/12/pasted-image-0-4-1024x576.png" class="logo-plataforma">
-    </div>
-    <p class="descripcion">Música sin anuncios.</p>
-    <p class="precio">$2 USD / perfil</p>
-    <p class="duracion">Duración: 30 días</p>
-    <a class="btn-whatsapp" href="#">Comprar</a>
-</div>
-
-<!-- YOUTUBE -->
-<div class="card" id="youtube">
-    <div class="logo-container">
-        <img src="https://cdn.mos.cms.futurecdn.net/dEXoFD5uLZAubdQmvR9385.png" class="logo-plataforma">
-    </div>
-    <p class="descripcion">Sin anuncios.</p>
-    <p class="precio">$3 USD / perfil</p>
-    <p class="duracion">Duración: 30 días</p>
-    <a class="btn-whatsapp" href="#">Comprar</a>
-</div>
-
-<!-- VIX -->
-<div class="card" id="vix">
-    <div class="logo-container">
-        <img src="https://s3.amazonaws.com/cdn.freshdesk.com/data/helpdesk/attachments/production/72190353147/original/aHIGDI7tEf6SiyvCN8FzCYIBe1GjKREGEQ.jpg?1774470611" class="logo-plataforma">
-    </div>
-    <p class="descripcion">Contenido latino.</p>
-    <p class="precio">$2 USD / perfil</p>
-    <p class="duracion">Duración: 30 días</p>
-    <a class="btn-whatsapp" href="#">Comprar</a>
-</div>
-
-<!-- APPLE -->
-<div class="card" id="apple">
-    <div class="logo-container">
-        <img src="https://www.apple.com/v/apple-tv/c/images/meta/apple-tv__ft1nltyknfmi_og.png" class="logo-plataforma">
-    </div>
-    <p class="descripcion">Series premium.</p>
-    <p class="precio">$3 USD / perfil</p>
-    <p class="duracion">Duración: 30 días</p>
-    <a class="btn-whatsapp" href="#">Comprar</a>
-</div>
+</section>
 
 <!-- ================= INSTALAR APP ================= -->
 
@@ -489,7 +400,6 @@ if ('serviceWorker' in navigator) {
 
       console.log('Service Worker registrado');
 
-      // Detectar actualización
       reg.addEventListener('updatefound', () => {
 
         const newWorker = reg.installing;
@@ -501,7 +411,6 @@ if ('serviceWorker' in navigator) {
             navigator.serviceWorker.controller
           ) {
 
-            // Recargar automáticamente
             window.location.reload();
 
           }
