@@ -1,8 +1,8 @@
-const CACHE_NAME = "catalogo-streaming-v3";
+const CACHE_NAME = "v1";
 
 const urlsToCache = [
   "./",
-  "./catalogoweb.html",
+  "./index.html",
   "./manifest.json",
   "./logocatalogo.jpg"
 ];
