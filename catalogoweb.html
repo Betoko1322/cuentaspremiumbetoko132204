@@ -484,8 +484,35 @@ if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
 
     navigator.serviceWorker.register('./service-worker.js')
-      .then(reg => console.log('Service Worker registrado'))
-      .catch(err => console.log('Error:', err));
+
+    .then(reg => {
+
+      console.log('Service Worker registrado');
+
+      // Detectar actualización
+      reg.addEventListener('updatefound', () => {
+
+        const newWorker = reg.installing;
+
+        newWorker.addEventListener('statechange', () => {
+
+          if (
+            newWorker.state === 'installed' &&
+            navigator.serviceWorker.controller
+          ) {
+
+            // Recargar automáticamente
+            window.location.reload();
+
+          }
+
+        });
+
+      });
+
+    })
+
+    .catch(err => console.log('Error:', err));
 
   });
 
