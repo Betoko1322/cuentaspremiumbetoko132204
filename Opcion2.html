@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Beauty & Más</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}
+
+html{scroll-behavior:smooth}
+
+body{
+background:
+linear-gradient(rgba(255,255,255,.15),rgba(255,255,255,.15)),
+url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=1600');
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+min-height:100vh;
+}
+
+/* --- HEADER --- */
+header{
+margin:20px;
+padding:40px 30px;
+text-align:center;
+color:#fff;
+background:rgba(255,79,154,.25);
+backdrop-filter:blur(20px);
+-webkit-backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,.4);
+border-radius:30px;
+box-shadow:0 20px 60px rgba(0,0,0,.15);
+animation:fade .8s;
+position:relative;
+overflow:hidden;
+}
+header::before{
+content:'';
+position:absolute;
+top:-50%;
+left:-50%;
+width:200%;
+height:200%;
+background:radial-gradient(circle at 30% 50%, rgba(255,255,255,.1) 0%, transparent 60%);
+pointer-events:none;
+}
+header h1{
+font-size:3rem;
+font-weight:800;
+background:linear-gradient(135deg,#fff 30%,#ffd1dc 70%);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+text-shadow:0 2px 20px rgba(255,79,154,.3);
+}
+header p{
+font-size:1.2rem;
+opacity:.9;
+margin-top:8px;
+letter-spacing:1px;
+}
+header .tag{
+display:inline-block;
+margin-top:15px;
+padding:10px 25px;
+background:linear-gradient(90deg,#ff4f9a,#ff7eb3);
+border-radius:50px;
+font-weight:bold;
+font-size:.9rem;
+text-transform:uppercase;
+letter-spacing:2px;
+box-shadow:0 8px 25px rgba(255,79,154,.4);
+animation:pulse 2s infinite;
+}
+
+/* --- BÚSQUEDA --- */
+#buscar{
+display:block;
+width:85%;
+max-width:600px;
+margin:30px auto 25px;
+padding:16px 24px;
+border:none;
+border-radius:50px;
+background:rgba(255,255,255,.25);
+backdrop-filter:blur(20px);
+-webkit-backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,.4);
+box-shadow:0 10px 30px rgba(0,0,0,.08);
+outline:none;
+font-size:1rem;
+color:#1a1a2e;
+transition:.3s;
+}
+#buscar:focus{
+background:rgba(255,255,255,.35);
+box-shadow:0 10px 40px rgba(255,79,154,.15);
+transform:scale(1.01);
+}
+#buscar::placeholder{color:rgba(0,0,0,.4)}
+
+/* --- PRODUCTOS --- */
+#productos{
+width:95%;
+max-width:1400px;
+margin:auto;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:28px;
+padding-bottom:20px;
+}
+
+.card{
+background:rgba(255,255,255,.15);
+backdrop-filter:blur(20px);
+-webkit-backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,.3);
+border-radius:24px;
+overflow:hidden;
+box-shadow:0 15px 40px rgba(0,0,0,.08),inset 0 1px 1px rgba(255,255,255,.3);
+transition:.5s cubic-bezier(.2,.8,.4,1);
+opacity:0;
+animation:slideUp .6s ease forwards;
+animation-delay:calc(0.05s * var(--i,1));
+}
+.card:hover{
+transform:translateY(-12px) scale(1.02);
+background:rgba(255,255,255,.25);
+box-shadow:0 30px 60px rgba(255,79,154,.25);
+}
+
+.card .badge{
+position:absolute;
+top:15px;
+left:15px;
+background:linear-gradient(135deg,#ff4f9a,#ff2d7a);
+padding:6px 18px;
+border-radius:30px;
+color:#fff;
+font-size:.75rem;
+font-weight:bold;
+text-transform:uppercase;
+letter-spacing:1px;
+box-shadow:0 4px 15px rgba(255,79,154,.4);
+z-index:2;
+}
+
+.card .img-wrap{
+position:relative;
+overflow:hidden;
+height:240px;
+}
+.card img{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:.6s;
+}
+.card:hover img{transform:scale(1.1)}
+
+.info{padding:20px}
+.nombre{
+font-size:1.2rem;
+color:#d81b72;
+font-weight:700;
+margin-bottom:4px;
+}
+.desc{
+font-size:.9rem;
+color:rgba(0,0,0,.6);
+margin:6px 0 10px;
+line-height:1.4;
+}
+.precio{
+font-size:1.6rem;
+font-weight:800;
+color:#0b8b48;
+display:flex;
+align-items:center;
+gap:8px;
+}
+.precio .simbolo{font-size:1.2rem;opacity:.6}
+
+/* --- CONTADOR --- */
+.cantidad-control{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px;
+margin-top:14px;
+background:rgba(255,255,255,.15);
+backdrop-filter:blur(6px);
+border-radius:60px;
+padding:4px;
+border:1px solid rgba(255,255,255,.2);
+}
+.cantidad-control button{
+width:48px;
+height:48px;
+border-radius:50%;
+border:none;
+font-size:30px;
+font-weight:300;
+background:rgba(255,255,255,.2);
+backdrop-filter:blur(8px);
+color:#d81b72;
+cursor:pointer;
+transition:.2s;
+display:flex;
+align-items:center;
+justify-content:center;
+line-height:1;
+}
+.cantidad-control button:hover{
+background:#ff4f9a;
+color:#fff;
+transform:scale(1.08);
+}
+.cantidad-control .cantidad-num{
+font-size:28px;
+font-weight:700;
+min-width:50px;
+text-align:center;
+color:#1a1a2e;
+background:rgba(255,255,255,.15);
+border-radius:30px;
+padding:4px 8px;
+}
+
+.btn-agregar{
+width:100%;
+padding:14px;
+margin-top:14px;
+border-radius:60px;
+border:none;
+background:linear-gradient(90deg,#ff4f9a,#ff7eb3);
+color:#fff;
+cursor:pointer;
+transition:.3s;
+font-weight:700;
+font-size:1rem;
+letter-spacing:.5px;
+box-shadow:0 8px 25px rgba(255,79,154,.3);
+}
+.btn-agregar:hover{
+transform:scale(1.03) translateY(-2px);
+box-shadow:0 12px 35px rgba(255,79,154,.45);
+}
+.btn-agregar:active{transform:scale(.97)}
+
+/* --- CARRITO --- */
+#carrito{
+width:95%;
+max-width:900px;
+margin:50px auto;
+padding:30px;
+background:rgba(255,255,255,.15);
+backdrop-filter:blur(25px);
+-webkit-backdrop-filter:blur(25px);
+border:1px solid rgba(255,255,255,.3);
+border-radius:30px;
+box-shadow:0 25px 60px rgba(0,0,0,.1);
+}
+#carrito h2{
+font-size:2rem;
+color:#1a1a2e;
+display:flex;
+align-items:center;
+gap:12px;
+}
+#carrito h2 small{
+font-size:.8rem;
+font-weight:400;
+color:rgba(0,0,0,.5);
+background:rgba(255,255,255,.3);
+padding:4px 16px;
+border-radius:30px;
+}
+#lista{
+margin:18px 0;
+padding:16px;
+border:2px dashed rgba(255,255,255,.3);
+border-radius:16px;
+min-height:70px;
+background:rgba(255,255,255,.05);
+}
+#lista p{
+padding:8px 0;
+border-bottom:1px solid rgba(255,255,255,.1);
+display:flex;
+justify-content:space-between;
+font-size:1rem;
+}
+#lista p:last-child{border-bottom:none}
+#total{
+font-size:2rem;
+font-weight:800;
+color:#d81b72;
+margin:15px 0;
+}
+.botones{
+display:flex;
+justify-content:flex-end;
+gap:14px;
+margin-top:20px;
+flex-wrap:wrap;
+}
+.botones button{
+padding:14px 32px;
+border-radius:60px;
+border:none;
+font-weight:700;
+font-size:1rem;
+cursor:pointer;
+transition:.3s;
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+.botones button:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,0,0,.15)}
+#vaciar{
+background:rgba(255,0,0,.1);
+color:#c0392b;
+border:1px solid rgba(255,0,0,.2);
+}
+#vaciar:hover{background:rgba(255,0,0,.2)}
+#wa{
+background:#25D366;
+color:#fff;
+}
+#wa:hover{background:#1da851}
+
+/* --- FOOTER CON ICONO WHATSAPP --- */
+footer{
+margin:30px;
+padding:30px;
+text-align:center;
+background:rgba(255,255,255,.1);
+backdrop-filter:blur(20px);
+border-radius:24px;
+border:1px solid rgba(255,255,255,.2);
+color:rgba(0,0,0,.7);
+}
+footer .social{
+display:flex;
+justify-content:center;
+gap:20px;
+margin:15px 0;
+}
+footer .social a{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+width:52px;
+height:52px;
+border-radius:50%;
+background:rgba(255,255,255,.1);
+transition:all .3s cubic-bezier(.2,.8,.4,1);
+text-decoration:none;
+}
+footer .social a:hover{
+transform:translateY(-6px) scale(1.1);
+}
+footer .social a svg{
+width:26px;
+height:26px;
+transition:.3s;
+}
+footer .social a .bg-fill{transition:.3s;}
+
+/* WhatsApp - Verde oficial */
+footer .social a.whatsapp:hover{
+background:#25D366;
+box-shadow:0 10px 30px rgba(37,211,102,.4);
+}
+footer .social a.whatsapp:hover svg{fill:#fff;}
+
+/* Instagram - Gradiente oficial */
+footer .social a.instagram:hover{
+background:radial-gradient(circle at 30% 110%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+box-shadow:0 10px 30px rgba(214,41,118,.3);
+}
+footer .social a.instagram:hover svg{fill:#fff;}
+
+/* Facebook - Azul oficial */
+footer .social a.facebook:hover{
+background:#1877f2;
+box-shadow:0 10px 30px rgba(24,119,242,.3);
+}
+footer .social a.facebook:hover svg{fill:#fff;}
+
+/* Twitter/X - Negro oficial */
+footer .social a.twitter:hover{
+background:#000;
+box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+footer .social a.twitter:hover svg{fill:#fff;}
+
+/* Email - Rojo Gmail */
+footer .social a.email:hover{
+background:#ea4335;
+box-shadow:0 10px 30px rgba(234,67,53,.3);
+}
+footer .social a.email:hover svg{fill:#fff;}
+
+footer p{opacity:.7;font-size:.9rem}
+
+/* --- ANIMACIONES --- */
+@keyframes fade{
+from{opacity:0;transform:translateY(-30px)}
+to{opacity:1;transform:none}
+}
+@keyframes slideUp{
+from{opacity:0;transform:translateY(40px)}
+to{opacity:1;transform:none}
+}
+@keyframes pulse{
+0%,100%{transform:scale(1)}
+50%{transform:scale(1.05)}
+}
+
+/* --- RESPONSIVE --- */
+@media(max-width:1200px){#productos{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:900px){#productos{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:650px){
+#productos{grid-template-columns:1fr}
+.botones{flex-direction:column;align-items:stretch}
+.botones button{width:100%}
+header h1{font-size:2.2rem}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+<h1>Beauty & Mas</h1>
+<p>Belleza premium para ti</p>
+<div class="tag">Ofertas especiales</div>
+</header>
+
+<!-- BÚSQUEDA -->
+<input type="text" id="buscar" placeholder="Buscar productos...">
+
+<!-- PRODUCTOS -->
+<section id="productos"></section>
+
+<!-- CARRITO -->
+<section id="carrito">
+<h2>Carrito <small id="contadorArticulos">0 artículos</small></h2>
+<div id="lista">No hay productos agregados.</div>
+<div id="total">Total: $0.00</div>
+<div class="botones">
+<button id="vaciar">Vaciar carrito</button>
+<button id="wa">WhatsApp</button>
+</div>
+</section>
+
+<!-- FOOTER CON ICONOS SVG OFICIALES + WHATSAPP -->
+<footer>
+<div class="social">
+  <!-- WhatsApp -->
+  <a href="#" class="whatsapp" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24">
+      <path class="bg-fill" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+
+  <!-- Instagram -->
+  <a href="#" class="instagram" aria-label="Instagram">
+    <svg viewBox="0 0 24 24">
+      <path class="bg-fill" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+    </svg>
+  </a>
+
+  <!-- Facebook -->
+  <a href="#" class="facebook" aria-label="Facebook">
+    <svg viewBox="0 0 24 24">
+      <path class="bg-fill" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+    </svg>
+  </a>
+
+  <!-- Twitter/X -->
+  <a href="#" class="twitter" aria-label="Twitter">
+    <svg viewBox="0 0 24 24">
+      <path class="bg-fill" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+    </svg>
+  </a>
+
+  <!-- Email -->
+  <a href="#" class="email" aria-label="Email">
+    <svg viewBox="0 0 24 24">
+      <path class="bg-fill" d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z"/>
+      <path class="bg-fill" d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z"/>
+    </svg>
+  </a>
+</div>
+<p>2026 Beauty & Mas · Todos los derechos reservados</p>
+<p style="font-size:.8rem;margin-top:6px;">Hecho con amor para ti</p>
+</footer>
+
+<script>
+const productos=[
+["Labial Matte",150,true],
+["Shampoo",220,false],
+["Crema Facial",180,true],
+["Perfume",450,false],
+["Serum",280,false],
+["Base",320,false],
+["Rubor",175,true],
+["Rimel",210,false]
+];
+
+const cont=document.getElementById("productos");
+const lista=document.getElementById("lista");
+const totalTxt=document.getElementById("total");
+const contadorArticulos=document.getElementById("contadorArticulos");
+const buscar=document.getElementById("buscar");
+
+let carrito=[];
+
+// --- RENDER PRODUCTOS ---
+productos.forEach((p,i)=>{
+const badge = p[2] ? `<span class="badge">Oferta</span>` : '';
+const imgSeed = p[0].replace(/\s/g,'');
+
+cont.innerHTML += `
+<article class="card" style="--i:${i+1}">
+<div class="img-wrap">
+${badge}
+<img src="https://picsum.photos/seed/${imgSeed}${i}/500/400" alt="${p[0]}">
+</div>
+<div class="info">
+<div class="nombre">${p[0]}</div>
+<div class="desc">Producto premium para tu rutina de belleza.</div>
+<div class="precio"><span class="simbolo">$</span> ${p[1]}</div>
+<div class="cantidad-control">
+<button class="btn-menos" data-index="${i}">−</button>
+<span class="cantidad-num" id="cantidadDisplay${i}">1</span>
+<button class="btn-mas" data-index="${i}">+</button>
+</div>
+<button class="btn-agregar" data-index="${i}">Agregar al carrito</button>
+</div>
+</article>
+`;
+});
+
+// --- CONTADORES ---
+document.querySelectorAll('.btn-mas').forEach(btn=>{
+btn.addEventListener('click',function(){
+const idx=this.dataset.index;
+const display=document.getElementById('cantidadDisplay'+idx);
+let val=parseInt(display.textContent);
+if(val<20) display.textContent=val+1;
+});
+});
+
+document.querySelectorAll('.btn-menos').forEach(btn=>{
+btn.addEventListener('click',function(){
+const idx=this.dataset.index;
+const display=document.getElementById('cantidadDisplay'+idx);
+let val=parseInt(display.textContent);
+if(val>1) display.textContent=val-1;
+});
+});
+
+// --- AGREGAR AL CARRITO ---
+document.querySelectorAll('.btn-agregar').forEach(btn=>{
+btn.addEventListener('click',function(){
+const idx=this.dataset.index;
+const display=document.getElementById('cantidadDisplay'+idx);
+const cantidad=parseInt(display.textContent);
+const nombre=productos[idx][0];
+const precio=productos[idx][1];
+
+const existente=carrito.find(item=>item.nombre===nombre);
+if(existente){
+existente.cantidad+=cantidad;
+}else{
+carrito.push({nombre,precio,cantidad});
+}
+actualizar();
+this.textContent='Agregado!';
+setTimeout(()=>{this.textContent='Agregar al carrito';},1200);
+});
+});
+
+// --- ACTUALIZAR CARRITO ---
+function actualizar(){
+const totalItems=carrito.reduce((acc,item)=>acc+item.cantidad,0);
+contadorArticulos.textContent=totalItems===1 ? '1 artículo' : totalItems+' artículos';
+
+if(carrito.length===0){
+lista.innerHTML='No hay productos agregados.';
+totalTxt.textContent='Total: $0.00';
+return;
+}
+
+let total=0;
+lista.innerHTML='';
+carrito.forEach(item=>{
+const sub=item.precio*item.cantidad;
+total+=sub;
+lista.innerHTML+=`<p><span>${item.nombre} × ${item.cantidad}</span><span>$${sub.toFixed(2)}</span></p>`;
+});
+totalTxt.textContent='Total: $'+total.toFixed(2);
+}
+
+// --- VACIAR ---
+document.getElementById('vaciar').addEventListener('click',()=>{
+if(carrito.length===0) return;
+if(confirm('¿Vaciar todo el carrito?')){
+carrito=[];
+actualizar();
+}
+});
+
+// --- WHATSAPP ---
+document.getElementById('wa').addEventListener('click',()=>{
+if(carrito.length===0){
+alert('El carrito está vacío.');
+return;
+}
+let total=0;
+let mensaje='Hola, quiero realizar el siguiente pedido:%0A%0A';
+carrito.forEach(item=>{
+const sub=item.precio*item.cantidad;
+total+=sub;
+mensaje+=`• ${item.nombre} x${item.cantidad} - $${sub.toFixed(2)}%0A`;
+});
+mensaje+=`%0ATotal: $${total.toFixed(2)}`;
+const telefono='5215512345678';
+window.open(`https://wa.me/${telefono}?text=${mensaje}`,'_blank');
+});
+
+// --- BÚSQUEDA ---
+buscar.addEventListener('input',function(){
+const term=this.value.toLowerCase().trim();
+document.querySelectorAll('.card').forEach(card=>{
+const nombre=card.querySelector('.nombre').textContent.toLowerCase();
+card.style.display=nombre.includes(term)?'':'none';
+});
+});
+
+actualizar();
+</script>
+</body>
+</html>
