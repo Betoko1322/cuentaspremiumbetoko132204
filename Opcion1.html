@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Beauty & Más</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}
+body{
+background:
+linear-gradient(rgba(255,255,255,.18),rgba(255,255,255,.18)),
+url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=1600');
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+}
+header{
+margin:20px;
+padding:35px;
+text-align:center;
+color:#fff;
+background:rgba(255,79,154,.30);
+backdrop-filter:blur(18px);
+-webkit-backdrop-filter:blur(18px);
+border:1px solid rgba(255,255,255,.35);
+border-radius:22px;
+box-shadow:0 15px 35px rgba(0,0,0,.15);
+animation:fade .8s;
+}
+#buscar{
+display:block;
+width:85%;
+max-width:700px;
+margin:25px auto;
+padding:14px 18px;
+border:none;
+border-radius:30px;
+background:rgba(255,255,255,.28);
+backdrop-filter:blur(18px);
+-webkit-backdrop-filter:blur(18px);
+border:1px solid rgba(255,255,255,.4);
+box-shadow:0 10px 25px rgba(0,0,0,.12);
+outline:none;
+}
+#productos{
+width:95%;
+margin:auto;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:25px;
+}
+.card{
+background:rgba(255,255,255,.20);
+backdrop-filter:blur(18px);
+-webkit-backdrop-filter:blur(18px);
+border:1px solid rgba(255,255,255,.35);
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 15px 35px rgba(0,0,0,.12),inset 0 1px 1px rgba(255,255,255,.35);
+transition:.4s;
+}
+.card:hover{
+transform:translateY(-10px) scale(1.03);
+background:rgba(255,255,255,.28);
+box-shadow:0 25px 45px rgba(255,79,154,.30);
+}
+.card img{width:100%;height:220px;object-fit:cover;transition:.4s}
+.card:hover img{transform:scale(1.08)}
+.info{padding:16px}
+.nombre{font-size:20px;color:#d81b72;font-weight:bold}
+.desc{margin:10px 0;color:#333}
+.precio{font-size:24px;font-weight:bold;color:#0b8b48}
+select,
+.cantidad-control{
+display:flex;justify-content:center;align-items:center;gap:10px;margin:12px 0;
+}
+.qty-btn{
+width:34px!important;
+height:34px;
+margin:0!important;
+padding:0!important;
+border-radius:50%!important;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:20px;
+font-weight:bold;
+flex:none!important;
+}
+.cantidad-num{
+min-width:28px;
+text-align:center;
+font-size:18px;
+font-weight:bold;
+}
+
+button{
+width:100%;
+padding:10px;
+margin-top:10px;
+border-radius:10px;
+border:none;
+}
+select{
+background:rgba(255,255,255,.35);
+backdrop-filter:blur(12px);
+}
+button{
+background:linear-gradient(90deg,#ff4f9a,#ff7eb3);
+color:#fff;
+cursor:pointer;
+transition:.3s;
+}
+button:hover{transform:scale(1.03)}
+#carrito{
+width:95%;
+margin:40px auto;
+padding:20px;
+background:rgba(255,255,255,.18);
+backdrop-filter:blur(18px);
+-webkit-backdrop-filter:blur(18px);
+border:1px solid rgba(255,255,255,.35);
+border-radius:20px;
+box-shadow:0 20px 40px rgba(0,0,0,.15);
+}
+#lista{
+margin:15px 0;
+padding:12px;
+border:1px dashed rgba(255,255,255,.5);
+border-radius:12px;
+min-height:60px;
+background:rgba(255,255,255,.08);
+}
+.botones{display:flex;justify-content:flex-end;gap:10px}
+.botones button{width:180px}
+#wa{background:#25D366}
+footer{
+margin:30px;
+padding:20px;
+text-align:center;
+background:rgba(255,255,255,.15);
+backdrop-filter:blur(18px);
+border-radius:18px;
+}
+@keyframes fade{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:none}}
+@media(max-width:1000px){#productos{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:650px){#productos{grid-template-columns:1fr}.botones{flex-direction:column}.botones button{width:100%}}
+</style>
+</head>
+<body>
+<header>
+<h1>💄 Beauty & Más</h1>
+<p>Bienvenido a nuestra tienda de belleza y cuidado personal.</p>
+</header>
+
+<section id="productos"></section>
+<section id="carrito">
+<h2>🛒 Carrito</h2>
+<div id="lista">No hay productos agregados.</div>
+<h3>Total: $0.00</h3>
+<div class="botones">
+<button id="vaciar">Vaciar</button>
+<button id="wa">WhatsApp</button>
+</div>
+</section>
+<footer>©2026 Beauty & Más</footer>
+
+<script>
+const productos=[
+["Labial Matte",150],["Shampoo",220],["Crema Facial",180],["Perfume",450],
+["Serum",280],["Base",320],["Rubor",175],["Rímel",210]
+];
+
+const cont=document.getElementById("productos");
+const lista=document.getElementById("lista");
+const totalTxt=document.getElementById("total") || document.querySelector("#carrito h3");
+
+let carrito=[];
+
+productos.forEach((p,i)=>{
+cont.innerHTML+=`
+<article class="card" id="producto${i+1}">
+<img src="https://picsum.photos/seed/belleza${i}/500/400">
+<div class="info">
+<div class="nombre">${p[0]}</div>
+<div class="desc">Producto premium para tu rutina de belleza.</div>
+<div class="precio">$${p[1]}</div>
+<div class="cantidad-control">
+<button type="button" class="qty-btn menos" data-i="${i}">−</button>
+<span class="cantidad-num" id="cantidad${i}">1</span>
+<button type="button" class="qty-btn mas" data-i="${i}">+</button>
+</div>
+<button id="agregar${i}">Agregar al carrito</button>
+</div></article>`;
+});
+
+function actualizar(){
+ if(carrito.length===0){
+   lista.innerHTML="No hay productos agregados.";
+   totalTxt.textContent="Total: $0.00";
+   return;
+ }
+ let total=0;
+ lista.innerHTML="";
+ carrito.forEach(item=>{
+   const sub=item.precio*item.cantidad;
+   total+=sub;
+   lista.innerHTML+=`<p>${item.nombre} x${item.cantidad} — $${sub}</p>`;
+ });
+ totalTxt.textContent="Total: $"+total.toFixed(2);
+}
+
+
+document.querySelectorAll(".mas").forEach(b=>{
+ b.onclick=()=>document.getElementById("cantidad"+b.dataset.i).textContent++;
+});
+document.querySelectorAll(".menos").forEach(b=>{
+ b.onclick=()=>{
+  const e=document.getElementById("cantidad"+b.dataset.i);
+  if(+e.textContent>1)e.textContent--;
+ };
+});
+
+document.querySelectorAll("[id^='agregar']").forEach((btn,i)=>{
+ btn.addEventListener("click",()=>{
+   const cant=parseInt(document.getElementById("cantidad"+i).textContent);
+   const existente=carrito.find(x=>x.nombre===productos[i][0]);
+   if(existente){
+      existente.cantidad+=cant;
+   }else{
+      carrito.push({nombre:productos[i][0],precio:productos[i][1],cantidad:cant});
+   }
+   actualizar();
+ });
+});
+
+const vaciar=document.getElementById("vaciar")||document.querySelector(".botones button");
+if(vaciar){
+ vaciar.addEventListener("click",()=>{
+   carrito=[];
+   actualizar();
+ });
+}
+
+actualizar();
+
+document.getElementById("wa").addEventListener("click",()=>{
+    if(carrito.length===0){
+        alert("El carrito está vacío.");
+        return;
+    }
+
+    let total=0;
+    let mensaje="Hola, quiero realizar el siguiente pedido:%0A%0A";
+
+    carrito.forEach(item=>{
+        const subtotal=item.precio*item.cantidad;
+        total+=subtotal;
+        mensaje+=`• ${item.nombre} x${item.cantidad} - $${subtotal}%0A`;
+    });
+
+    mensaje+=`%0ATotal: $${total.toFixed(2)}`;
+
+    const telefono="5215512345678"; // Cambia por tu número
+
+    window.open(`https://wa.me/${telefono}?text=${mensaje}`,"_blank");
+});
+</script>
+
+</body>
+</html>
